@@ -1,0 +1,29 @@
+name: "Build and deploy Github pages"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz rsync
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Build Documentation
+        run: doxygen Doxyfile
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workspace: .
+          folder: ./docs/html
+          message: "Update generated page"
+          branch: gh-pages
