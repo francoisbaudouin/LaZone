@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  server:
+    build: ./server
+    ports:
+      - "8080:8080"
+  client_web:
+    build: ./client_web
+    ports:
+      - "8081:8081"
+    depends_on:
+      - server
+      - client_mobile
+    volumes:
+      - client:/usr/src/app/node_modules
+  client_mobile:
+    build: ./client_mobile
+    volumes:
+      - client:/usr/src/app/node_modules
+  DB-MySQL:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test #need to be store as secret
+    volumes:
+      - ./mysql:/var/lib/mysql
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+volumes:
+  client:
+    driver: local
+    driver_opts:
+      size: "10GiB"
