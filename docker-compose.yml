@@ -1,10 +1,12 @@
 version: '3.8'
 services:
   server:
+    #restart: always
     build: ./server
     ports:
       - "8080:8080"
   client_web:
+    #restart: always
     build: ./client_web
     ports:
       - "8081:8081"
@@ -12,15 +14,16 @@ services:
       - server
       - client_mobile
     volumes:
-      - client:/usr/src/app/node_modules
+      - client
   client_mobile:
+    #restart: always
     build: ./client_mobile
     volumes:
-      - client:/usr/src/app/node_modules
+      - client
   DB-MySQL:
     image: mysql:5.7
     ports:
-      - "3306:3306"
+      - "3380:3380"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: test
@@ -33,5 +36,3 @@ services:
 volumes:
   client:
     driver: local
-    driver_opts:
-      size: "10GiB"
