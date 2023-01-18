@@ -1,36 +1,50 @@
 version: '3.8'
 services:
+
+  ##### SERVER #####
+
   server:
     #restart: always
+    container_name: server
     build: ./server
     ports:
       - "8080:8080"
+
+  ##### CLIENT #####
+
+  client_mobile:
+    #restart: always
+    container_name: client_mobile
+    build: ./flutter_application/android
+    volumes:
+      - client:/home
+
   client_web:
     #restart: always
-    build: ./client_web
+    container_name: client_web
+    build: ./flutter_application/web
     ports:
       - "8081:8081"
     depends_on:
       - server
       - client_mobile
     volumes:
-      - client
-  client_mobile:
-    #restart: always
-    build: ./client_mobile
-    volumes:
-      - client
+      - client:/home
+
+  ##### DB #####
+
   DB-MySQL:
     image: mysql:5.7
+    container_name: db-lazone
     ports:
-      - "3380:3380"
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: test
       MYSQL_USER: test
       MYSQL_PASSWORD: test #need to be store as secret
-    volumes:
-      - ./mysql:/var/lib/mysql
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 
 volumes:

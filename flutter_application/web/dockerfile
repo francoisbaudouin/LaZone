@@ -1,0 +1,14 @@
+# syntax=docker/dockerfile:1
+
+FROM cirrusci/flutter:2.0.5
+
+COPY .. /home
+WORKDIR /home
+
+USER root
+
+RUN flutter doctor
+
+RUN flutter config --enable-web \
+    && flutter precache --universal --web \
+    && flutter build web
