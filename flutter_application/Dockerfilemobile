@@ -1,0 +1,14 @@
+# syntax=docker/dockerfile:1
+
+FROM cirrusci/flutter:2.18.6
+
+COPY . /lazone
+WORKDIR /lazone
+
+USER root
+
+RUN flutter doctor
+
+RUN flutter config --enable-web \
+    && flutter precache --universal --web \
+    && flutter build web
