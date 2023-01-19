@@ -4,7 +4,6 @@ services:
   ##### SERVER #####
 
   server:
-    #restart: always
     container_name: server
     build: ./server
     ports:
@@ -12,39 +11,43 @@ services:
 
   ##### CLIENT #####
 
-  client_mobile:
-    #restart: always
-    container_name: client_mobile
-    build: ./flutter_application/android
-    volumes:
-      - client:/home
+  #  client_mobile:
+  #    #restart: always
+  #    container_name: client_mobile
+  #    build: ./flutter_application
+  #    volumes:
+  #      - client:/flutter_application
 
   client_web:
-    #restart: always
     container_name: client_web
-    build: ./flutter_application/web
+    build:
+      context: ./flutter_application
+      dockerfile: Dockerfileweb
     ports:
       - "8081:8081"
-    depends_on:
-      - server
-      - client_mobile
+    #    depends_on:
+    #      - server
+    #      - client_mobile
     volumes:
       - client:/home
 
   ##### DB #####
 
-  DB-MySQL:
-    image: mysql:5.7
+  db-mysql:
+    #image: mysql:5.7
+    build:
+      context: ./server/db
+      dockerfile: Dockerfile
     container_name: db-lazone
     ports:
       - "3306:3306"
+    environment:
+      MYSQL_DATABASE: db_lazone
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: Password
+      MYSQL_ROOT_HOST: localhost
     volumes:
       - ./mysql:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: test
-      MYSQL_USER: test
-      MYSQL_PASSWORD: test #need to be store as secret
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 
 volumes:

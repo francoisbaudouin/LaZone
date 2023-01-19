@@ -1,9 +1,9 @@
 # syntax=docker/dockerfile:1
 
-FROM cirrusci/flutter:2.0.5
+FROM cirrusci/flutter:2.18.6
 
-COPY .. /home
-WORKDIR /home
+COPY . /lazone
+WORKDIR /lazone
 
 USER root
 
