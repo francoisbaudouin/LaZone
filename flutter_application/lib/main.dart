@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'login_page.dart';
+import 'dart:io';
+import 'package:http/http.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: LoginApp(),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -60,6 +62,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  String serverResponse = 'Server response';
 
   void _incrementCounter() {
     setState(() {
@@ -110,17 +113,25 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              serverResponse,
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        onPressed: _makeGetRequest,
+        // tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  _makeGetRequest() async {
+    final url = Uri.parse('http://localhost:8080/about.json');
+    Response response = await get(url);
+    setState(() {
+      serverResponse = response.body;
+    });
   }
 }
