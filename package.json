@@ -1,0 +1,22 @@
+{
+  "name": "lazone",
+  "version": "1.0.0",
+  "description": "epitech project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/francoisbaudouin/LaZone.git"
+  },
+  "author": "francois, ugo, quentin, julien, alexandre",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/francoisbaudouin/LaZone"
+  },
+  "homepage": "https://github.com/francoisbaudouin/LaZone#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
