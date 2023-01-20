@@ -12,4 +12,6 @@ WORKDIR /server
 
 RUN npm install
 
+RUN npm install cors express mysql
+
 CMD ["node", "index.js"]
