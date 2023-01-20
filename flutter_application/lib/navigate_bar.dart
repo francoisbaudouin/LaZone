@@ -14,10 +14,10 @@ class NavDrawer extends StatelessWidget {
           DrawerHeader(
             child: Text(
               'Side menu',
-              style: TextStyle(color: Colors.white, fontSize: 25),
+              style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontSize: 25),
             ),
             decoration: BoxDecoration(
-                color: Color.fromARGB(255, 106, 76, 175),
+                color: Color(0xFFE94057),
               ),
           ),
           ListTile(
