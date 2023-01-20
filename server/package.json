@@ -1,0 +1,9 @@
+{
+  "name": "lazone-server",
+  "version": "1.0.0",
+  "description": "Epitech Project",
+  "main": "index.js",
+  "repository": "https://github.com/francoisbaudouin/LaZone",
+  "author": "Francois, Ugo, Julien, Alexandre, Quentin",
+  "license": "MIT"
+}
