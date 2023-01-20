@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'home_page.dart';
+
 class LoginApp extends StatelessWidget{
-  void click(){}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +72,12 @@ class LoginApp extends StatelessWidget{
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           TextButton(
-                            onPressed: click,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone")),
+                              );
+                            },
                             child:const Text("Mots de passe oublié",
                               style: TextStyle(
                                   color: Colors.deepOrange
@@ -82,6 +88,12 @@ class LoginApp extends StatelessWidget{
                       ),
                     ),
                     GestureDetector(
+                      onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone")),
+                            );
+                      },
                       child: Container(
                         alignment: Alignment.center,
                         width: 250,
@@ -99,7 +111,7 @@ class LoginApp extends StatelessWidget{
                         child: const Padding(
                           padding: EdgeInsets.all(12.0),
                           child: Text('Connexion',
-                            style: TextStyle(color: Colors.white,
+                                style: TextStyle(color: Colors.white,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -116,12 +128,22 @@ class LoginApp extends StatelessWidget{
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         IconButton(
-                            onPressed: click,
-                            icon: const Icon(FontAwesomeIcons.facebook,color: Colors.blue)
+                          icon: const Icon(FontAwesomeIcons.facebook,color: Colors.blue),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone")),
+                              );
+                            }
                         ),
                         IconButton(
-                            onPressed: click,
-                            icon: const Icon(FontAwesomeIcons.google,color: Colors.redAccent,)
+                            icon: const Icon(FontAwesomeIcons.google,color: Colors.redAccent,),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone")),
+                              );
+                            }
                         ),
                       ],
                     )
