@@ -75,7 +75,7 @@ class LoginApp extends StatelessWidget{
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const MyHomePage(title: "yes")),
+                                MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone")),
                               );
                             },
                             child:const Text("Mots de passe oublié",
@@ -89,10 +89,10 @@ class LoginApp extends StatelessWidget{
                     ),
                     GestureDetector(
                       onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => const MyHomePage(title: "yes")),
-                              );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone")),
+                            );
                       },
                       child: Container(
                         alignment: Alignment.center,
@@ -132,7 +132,7 @@ class LoginApp extends StatelessWidget{
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const MyHomePage(title: "yes")),
+                                MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone")),
                               );
                             }
                         ),
@@ -141,7 +141,7 @@ class LoginApp extends StatelessWidget{
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const MyHomePage(title: "yes")),
+                                MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone")),
                               );
                             }
                         ),
