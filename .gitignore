@@ -24,3 +24,6 @@ hs_err_pid*
 
 # MySql
 mysql
+
+#node_modules
+node_modules
