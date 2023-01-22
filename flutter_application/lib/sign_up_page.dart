@@ -33,7 +33,7 @@ class SignUpApp extends StatelessWidget {
                       SizedBox(height: 30,),
                       FirstNameInputField(),
                       SizedBox(height: 12,),
-                      NameInputField(),
+                      LastNameInputField(),
                       SizedBox(height: 12,),
                       EmailInputField(),
                       SizedBox(height: 12,),

@@ -26,8 +26,8 @@ class FirstNameInputField extends StatelessWidget {
   }
 }
 
-class NameInputField extends StatelessWidget {
-  const NameInputField({super.key});
+class LastNameInputField extends StatelessWidget {
+  const LastNameInputField({super.key});
   @override
   Widget build(BuildContext context) {
     return Container(
