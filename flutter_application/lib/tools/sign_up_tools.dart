@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../home_page.dart';
 import '../sign_in_page.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class FirstNameInputField extends StatelessWidget {
   FirstNameInputField({super.key});
@@ -96,16 +98,21 @@ class PasswordInputField extends StatelessWidget {
 }
 
 class ButtonConnection extends StatelessWidget {
-  const ButtonConnection({super.key});
+  ButtonConnection({super.key, required this.name, required this.email, required this.password});
+  String name;
+  String email;
+  String password;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        signup(FirstNameInputField().firstnameText, EmailInputField().emailText, PasswordInputField().passwordText)
-        Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone")),
-          );
+        print(email);
+        print("hello world !!");
+        // signup(name, email, password);
+        // Navigator.push(
+        //     context,
+        //     MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone")),
+        //   );
       },
       child: Container(
         alignment: Alignment.center,
@@ -165,7 +172,7 @@ class LoginAlready extends StatelessWidget {
 }
 
 signup(name, email, password) async {
-  var url = "http://localhost:8081";
+  var url = Uri.parse("http://localhost:8080/auth/signUp");
   final http.Response response = await http.post(
     url,
     headers: <String, String>{

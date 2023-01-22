@@ -92,7 +92,7 @@ class CreateAccount extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SignUpApp()),
+                MaterialPageRoute(builder: (context) => SignUpApp()),
               );
             },
             child:const Text("Click here to create a new account",
