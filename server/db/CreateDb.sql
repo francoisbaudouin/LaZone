@@ -7,12 +7,15 @@ CREATE TABLE Users (
 );
 
 CREATE TABLE Areas (
-    id serial PRIMARY KEY,
+    id serial PRIMARY KEY
 );
 
-CREATE TABLE Action (
-    id serial PRIMARY KEY,
-    serviceName 
+CREATE TABLE Actions (
+    id serial PRIMARY KEY
 );
 
--- INSERT INTO Users(username, pass) VALUES ('test', 'test');
+CREATE TABLE Reactions (
+    id serial PRIMARY KEY
+);
+
+INSERT INTO Users(username, pass) VALUES ('test', 'test');
