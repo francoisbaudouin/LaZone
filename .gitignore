@@ -24,3 +24,9 @@ hs_err_pid*
 
 # MySql
 mysql
+
+#node_modules
+node_modules
+
+#useless dart files
+flutter_application/lib/tmp.dart
