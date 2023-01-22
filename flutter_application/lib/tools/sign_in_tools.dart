@@ -91,7 +91,7 @@ class CreateAccount extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const SignUpApp()),
               );
             },
-            child:const Text("Click here to create a new count",
+            child:const Text("Click here to create a new account",
               style: TextStyle(
                   color: Colors.deepOrange
               ),
