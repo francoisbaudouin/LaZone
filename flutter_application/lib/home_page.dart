@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 import 'navigate_bar.dart';
 
 
@@ -44,11 +43,11 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      drawer: NavDrawer(),
+      drawer: const NavDrawer(),
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        backgroundColor: Color(0xFFE94057),
+        backgroundColor: const Color(0xFFE94057),
         title: Center(
             child: Text(widget.title),
         ),
