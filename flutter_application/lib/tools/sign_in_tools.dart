@@ -59,7 +59,7 @@ class ForgottenPassword extends StatelessWidget {
               onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const LoginApp()),
+                MaterialPageRoute(builder: (context) => const SingInApp()),
                 );
               },
             child: const Text("Forgotten Password",
@@ -88,7 +88,7 @@ class CreateCount extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SignUp()),
+                MaterialPageRoute(builder: (context) => const SignUpApp()),
               );
             },
             child:const Text("Click here to create a new count",

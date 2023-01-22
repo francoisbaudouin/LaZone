@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'tools/sign_up_tools.dart';
 
-class SignUp extends StatelessWidget {
-  const SignUp({super.key});
+class SignUpApp extends StatelessWidget {
+  const SignUpApp({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
