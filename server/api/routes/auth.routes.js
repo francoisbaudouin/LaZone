@@ -2,7 +2,7 @@
 
 const express = require("express");
 const passport = require("passport");
-const { generateToken } = require("../utils/utils");
+const { generateToken } = require("../utils/utils.js");
 const router = express.Router();
 //const UserController = require("../../controllers/users.js")
 
@@ -16,14 +16,19 @@ router.post("/signUp", (req, res, next) => {
   passport.authenticate('signUp', { session: false }, (err, user, info) => {
     if (err) throw new Error(err);
     const token = generateToken(user.id);
-  })
-  res.status(201).json({
-    message: 'Account is created with cred',
-    user: user,
-    token: token,
-    statusCode: res.statusCode
+    return res.status(201).json({
+      status: "sucess",
+      data: {
+        message: 'Account is created with cred',
+        user,
+        token,
+      },
+      statusCode: res.statusCode
+    })
   }) (req, res, next);
 });
+
+
 
 router.post('/signIn', (req, res, next) => {
   passport.authenticate('signIn', { session: false }, (err, user, info) => {

@@ -4,6 +4,7 @@ const cors = require("cors");
 const about_json = require('./about.json')
 const PORT = process.env.PORT || 8080;
 const authRouter = require('./api/routes/auth.routes');
+const passport = require("passport");
 
 var corsOptions = {
   origin: "http://localhost:8080"
@@ -14,6 +15,11 @@ app.use(cors(corsOptions));
 app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
+
+// Initialize passport
+require("./api/passport/local")(passport);
+app.use(passport.initialize());
+app.use(passport.session());
 
 //cors basic config
 app.use((req, res, next) => {

@@ -1,6 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const { Strategy } = require("passport-local");
-const { hash, compare } = require("../utils");
+const { hash, compare } = require("../utils/utils");
 const passport = require("passport");
 require("dotenv").config();
 
@@ -16,7 +16,7 @@ const options = {
 
 module.exports = (passport) => {
   // Passport middleware to signup users
-  passport.use("signUp", new Strategy(options, async (req, email, password, cb) => {
+  passport.use('signUp', new Strategy(options, async (req, email, password, cb) => {
     try {
       // Check if user found
       const existsEmail = await prisma.user.findFirst({ where: { email } });
