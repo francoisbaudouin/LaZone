@@ -10,8 +10,10 @@ COPY . /server
 
 WORKDIR /server
 
-RUN npm install
+RUN yarn install 
 
-RUN npm install cors express mysql
+RUN yarn global add nodemon
 
-CMD ["node", "index.js"]
+RUN yarn add cors express mysql
+
+CMD ["nodemon", "index.js"]
