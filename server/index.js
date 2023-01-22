@@ -5,6 +5,17 @@ const about_json = require('./about.json')
 const PORT = process.env.PORT || 8080;
 const authRouter = require('./api/routes/auth.routes');
 const passport = require("passport");
+const session = require("express-session");
+require('dotenv').config()
+
+// initialize session
+app.use(session({
+  name: process.env.SESSION_NAME,
+  secret: process.env.SESSION_SECRET,
+  saveUninitialized: false,
+  resave: false,
+  cookie: { maxAge: process.env.COOKIE_EXPIRE * 24 * 24 * 60 * 1000 }
+}));
 
 var corsOptions = {
   origin: "http://localhost:8080"
@@ -34,7 +45,6 @@ app.use((req, res, next) => {
   }
   next();
 });
-
 
 app.get("/", (req, res) => {
   res.send("Hello world !");

@@ -1,23 +1,23 @@
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
 require("dotenv").config();
 
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+
+// Function to hash users password
 const hash = async (password) => {
   // Generate salt
   const salt = await bcrypt.genSalt(10);
-  
   // Hash the password
   password = await bcrypt.hash(password, salt);
-  
   return password;
 };
 
-//compare hashed password's
+// Function to compare hashed password's
 const compare = async (hash, pass) => {
   return bcrypt.compare(hash, pass);
 };
 
-//generate tokens
+// Function to generate tokens
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRE

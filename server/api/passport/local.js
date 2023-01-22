@@ -1,8 +1,9 @@
+require("dotenv").config();
+
 const { PrismaClient } = require("@prisma/client");
 const { Strategy } = require("passport-local");
 const { hash, compare } = require("../utils/utils");
 const passport = require("passport");
-require("dotenv").config();
 
 // Initialize a prisma client
 const prisma = new PrismaClient();

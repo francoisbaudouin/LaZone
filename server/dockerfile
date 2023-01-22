@@ -10,8 +10,8 @@ COPY . /server
 
 WORKDIR /server
 
-RUN npm install
+RUN yarn install
 
-RUN npm install cors express mysql
+RUN yarn add cors express mysql express-session bcryptjs passport passport-local passport-jwt jsonwebtoken prisma @prisma/client dotenv nodemon
 
-CMD ["node", "index.js"]
+CMD ["nodemon", "index.js"]
