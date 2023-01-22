@@ -4,6 +4,7 @@ import 'tools/sign_up_tools.dart';
 
 class SingInApp extends StatelessWidget{
   const SingInApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

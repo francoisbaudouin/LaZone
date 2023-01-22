@@ -101,6 +101,7 @@ class ButtonConnection extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        signup(FirstNameInputField().firstnameText, EmailInputField().emailText, PasswordInputField().passwordText)
         Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone")),
@@ -160,5 +161,25 @@ class LoginAlready extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+signup(name, email, password) async {
+  var url = "http://localhost:8081";
+  final http.Response response = await http.post(
+    url,
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'name': name,
+      'email': email,
+      'password': password,
+    }),
+  );
+
+  if (response.statusCode == 201) {
+  } else {
+    throw Exception('Failed to create account.');
   }
 }
