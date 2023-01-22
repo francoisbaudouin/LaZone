@@ -1,52 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/login_page.dart';
-import 'package:responsive_framework/responsive_framework.dart';
-import 'login_page.dart';
+import 'package:flutter_application/sign_in_page.dart';
 
-
-class NavDrawer extends StatelessWidget {
+class NavBar extends StatelessWidget {
+  const NavBar({super.key});
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          DrawerHeader(
-            child: Text(
-              'Side menu',
-              style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontSize: 25),
-            ),
+          const DrawerHeader(
             decoration: BoxDecoration(
                 color: Color(0xFFE94057),
               ),
+              child: Text(
+              'Side menu',
+              style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontSize: 25),
+            ),
           ),
           ListTile(
-            leading: Icon(Icons.input),
-            title: Text('Welcome'),
+            leading: const Icon(Icons.input),
+            title: const Text('Welcome'),
             onTap: () => {},
           ),
           ListTile(
-            leading: Icon(Icons.verified_user),
-            title: Text('Profile'),
+            leading: const Icon(Icons.verified_user),
+            title: const Text('Profile'),
             onTap: () => {Navigator.of(context).pop()},
           ),
           ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Settings'),
+            leading: const Icon(Icons.settings),
+            title: const Text('Settings'),
             onTap: () => {Navigator.of(context).pop()},
           ),
           ListTile(
-            leading: Icon(Icons.border_color),
-            title: Text('Feedback'),
+            leading: const Icon(Icons.border_color),
+            title: const Text('Feedback'),
             onTap: () => {Navigator.of(context).pop()},
           ),
           ListTile(
-            leading: Icon(Icons.exit_to_app),
-            title: Text('Logout'),
+            leading: const Icon(Icons.exit_to_app),
+            title: const Text('Logout'),
             onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => LoginApp()),
+                          MaterialPageRoute(builder: (context) => const SingInApp()),
                         );
                       },
           ),
