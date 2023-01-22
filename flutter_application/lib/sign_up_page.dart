@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'tools/sign_up_tools.dart';
 
-
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
   @override

@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../home_page.dart';
 import '../sign_in_page.dart';
 
-
 class FirstNameInputField extends StatelessWidget {
   const FirstNameInputField({super.key});
   @override

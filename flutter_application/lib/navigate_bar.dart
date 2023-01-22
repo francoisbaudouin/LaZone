@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/sign_in_page.dart';
 
-
-class NavDrawer extends StatelessWidget {
-  const NavDrawer({super.key});
+class NavBar extends StatelessWidget {
+  const NavBar({super.key});
   @override
   Widget build(BuildContext context) {
     return Drawer(
