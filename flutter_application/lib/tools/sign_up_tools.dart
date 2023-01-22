@@ -36,7 +36,7 @@ class NameInputField extends StatelessWidget {
       child: const TextField(
         decoration: InputDecoration(
             suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
-            labelText: "Name",
+            labelText: "Last Name",
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(8)),
             )
