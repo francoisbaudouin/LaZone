@@ -23,23 +23,23 @@ class SignUpApp extends StatelessWidget {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const <Widget> [
-                      SizedBox(height: 30,),
-                      Text("Create your count",
+                  children: <Widget> [
+                      const SizedBox(height: 30,),
+                      const Text("Create your count",
                         style: TextStyle(
                           fontSize: 28,
                           fontWeight:FontWeight.bold
                         ),),
-                      SizedBox(height: 30,),
+                      const SizedBox(height: 30,),
                       FirstNameInputField(),
-                      SizedBox(height: 12,),
+                      const SizedBox(height: 12,),
                       LastNameInputField(),
-                      SizedBox(height: 12,),
+                      const SizedBox(height: 12,),
                       EmailInputField(),
-                      SizedBox(height: 12,),
+                      const SizedBox(height: 12,),
                       PasswordInputField(),
-                      LoginAlready(),
-                      ButtonConnection(),
+                      const LoginAlready(),
+                      const ButtonConnection(),
                     ]  
                 ),
               ),

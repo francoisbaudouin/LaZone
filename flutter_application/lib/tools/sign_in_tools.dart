@@ -5,14 +5,16 @@ import '../sign_up_page.dart';
 import '../home_page.dart';
 
 class EmailInputFieldIn extends StatelessWidget {
-  const EmailInputFieldIn({super.key});
+  EmailInputFieldIn({super.key});
+  final TextEditingController emailText = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 260,
       height: 60,
-      child: const TextField(
-        decoration: InputDecoration(
+      child: TextField(
+        controller: emailText,
+        decoration: const InputDecoration(
             suffix: Icon(FontAwesomeIcons.envelope,color: Colors.red,),
             labelText: "Email address",
             border: OutlineInputBorder(
@@ -25,15 +27,17 @@ class EmailInputFieldIn extends StatelessWidget {
 }
 
 class PasswordInputFieldIn extends StatelessWidget {
-  const PasswordInputFieldIn({super.key});
+  PasswordInputFieldIn({super.key});
+  final TextEditingController passwordText = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 260,
       height: 60,
-      child: const TextField(
+      child: TextField(
+        controller: passwordText,
         obscureText: true,
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
             suffix: Icon(FontAwesomeIcons.eyeSlash,color: Colors.red,),
             labelText: "Password",
             border: OutlineInputBorder(

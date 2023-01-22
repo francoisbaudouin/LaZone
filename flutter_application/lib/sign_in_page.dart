@@ -24,29 +24,29 @@ class SingInApp extends StatelessWidget{
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const <Widget> [
-                    SizedBox(height: 30,),
-                    Text("Hello",
+                  children: <Widget> [
+                    const SizedBox(height: 30,),
+                    const Text("Hello",
                       style: TextStyle(
                           fontSize: 28,
                           fontWeight:FontWeight.bold
                       ),),
-                    SizedBox(height: 10,),
-                    Text("Sign in with your account",
+                    const SizedBox(height: 10,),
+                    const Text("Sign in with your account",
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 15,
                       ),),
-                    SizedBox(height: 30,),
+                    const SizedBox(height: 30,),
                     EmailInputFieldIn(),
-                    SizedBox(height: 12,),
+                    const SizedBox(height: 12,),
                     PasswordInputFieldIn(),
-                    ForgottenPassword(),
-                    ButtonConnection(),
-                    SizedBox(height: 17 ,),
-                    CreateAccount(),
-                    SizedBox(height: 15,),
-                    ButtonService(),
+                    const ForgottenPassword(),
+                    const ButtonConnection(),
+                    const SizedBox(height: 17 ,),
+                    const CreateAccount(),
+                    const SizedBox(height: 15,),
+                    const ButtonService(),
                   ],
                 ),
               )

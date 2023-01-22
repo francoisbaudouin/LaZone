@@ -4,7 +4,8 @@ import '../home_page.dart';
 import '../sign_in_page.dart';
 
 class FirstNameInputField extends StatelessWidget {
-  const FirstNameInputField({super.key});
+  FirstNameInputField({super.key});
+  final TextEditingController firstnameText = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -12,8 +13,9 @@ class FirstNameInputField extends StatelessWidget {
       child: Container( 
         width: 260,
         height: 60,
-        child: const TextField(
-          decoration: InputDecoration(
+        child: TextField(
+          controller: firstnameText,
+          decoration: const InputDecoration(
               suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
               labelText: "First Name",
               border: OutlineInputBorder(
@@ -27,14 +29,16 @@ class FirstNameInputField extends StatelessWidget {
 }
 
 class LastNameInputField extends StatelessWidget {
-  const LastNameInputField({super.key});
+  LastNameInputField({super.key});
+  final TextEditingController lastnameText = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 260,
       height: 60,
-      child: const TextField(
-        decoration: InputDecoration(
+      child: TextField(
+        controller: lastnameText,
+        decoration: const InputDecoration(
             suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
             labelText: "Last Name",
             border: OutlineInputBorder(
@@ -47,14 +51,16 @@ class LastNameInputField extends StatelessWidget {
 }
 
 class EmailInputField extends StatelessWidget {
-  const EmailInputField({super.key});
+  EmailInputField({super.key});
+  final TextEditingController emailText = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 260,
       height: 60,
-      child: const TextField(
-        decoration: InputDecoration(
+      child: TextField(
+        controller: emailText,
+        decoration: const InputDecoration(
             suffix: Icon(FontAwesomeIcons.envelope,color: Colors.red,),
             labelText: "Email address",
             border: OutlineInputBorder(
@@ -67,15 +73,17 @@ class EmailInputField extends StatelessWidget {
 }
 
 class PasswordInputField extends StatelessWidget {
-  const PasswordInputField({super.key});
+  PasswordInputField({super.key});
+  final TextEditingController passwordText = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 260,
       height: 60,
-      child: const TextField(
+      child: TextField(
+        controller: passwordText,
         obscureText: true,
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
             suffix: Icon(FontAwesomeIcons.eyeSlash,color: Colors.red,),
             labelText: "Password",
             border: OutlineInputBorder(
