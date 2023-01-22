@@ -74,8 +74,8 @@ class ForgottenPassword extends StatelessWidget {
   }
 }
 
-class CreateCount extends StatelessWidget {
-  const CreateCount({super.key});
+class CreateAccount extends StatelessWidget {
+  const CreateAccount({super.key});
 
   @override
   Widget build(BuildContext context) {
