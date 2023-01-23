@@ -11,12 +11,13 @@ services:
 
   ##### CLIENT #####
 
-  #  client_mobile:
-  #    #restart: always
-  #    container_name: client_mobile
-  #    build: ./flutter_application
-  #    volumes:
-  #      - client:/flutter_application
+  client_mobile:
+    container_name: client_mobile
+    build:
+      context: ./flutter_application
+      dockerfile: Dockerfilemobile
+    volumes:
+      - client:/home
 
   client_web:
     container_name: client_web
@@ -25,29 +26,25 @@ services:
       dockerfile: Dockerfileweb
     ports:
       - "8081:8081"
-    #    depends_on:
-    #      - server
-    #      - client_mobile
+    depends_on:
+      - server
+      - client_mobile
     volumes:
       - client:/home
 
   ##### DB #####
 
   db-mysql:
-    #image: mysql:5.7
     build:
       context: ./server/db
       dockerfile: Dockerfile
     container_name: db-lazone
     ports:
       - "3306:3306"
-    environment:
-      MYSQL_DATABASE: db_lazone
-      MYSQL_ROOT_USER: root
-      MYSQL_ROOT_PASSWORD: Password
-      MYSQL_ROOT_HOST: localhost
+    expose:
+      - '3306'
     volumes:
-      - ./mysql:/var/lib/mysql
+      - client:/var/lib/mysql
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 
 volumes:
