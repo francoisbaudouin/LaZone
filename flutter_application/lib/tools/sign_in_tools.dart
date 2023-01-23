@@ -71,14 +71,10 @@ class ButtonConnection extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print(email);
-        print(password);
-        print("hello world !!");
-        // signup(name, email, password);
-        // Navigator.push(
-        //     context,
-        //     MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone")),
-        //   );
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone")),
+          );
       },
       child: Container(
         alignment: Alignment.center,

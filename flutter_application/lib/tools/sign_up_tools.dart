@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../sign_in_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '../home_page.dart';
 
 class ButtonCreateAccount extends StatelessWidget {
   ButtonCreateAccount({super.key, required this.firstname, required this.lastname,required this.email, required this.password});
@@ -13,16 +14,10 @@ class ButtonCreateAccount extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print(firstname);
-        print(lastname);
-        print(email);
-        print(password);
-        print("hello world !!");
-        // signup(name, email, password);
-        // Navigator.push(
-        //     context,
-        //     MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone")),
-        //   );
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone")),
+          );
       },
       child: Container(
         alignment: Alignment.center,

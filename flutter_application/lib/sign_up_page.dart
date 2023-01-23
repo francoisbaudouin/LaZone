@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'tools/sign_up_tools.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignUpApp extends StatelessWidget {
