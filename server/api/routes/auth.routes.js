@@ -15,6 +15,7 @@ router.get("/", function (req, res) {
 router.post("/signUp", (req, res, next) => {
   passport.authenticate('signUp', { session: false }, (err, user, info) => {
     if (err) throw new Error(err);
+    console.log("MAIS TU VAS PASSER LA OUAIS");
     const token = generateToken(user.id);
     return res.status(201).json({
       status: "sucess",
@@ -50,3 +51,4 @@ router.post('/signIn', (req, res, next) => {
 //router.get("/datas", UserController.findAll);
 
 module.exports = router;
+

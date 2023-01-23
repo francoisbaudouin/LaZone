@@ -10,7 +10,9 @@ COPY . /server
 
 WORKDIR /server
 
-RUN yarn install
+RUN yarn install 
+
+RUN yarn global add nodemon
 
 RUN yarn add cors express mysql express-session bcryptjs passport passport-local passport-jwt jsonwebtoken prisma @prisma/client dotenv nodemon
 
