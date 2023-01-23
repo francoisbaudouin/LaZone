@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'tools/sign_in_tools.dart';
-import 'tools/sign_up_tools.dart';
 
 class SingInApp extends StatelessWidget{
-  const SingInApp({super.key});
-
+  SingInApp({super.key});
+  var _email = "";
+  var _password = "";
+  var button = ButtonConnection(email: "", password: "");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,13 +41,51 @@ class SingInApp extends StatelessWidget{
                         fontSize: 15,
                       ),),
                     const SizedBox(height: 30,),
-                    EmailInputFieldIn(),
-                    const SizedBox(height: 12,),
-                    PasswordInputFieldIn(),
+                    Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Container( 
+                          width: 260,
+                          height: 60,
+                          child: TextField(
+                            onChanged: (value) {
+                                _email = value;
+                                button.password = _email;
+                              },
+                            decoration: const InputDecoration(
+                              suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
+                              labelText: "Email",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(8)),
+                              )
+                            ),
+                          ),
+                        ),
+                    ),
+                    const SizedBox(height: 5,),
+                    Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Container( 
+                          width: 260,
+                          height: 60,
+                          child: TextField(
+                            obscureText: true,
+                            onChanged: (value) {
+                                _password = value;
+                                button.email = _password;
+                              },
+                            decoration: const InputDecoration(
+                              suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
+                              labelText: "Password",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(8)),
+                              )
+                            ),
+                          ),
+                        ),
+                      ),
                     const ForgottenPassword(),
-                    // const ButtonConnection(),
-                    const SizedBox(height: 17 ,),
-                    const CreateAccount(),
+                    const SizedBox(height: 15 ,),
+                    button,
                     const SizedBox(height: 15,),
                     const ButtonService(),
                   ],

@@ -11,7 +11,7 @@ class NavBar extends StatelessWidget {
         children: <Widget>[
           const DrawerHeader(
             decoration: BoxDecoration(
-                color: Color(0xFFE94057),
+                color: Color(0xffF57752),
               ),
               child: Text(
               'Side menu',
@@ -44,7 +44,7 @@ class NavBar extends StatelessWidget {
             onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const SingInApp()),
+                          MaterialPageRoute(builder: (context) => SingInApp()),
                         );
                       },
           ),
