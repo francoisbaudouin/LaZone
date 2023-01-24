@@ -46,9 +46,7 @@ module.exports = (passport) => {
     try {
       // Check if user found
       const user = await prisma.user.findFirst({ where: { email } });
-      console.log(user);
       if (!user) { return cb(null, false, { message: "No user found.", statusCode: 400 }) };
-      console.log("HEY HEY");
 
       // Compare password
       const validPassword = await compare(password, user.password);
