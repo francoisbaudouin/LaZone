@@ -4,46 +4,6 @@ import '../sign_in_page.dart';
 import '../sign_up_page.dart';
 import '../home_page.dart';
 
-class EmailInputFieldIn extends StatelessWidget {
-  const EmailInputFieldIn({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 260,
-      height: 60,
-      child: const TextField(
-        decoration: InputDecoration(
-            suffix: Icon(FontAwesomeIcons.envelope,color: Colors.red,),
-            labelText: "Email address",
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(8)),
-            )
-        ),
-      ),
-    );
-  }
-}
-
-class PasswordInputFieldIn extends StatelessWidget {
-  const PasswordInputFieldIn({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 260,
-      height: 60,
-      child: const TextField(
-        obscureText: true,
-        decoration: InputDecoration(
-            suffix: Icon(FontAwesomeIcons.eyeSlash,color: Colors.red,),
-            labelText: "Password",
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(8)),
-            )
-        ),
-      ),
-    );
-  }
-}
 
 class ForgottenPassword extends StatelessWidget {
   const ForgottenPassword({super.key});
@@ -59,7 +19,7 @@ class ForgottenPassword extends StatelessWidget {
               onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SingInApp()),
+                MaterialPageRoute(builder: (context) => SingInApp()),
                 );
               },
             child: const Text("Forgotten Password",
@@ -88,7 +48,7 @@ class CreateAccount extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SignUpApp()),
+                MaterialPageRoute(builder: (context) => SignUpApp()),
               );
             },
             child:const Text("Click here to create a new account",
@@ -100,6 +60,46 @@ class CreateAccount extends StatelessWidget {
         ],
       ),
     ); 
+  }
+}
+
+class ButtonConnection extends StatelessWidget {
+  ButtonConnection({super.key, required this.email, required this.password});
+  String email;
+  String password;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone")),
+          );
+      },
+      child: Container(
+        alignment: Alignment.center,
+        width: 250,
+        decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Color(0xFF8A2387),
+                  Color(0xFFE94057),
+                  Color(0xFFF27121),
+                ])
+        ),
+        child: const Padding(
+          padding: EdgeInsets.all(12.0),
+          child: Text('Connection',
+            style: TextStyle(color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+    );
   }
 }
 
