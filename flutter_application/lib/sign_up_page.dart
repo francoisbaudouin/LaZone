@@ -33,7 +33,7 @@ class SignUpApp extends StatelessWidget {
                         height: 30,
                       ),
                       const Text(
-                        "Create your count",
+                        "Create your account",
                         style: TextStyle(
                             fontSize: 28, fontWeight: FontWeight.bold),
                       ),
@@ -85,7 +85,7 @@ class SignUpApp extends StatelessWidget {
                           height: 60,
                           child: TextField(
                             onChanged: (value) {
-                                button.password = value;
+                                button.email = value;
                               },
                             decoration: const InputDecoration(
                               suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
@@ -106,7 +106,7 @@ class SignUpApp extends StatelessWidget {
                           child: TextField(
                             obscureText: true,
                             onChanged: (value) {
-                                button.email = value;
+                                button.password = value;
                               },
                             decoration: const InputDecoration(
                               suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
@@ -120,8 +120,6 @@ class SignUpApp extends StatelessWidget {
                       ),
                       const LoginAlready(),
                       button,
-                      // ButtonConnection(
-                      //     name: _firstname, email: _email, password: _password),
                     ]),
               ),
             ],

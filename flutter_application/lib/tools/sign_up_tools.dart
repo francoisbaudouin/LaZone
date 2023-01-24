@@ -35,7 +35,7 @@ class ButtonCreateAccount extends StatelessWidget {
         ),
         child: const Padding(
           padding: EdgeInsets.all(12.0),
-          child: Text('Create count',
+          child: Text('Create account',
             style: TextStyle(color: Colors.white,
               fontSize: 20,
               fontWeight: FontWeight.bold),
