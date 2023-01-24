@@ -55,4 +55,4 @@ volumes:
 
 networks:
   database:
-    external: true
+    driver: bridge
