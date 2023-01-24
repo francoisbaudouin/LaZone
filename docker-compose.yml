@@ -44,15 +44,11 @@ services:
     expose:
       - '3306'
     volumes:
-      - client:/var/lib/mysql
+      - db:/var/lib/mysql
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    networks:
-      - database
 
 volumes:
   client:
     driver: local
-
-networks:
-  database:
-    driver: bridge
+  db:
+    driver: local
