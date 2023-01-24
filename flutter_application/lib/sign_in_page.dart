@@ -4,8 +4,6 @@ import 'tools/sign_in_tools.dart';
 
 class SingInApp extends StatelessWidget{
   SingInApp({super.key});
-  var _email = "";
-  var _password = "";
   var button = ButtonConnection(email: "", password: "");
   @override
   Widget build(BuildContext context) {

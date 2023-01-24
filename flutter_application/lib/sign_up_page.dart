@@ -4,10 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignUpApp extends StatelessWidget {
   SignUpApp({super.key});
-  var _firstname = "";
-  var _lastname = "";
-  var _email = "";
-  var _password = "";
   var button = ButtonCreateAccount(firstname: "", lastname: "", email: "", password: "");
 
   @override
