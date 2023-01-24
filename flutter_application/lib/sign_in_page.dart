@@ -49,7 +49,7 @@ class SingInApp extends StatelessWidget{
                           child: TextField(
                             onChanged: (value) {
                                 _email = value;
-                                button.password = _email;
+                                button.email = _email;
                               },
                             decoration: const InputDecoration(
                               suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
@@ -71,7 +71,7 @@ class SingInApp extends StatelessWidget{
                             obscureText: true,
                             onChanged: (value) {
                                 _password = value;
-                                button.email = _password;
+                                button.password = _password;
                               },
                             decoration: const InputDecoration(
                               suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
