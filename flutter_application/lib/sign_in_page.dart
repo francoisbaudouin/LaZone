@@ -29,6 +29,7 @@ class SingInApp extends StatelessWidget{
                     const SizedBox(height: 30,),
                     const Text("Hello",
                       style: TextStyle(
+                          color: Colors.black,
                           fontSize: 28,
                           fontWeight:FontWeight.bold
                       ),),
@@ -53,7 +54,7 @@ class SingInApp extends StatelessWidget{
                               labelText: "Email",
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(8)),
-                              )
+                              ),
                             ),
                           ),
                         ),
@@ -83,6 +84,7 @@ class SingInApp extends StatelessWidget{
                     const SizedBox(height: 15 ,),
                     button,
                     const SizedBox(height: 15,),
+                    const CreateAccount(),
                     const ButtonService(),
                   ],
                 ),

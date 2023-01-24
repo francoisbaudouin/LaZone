@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'navigate_bar.dart';
 
 class DiscordPage extends StatelessWidget {
   const DiscordPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const NavBar(),
       appBar: AppBar(
         toolbarHeight: 80.0,
         backgroundColor: const Color(0xffF57752),
