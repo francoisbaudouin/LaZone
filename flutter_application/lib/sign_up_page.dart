@@ -49,8 +49,7 @@ class SignUpApp extends StatelessWidget {
                           height: 60,
                           child: TextField(
                             onChanged: (value) {
-                                _firstname = value;
-                                button.firstname = _firstname;
+                                button.firstname = value;
                             },
                             decoration: const InputDecoration(
                               suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
@@ -70,8 +69,7 @@ class SignUpApp extends StatelessWidget {
                           height: 60,
                           child: TextField(
                             onChanged: (value) {
-                                _lastname = value;
-                                button.lastname = _lastname;
+                                button.lastname = value;
                               },
                             decoration: const InputDecoration(
                               suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
@@ -91,8 +89,7 @@ class SignUpApp extends StatelessWidget {
                           height: 60,
                           child: TextField(
                             onChanged: (value) {
-                                _email = value;
-                                button.password = _email;
+                                button.password = value;
                               },
                             decoration: const InputDecoration(
                               suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
@@ -113,8 +110,7 @@ class SignUpApp extends StatelessWidget {
                           child: TextField(
                             obscureText: true,
                             onChanged: (value) {
-                                _password = value;
-                                button.email = _password;
+                                button.email = value;
                               },
                             decoration: const InputDecoration(
                               suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
