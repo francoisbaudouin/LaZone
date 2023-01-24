@@ -46,7 +46,13 @@ services:
     volumes:
       - client:/var/lib/mysql
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    networks:
+      - database
 
 volumes:
   client:
     driver: local
+
+networks:
+  database:
+    external: true
