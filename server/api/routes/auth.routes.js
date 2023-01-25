@@ -56,6 +56,7 @@ router.post("/signUp", (req, res, next) => {
 router.post('/signIn', (req, res, next) => {
   passport.authenticate('signIn', { session: false }, (err, user, info) => {
     if (err) throw new Error(err);
+    if (!user) { return res.json(info) };
     const token = generateToken(user.id);
     return res.status(201).json({
       status: "success",
