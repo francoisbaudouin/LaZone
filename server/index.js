@@ -29,7 +29,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Initialize passport
-require("./api/passport/local.js")(passport);
+require("./api/passport/local.js");
 app.use(passport.initialize());
 app.use(passport.session());
 

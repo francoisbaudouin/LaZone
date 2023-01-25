@@ -9,6 +9,8 @@ USER root
 
 RUN flutter doctor
 
+RUN flutter clean
+
 RUN flutter config --enable-android \
     && flutter precache --universal --android \
     && flutter build apk

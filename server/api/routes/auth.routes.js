@@ -5,30 +5,40 @@ const express = require("express");
 const passport = require("passport");
 const { generateToken } = require("../utils/utils.js");
 const router = express.Router();
-//const UserController = require("../../controllers/users.js")
-
 const prisma = new PrismaClient();
+
+//const UserController = require("../../controllers/users.js")
 
 // Home page route.
 router.get("/", function (req, res) {
   async function t () {
-    const y = await prisma.user.findMany();
-    return  y;
+    const y = await prisma.users.findMany();
+    return y;
   };
   const users = t();
   if (!users) {
-    res.json({message: "Error"})
+    res.json({ message: "Error" })
   }
-  res.json(users);
-  
+  users.then(function (result) {
+    res.json(result);
+  });
+
 });
 
 // post a user
 router.post("/signUp", (req, res, next) => {
   passport.authenticate('signUp', { session: false }, (err, user, info) => {
     if (err) {
-      console.log("MAIS TU VAS PASSER LA OUAIS");
       throw new Error(err);
+    }
+    if (user == false) {
+      return res.status(400).json({
+        status: "failure",
+        data: {
+          info
+        },
+        statusCode: res.statusCode
+      })
     }
     const token = generateToken(user.id);
     return res.status(201).json({
@@ -42,8 +52,6 @@ router.post("/signUp", (req, res, next) => {
     })
   }) (req, res, next);
 });
-
-
 
 router.post('/signIn', (req, res, next) => {
   passport.authenticate('signIn', { session: false }, (err, user, info) => {

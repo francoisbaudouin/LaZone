@@ -2,25 +2,26 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "debian-openssl-1.1.x"]
 }
 
 datasource db {
   provider = "mysql"
-  url = env("DATABASE_URL")
+  url      = "mysql://dev:AveFrancois@db-lazone:3306/db_lazone"
 }
 
-model User {
-      id Int @id @default(autoincrement())
-      name String
-      email String @unique
-      password String
-      token String
+model users {
+  id         Int      @id @default(autoincrement())
+  email      String   @unique(map: "email") @db.VarChar(255)
+  password   String   @db.VarChar(255)
+  lastname   String   @db.VarChar(255)
+  firstname  String   @db.VarChar(255)
+  pseudo     String   @db.VarChar(255)
+  created_at DateTime @default(now()) @db.DateTime(0)
 }
-
 
 model Post {
-      id Int @id @default(autoincrement())
-      name String
+  id   Int    @id @default(autoincrement())
+  name String
 }
