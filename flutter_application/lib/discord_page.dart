@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/discord_page.dart';
 import 'navigate_bar.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class DiscordPage extends StatelessWidget {
+  const DiscordPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,20 +18,13 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const DiscordPage()),
-                  );
-              },
               child: Container(
-                height: 150,
+                height: 200,
                 width: 300,
                 decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(30)),
                     gradient: LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
+                        begin: Alignment.topCenter,
                         colors: [
                           Color.fromARGB(255, 3, 3, 3),
                           Color.fromARGB(255, 129, 64, 233),
