@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_framework.dart';
+import 'home_page.dart';
 
 class DiscordPage extends StatelessWidget {
   const DiscordPage({super.key});
@@ -7,39 +9,45 @@ class DiscordPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 80.0,
-        backgroundColor: const Color(0xffF57752),
+        backgroundColor: const Color.fromARGB(255, 127, 184, 250),
         elevation: 0.0,
-        title: const Text('Title'),
+        title: const Center(child: Text('Discord', textAlign: TextAlign.center)),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            GestureDetector(
-              child: Container(
-                height: 200,
-                width: 300,
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(30)),
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        colors: [
-                          Color.fromARGB(255, 3, 3, 3),
-                          Color.fromARGB(255, 129, 64, 233),
-                          Color.fromARGB(255, 33, 36, 242),
-                        ])
-                ),
-                child: const Center(
-                  child: Text('Discord',
-                      textAlign : TextAlign.center,
-                      style: TextStyle(color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
-                  ),
-                ),
+        child: SingleChildScrollView(
+        child :Container(
+        margin: blockMargin,
+        child: ResponsiveRowColumn(
+          layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
+              ? ResponsiveRowColumnType.COLUMN
+              : ResponsiveRowColumnType.ROW,
+          rowCrossAxisAlignment: CrossAxisAlignment.start,
+          rowSpacing: 10,
+          columnSpacing: 10,
+          children: const [
+            ResponsiveRowColumnItem(
+              rowFlex: 1,
+              rowFit: FlexFit.tight,
+              child: FlutterNewsCard(
+                title: "Github",
+                imagePath: "../assets/images/github-logo.png",
+                linkUrl:
+                    "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
               ),
-            )
+            ),
+            ResponsiveRowColumnItem(
+              rowFlex: 1,
+              rowFit: FlexFit.tight,
+              child: FlutterNewsCard(
+                title: "Choose your service to link wiht Github",
+                imagePath: "../assets/images/discord-logo.png",
+                linkUrl:
+                    "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
+              ),
+            ),
           ],
+        ),
+        ),
         ),
       ),
     );
