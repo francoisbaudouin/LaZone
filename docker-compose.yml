@@ -4,6 +4,8 @@ services:
   ##### SERVER #####
 
   server:
+    env_file:
+      - server/.env
     container_name: server
     build: ./server
     ports:
@@ -44,9 +46,12 @@ services:
     expose:
       - '3306'
     volumes:
-      - client:/var/lib/mysql
+      - db:/var/lib/mysql
+      - "./server/db/schema.sql:/docker-entrypoint-initdb.d/init.sql"
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 
 volumes:
   client:
+    driver: local
+  db:
     driver: local
