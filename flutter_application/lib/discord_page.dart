@@ -11,7 +11,7 @@ class DiscordPage extends StatelessWidget {
         toolbarHeight: 80.0,
         backgroundColor: const Color(0xffF57752),
         elevation: 0.0,
-        title: const Text('Title'),
+        title: const Text('Discord'),
       ),
       body: Center(
         child: Column(
@@ -32,7 +32,7 @@ class DiscordPage extends StatelessWidget {
                         ])
                 ),
                 child: const Center(
-                  child: Text('Discord',
+                  child: Text('Title',
                       textAlign : TextAlign.center,
                       style: TextStyle(color: Colors.white,
                       fontSize: 20,

@@ -64,8 +64,8 @@ router.post('/signIn', (req, res, next) => {
         message: "Welcome back.",
         user,
         token,
-        statusCode: res.statusCode
       },
+      statusCode: res.statusCode
     });
   }) (req, res, next);
 });
