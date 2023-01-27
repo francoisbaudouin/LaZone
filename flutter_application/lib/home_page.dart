@@ -41,12 +41,14 @@ class FlutterNewsCard extends StatelessWidget {
   final String title;
   final String imagePath;
   final String linkUrl;
+  final String text;
 
   const FlutterNewsCard(
       {Key? key,
       required this.title,
       required this.imagePath,
-      required this.linkUrl})
+      required this.linkUrl,
+      required this.text})
       : super(key: key);
 
   @override
@@ -86,11 +88,11 @@ class FlutterNewsCard extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         color: Color.fromARGB(255, 202, 22, 22),
                     ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Text('Disconnected',
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(text,
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white,
+                        style: const TextStyle(color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                       ),
@@ -131,6 +133,7 @@ class FlutterNewsRow extends StatelessWidget {
               imagePath: "../assets/images/github-logo.png",
               linkUrl:
                   "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
+              text: "Disconnected",
             ),
           ),
           ResponsiveRowColumnItem(
@@ -141,6 +144,7 @@ class FlutterNewsRow extends StatelessWidget {
               imagePath: "../assets/images/Trello-Symbole.jpg",
               linkUrl:
                   "https://medium.com/flutter/announcing-codepen-support-for-flutter-bb346406fe50",
+              text: "Disconnected",
             ),
           ),
           ResponsiveRowColumnItem(
@@ -151,6 +155,7 @@ class FlutterNewsRow extends StatelessWidget {
               imagePath: "../assets/images/Planner-logo.jpg",
               linkUrl:
                   "https://medium.com/flutter/announcing-codepen-support-for-flutter-bb346406fe50",
+              text: "Disconnected",
             ),
           ),
         ],

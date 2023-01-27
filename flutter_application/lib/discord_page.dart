@@ -33,6 +33,7 @@ class DiscordPage extends StatelessWidget {
                 imagePath: "../assets/images/github-logo.png",
                 linkUrl:
                     "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
+                text: "Disconnected",
               ),
             ),
             ResponsiveRowColumnItem(
@@ -43,6 +44,7 @@ class DiscordPage extends StatelessWidget {
                 imagePath: "../assets/images/discord-logo.png",
                 linkUrl:
                     "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
+                text: "Disconnected",
               ),
             ),
           ],
