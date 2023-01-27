@@ -4,7 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignUpApp extends StatelessWidget {
   SignUpApp({super.key});
-  var button = ButtonCreateAccount(firstname: "", lastname: "", email: "", password: "");
+  var button = ButtonCreateAccount(
+      firstname: "", lastname: "", pseudo: "", email: "", password: "");
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class SignUpApp extends StatelessWidget {
               ),
               Container(
                 width: 325,
-                height: 470,
+                height: 600,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -37,88 +38,139 @@ class SignUpApp extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 28, fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(height: 13,),
+                      const SizedBox(
+                        height: 13,
+                      ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Container( 
+                        child: Container(
                           width: 260,
                           height: 60,
                           child: TextField(
                             onChanged: (value) {
-                                button.firstname = value;
+                              button.firstname = value;
                             },
                             decoration: const InputDecoration(
-                              suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
-                              labelText: "First Name",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(8)),
-                              )
-                            ),
+                                suffix: Icon(
+                                  FontAwesomeIcons.user,
+                                  color: Colors.red,
+                                ),
+                                labelText: "First Name",
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(8)),
+                                )),
                           ),
                         ),
                       ),
-                      const SizedBox(height: 5,),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Container( 
+                        child: Container(
                           width: 260,
                           height: 60,
                           child: TextField(
                             onChanged: (value) {
-                                button.lastname = value;
-                              },
+                              button.lastname = value;
+                            },
                             decoration: const InputDecoration(
-                              suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
-                              labelText: "Last Name",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(8)),
-                              )
-                            ),
+                                suffix: Icon(
+                                  FontAwesomeIcons.user,
+                                  color: Colors.red,
+                                ),
+                                labelText: "Last Name",
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(8)),
+                                )),
                           ),
                         ),
                       ),
-                      const SizedBox(height: 5,),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Container( 
+                        child: Container(
                           width: 260,
                           height: 60,
                           child: TextField(
                             onChanged: (value) {
-                                button.email = value;
-                              },
+                              button.pseudo = value;
+                            },
                             decoration: const InputDecoration(
-                              suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
-                              labelText: "Email",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(8)),
-                              )
-                            ),
+                                suffix: Icon(
+                                  FontAwesomeIcons.user,
+                                  color: Colors.red,
+                                ),
+                                labelText: "Pseudo",
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(8)),
+                                )),
                           ),
                         ),
                       ),
-                      const SizedBox(height: 5,),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Container( 
+                        child: Container(
+                          width: 260,
+                          height: 60,
+                          child: TextField(
+                            onChanged: (value) {
+                              button.email = value;
+                            },
+                            decoration: const InputDecoration(
+                                suffix: Icon(
+                                  FontAwesomeIcons.user,
+                                  color: Colors.red,
+                                ),
+                                labelText: "Email",
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(8)),
+                                )),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Container(
                           width: 260,
                           height: 60,
                           child: TextField(
                             obscureText: true,
                             onChanged: (value) {
-                                button.password = value;
-                              },
+                              button.password = value;
+                            },
                             decoration: const InputDecoration(
-                              suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
-                              labelText: "Password",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(8)),
-                              )
-                            ),
+                                suffix: Icon(
+                                  FontAwesomeIcons.user,
+                                  color: Colors.red,
+                                ),
+                                labelText: "Password",
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(8)),
+                                )),
                           ),
                         ),
                       ),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       const LoginAlready(),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       button,
                     ]),
               ),

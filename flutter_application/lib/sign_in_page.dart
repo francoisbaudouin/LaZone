@@ -83,6 +83,7 @@ class SingInApp extends StatelessWidget{
                     const SizedBox(height: 15 ,),
                     button,
                     const SizedBox(height: 15,),
+                    const CreateAccount(),
                     const ButtonService(),
                   ],
                 ),
