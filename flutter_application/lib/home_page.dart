@@ -54,14 +54,14 @@ class FlutterNewsCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(10),
           border: Border.all(color: border)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            constraints: const BoxConstraints(maxHeight: 400),
-            child: Image.asset(imagePath, fit: BoxFit.fitWidth),
+            constraints: const BoxConstraints(maxHeight: 300),
+            child: Image.asset(imagePath, fit: BoxFit.fill),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(40, 40, 40, 40),
@@ -75,12 +75,28 @@ class FlutterNewsCard extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const DiscordPage()),
-                  );
-              },
-                  child: Text("Click here to choose this service", style: bodyLinkTextStyle),
-                )
+                        context,
+                        MaterialPageRoute(builder: (context) => const DiscordPage()),
+                      );
+                  },
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    width: 250,
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        color: Color.fromARGB(255, 202, 22, 22),
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Text('Disconnected',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           )
@@ -98,11 +114,12 @@ class FlutterNewsRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: blockMargin,
+      child: SingleChildScrollView(
       child: ResponsiveRowColumn(
         layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
             ? ResponsiveRowColumnType.COLUMN
             : ResponsiveRowColumnType.ROW,
-        rowCrossAxisAlignment: CrossAxisAlignment.start,
+        rowCrossAxisAlignment: CrossAxisAlignment.center,
         rowSpacing: 25,
         columnSpacing: 25,
         children: const [
@@ -137,6 +154,7 @@ class FlutterNewsRow extends StatelessWidget {
             ),
           ),
         ],
+      ),
       ),
     );
   }
@@ -176,12 +194,16 @@ class _HomeViewState extends State<HomeView> {
   int _selectedIndex = 0;
   List<Widget> views =  [
     const Center(
-      child: SingleChildScrollView(
         child : FlutterNewsRow(),
-      ),
     ),
     const Center(
       child: Text('Account'),
+    ),
+    const Center(
+      child: Text('Settings'),
+    ),
+    const Center(
+      child: Text('Settings'),
     ),
     const Center(
       child: Text('Settings'),
@@ -209,13 +231,6 @@ class _HomeViewState extends State<HomeView> {
         body: Row(
         children: [
           SideNavigationBar(
-            header: const SideNavigationBarHeader(
-              subtitle: Text(''),
-              title: Text("\nMenu"),
-              image: CircleAvatar(
-                child: Icon(Icons.home),
-              ),
-            ),
             footer: const SideNavigationBarFooter(
               label: Text('Reduce')
             ),
@@ -236,6 +251,10 @@ class _HomeViewState extends State<HomeView> {
               SideNavigationBarItem(
                 icon: Icons.settings,
                 label: 'Settings',
+              ),
+              SideNavigationBarItem(
+                icon: Icons.logout,
+                label: 'Logout',
               ),
             ],
             onTap: (index) {

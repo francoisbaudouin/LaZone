@@ -9,7 +9,7 @@ class SingInApp extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(
@@ -42,7 +42,7 @@ class SingInApp extends StatelessWidget{
                     const SizedBox(height: 30,),
                     Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Container( 
+                        child: SizedBox( 
                           width: 260,
                           height: 60,
                           child: TextField(
@@ -62,7 +62,7 @@ class SingInApp extends StatelessWidget{
                     const SizedBox(height: 5,),
                     Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Container( 
+                        child: SizedBox( 
                           width: 260,
                           height: 60,
                           child: TextField(

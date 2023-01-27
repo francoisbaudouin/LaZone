@@ -10,7 +10,7 @@ class SignUpApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(
@@ -21,7 +21,7 @@ class SignUpApp extends StatelessWidget {
               ),
               Container(
                 width: 325,
-                height: 470,
+                height: 600,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -40,7 +40,7 @@ class SignUpApp extends StatelessWidget {
                       const SizedBox(height: 13,),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Container( 
+                        child: SizedBox( 
                           width: 260,
                           height: 60,
                           child: TextField(
@@ -60,7 +60,7 @@ class SignUpApp extends StatelessWidget {
                       const SizedBox(height: 5,),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Container( 
+                        child: SizedBox( 
                           width: 260,
                           height: 60,
                           child: TextField(
@@ -80,7 +80,27 @@ class SignUpApp extends StatelessWidget {
                       const SizedBox(height: 5,),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Container( 
+                        child: SizedBox( 
+                          width: 260,
+                          height: 60,
+                          child: TextField(
+                            onChanged: (value) {
+                                button.lastname = value;
+                              },
+                            decoration: const InputDecoration(
+                              suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
+                              labelText: "Pseudo",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(8)),
+                              )
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 5,),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: SizedBox( 
                           width: 260,
                           height: 60,
                           child: TextField(
@@ -100,7 +120,7 @@ class SignUpApp extends StatelessWidget {
                       const SizedBox(height: 5,),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Container( 
+                        child: SizedBox( 
                           width: 260,
                           height: 60,
                           child: TextField(
