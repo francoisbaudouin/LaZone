@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class SignUpApp extends StatelessWidget {
   SignUpApp({super.key});
   var button = ButtonCreateAccount(
-      firstname_: "", lastname_: "", pseudo_: "", email_: "", password: "");
+      firstname_: "", lastname_: "", pseudo_: "", email_: "", password_: "");
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +149,7 @@ class SignUpApp extends StatelessWidget {
                           child: TextField(
                             obscureText: true,
                             onChanged: (value) {
-                              button.password = value;
+                              button.password_ = value;
                             },
                             decoration: const InputDecoration(
                                 suffix: Icon(

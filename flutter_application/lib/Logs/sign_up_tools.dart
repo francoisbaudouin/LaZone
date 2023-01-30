@@ -13,12 +13,12 @@ class ButtonCreateAccount extends StatelessWidget {
       required this.lastname_,
       required this.pseudo_,
       required this.email_,
-      required this.password});
+      required this.password_});
   String firstname_;
   String lastname_;
   String pseudo_;
   String email_;
-  String password;
+  String password_;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -29,7 +29,7 @@ class ButtonCreateAccount extends StatelessWidget {
           lastname = lastname_;
           email = email_;
           pseudo = pseudo_;
-          signup(firstname_, lastname_, pseudo_, email_, password, context);
+          signup(firstname_, lastname_, pseudo_, email_, password_, context);
         } else {
             throw Exception('Failed to login.');
         }
