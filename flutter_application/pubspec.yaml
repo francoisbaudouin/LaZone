@@ -47,6 +47,7 @@ dependencies:
   webview_flutter: ^3.0.0
   universal_html: ^2.0.8
   google_fonts: ^2.3.1
+  email_validator: ^2.1.17
 
 dev_dependencies:
   flutter_test:
