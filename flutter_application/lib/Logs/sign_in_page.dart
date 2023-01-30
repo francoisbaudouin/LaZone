@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'tools/sign_in_tools.dart';
+import 'sign_in_tools.dart';
 
 class SingInApp extends StatelessWidget{
   SingInApp({super.key});
@@ -9,7 +9,7 @@ class SingInApp extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(
@@ -29,6 +29,7 @@ class SingInApp extends StatelessWidget{
                     const SizedBox(height: 30,),
                     const Text("Hello",
                       style: TextStyle(
+                          color: Colors.black,
                           fontSize: 28,
                           fontWeight:FontWeight.bold
                       ),),
@@ -41,7 +42,7 @@ class SingInApp extends StatelessWidget{
                     const SizedBox(height: 30,),
                     Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Container( 
+                        child: SizedBox( 
                           width: 260,
                           height: 60,
                           child: TextField(
@@ -53,7 +54,7 @@ class SingInApp extends StatelessWidget{
                               labelText: "Email",
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(8)),
-                              )
+                              ),
                             ),
                           ),
                         ),
@@ -61,7 +62,7 @@ class SingInApp extends StatelessWidget{
                     const SizedBox(height: 5,),
                     Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Container( 
+                        child: SizedBox( 
                           width: 260,
                           height: 60,
                           child: TextField(

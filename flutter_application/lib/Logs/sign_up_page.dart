@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'tools/sign_up_tools.dart';
+import 'sign_up_tools.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignUpApp extends StatelessWidget {
   SignUpApp({super.key});
   var button = ButtonCreateAccount(
-      firstname: "", lastname: "", pseudo: "", email: "", password: "");
+      firstname_: "", lastname_: "", pseudo_: "", email_: "", password_: "");
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(
@@ -43,12 +43,12 @@ class SignUpApp extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Container(
+                        child: SizedBox(
                           width: 260,
                           height: 60,
                           child: TextField(
                             onChanged: (value) {
-                              button.firstname = value;
+                              button.firstname_ = value;
                             },
                             decoration: const InputDecoration(
                                 suffix: Icon(
@@ -68,12 +68,12 @@ class SignUpApp extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Container(
+                        child: SizedBox(
                           width: 260,
                           height: 60,
                           child: TextField(
                             onChanged: (value) {
-                              button.lastname = value;
+                              button.lastname_ = value;
                             },
                             decoration: const InputDecoration(
                                 suffix: Icon(
@@ -93,12 +93,12 @@ class SignUpApp extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Container(
+                        child: SizedBox(
                           width: 260,
                           height: 60,
                           child: TextField(
                             onChanged: (value) {
-                              button.pseudo = value;
+                              button.pseudo_ = value;
                             },
                             decoration: const InputDecoration(
                                 suffix: Icon(
@@ -118,12 +118,12 @@ class SignUpApp extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Container(
+                        child: SizedBox(
                           width: 260,
                           height: 60,
                           child: TextField(
                             onChanged: (value) {
-                              button.email = value;
+                              button.email_ = value;
                             },
                             decoration: const InputDecoration(
                                 suffix: Icon(
@@ -143,13 +143,13 @@ class SignUpApp extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Container(
+                        child: SizedBox(
                           width: 260,
                           height: 60,
                           child: TextField(
                             obscureText: true,
                             onChanged: (value) {
-                              button.password = value;
+                              button.password_ = value;
                             },
                             decoration: const InputDecoration(
                                 suffix: Icon(
