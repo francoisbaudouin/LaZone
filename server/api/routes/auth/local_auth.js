@@ -3,7 +3,7 @@
 const { PrismaClient } = require("@prisma/client");
 const express = require("express");
 const passport = require("passport");
-const { generateToken } = require("../utils/utils.js");
+const { generateToken } = require("../../utils/utils.js");
 const router = express.Router();
 const prisma = new PrismaClient();
 
@@ -22,7 +22,6 @@ router.get("/", function (req, res) {
   users.then(function (result) {
     res.json(result);
   });
-
 });
 
 // post a user
