@@ -3,9 +3,23 @@ const app = express();
 const cors = require("cors");
 const about_json = require('./about.json')
 const PORT = process.env.PORT || 8080;
+const authRouter = require('./api/routes/auth.routes.js');
+const passport = require("passport");
+const session = require("express-session");
+const isLoggedIn = require('./api/utils/authorization.js');
+require('dotenv').config()
+
+// initialize session
+app.use(session({
+  name: process.env.SESSION_NAME,
+  secret: process.env.SESSION_SECRET,
+  saveUninitialized: false,
+  resave: false,
+  cookie: { maxAge: process.env.COOKIE_EXPIRE * 24 * 24 * 60 * 1000 }
+}));
 
 var corsOptions = {
-  origin: "http://localhost:8080"
+  Credentials: true
 };
 
 app.use(cors(corsOptions));
@@ -13,6 +27,11 @@ app.use(cors(corsOptions));
 app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
+
+// Initialize passport
+require("./api/passport/local.js");
+app.use(passport.initialize());
+app.use(passport.session());
 
 //cors basic config
 app.use((req, res, next) => {
@@ -28,10 +47,17 @@ app.use((req, res, next) => {
   next();
 });
 
-
 app.get("/", (req, res) => {
   res.send("Hello world !");
 });
+
+//routes
+app.use('/auth', authRouter);
+
+//test route
+app.get("/profile", isLoggedIn, (req, res, next) => {
+  return res.json({message: "Welcome friend", user: req.user});
+})
 
 app.get('/about.json', (req, res) => {
   res.json(about_json);

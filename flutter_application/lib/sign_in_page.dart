@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'tools/sign_in_tools.dart';
-import 'tools/sign_up_tools.dart';
 
 class SingInApp extends StatelessWidget{
-  const SingInApp({super.key});
+  SingInApp({super.key});
+  var button = ButtonConnection(email: "", password: "");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,29 +25,66 @@ class SingInApp extends StatelessWidget{
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const <Widget> [
-                    SizedBox(height: 30,),
-                    Text("Hello",
+                  children: <Widget> [
+                    const SizedBox(height: 30,),
+                    const Text("Hello",
                       style: TextStyle(
                           fontSize: 28,
                           fontWeight:FontWeight.bold
                       ),),
-                    SizedBox(height: 10,),
-                    Text("Sign in with your account",
+                    const SizedBox(height: 10,),
+                    const Text("Sign in with your account",
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 15,
                       ),),
-                    SizedBox(height: 30,),
-                    EmailInputFieldIn(),
-                    SizedBox(height: 12,),
-                    PasswordInputFieldIn(),
-                    ForgottenPassword(),
-                    ButtonConnection(),
-                    SizedBox(height: 17 ,),
-                    CreateAccount(),
-                    SizedBox(height: 15,),
-                    ButtonService(),
+                    const SizedBox(height: 30,),
+                    Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Container( 
+                          width: 260,
+                          height: 60,
+                          child: TextField(
+                            onChanged: (value) {
+                                button.email = value;
+                              },
+                            decoration: const InputDecoration(
+                              suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
+                              labelText: "Email",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(8)),
+                              )
+                            ),
+                          ),
+                        ),
+                    ),
+                    const SizedBox(height: 5,),
+                    Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: Container( 
+                          width: 260,
+                          height: 60,
+                          child: TextField(
+                            obscureText: true,
+                            onChanged: (value) {
+                                button.password = value;
+                              },
+                            decoration: const InputDecoration(
+                              suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
+                              labelText: "Password",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(8)),
+                              )
+                            ),
+                          ),
+                        ),
+                      ),
+                    const ForgottenPassword(),
+                    const SizedBox(height: 15 ,),
+                    button,
+                    const SizedBox(height: 15,),
+                    const CreateAccount(),
+                    const ButtonService(),
                   ],
                 ),
               )

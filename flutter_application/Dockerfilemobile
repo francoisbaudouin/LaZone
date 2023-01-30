@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM cirrusci/flutter:2.18.6
+FROM cirrusci/flutter:latest
 
 COPY . /lazone
 WORKDIR /lazone
@@ -9,6 +9,8 @@ USER root
 
 RUN flutter doctor
 
-RUN flutter config --enable-web \
-    && flutter precache --universal --web \
-    && flutter build web
+RUN flutter clean
+
+RUN flutter config --enable-android \
+    && flutter precache --universal --android \
+    && flutter build apk

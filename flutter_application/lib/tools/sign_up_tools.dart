@@ -1,102 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../home_page.dart';
 import '../sign_in_page.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import '../home_page.dart';
 
-class FirstNameInputField extends StatelessWidget {
-  const FirstNameInputField({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Container( 
-        width: 260,
-        height: 60,
-        child: const TextField(
-          decoration: InputDecoration(
-              suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
-              labelText: "First Name",
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-              )
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class LastNameInputField extends StatelessWidget {
-  const LastNameInputField({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 260,
-      height: 60,
-      child: const TextField(
-        decoration: InputDecoration(
-            suffix: Icon(FontAwesomeIcons.user,color: Colors.red,),
-            labelText: "Last Name",
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(8)),
-            )
-        ),
-      ),
-    );
-  }
-}
-
-class EmailInputField extends StatelessWidget {
-  const EmailInputField({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 260,
-      height: 60,
-      child: const TextField(
-        decoration: InputDecoration(
-            suffix: Icon(FontAwesomeIcons.envelope,color: Colors.red,),
-            labelText: "Email address",
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(8)),
-            )
-        ),
-      ),
-    );
-  }
-}
-
-class PasswordInputField extends StatelessWidget {
-  const PasswordInputField({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 260,
-      height: 60,
-      child: const TextField(
-        obscureText: true,
-        decoration: InputDecoration(
-            suffix: Icon(FontAwesomeIcons.eyeSlash,color: Colors.red,),
-            labelText: "Password",
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(8)),
-            )
-        ),
-      ),
-    );
-  }
-}
-
-class ButtonConnection extends StatelessWidget {
-  const ButtonConnection({super.key});
+class ButtonCreateAccount extends StatelessWidget {
+  ButtonCreateAccount(
+      {super.key,
+      required this.firstname,
+      required this.lastname,
+      required this.pseudo,
+      required this.email,
+      required this.password});
+  String firstname;
+  String lastname;
+  String pseudo;
+  String email;
+  String password;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone")),
-          );
+      onTap: () async {
+        signup(firstname, lastname, pseudo, email, password, context);
       },
       child: Container(
         alignment: Alignment.center,
@@ -110,21 +35,19 @@ class ButtonConnection extends StatelessWidget {
                   Color(0xFF8A2387),
                   Color(0xFFE94057),
                   Color(0xFFF27121),
-                ])
-        ),
+                ])),
         child: const Padding(
           padding: EdgeInsets.all(12.0),
-          child: Text('Connection',
-            style: TextStyle(color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold),
+          child: Text(
+            'Create account',
+            style: TextStyle(
+                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
       ),
     );
   }
 }
-
 
 class LoginAlready extends StatelessWidget {
   const LoginAlready({super.key});
@@ -137,20 +60,46 @@ class LoginAlready extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           TextButton(
-              onPressed: () {
+            onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SingInApp()),
-                );
-              },
-            child: const Text("Already sign in ?",
-              style: TextStyle(
-                color: Colors.deepOrange
-              ),
+                MaterialPageRoute(builder: (context) => SingInApp()),
+              );
+            },
+            child: const Text(
+              "Already sign in ?",
+              style: TextStyle(color: Colors.deepOrange),
             ),
           )
         ],
       ),
     );
+  }
+}
+
+signup(firstname, lastname, pseudo, email, password, context) async {
+  var url = Uri.parse("http://localhost:8080/auth/signUp");
+  final http.Response response = await http.post(
+    url,
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'firstname': firstname,
+      'lastname': lastname,
+      'pseudo': pseudo,
+      'email': email,
+      'password': password,
+    }),
+  );
+
+  if (response.statusCode == 201) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => const MyHomePage(title: "LaZone")),
+    );
+  } else {
+    throw Exception('Failed to create account.');
   }
 }
