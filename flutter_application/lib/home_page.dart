@@ -6,8 +6,8 @@ import 'ServicePage/create_cards.dart';
 import 'Tools/color.dart';
 
 const EdgeInsets blockMargin = EdgeInsets.fromLTRB(10, 0, 10, 32);
-class FlutterNewsRow extends StatelessWidget {
-  const FlutterNewsRow({Key? key}) : super(key: key);
+class FlutterNewRow extends StatelessWidget {
+  const FlutterNewRow({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +102,7 @@ class _HomeViewState extends State<HomeView> {
   int _selectedIndex = 0;
   List<Widget> views =  [
     const Center(
-        child : FlutterNewsRow(),
+        child : FlutterNewRow(),
     ),
     const Center(
       child: Text('Account'),
