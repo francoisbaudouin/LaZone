@@ -5,11 +5,6 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'ServicePage/create_cards.dart';
 import 'Tools/color.dart';
 
-Future<bool> openUrl(String url, {bool newWindow = false}) async {
-    debugPrint("Could not launch $url");
-    return false;
-}
-
 const EdgeInsets blockMargin = EdgeInsets.fromLTRB(10, 0, 10, 32);
 class FlutterNewsRow extends StatelessWidget {
   const FlutterNewsRow({Key? key}) : super(key: key);
