@@ -5,19 +5,23 @@ import 'dart:convert';
 import '../home_page.dart';
 
 class ButtonCreateAccount extends StatelessWidget {
-  ButtonCreateAccount({super.key, required this.firstname, required this.lastname,required this.email, required this.password});
+  ButtonCreateAccount(
+      {super.key,
+      required this.firstname,
+      required this.lastname,
+      required this.pseudo,
+      required this.email,
+      required this.password});
   String firstname;
   String lastname;
+  String pseudo;
   String email;
   String password;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone")),
-          );
+      onTap: () async {
+        signup(firstname, lastname, pseudo, email, password, context);
       },
       child: Container(
         alignment: Alignment.center,
@@ -31,21 +35,19 @@ class ButtonCreateAccount extends StatelessWidget {
                   Color(0xFF8A2387),
                   Color(0xFFE94057),
                   Color(0xFFF27121),
-                ])
-        ),
+                ])),
         child: const Padding(
           padding: EdgeInsets.all(12.0),
-          child: Text('Create account',
-            style: TextStyle(color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold),
+          child: Text(
+            'Create account',
+            style: TextStyle(
+                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
       ),
     );
   }
 }
-
 
 class LoginAlready extends StatelessWidget {
   const LoginAlready({super.key});
@@ -58,16 +60,15 @@ class LoginAlready extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           TextButton(
-              onPressed: () {
+            onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => SingInApp()),
-                );
-              },
-            child: const Text("Already sign in ?",
-              style: TextStyle(
-                color: Colors.deepOrange
-              ),
+              );
+            },
+            child: const Text(
+              "Already sign in ?",
+              style: TextStyle(color: Colors.deepOrange),
             ),
           )
         ],
@@ -76,7 +77,7 @@ class LoginAlready extends StatelessWidget {
   }
 }
 
-signup(name, email, password) async {
+signup(firstname, lastname, pseudo, email, password, context) async {
   var url = Uri.parse("http://localhost:8080/auth/signUp");
   final http.Response response = await http.post(
     url,
@@ -84,13 +85,20 @@ signup(name, email, password) async {
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
-      'name': name,
+      'firstname': firstname,
+      'lastname': lastname,
+      'pseudo': pseudo,
       'email': email,
       'password': password,
     }),
   );
 
   if (response.statusCode == 201) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => const MyHomePage(title: "LaZone")),
+    );
   } else {
     throw Exception('Failed to create account.');
   }

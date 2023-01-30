@@ -21,7 +21,7 @@ app.use(session({
 }));
 
 var corsOptions = {
-  origin: "http://localhost:8080"
+  Credentials: true
 };
 
 app.use(cors(corsOptions));
