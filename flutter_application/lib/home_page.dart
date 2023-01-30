@@ -30,7 +30,7 @@ class FlutterNewsRow extends StatelessWidget {
           ResponsiveRowColumnItem(
             rowFlex: 1,
             rowFit: FlexFit.tight,
-            child: FlutterNewsCard(
+            child: FlutterNewCard(
               title: "Github",
               imagePath: "../assets/images/github-logo.png",
               linkUrl:
@@ -43,7 +43,7 @@ class FlutterNewsRow extends StatelessWidget {
           ResponsiveRowColumnItem(
             rowFlex: 1,
             rowFit: FlexFit.tight,
-            child: FlutterNewsCard(
+            child: FlutterNewCard(
               title: "Trello",
               imagePath: "../assets/images/Trello-Symbole.jpg",
               linkUrl:
@@ -56,7 +56,7 @@ class FlutterNewsRow extends StatelessWidget {
           ResponsiveRowColumnItem(
             rowFlex: 1,
             rowFit: FlexFit.tight,
-            child: FlutterNewsCard(
+            child: FlutterNewCard(
               title: "Microsoft Planner",
               imagePath: "../assets/images/Planner-logo.jpg",
               linkUrl:

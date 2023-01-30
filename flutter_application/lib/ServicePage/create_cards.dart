@@ -14,8 +14,8 @@ chooseConnection(page, context) async {
   }
 }
 
-class FlutterNewsCard extends StatelessWidget {
-  FlutterNewsCard(
+class FlutterNewCard extends StatelessWidget {
+  FlutterNewCard(
       {Key? key,
       required this.title,
       required this.imagePath,

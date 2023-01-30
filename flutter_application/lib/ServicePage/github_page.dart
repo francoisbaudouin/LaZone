@@ -31,7 +31,7 @@ class GithubPage extends StatelessWidget {
             ResponsiveRowColumnItem(
               rowFlex: 1,
               rowFit: FlexFit.tight,
-              child: FlutterNewsCard(
+              child: FlutterNewCard(
                 title: "Github",
                 imagePath: "../assets/images/github-logo.png",
                 linkUrl:
@@ -44,7 +44,7 @@ class GithubPage extends StatelessWidget {
             ResponsiveRowColumnItem(
               rowFlex: 1,
               rowFit: FlexFit.tight,
-              child: FlutterNewsCard(
+              child: FlutterNewCard(
                 title: "Choose your service to link wiht Github",
                 imagePath: "../assets/images/discord-logo.png",
                 linkUrl:
