@@ -132,7 +132,7 @@ class _HomeViewState extends State<HomeView> {
         elevation: 0.0,
         title: const Center(child: Text('LaZone', textAlign: TextAlign.center)),
         leading: IconButton(
-          icon: const Icon(Icons.accessibility),
+          icon: const Icon(Icons.download),
           onPressed: () {},
         ),
       ),
