@@ -37,6 +37,9 @@ services:
   ##### DB #####
 
   db-mysql:
+    secrets:
+      init:
+        file: ./env_secrets
     build:
       context: ./server/db
       dockerfile: Dockerfile
