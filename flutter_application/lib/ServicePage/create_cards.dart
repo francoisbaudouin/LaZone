@@ -16,7 +16,7 @@ connectService(context) async {
 
   if (response.statusCode == 201) {
     buttonConnectionGitHub = "Connected";
-    colbuttonConnectionGithub = Color.fromARGB(255, 68, 204, 5);
+    colbuttonConnectionGithub =  const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const GithubPage()),
