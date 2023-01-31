@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'github_page.dart';
 import '../Tools/color.dart';
 import '../Tools/text.dart';
 
-chooseConnection(page, context) async {
-  if (page == "Github") {
+//chooseConnection(page, context) async {
+//  if (page == "Github") {
+//    connectService(context);
+//  }
+//}
+
+connectService(context) async {
+  var url = Uri.parse("http://localhost:8080/auth/github");
+  final http.Response response = await http.get(url);
+
+  if (response.statusCode == 201) {
     buttonConnectionGitHub = "Connected";
     colbuttonConnectionGithub = Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const GithubPage()),
     );
+  } else {
+    throw Exception('Failed to connect service.');
   }
 }
 
@@ -56,22 +68,24 @@ class FlutterNewCard extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () async {
-                    chooseConnection(title, context);
+                    connectService(context);
                   },
                   child: Container(
                     alignment: Alignment.centerLeft,
                     width: 250,
                     decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(Radius.circular(10)),
-                        color: colorButton,
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                      color: colorButton,
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: Text(textbutton,
+                      child: Text(
+                        textbutton,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
