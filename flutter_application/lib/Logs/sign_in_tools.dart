@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../sign_in_page.dart';
-import '../sign_up_page.dart';
+import 'package:email_validator/email_validator.dart';
+import 'sign_in_page.dart';
+import 'sign_up_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../home_page.dart';
@@ -70,7 +71,12 @@ class ButtonConnection extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        signin(email, password, context);
+        bool isValid = EmailValidator.validate(email);
+        if (isValid) {
+            signin(email, password, context);
+        } else {
+            throw Exception('Failed to login.');
+        }
       },
       child: Container(
         alignment: Alignment.center,

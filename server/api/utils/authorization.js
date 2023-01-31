@@ -3,6 +3,7 @@ const passport = require("../passport/jwt.js");
 
 // Initialize a prisma client
 const prisma = new PrismaClient();
+
 const auth = (req, res, next) => {
   try {
     passport.authenticate("jwt", { session: false }, (err, user, info) => {

@@ -1,27 +1,38 @@
 import 'package:flutter/material.dart';
-import '../sign_in_page.dart';
+import 'package:email_validator/email_validator.dart';
+import 'sign_in_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../home_page.dart';
+import '../Tools/text.dart';
 
 class ButtonCreateAccount extends StatelessWidget {
   ButtonCreateAccount(
       {super.key,
-      required this.firstname,
-      required this.lastname,
-      required this.pseudo,
-      required this.email,
-      required this.password});
-  String firstname;
-  String lastname;
-  String pseudo;
-  String email;
-  String password;
+      required this.firstname_,
+      required this.lastname_,
+      required this.pseudo_,
+      required this.email_,
+      required this.password_});
+  String firstname_;
+  String lastname_;
+  String pseudo_;
+  String email_;
+  String password_;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        signup(firstname, lastname, pseudo, email, password, context);
+        bool isValid = EmailValidator.validate(email_);
+        if (isValid) {
+          firstname = firstname_;
+          lastname = lastname_;
+          email = email_;
+          pseudo = pseudo_;
+          signup(firstname_, lastname_, pseudo_, email_, password_, context);
+        } else {
+            throw Exception('Failed to login.');
+        }
       },
       child: Container(
         alignment: Alignment.center,

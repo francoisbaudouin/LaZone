@@ -3,10 +3,12 @@ const app = express();
 const cors = require("cors");
 const about_json = require('./about.json')
 const PORT = process.env.PORT || 8080;
-const authRouter = require('./api/routes/auth.routes.js');
+const localAuthRouter = require('./api/routes/auth/local_auth.js');
+const gitAuthRouter = require('./api/routes/auth/git_auth.js');
+const discordAuthRouter = require('./api/routes/auth/discord_auth.js');
+const auth = require('./api/utils/authorization.js');
 const passport = require("passport");
 const session = require("express-session");
-const isLoggedIn = require('./api/utils/authorization.js');
 require('dotenv').config()
 
 // initialize session
@@ -30,6 +32,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // Initialize passport
 require("./api/passport/local.js");
+require("./api/passport/git.js");
+require("./api/passport/discord.js");
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -48,15 +53,24 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello world !");
+  res.send("Hello world !, <a href=http://localhost:8080/auth/github> here </a> you can auth with git ! <a href=http://localhost:8080/auth/discord> here </a> you can auth with discord !");
 });
 
 //routes
-app.use('/auth', authRouter);
+app.use('/auth', localAuthRouter);
+app.use('/auth', gitAuthRouter);
+app.use('/auth', discordAuthRouter);
 
-//test route
-app.get("/profile", isLoggedIn, (req, res, next) => {
-  return res.json({message: "Welcome friend", user: req.user});
+// protected route test
+// app.get('/logged', auth, (req, res) => {
+//   res.send('Successfully logged !');
+// })
+
+// logout
+
+app.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
 })
 
 app.get('/about.json', (req, res) => {
