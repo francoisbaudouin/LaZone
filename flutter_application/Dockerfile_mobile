@@ -13,4 +13,4 @@ RUN flutter clean
 
 RUN flutter config --enable-android \
     && flutter precache --universal --android \
-    && flutter build apk
+    && flutter build apk --split-per-abi
