@@ -28,7 +28,7 @@ passport.use('signUp', new Strategy(options, async (req, email, password, cb) =>
           password: await hash(password),
           lastname: req.body.lastname,
           firstname: req.body.firstname,
-          pseudo: req.body.pseudo
+          pseudo: req.body.pseudo,
         }
       });
       return cb(null, user);

@@ -6,6 +6,12 @@ const PORT = process.env.PORT || 8080;
 const localAuthRouter = require('./api/routes/auth/local_auth.js');
 const gitAuthRouter = require('./api/routes/auth/git_auth.js');
 const discordAuthRouter = require('./api/routes/auth/discord_auth.js');
+const areasRouter = require('./api/routes/areas.js');
+const usersRouter = require('./api/routes/users.js');
+const actionsRouter = require('./api/routes/actions.js');
+const reactionsRouter = require('./api/routes/reactions.js');
+const servicesRouter = require('./api/routes/services.js');
+const tokensRouter = require('./api/routes/tokens.js');
 const auth = require('./api/utils/authorization.js');
 const passport = require("passport");
 const session = require("express-session");
@@ -56,10 +62,20 @@ app.get("/", (req, res) => {
   res.send("Hello world !, <a href=http://localhost:8080/auth/github> here </a> you can auth with git ! <a href=http://localhost:8080/auth/discord> here </a> you can auth with discord !");
 });
 
-//routes
+//routes - auth
 app.use('/auth', localAuthRouter);
 app.use('/auth', gitAuthRouter);
 app.use('/auth', discordAuthRouter);
+app.use('/areas', areasRouter);
+app.use('/users', usersRouter);
+app.use('/actions', actionsRouter);
+app.use('/reactions', reactionsRouter);
+app.use('/services', servicesRouter);
+app.use('/tokens', tokensRouter);
+
+
+
+
 
 // protected route test
 // app.get('/logged', auth, (req, res) => {

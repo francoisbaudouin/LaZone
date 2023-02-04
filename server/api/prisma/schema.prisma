@@ -8,7 +8,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://dev:AveFrancois@db-lazone:3306/db_lazone"
+  url      = "mysql://root:tigrou49@localhost:3306/db_lazone"
 }
 
 model users {
@@ -19,9 +19,55 @@ model users {
   firstname  String   @db.VarChar(255)
   pseudo     String   @db.VarChar(255)
   created_at DateTime @default(now()) @db.DateTime(0)
+  areas      Areas[]
+  tokens     Tokens[]
 }
 
-model Post {
-  id   Int    @id @default(autoincrement())
-  name String
+model Services {
+  id                Int    @id @default(autoincrement())
+  name              String @unique
+  description       String
+  subscribedTokens  Tokens[]
+  actions           Actions[]
+  reactions         Reactions[]
+}
+
+model Tokens {
+  user              users     @relation(fields: [userId], references: [id])
+  userId            Int
+  relatedService    Services  @relation(fields: [relatedServiceId], references: [id])
+  relatedServiceId  Int       @unique
+  accessTokens      String
+  refreshTokens     String
+}
+
+model Areas {
+  id              Int       @id @default(autoincrement())
+  user            users     @relation(fields: [userId], references: [id])
+  action          Actions   @relation(fields: [actionsId], references: [id])
+  reaction        Reactions @relation(fields: [reactionsId], references: [id])
+  actionsParams   String
+  reactionsParams String
+  userId          Int
+  reactionsId     Int
+  actionsId       Int
+  enabled         Boolean
+}
+
+model Actions {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  areas       Areas[]
+  service     Services @relation(fields: [serviceId], references: [id])
+  serviceId   Int
+}
+
+model Reactions {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  areas       Areas[]
+  service     Services @relation(fields: [serviceId], references: [id])
+  serviceId   Int
 }
