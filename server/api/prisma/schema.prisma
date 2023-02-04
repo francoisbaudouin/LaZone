@@ -8,7 +8,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://dev:AveFrancois@db-lazone:3306/db_lazone"
+  url      = env("DATABASE_URL")
 }
 
 model users {

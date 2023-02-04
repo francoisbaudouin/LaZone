@@ -17,7 +17,7 @@ services:
     container_name: client_mobile
     build:
       context: ./flutter_application
-      dockerfile: Dockerfilemobile
+      dockerfile: mobile.Dockerfile
     volumes:
       - client:/home
 
@@ -25,7 +25,7 @@ services:
     container_name: client_web
     build:
       context: ./flutter_application
-      dockerfile: Dockerfileweb
+      dockerfile: web.Dockerfile
     ports:
       - "8081:8081"
     depends_on:
@@ -38,8 +38,7 @@ services:
 
   db-mysql:
     secrets:
-      init:
-        file: ./env_secrets
+      - my_secret
     build:
       context: ./server/db
       dockerfile: Dockerfile
@@ -52,6 +51,10 @@ services:
       - db:/var/lib/mysql
       - "./server/db/schema.sql:/docker-entrypoint-initdb.d/init.sql"
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+secrets:
+  my_secret:
+    file: ./secrets_db.txt
 
 volumes:
   client:
