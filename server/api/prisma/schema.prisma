@@ -35,8 +35,8 @@ model Services {
 model Tokens {
   user              users     @relation(fields: [userId], references: [id])
   userId            Int
-  relatedService    Services  @relation(fields: [relatedServiceId], references: [id])
-  relatedServiceId  Int       @unique
+  relatedService    Services  @relation(fields: [relatedServiceId], references: [name])
+  relatedServiceId  String    @unique
   accessTokens      String
   refreshTokens     String
 }
@@ -55,19 +55,19 @@ model Areas {
 }
 
 model Actions {
-  id          Int    @id @default(autoincrement())
-  name        String
-  description String
-  areas       Areas[]
-  service     Services @relation(fields: [serviceId], references: [id])
-  serviceId   Int
+  id            Int    @id @default(autoincrement())
+  name          String
+  description   String
+  areas         Areas[]
+  service       Services @relation(fields: [serviceName], references: [name])
+  serviceName   String
 }
 
 model Reactions {
-  id          Int    @id @default(autoincrement())
-  name        String
-  description String
-  areas       Areas[]
-  service     Services @relation(fields: [serviceId], references: [id])
-  serviceId   Int
+  id            Int    @id @default(autoincrement())
+  name          String
+  description   String
+  areas         Areas[]
+  service       Services @relation(fields: [serviceName], references: [name])
+  serviceName   String
 }

@@ -19,19 +19,19 @@ router.get("/:id", async (req, res) => {
 
 });
 
-router.get("/:id/actions", async (req, res) => {
+router.get("/:name/actions", async (req, res) => {
   const serviceActions = await prisma.actions.findMany({
     where: {
-      serviceId: Number(req.params.id)
+      serviceName: req.params.name
     }
   })
   return res.json(serviceActions);
 });
 
-router.get("/:id/reactions", async (req, res) => {
+router.get("/:name/reactions", async (req, res) => {
   const serviceReactions = await prisma.reactions.findMany({
     where: {
-      serviceId: Number(req.params.id)
+      serviceName: req.params.name
     }
   })
   return res.json(serviceReactions);

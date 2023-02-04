@@ -38,9 +38,13 @@ router.get("/:id", async (req, res) => {
 
 
 router.get("/:id/relatedService", async (req, res) => {
-  const service = await prisma.services.findUnique({
+  const service = await prisma.services.findFirst({
     where: {
-      id: Number(req.params.id),
+      actions: {
+        some: {
+          id: Number(req.params.id)
+        }
+      }
     }
   })
   return res.json(service);
