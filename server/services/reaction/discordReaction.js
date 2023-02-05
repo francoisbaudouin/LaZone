@@ -5,7 +5,8 @@ var sendMessage = function (area, resultData) {
     const channel = client.channels.cache.get(area.reactionParam);
     resultData.forEach(element => {
         const embedMessage = embeds.get(area.actionId)(element);
-        channel.send({ embeds: [embedMessage] });
+        // console.log(embedMessage)
+        // channel.send({ embeds: [embedMessage] });
     });
 }
 

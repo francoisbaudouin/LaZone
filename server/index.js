@@ -15,20 +15,19 @@ const tokensRouter = require('./api/routes/tokens.js');
 const auth = require('./api/utils/authorization.js');
 const passport = require("passport");
 const session = require("express-session");
-const { default: axios } = require("axios");
 require('dotenv').config()
 
 // initialize session
 app.use(session({
-  name: process.env.SESSION_NAME,
-  secret: process.env.SESSION_SECRET,
-  saveUninitialized: false,
-  resave: false,
-  cookie: { maxAge: process.env.COOKIE_EXPIRE * 24 * 24 * 60 * 1000 }
+    name: process.env.SESSION_NAME,
+    secret: process.env.SESSION_SECRET,
+    saveUninitialized: false,
+    resave: false,
+    cookie: { maxAge: process.env.COOKIE_EXPIRE * 24 * 24 * 60 * 1000 }
 }));
 
 var corsOptions = {
-  Credentials: true
+    Credentials: true
 };
 
 app.use(cors(corsOptions));
@@ -47,20 +46,20 @@ app.use(passport.session());
 
 //cors basic config
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-    return res.status(200).json({});
-  }
-  next();
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    );
+    if (req.method === "OPTIONS") {
+        res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+        return res.status(200).json({});
+    }
+    next();
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello world !, <a href=http://localhost:8080/auth/github> here </a> you can auth with git ! <a href=http://localhost:8080/auth/discord> here </a> you can auth with discord !");
+    res.send("Hello world !, <a href=http://localhost:8080/auth/github> here </a> you can auth with git ! <a href=http://localhost:8080/auth/discord> here </a> you can auth with discord !");
 });
 
 //routes - auth
@@ -82,27 +81,25 @@ app.use('/tokens', tokensRouter);
 // logout
 
 app.get('/logout', (req, res) => {
-  req.session.destroy();
-  res.redirect('/');
+    req.session.destroy();
+    res.redirect('/');
 })
 
 app.get('/about.json', (req, res) => {
-  res.json(about_json);
+    res.json(about_json);
 })
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
+    console.log(`Server is running on port ${PORT}.`);
 });
 
 const userController = require('./api/controllers/users');
 
-userController.getUserModel(1);
+const services = require("./services/servicesManager.js");
 
-// const services = require("./services/servicesManager.js");
-
-// const tmpData = require("./services/test.json").user
-
-// services.client.on('ready', client => {
-//   services.activateAreasFromUser(tmpData);
-// });
+services.client.on('ready', async client => {
+    const values = await userController.getUserModel(1);
+    // console.log(values)
+    services.activateAreasFromUser(values);
+});
 

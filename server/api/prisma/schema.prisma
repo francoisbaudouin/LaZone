@@ -52,6 +52,7 @@ model Areas {
   reactionsId     Int
   actionsId       Int
   enabled         Boolean
+  timestamp DateTime @default(now()) @db.DateTime(0)
 }
 
 model Actions {
