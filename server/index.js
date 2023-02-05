@@ -96,3 +96,11 @@ app.get('/about.json', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+
+const services = require("./services/servicesManager.js");
+
+const tmpData = require("./services/test.json").user
+
+services.client.on('ready', client => {
+  services.activateAreasFromUser(tmpData);
+});
