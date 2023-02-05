@@ -152,10 +152,9 @@ signin(email, password, context) async {
   );
 
   if (response.statusCode == 201) {
-    Navigator.push(
+    Navigator.pushNamed(
       context,
-      MaterialPageRoute(
-          builder: (context) => const MyHomePage(title: "LaZone")),
+      '/home'
     );
   } else {
     throw Exception('Failed to login.');

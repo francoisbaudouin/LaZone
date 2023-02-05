@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/home_page.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'Logs/sign_in_page.dart';
 
@@ -25,7 +26,12 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(primaryColor: Colors.white,),
       debugShowCheckedModeBanner: false,
-      home: SingInApp()
+      initialRoute: '/',
+      routes: {
+      '/': (context) => SingInApp(),
+      '/home': (context) => const MyHomePage(title: "LaZone"),
+      },
+      //home: SingInApp()
     );
   }
 }
