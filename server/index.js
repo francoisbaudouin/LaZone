@@ -15,6 +15,7 @@ const tokensRouter = require('./api/routes/tokens.js');
 const auth = require('./api/utils/authorization.js');
 const passport = require("passport");
 const session = require("express-session");
+const { default: axios } = require("axios");
 require('dotenv').config()
 
 // initialize session
@@ -73,10 +74,6 @@ app.use('/reactions', reactionsRouter);
 app.use('/services', servicesRouter);
 app.use('/tokens', tokensRouter);
 
-
-
-
-
 // protected route test
 // app.get('/logged', auth, (req, res) => {
 //   res.send('Successfully logged !');
@@ -97,10 +94,15 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
-const services = require("./services/servicesManager.js");
+const userController = require('./api/controllers/users');
 
-const tmpData = require("./services/test.json").user
+userController.getUserModel(1);
 
-services.client.on('ready', client => {
-  services.activateAreasFromUser(tmpData);
-});
+// const services = require("./services/servicesManager.js");
+
+// const tmpData = require("./services/test.json").user
+
+// services.client.on('ready', client => {
+//   services.activateAreasFromUser(tmpData);
+// });
+

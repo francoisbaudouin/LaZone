@@ -34,3 +34,33 @@ exports.getUserTokenByServiceName = async (req, res) => {
   })
   res.json(userServiceTokens);
 };
+
+exports.getUserModel = async function (userId) {
+  const userTokens = await prisma.tokens.findMany({
+    where: {
+      userId: Number(userId)
+    }
+  })
+  const userAreas = await prisma.areas.findMany({
+    where: {
+      userId: Number(userId),
+      enabled: true
+    }
+  })
+  // const relatedService = await prisma.services.findFirst({
+  //   where: {
+  //     actions: {
+  //       some: {
+  //         id: userAreas.actionsId
+  //       }
+  //     }
+  //   }
+  // })
+  const userModel = {
+    tokens: userTokens,
+    areas: userAreas
+  }
+  console.log(userModel);
+  return userModel;
+}
+
