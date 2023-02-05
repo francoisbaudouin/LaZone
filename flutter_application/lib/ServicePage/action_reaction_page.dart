@@ -4,6 +4,40 @@ import '../home_page.dart';
 import '../Tools/color.dart';
 import '../Tools/text.dart';
 
+
+String chooseImageServiceAction() {
+  String res = "";
+
+  if (actionservicechoose == "Github") {
+    res = "assets/images/github-logo.png";
+  }
+  if (actionservicechoose == "Trello") {
+    res = "assets/images/Trello-Symbole.jpg";
+  }
+  if (actionservicechoose == "Planner") {
+    res = "assets/images/Planner-logo.jpg";
+  }
+  return (res);
+
+}
+
+String chooseImageServiceReaction() {
+  String res = "";
+
+  if (reactionservicechoose == "Twitter") {
+    res = "assets/images/logo-twitter.jpg";
+  }
+  if (reactionservicechoose == "Discord") {
+    res = "assets/images/discord-logo.png";
+  }
+  if (reactionservicechoose == "Microsoft Teams") {
+    res = "assets/images/Microsoft-Teams-Symbole.jpg";
+  }
+  return (res);
+
+}
+
+
 class ActionReactionCards extends StatelessWidget {
   const ActionReactionCards(
       {Key? key})
@@ -28,25 +62,38 @@ class ActionReactionCards extends StatelessWidget {
                   padding: EdgeInsets.only(bottom: 16),
                   child: Text("ACTION : ", style: headlineSecondaryTextStyle),
                 ),
+                Container(
+                  constraints: const BoxConstraints(maxHeight: 100),
+                  child: Image.asset(chooseImageServiceAction(), fit: BoxFit.cover),
+                ),
+                const SizedBox(height: 5),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(action, style: headlineSecondaryTextStyle),
+                  child: Text('$actionservicechoose: \n$action', style: headlineSecondaryTextStyle, textAlign: TextAlign.center),
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 30),
                 const Padding(
                   padding: EdgeInsets.only(bottom: 16),
                   child: Text("REACTION : ", style: headlineSecondaryTextStyle),
                 ),
+                Container(
+                  constraints: const BoxConstraints(maxHeight: 100),
+                  child: Image.asset(chooseImageServiceReaction(), fit: BoxFit.cover),
+                ),
+                const SizedBox(height: 5),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(reaction, style: headlineSecondaryTextStyle),
+                  child: Text('$reactionservicechoose: \n$reaction', style: headlineSecondaryTextStyle, textAlign: TextAlign.center),
                 ),
                 FloatingActionButton.extended(
                     onPressed: () {
-                      
+                      actionservicechoose = "";
+                      action = "";
+                      reactionservicechoose = "";
+                      reaction = "";
                     },
                     backgroundColor: Colors.red,
-                    label: Text("Delete"),
+                    label: const Text("Delete"),
                     icon: const Icon(Icons.delete),
                     heroTag: null,
                 ),

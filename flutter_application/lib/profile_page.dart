@@ -43,7 +43,7 @@ class ProfileCards extends StatelessWidget {
                 ),
                 const SizedBox(height: 40),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 16),
+                  padding: const EdgeInsets.only(bottom: 16),
                   child: Text(message, style: headlineSecondaryTextStyle),
                 ),
               ],

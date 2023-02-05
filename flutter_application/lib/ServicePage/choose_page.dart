@@ -57,17 +57,7 @@ chooseReactionPage(page, context) async {
   }
 }
 
-chooseConnection(page, context) async {
-  if (actionservicechoose != "" && reactionservicechoose != "" && action != "") {
-      reaction = page;
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone",)),
-      );
-  }
-  if (actionservicechoose != "" && reactionservicechoose != "" && action == "") {
-      chooseReactionPage(page, context);
-  }
+chooseReactionServicePage(page, context) async {
   if (page == "Github") {
     actionservicechoose = page;
     buttonConnectionGitHub = "Connected";
@@ -95,6 +85,9 @@ chooseConnection(page, context) async {
       MaterialPageRoute(builder: (context) => const ReactionServicePage()),
     );
   }
+}
+
+setReactionService(page, context) async {
   if (page == "Twitter") {
     reactionservicechoose = page;
     buttonConnectionTwitter= "Connected";
@@ -113,4 +106,19 @@ chooseConnection(page, context) async {
     colbuttonConnectionTeams = const Color.fromARGB(255, 68, 204, 5);
     chooseActionPage(context);
   }
+}
+
+chooseConnection(page, context) async {
+  if (actionservicechoose != "" && reactionservicechoose != "" && action != "") {
+      reaction = page;
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone",)),
+      );
+  }
+  if (actionservicechoose != "" && reactionservicechoose != "" && action == "") {
+      chooseReactionPage(page, context);
+  }
+  chooseReactionServicePage(page, context);
+  setReactionService(page, context);
 }
