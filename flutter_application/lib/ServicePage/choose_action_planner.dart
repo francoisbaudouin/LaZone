@@ -41,9 +41,6 @@ class ChooseActionsPlanner extends StatelessWidget {
                 child: FlutterNewCard(
                   title: "Create a plan",
                   imagePath: "assets/images/Planner-logo.jpg",
-                  linkUrl:
-                      "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
-                  text: "Disconnected",
                   textbutton :  "Choose this action",
                   colorButton : Colors.green,
                 ),

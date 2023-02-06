@@ -7,15 +7,11 @@ class FlutterNewCard extends StatelessWidget {
       {Key? key,
       required this.title,
       required this.imagePath,
-      required this.linkUrl,
-      required this.text,
       required this.textbutton,
       required this.colorButton})
       : super(key: key);
   final String title;
   final String imagePath;
-  final String linkUrl;
-  final String text;
   final String textbutton;
   final Color colorButton;
 

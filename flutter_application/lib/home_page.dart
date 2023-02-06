@@ -30,9 +30,6 @@ class FlutterNewRow extends StatelessWidget {
             child: FlutterNewCard(
               title: "Github",
               imagePath: "assets/images/github-logo.png",
-              linkUrl:
-                  "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
-              text: "Disconnected",
               textbutton :  buttonConnectionGitHub,
               colorButton : colbuttonConnectionGithub,
             ),
@@ -43,9 +40,6 @@ class FlutterNewRow extends StatelessWidget {
             child: FlutterNewCard(
               title: "Trello",
               imagePath: "assets/images/Trello-Symbole.jpg",
-              linkUrl:
-                  "https://medium.com/flutter/announcing-codepen-support-for-flutter-bb346406fe50",
-              text: "Disconnected",
               textbutton :  buttonConnectionTrello,
               colorButton : colbuttonConnectionTrello,
             ),
@@ -56,9 +50,6 @@ class FlutterNewRow extends StatelessWidget {
             child: FlutterNewCard(
               title: "Microsoft Planner",
               imagePath: "assets/images/Planner-logo.jpg",
-              linkUrl:
-                  "https://medium.com/flutter/announcing-codepen-support-for-flutter-bb346406fe50",
-              text: "Disconnected",
               textbutton :  buttonConnectionPlanner,
               colorButton : colbuttonConnectionPlanner,
             ),

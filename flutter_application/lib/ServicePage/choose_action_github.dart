@@ -41,9 +41,6 @@ class ChooseActionsGithub extends StatelessWidget {
                 child: FlutterNewCard(
                   title: "Create a issue",
                   imagePath: "assets/images/github-logo.png",
-                  linkUrl:
-                      "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
-                  text: "Disconnected",
                   textbutton :  "Choose this action",
                   colorButton : Colors.black,
                 ),
@@ -54,9 +51,6 @@ class ChooseActionsGithub extends StatelessWidget {
                 child: FlutterNewCard(
                   title: "Create a project",
                   imagePath: "assets/images/github-logo.png",
-                  linkUrl:
-                      "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
-                  text: "Disconnected",
                   textbutton :  "Choose this action",
                   colorButton : Colors.black,
                 ),
@@ -67,9 +61,6 @@ class ChooseActionsGithub extends StatelessWidget {
                 child: FlutterNewCard(
                   title: "Create a pull request",
                   imagePath: "assets/images/github-logo.png",
-                  linkUrl:
-                      "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
-                  text: "Disconnected",
                   textbutton :  "Choose this action",
                   colorButton : Colors.black,
                 ),

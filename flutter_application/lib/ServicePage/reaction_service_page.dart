@@ -45,9 +45,6 @@ class ReactionServicePage extends StatelessWidget {
                 child: FlutterNewCard(
                   title: "Twitter",
                   imagePath: "assets/images/logo-twitter.jpg",
-                  linkUrl:
-                      "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
-                  text: "Disconnected",
                   textbutton :  buttonConnectionTwitter,
                   colorButton : colbuttonConnectionTwitter,
                 ),
@@ -58,9 +55,6 @@ class ReactionServicePage extends StatelessWidget {
                 child: FlutterNewCard(
                   title: "Discord",
                   imagePath: "assets/images/discord-logo.png",
-                  linkUrl:
-                      "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
-                  text: "Disconnected",
                   textbutton :  buttonConnectionDiscord,
                   colorButton : colbuttonConnectionDiscord,
                 ),
@@ -71,9 +65,6 @@ class ReactionServicePage extends StatelessWidget {
                 child: FlutterNewCard(
                   title: "Microsoft Teams",
                   imagePath: "assets/images/Microsoft-Teams-Symbole.jpg",
-                  linkUrl:
-                      "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
-                  text: "Disconnected",
                   textbutton :  buttonConnectionTeams,
                   colorButton : colbuttonConnectionTeams,
                 ),

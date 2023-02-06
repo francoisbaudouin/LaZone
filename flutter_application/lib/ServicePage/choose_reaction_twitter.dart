@@ -41,9 +41,6 @@ class ChooseReactionsTwitter extends StatelessWidget {
                 child: FlutterNewCard(
                   title: "Tweet",
                   imagePath: "assets/images/logo-twitter.jpg",
-                  linkUrl:
-                      "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
-                  text: "Disconnected",
                   textbutton :  "Choose this action",
                   colorButton : Colors.lightBlue,
                 ),

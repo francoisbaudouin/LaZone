@@ -41,9 +41,6 @@ class ChooseActionsTrello extends StatelessWidget {
                 child: FlutterNewCard(
                   title: "Create a cards",
                   imagePath: "assets/images/Trello-Symbole.jpg",
-                  linkUrl:
-                      "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
-                  text: "Disconnected",
                   textbutton :  "Choose this action",
                   colorButton : Colors.blue,
                 ),
@@ -54,9 +51,6 @@ class ChooseActionsTrello extends StatelessWidget {
                 child: FlutterNewCard(
                   title: "Create a table",
                   imagePath: "assets/images/Trello-Symbole.jpg",
-                  linkUrl:
-                      "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
-                  text: "Disconnected",
                   textbutton :  "Choose this action",
                   colorButton : Colors.blue,
                 ),
@@ -67,9 +61,6 @@ class ChooseActionsTrello extends StatelessWidget {
                 child: FlutterNewCard(
                   title: "Create an organization",
                   imagePath: "assets/images/Trello-Symbole.jpg",
-                  linkUrl:
-                      "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
-                  text: "Disconnected",
                   textbutton :  "Choose this action",
                   colorButton : Colors.blue,
                 ),

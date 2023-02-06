@@ -41,9 +41,6 @@ class ChooseReactionTeams extends StatelessWidget {
                 child: FlutterNewCard(
                   title: "Post a message",
                   imagePath: "assets/images/Microsoft-Teams-Symbole.jpg",
-                  linkUrl:
-                      "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
-                  text: "Disconnected",
                   textbutton :  "Choose this action",
                   colorButton : Colors.indigo,
                 ),
@@ -54,9 +51,6 @@ class ChooseReactionTeams extends StatelessWidget {
                 child: FlutterNewCard(
                   title: "Create a team",
                   imagePath: "assets/images/Microsoft-Teams-Symbole.jpg",
-                  linkUrl:
-                      "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
-                  text: "Disconnected",
                   textbutton :  "Choose this action",
                   colorButton : Colors.indigo,
                 ),
@@ -67,9 +61,6 @@ class ChooseReactionTeams extends StatelessWidget {
                 child: FlutterNewCard(
                   title: "Create a room",
                   imagePath: "assets/images/Microsoft-Teams-Symbole.jpg",
-                  linkUrl:
-                      "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
-                  text: "Disconnected",
                   textbutton :  "Choose this action",
                   colorButton : Colors.indigo,
                 ),
