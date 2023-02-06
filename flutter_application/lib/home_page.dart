@@ -6,6 +6,7 @@ import 'ServicePage/create_cards.dart';
 import 'Tools/color.dart';
 
 const EdgeInsets blockMargin = EdgeInsets.fromLTRB(10, 0, 10, 32);
+
 class FlutterNewRow extends StatelessWidget {
   const FlutterNewRow({Key? key}) : super(key: key);
 
@@ -14,55 +15,55 @@ class FlutterNewRow extends StatelessWidget {
     return Container(
       margin: blockMargin,
       child: SingleChildScrollView(
-      child: ResponsiveRowColumn(
-        layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
-            ? ResponsiveRowColumnType.COLUMN
-            : ResponsiveRowColumnType.ROW,
-        rowCrossAxisAlignment: CrossAxisAlignment.center,
-        rowSpacing: 25,
-        columnSpacing: 25,
-        children: [
-          ResponsiveRowColumnItem(
-            rowFlex: 1,
-            rowFit: FlexFit.tight,
-            child: FlutterNewCard(
-              title: "Github",
-              imagePath: "../assets/images/github-logo.png",
-              linkUrl:
-                  "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
-              text: "Disconnected",
-              textbutton :  buttonConnectionGitHub,
-              colorButton : colbuttonConnectionGithub,
+        child: ResponsiveRowColumn(
+          layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
+              ? ResponsiveRowColumnType.COLUMN
+              : ResponsiveRowColumnType.ROW,
+          rowCrossAxisAlignment: CrossAxisAlignment.center,
+          rowSpacing: 25,
+          columnSpacing: 25,
+          children: [
+            ResponsiveRowColumnItem(
+              rowFlex: 1,
+              rowFit: FlexFit.tight,
+              child: FlutterNewCard(
+                title: "Github",
+                imagePath: "../assets/images/github-logo.png",
+                linkUrl:
+                    "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
+                text: "Disconnected",
+                textbutton: buttonConnectionGitHub,
+                colorButton: colbuttonConnectionGithub,
+              ),
             ),
-          ),
-          ResponsiveRowColumnItem(
-            rowFlex: 1,
-            rowFit: FlexFit.tight,
-            child: FlutterNewCard(
-              title: "Trello",
-              imagePath: "../assets/images/Trello-Symbole.jpg",
-              linkUrl:
-                  "https://medium.com/flutter/announcing-codepen-support-for-flutter-bb346406fe50",
-              text: "Disconnected",
-              textbutton :  buttonConnectionTrello,
-              colorButton : colbuttonConnectionTrello,
+            ResponsiveRowColumnItem(
+              rowFlex: 1,
+              rowFit: FlexFit.tight,
+              child: FlutterNewCard(
+                title: "Trello",
+                imagePath: "../assets/images/Trello-Symbole.jpg",
+                linkUrl:
+                    "https://medium.com/flutter/announcing-codepen-support-for-flutter-bb346406fe50",
+                text: "Disconnected",
+                textbutton: buttonConnectionTrello,
+                colorButton: colbuttonConnectionTrello,
+              ),
             ),
-          ),
-          ResponsiveRowColumnItem(
-            rowFlex: 1,
-            rowFit: FlexFit.tight,
-            child: FlutterNewCard(
-              title: "Microsoft Planner",
-              imagePath: "../assets/images/Planner-logo.jpg",
-              linkUrl:
-                  "https://medium.com/flutter/announcing-codepen-support-for-flutter-bb346406fe50",
-              text: "Disconnected",
-              textbutton :  buttonConnectionPlanner,
-              colorButton : colbuttonConnectionPlanner,
+            ResponsiveRowColumnItem(
+              rowFlex: 1,
+              rowFit: FlexFit.tight,
+              child: FlutterNewCard(
+                title: "Microsoft Planner",
+                imagePath: "../assets/images/Planner-logo.jpg",
+                linkUrl:
+                    "https://medium.com/flutter/announcing-codepen-support-for-flutter-bb346406fe50",
+                text: "Disconnected",
+                textbutton: buttonConnectionPlanner,
+                colorButton: colbuttonConnectionPlanner,
+              ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
       ),
     );
   }
@@ -90,6 +91,7 @@ class BlockWrapper extends StatelessWidget {
 
 class HomeView extends StatefulWidget {
   final int currentIndex;
+
   /// Callback function
   final Function(int selectedIndex) onTapped;
   const HomeView(this.currentIndex, this.onTapped);
@@ -100,9 +102,9 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int _selectedIndex = 0;
-  List<Widget> views =  [
+  List<Widget> views = [
     const Center(
-        child : FlutterNewRow(),
+      child: FlutterNewRow(),
     ),
     const Center(
       child: Text('Account'),
@@ -123,6 +125,7 @@ class _HomeViewState extends State<HomeView> {
     super.initState();
     _selectedIndex = widget.currentIndex;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,12 +139,10 @@ class _HomeViewState extends State<HomeView> {
           onPressed: () {},
         ),
       ),
-        body: Row(
+      body: Row(
         children: [
           SideNavigationBar(
-            footer: const SideNavigationBarFooter(
-              label: Text('Reduce')
-            ),
+            footer: const SideNavigationBarFooter(label: Text('Reduce')),
             selectedIndex: _selectedIndex,
             items: const [
               SideNavigationBarItem(
@@ -188,18 +189,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-   int _currentIndex = 0;
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
-            return HomeView(_currentIndex, (index) {
-              setState(() {
-                _currentIndex = index;
-              });
+          return HomeView(_currentIndex, (index) {
+            setState(() {
+              _currentIndex = index;
             });
+          });
         },
       ),
     );
