@@ -8,13 +8,13 @@ import '../Tools/text.dart';
 String chooseImageServiceAction() {
   String res = "";
 
-  if (actionservicechoose == "Github") {
+  if (actionServiceChoose == "Github") {
     res = "assets/images/github-logo.png";
   }
-  if (actionservicechoose == "Trello") {
+  if (actionServiceChoose == "Trello") {
     res = "assets/images/Trello-Symbole.jpg";
   }
-  if (actionservicechoose == "Planner") {
+  if (actionServiceChoose == "Planner") {
     res = "assets/images/Planner-logo.jpg";
   }
   return (res);
@@ -24,13 +24,13 @@ String chooseImageServiceAction() {
 String chooseImageServiceReaction() {
   String res = "";
 
-  if (reactionservicechoose == "Twitter") {
+  if (reactionServiceChoose == "Twitter") {
     res = "assets/images/logo-twitter.jpg";
   }
-  if (reactionservicechoose == "Discord") {
+  if (reactionServiceChoose == "Discord") {
     res = "assets/images/discord-logo.png";
   }
-  if (reactionservicechoose == "Microsoft Teams") {
+  if (reactionServiceChoose == "Microsoft Teams") {
     res = "assets/images/Microsoft-Teams-Symbole.jpg";
   }
   return (res);
@@ -69,7 +69,7 @@ class ActionReactionCards extends StatelessWidget {
                 const SizedBox(height: 5),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text('$actionservicechoose: \n$action', style: headlineSecondaryTextStyle, textAlign: TextAlign.center),
+                  child: Text('$actionServiceChoose: \n$action', style: headlineSecondaryTextStyle, textAlign: TextAlign.center),
                 ),
                 const SizedBox(height: 30),
                 const Padding(
@@ -83,13 +83,13 @@ class ActionReactionCards extends StatelessWidget {
                 const SizedBox(height: 5),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text('$reactionservicechoose: \n$reaction', style: headlineSecondaryTextStyle, textAlign: TextAlign.center),
+                  child: Text('$reactionServiceChoose: \n$reaction', style: headlineSecondaryTextStyle, textAlign: TextAlign.center),
                 ),
                 FloatingActionButton.extended(
                     onPressed: () {
-                      actionservicechoose = "";
+                      actionServiceChoose = "";
                       action = "";
-                      reactionservicechoose = "";
+                      reactionServiceChoose = "";
                       reaction = "";
                     },
                     backgroundColor: Colors.red,

@@ -12,19 +12,19 @@ import 'choose_reaction_teams.dart';
 
 chooseActionPage(context) async {
 
-  if (actionservicechoose == "Github") {
+  if (actionServiceChoose == "Github") {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ChooseActionsGithub()),
     );
   }
-  if (actionservicechoose == "Trello") {
+  if (actionServiceChoose == "Trello") {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ChooseActionsTrello()),
     );
   }
-  if (actionservicechoose == "Microsoft Planner") {
+  if (actionServiceChoose == "Microsoft Planner") {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ChooseActionsPlanner()),
@@ -34,21 +34,21 @@ chooseActionPage(context) async {
 
 chooseReactionPage(page, context) async {
 
-  if (reactionservicechoose == "Twitter") {
+  if (reactionServiceChoose == "Twitter") {
     action = page;
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ChooseReactionsTwitter()),
     );
   }
-  if (reactionservicechoose == "Discord") {
+  if (reactionServiceChoose == "Discord") {
     action = page;
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ChooseReactionsDiscord()),
     );
   }
-  if (reactionservicechoose == "Microsoft Teams") {
+  if (reactionServiceChoose == "Microsoft Teams") {
     action = page;
     Navigator.push(
       context,
@@ -59,7 +59,7 @@ chooseReactionPage(page, context) async {
 
 chooseReactionServicePage(page, context) async {
   if (page == "Github") {
-    actionservicechoose = page;
+    actionServiceChoose = page;
     buttonConnectionGitHub = "Connected";
     colbuttonConnectionGithub = const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
@@ -68,7 +68,7 @@ chooseReactionServicePage(page, context) async {
     );
   }
   if (page == "Trello") {
-    actionservicechoose = page;
+    actionServiceChoose = page;
     buttonConnectionTrello = "Connected";
     colbuttonConnectionTrello =  const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
@@ -77,7 +77,7 @@ chooseReactionServicePage(page, context) async {
     );
   }
   if (page == "Microsoft Planner") {
-    actionservicechoose = page;
+    actionServiceChoose = page;
     buttonConnectionPlanner = "Connected";
     colbuttonConnectionPlanner = const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
@@ -89,19 +89,19 @@ chooseReactionServicePage(page, context) async {
 
 setReactionService(page, context) async {
   if (page == "Twitter") {
-    reactionservicechoose = page;
+    reactionServiceChoose = page;
     buttonConnectionTwitter= "Connected";
     colbuttonConnectionTwitter = const Color.fromARGB(255, 68, 204, 5);
     chooseActionPage(context);
   }
   if (page == "Discord") {
-    reactionservicechoose =  page;
+    reactionServiceChoose =  page;
     buttonConnectionDiscord = "Connected";
     colbuttonConnectionDiscord = const Color.fromARGB(255, 68, 204, 5);
     chooseActionPage(context);
   }
   if (page == "Microsoft Teams") {
-    reactionservicechoose = page;
+    reactionServiceChoose = page;
     buttonConnectionTeams = "Connected";
     colbuttonConnectionTeams = const Color.fromARGB(255, 68, 204, 5);
     chooseActionPage(context);
@@ -109,14 +109,14 @@ setReactionService(page, context) async {
 }
 
 chooseConnection(page, context) async {
-  if (actionservicechoose != "" && reactionservicechoose != "" && action != "") {
+  if (actionServiceChoose != "" && reactionServiceChoose != "" && action != "") {
       reaction = page;
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone",)),
       );
   }
-  if (actionservicechoose != "" && reactionservicechoose != "" && action == "") {
+  if (actionServiceChoose != "" && reactionServiceChoose != "" && action == "") {
       chooseReactionPage(page, context);
   }
   chooseReactionServicePage(page, context);

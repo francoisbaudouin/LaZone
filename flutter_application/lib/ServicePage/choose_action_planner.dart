@@ -17,7 +17,7 @@ class ChooseActionsPlanner extends StatelessWidget {
         leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () {
-              reactionservicechoose = "";
+              reactionServiceChoose = "";
               action = "";
               Navigator.pop(context);
             }

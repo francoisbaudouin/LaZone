@@ -23,9 +23,9 @@ String buttonConnectionTwitter = "Disconected";
 
 String buttonConnectionTeams = "Disconected";
 
-String actionservicechoose = "";
+String actionServiceChoose = "";
 
-String reactionservicechoose = "";
+String reactionServiceChoose = "";
 
 String action = "";
 
