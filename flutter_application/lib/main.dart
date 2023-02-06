@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/home_page.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'Logs/sign_in_page.dart';
 
@@ -13,20 +14,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        builder: (context, widget) => ResponsiveWrapper.builder(
-              ClampingScrollWrapper.builder(context, widget!),
-              breakpoints: const [
-                ResponsiveBreakpoint.resize(350, name: MOBILE),
-                ResponsiveBreakpoint.autoScale(600, name: TABLET),
-                ResponsiveBreakpoint.resize(800, name: DESKTOP),
-                ResponsiveBreakpoint.autoScale(1700, name: 'XL'),
-              ],
-            ),
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primaryColor: Colors.white,
-        ),
-        debugShowCheckedModeBanner: false,
-        home: SignInApp());
+      builder: (context, widget) => ResponsiveWrapper.builder(
+        ClampingScrollWrapper.builder(context, widget!),
+        breakpoints: const [
+          ResponsiveBreakpoint.resize(350, name: MOBILE),
+          ResponsiveBreakpoint.autoScale(600, name: TABLET),
+          ResponsiveBreakpoint.resize(800, name: DESKTOP),
+          ResponsiveBreakpoint.autoScale(1700, name: 'XL'),
+        ],
+      ),
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primaryColor: Colors.white,
+      ),
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => SignInApp(),
+        '/home': (context) => const MyHomePage(title: "LaZone"),
+      },
+    );
   }
 }
