@@ -23,6 +23,14 @@ String buttonConnectionTwitter = "Disconected";
 
 String buttonConnectionTeams = "Disconected";
 
+String actionServiceChoose = "";
+
+String reactionServiceChoose = "";
+
+String action = "";
+
+String reaction = "";
+
 const TextStyle headlineTextStyle = TextStyle(
     fontSize: 44, color: textPrimary, height: 1.2, fontFamily: fontFamily);
 
