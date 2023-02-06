@@ -19,7 +19,7 @@ class FlutterNewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: border)),
       child: Column(
@@ -47,7 +47,6 @@ class FlutterNewCard extends StatelessWidget {
                     icon: const Icon(Icons.navigate_next),
                     heroTag: null,
                 ),
-               
               ],
             ),
           ),
