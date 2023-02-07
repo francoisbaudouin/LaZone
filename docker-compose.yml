@@ -10,8 +10,6 @@ services:
     build: ./server
     ports:
       - "8080:8080"
-    secrets:
-      - db_secret
 
   ##### CLIENT #####
 
@@ -40,7 +38,7 @@ services:
 
   db-mysql:
     secrets:
-      - my_secret
+      - db_secret
     build:
       context: ./server/db
       dockerfile: Dockerfile
