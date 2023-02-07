@@ -16,14 +16,14 @@ const Color backgroundDark = Color(0xFF303c42);
 const Color border = Color(0x20000000);
 
 
-Color colbuttonConnectionGithub = Color.fromARGB(255, 202, 22, 22);
+Color colbuttonConnectionGithub = const Color.fromARGB(255, 202, 22, 22);
 
-Color colbuttonConnectionTrello = Color.fromARGB(255, 202, 22, 22);
+Color colbuttonConnectionTrello = const Color.fromARGB(255, 202, 22, 22);
 
-Color colbuttonConnectionPlanner = Color.fromARGB(255, 202, 22, 22);
+Color colbuttonConnectionPlanner = const Color.fromARGB(255, 202, 22, 22);
 
-Color colbuttonConnectionDicord = Color.fromARGB(255, 202, 22, 22);
+Color colbuttonConnectionDiscord = const Color.fromARGB(255, 202, 22, 22);
 
-Color colbuttonConnectionTwitter = Color.fromARGB(255, 202, 22, 22);
+Color colbuttonConnectionTwitter = const Color.fromARGB(255, 202, 22, 22);
 
-Color colbuttonConnectionTeams = Color.fromARGB(255, 202, 22, 22);
+Color colbuttonConnectionTeams = const Color.fromARGB(255, 202, 22, 22);
