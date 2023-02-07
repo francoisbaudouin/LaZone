@@ -5,18 +5,30 @@ const prisma = new PrismaClient();
 
 exports.postNewArea = async function (req, res) {
   var newArea = {
-    create: {
+    data: {
       userId: req.userId,
-      actionsId: req.actionId,
       actionParam: "default",
       reactionParam: "default",
       reactionsId: req.actionId,
       actionsId: req.actionId,
       enabled: req.enabled
-    }
+    },
+    statusCode: 201,
   }
-  res.json(newArea);
-  // console.log(newArea);
+
+  res.status(201).json({
+    status: "sucess",
+    data: {
+      userId: req.userId,
+      actionParam: "default",
+      reactionParam: "default",
+      reactionsId: req.actionId,
+      actionsId: req.actionId,
+      enabled: req.enabled
+    },
+    statusCode: res.statusCode
+  })
+  //console.log(newArea);
   // return newArea;
   //await prisma.areas.create(newArea);
 }

@@ -63,8 +63,8 @@ chooseReactionPage(page, context) async {
 chooseReactionServicePage(page, context) async {
   if (page == "Github") {
     areatmp.actionServiceChoose = page;
-    buttonConnectionGitHub = "Connected";
-    colbuttonConnectionGithub = const Color.fromARGB(255, 68, 204, 5);
+    button.buttonConnectionGitHub = "Connected";
+    buttoncol.colbuttonConnectionGitHub = const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ReactionServicePage()),
@@ -72,8 +72,8 @@ chooseReactionServicePage(page, context) async {
   }
   if (page == "Trello") {
     areatmp.actionServiceChoose = page;
-    buttonConnectionTrello = "Connected";
-    colbuttonConnectionTrello =  const Color.fromARGB(255, 68, 204, 5);
+    button.buttonConnectionTrello = "Connected";
+    buttoncol.colbuttonConnectionTrello =  const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ReactionServicePage()),
@@ -81,8 +81,8 @@ chooseReactionServicePage(page, context) async {
   }
   if (page == "Microsoft Planner") {
     areatmp.actionServiceChoose = page;
-    buttonConnectionPlanner = "Connected";
-    colbuttonConnectionPlanner = const Color.fromARGB(255, 68, 204, 5);
+    button.buttonConnectionPlanner = "Connected";
+    buttoncol.colbuttonConnectionPlanner = const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ReactionServicePage()),
@@ -93,26 +93,25 @@ chooseReactionServicePage(page, context) async {
 setReactionService(page, context) async {
   if (page == "Twitter") {
     areatmp.reactionServiceChoose = page;
-    buttonConnectionTwitter= "Connected";
-    colbuttonConnectionTwitter = const Color.fromARGB(255, 68, 204, 5);
+    button.buttonConnectionTwitter= "Connected";
+    buttoncol.colbuttonConnectionTwitter = const Color.fromARGB(255, 68, 204, 5);
     chooseActionPage(context);
   }
   if (page == "Discord") {
     areatmp.reactionServiceChoose =  page;
-    buttonConnectionDiscord = "Connected";
-    colbuttonConnectionDiscord = const Color.fromARGB(255, 68, 204, 5);
+    button.buttonConnectionDiscord = "Connected";
+    buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 68, 204, 5);
     chooseActionPage(context);
   }
   if (page == "Microsoft Teams") {
     areatmp.reactionServiceChoose = page;
-    buttonConnectionTeams = "Connected";
-    colbuttonConnectionTeams = const Color.fromARGB(255, 68, 204, 5);
+    button.buttonConnectionTeams = "Connected";
+    buttoncol.colbuttonConnectionTeams = const Color.fromARGB(255, 68, 204, 5);
     chooseActionPage(context);
   }
 }
 
 chooseConnection(page, context) async {
-  //print(page);
   if (page == "Confirm link" && areatmp.reaction != "") {
       area.actionServiceChoose = areatmp.actionServiceChoose;
       area.reactionServiceChoose = areatmp.reactionServiceChoose;
@@ -126,7 +125,6 @@ chooseConnection(page, context) async {
         "userId": connectedUser["id"].toString(),
         "enabled": true.toString(),
       };
-      print(resJson);
       areatmp.actionServiceChoose = "";
       areatmp.reactionServiceChoose = "";
       areatmp.action = "";
@@ -163,14 +161,12 @@ AreaConnection(recJson, context) async {
       'enabled': recJson["enabled"],
     }),
   );
-
   if (response.statusCode == 201) {
-    print("a");
     Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone",)),
     );
   } else {
-    throw Exception('Failed to create account.');
+    throw Exception('Failed to create area');
   }
 }

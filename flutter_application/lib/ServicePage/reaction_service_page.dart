@@ -45,8 +45,8 @@ class ReactionServicePage extends StatelessWidget {
                 child: FlutterNewCard(
                   title: "Twitter",
                   imagePath: "assets/images/logo-twitter.jpg",
-                  textbutton :  buttonConnectionTwitter,
-                  colorButton : colbuttonConnectionTwitter,
+                  textbutton :  button.buttonConnectionTwitter,
+                  colorButton : buttoncol.colbuttonConnectionTwitter,
                 ),
               ),
               ResponsiveRowColumnItem(
@@ -55,8 +55,8 @@ class ReactionServicePage extends StatelessWidget {
                 child: FlutterNewCard(
                   title: "Discord",
                   imagePath: "assets/images/discord-logo.png",
-                  textbutton :  buttonConnectionDiscord,
-                  colorButton : colbuttonConnectionDiscord,
+                  textbutton :  button.buttonConnectionDiscord,
+                  colorButton : buttoncol.colbuttonConnectionDiscord,
                 ),
               ),
               ResponsiveRowColumnItem(
@@ -65,8 +65,8 @@ class ReactionServicePage extends StatelessWidget {
                 child: FlutterNewCard(
                   title: "Microsoft Teams",
                   imagePath: "assets/images/Microsoft-Teams-Symbole.jpg",
-                  textbutton :  buttonConnectionTeams,
-                  colorButton : colbuttonConnectionTeams,
+                  textbutton :  button.buttonConnectionTeams,
+                  colorButton : buttoncol.colbuttonConnectionTeams,
                 ),
               ),],
           ),
