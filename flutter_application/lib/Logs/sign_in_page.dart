@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'sign_in_tools.dart';
 
-class SingInApp extends StatelessWidget{
-  SingInApp({super.key});
+class SignInApp extends StatelessWidget{
+  SignInApp({super.key});
   var button = ButtonConnection(email: "", password: "");
   @override
   Widget build(BuildContext context) {

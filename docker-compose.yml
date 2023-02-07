@@ -19,7 +19,7 @@ services:
       context: ./flutter_application
       dockerfile: mobile.Dockerfile
     volumes:
-      - client:/home
+      - client:/areapp/
 
   client_web:
     container_name: client_web
@@ -32,7 +32,7 @@ services:
       - server
       - client_mobile
     volumes:
-      - client:/home
+      - client:/areapp/
 
   ##### DB #####
 
