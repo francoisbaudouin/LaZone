@@ -36,6 +36,15 @@ exports.getUserTokenByServiceName = async (req, res) => {
     res.json(userServiceTokens);
 };
 
+exports.getAllUsers2 = async function () {
+  const users = prisma.users.findMany({
+    select: {
+      id: true
+    }
+  });
+  return users;
+}
+
 exports.getUserModel = async function (userId) {
     const userTokens = await prisma.tokens.findMany({
         where: {
