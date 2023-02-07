@@ -25,16 +25,16 @@ class CreateConfirmCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: border)),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.fromLTRB(40, 40, 40, 40),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(title, style: headlineSecondaryTextStyle),
+                  child: Text(title, style: headlineSecondaryTextStyle, textAlign: TextAlign.center),
                 ),
                 FloatingActionButton.extended(
                     onPressed: () {
@@ -63,16 +63,17 @@ class ConfirmAreaPage extends StatelessWidget {
         toolbarHeight: 80.0,
         backgroundColor: const Color.fromARGB(255, 127, 184, 250),
         elevation: 0.0,
-        title: const Center(child: Text('Github', textAlign: TextAlign.center)),
+        title: const Center(child: Text('Confirm link', textAlign: TextAlign.center)),
         leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            icon: Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () {
                 areatmp.reaction = "";
                 Navigator.pushNamed(
                   context,
                   '/home'
                 );
-            }
+            },
+            alignment: Alignment.center,
         ),
       ),
       body: Center(
@@ -89,10 +90,9 @@ class ConfirmAreaPage extends StatelessWidget {
             children: const [
               ResponsiveRowColumnItem(
                 rowFlex: 1,
-                rowFit: FlexFit.loose,
-                columnFit: FlexFit.loose,
+                rowFit: FlexFit.tight,
                 child: CreateConfirmCard(
-                  title: "Confirm you link ?",
+                  title: "Confirm your link ?",
                   textbutton :  "Confirm",
                   colorButton : Colors.black,
                 ),

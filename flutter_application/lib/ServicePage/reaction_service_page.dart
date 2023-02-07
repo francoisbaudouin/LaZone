@@ -14,7 +14,7 @@ class ReactionServicePage extends StatelessWidget {
         toolbarHeight: 80.0,
         backgroundColor: const Color.fromARGB(255, 127, 184, 250),
         elevation: 0.0,
-        title: const Center(child: Text('Github', textAlign: TextAlign.center)),
+        title: const Center(child: Text('Choose reaction service', textAlign: TextAlign.center)),
         leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () {
