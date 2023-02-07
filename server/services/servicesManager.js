@@ -1,6 +1,8 @@
 const githubAction = require("./action/githubAction.js");
 const { sendMessage, client } = require("./reaction/discordReaction.js");
 
+const { updateAreaTimestamp } = require("../api/controllers/areas.js")
+
 const actionMap = new Map([
   [1, githubAction.getFromRepo],
   [2, githubAction.getFromRepo],
@@ -12,7 +14,6 @@ const reactionMap = new Map([
 ]);
 
 async function activateArea(area) {
-  console.log(area)
   await actionMap.get(area.actionId)(reactionMap.get(area.reactionId), area);
 }
 
@@ -33,6 +34,8 @@ function activateAreasFromUser(user) {
       timestamp: element.timestamp.toISOString(),
     };
     await activateArea(area)
+    console.log(element.timestamp, area.timestamp);
+    await updateAreaTimestamp(element.id, area.timestamp);
   });
 }
 

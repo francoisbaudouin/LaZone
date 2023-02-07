@@ -31,7 +31,7 @@ async function basicConfig() {
   })
   const DiscordToken = await prisma.tokens.create({
     data: {
-      accessTokens: "Discord accessTokens",
+      accessTokens: process.env.DISCORD_BOT_TOKEN,
       refreshTokens: "Discord refreshTokens",
       relatedServiceName: "Discord",
       userId: 1
@@ -39,7 +39,7 @@ async function basicConfig() {
   })
   const GithubToken = await prisma.tokens.create({
     data: {
-      accessTokens: "Github accessTokens",
+      accessTokens: process.env.temp_git,
       refreshTokens: "Github refreshTokens",
       relatedServiceName: "Github",
       userId: 1

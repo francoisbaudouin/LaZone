@@ -37,3 +37,14 @@ exports.getAreaByIdRelatedUser =  async (req, res) => {
   })
   res.json(user);
 };
+
+exports.updateAreaTimestamp = async (areaId, timestamp) => {
+  await prisma.areas.update({
+    where:{
+      id:areaId
+    },
+    data: {
+      timestamp: timestamp
+    }
+  });
+};

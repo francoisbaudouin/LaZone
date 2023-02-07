@@ -93,13 +93,21 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
 
+const configdb = require("./api/utils/basicConfig.js");
+
+configdb()
+
 const userController = require('./api/controllers/users');
 
 const services = require("./services/servicesManager.js");
 
+async function serviceInterval() {
+  const values = await userController.getUserModel(1);
+  // console.log(values)
+  services.activateAreasFromUser(values);
+}
+
 services.client.on('ready', async client => {
-    const values = await userController.getUserModel(1);
-    // console.log(values)
-    services.activateAreasFromUser(values);
+  await setInterval(serviceInterval, 5000);
 });
 
