@@ -30,9 +30,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => SignInApp(),
-        '/home': (context) => const MyHomePage(title: "LaZone"),
+      '/': (context) => SignInApp(),
+      '/home': (context) => const MyHomePage(title: "LaZone"),
       },
+      //home: SingInApp()
     );
   }
 }

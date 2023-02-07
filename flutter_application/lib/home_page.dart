@@ -15,54 +15,55 @@ class FlutterNewRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
-      width: double.infinity,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage("assets/images/i.jpg"), fit: BoxFit.cover),
-      ),
+        height: 200,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("assets/images/i.jpg"),
+              fit: BoxFit.cover),
+        ),
       margin: blockMargin,
       child: SingleChildScrollView(
-        child: ResponsiveRowColumn(
-          layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
-              ? ResponsiveRowColumnType.COLUMN
-              : ResponsiveRowColumnType.ROW,
-          rowCrossAxisAlignment: CrossAxisAlignment.center,
-          rowSpacing: 25,
-          columnSpacing: 25,
-          children: [
-            ResponsiveRowColumnItem(
-              rowFlex: 1,
-              rowFit: FlexFit.tight,
-              child: FlutterNewCard(
-                title: "Github",
-                imagePath: "assets/images/github-logo.png",
-                textbutton: buttonConnectionGitHub,
-                colorButton: colbuttonConnectionGithub,
-              ),
+      child: ResponsiveRowColumn(
+        layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
+            ? ResponsiveRowColumnType.COLUMN
+            : ResponsiveRowColumnType.ROW,
+        rowCrossAxisAlignment: CrossAxisAlignment.center,
+        rowSpacing: 25,
+        columnSpacing: 25,
+        children: [
+          ResponsiveRowColumnItem(
+            rowFlex: 1,
+            rowFit: FlexFit.tight,
+            child: FlutterNewCard(
+              title: "Github",
+              imagePath: "assets/images/github-logo.png",
+              textbutton :  buttonConnectionGitHub,
+              colorButton : colbuttonConnectionGithub,
             ),
-            ResponsiveRowColumnItem(
-              rowFlex: 1,
-              rowFit: FlexFit.tight,
-              child: FlutterNewCard(
-                title: "Trello",
-                imagePath: "assets/images/Trello-Symbole.jpg",
-                textbutton: buttonConnectionTrello,
-                colorButton: colbuttonConnectionTrello,
-              ),
+          ),
+          ResponsiveRowColumnItem(
+            rowFlex: 1,
+            rowFit: FlexFit.tight,
+            child: FlutterNewCard(
+              title: "Trello",
+              imagePath: "assets/images/Trello-Symbole.jpg",
+              textbutton :  buttonConnectionTrello,
+              colorButton : colbuttonConnectionTrello,
             ),
-            ResponsiveRowColumnItem(
-              rowFlex: 1,
-              rowFit: FlexFit.tight,
-              child: FlutterNewCard(
-                title: "Microsoft Planner",
-                imagePath: "assets/images/Planner-logo.jpg",
-                textbutton: buttonConnectionPlanner,
-                colorButton: colbuttonConnectionPlanner,
-              ),
-            )
-          ],
-        ),
+          ),
+          ResponsiveRowColumnItem(
+            rowFlex: 1,
+            rowFit: FlexFit.tight,
+            child: FlutterNewCard(
+              title: "Microsoft Planner",
+              imagePath: "assets/images/Planner-logo.jpg",
+              textbutton :  buttonConnectionPlanner,
+              colorButton : colbuttonConnectionPlanner,
+            ),
+          ),
+        ],
+      ),
       ),
     );
   }
@@ -101,9 +102,9 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int _selectedIndex = 0;
-  List<Widget> views = [
+  List<Widget> views =  [
     const SizedBox(
-      child: FlutterNewRow(),
+        child : FlutterNewRow(),
     ),
     const Center(
       child: CreateactionReactionCards(),
@@ -126,23 +127,25 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          toolbarHeight: 80.0,
-          backgroundColor: const Color.fromARGB(255, 127, 184, 250),
-          elevation: 0.0,
-          title:
-              const Center(child: Text('LaZone', textAlign: TextAlign.center)),
-          leading: IconButton(
-            icon: const Icon(Icons.download),
-            onPressed: () {},
+        toolbarHeight: 80.0,
+        backgroundColor: const Color.fromARGB(255, 127, 184, 250),
+        elevation: 0.0,
+        title: const Center(child: Text('LaZone', textAlign: TextAlign.center)),
+        leading: IconButton(
+          icon: const Icon(Icons.download),
+          onPressed: () {},
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                '/');
+            },
           ),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.logout),
-              onPressed: () {
-                Navigator.pushNamed(context, '/');
-              },
-            ),
-          ]),
+        ]
+      ),
       body: Row(
         children: [
           SideNavigationBar(
