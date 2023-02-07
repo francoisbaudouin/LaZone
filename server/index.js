@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 8080;
 const localAuthRouter = require('./api/routes/auth/local_auth.js');
 const gitAuthRouter = require('./api/routes/auth/git_auth.js');
 const discordAuthRouter = require('./api/routes/auth/discord_auth.js');
+const areaRouter = require('./api/routes/area.js');
 const auth = require('./api/utils/authorization.js');
 const passport = require("passport");
 const session = require("express-session");
@@ -60,6 +61,8 @@ app.get("/", (req, res) => {
 app.use('/auth', localAuthRouter);
 app.use('/auth', gitAuthRouter);
 app.use('/auth', discordAuthRouter);
+app.use('/area', areaRouter);
+
 
 // protected route test
 // app.get('/logged', auth, (req, res) => {
