@@ -44,9 +44,9 @@ dependencies:
   animations: ^2.0.2
   url_launcher: ^6.0.20
   video_player: ^2.2.18
-  webview_flutter: ^3.0.0
+  webview_flutter: ^4.0.2
   universal_html: ^2.0.8
-  google_fonts: ^2.3.1
+  google_fonts: ^4.0.1
   email_validator: ^2.1.17
   oauth2: ^2.0.1
   oauth2_client: ^3.1.0
