@@ -29,22 +29,7 @@ async function basicConfig() {
       description: "This is discord service",
     }
   })
-  const DiscordToken = await prisma.tokens.create({
-    data: {
-      accessTokens: process.env.DISCORD_BOT_TOKEN,
-      refreshTokens: "Discord refreshTokens",
-      relatedServiceName: "Discord",
-      userId: 1
-    }
-  })
-  const GithubToken = await prisma.tokens.create({
-    data: {
-      accessTokens: process.env.GIT_TOKEN,
-      refreshTokens: "Github refreshTokens",
-      relatedServiceName: "Github",
-      userId: 1
-    }
-  })
+
   const pullRequestAction = await prisma.actions.create({
     data: {
       name: "pull request",

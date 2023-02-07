@@ -105,6 +105,8 @@ signup(firstname, lastname, pseudo, email, password, context) async {
   );
 
   if (response.statusCode == 201) {
+    Map<String, dynamic> data = json.decode(response.body);
+    connectedUser = data["data"]["user"];
     Navigator.push(
       context,
       MaterialPageRoute(

@@ -118,13 +118,14 @@ chooseConnection(page, context) async {
       area.action = areatmp.action;
       area.reaction = areatmp.reaction;
       var resJson = {
-        "actionService": areatmp.actionServiceChoose,
-        "reactionService": areatmp.reactionServiceChoose,
-        "actionId": "1",
-        "reactionId": "1",
-        "userId": connectedUser["id"].toString(),
-        "enabled": true.toString(),
+        "actionParam": "UgoBoulestreau/POC-nodejs",
+        "reactionParam": "1072618196395380756",
+        "actionId": 1,
+        "reactionId": 1,
+        "userId": connectedUser["id"],
+        "enabled": true,
       };
+      print(resJson);
       areatmp.actionServiceChoose = "";
       areatmp.reactionServiceChoose = "";
       areatmp.action = "";
@@ -146,16 +147,17 @@ chooseConnection(page, context) async {
 }
 
 AreaConnection(recJson, context) async {
-  var url = Uri.parse("http://localhost:8080/area/new");
+  print(recJson);
+  var url = Uri.parse("http://localhost:8080/areas/new");
   final http.Response response = await http.post(
     url,
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
-    body: jsonEncode(<String, String>{
+    body: jsonEncode({
       'userId': recJson["userId"],
-      'actionParam': recJson["actionService"],
-      'reactionParam': recJson["reactionService"],
+      'actionParam': recJson["actionParam"],
+      'reactionParam': recJson["reactionParam"],
       'reactionsId': recJson["reactionId"],
       'actionsId': recJson["actionId"],
       'enabled': recJson["enabled"],
