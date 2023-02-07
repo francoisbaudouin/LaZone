@@ -26,13 +26,23 @@ String buttonConnectionTwitter = "Disconected";
 
 String buttonConnectionTeams = "Disconected";
 
-String actionServiceChoose = "";
+class Area {
+  String actionServiceChoose;
+  String reactionServiceChoose;
+  String action;
+  String reaction;
+  Area({this.actionServiceChoose = "", this.reactionServiceChoose = "", this.action = "", this.reaction = ""});
+}
+Area area = Area();
+Area areatmp = Area();
 
-String reactionServiceChoose = "";
+String actionServiceChoosetmp = "";
 
-String action = "";
+String reactionServiceChoosetmp = "";
 
-String reaction = "";
+String actiontmp = "";
+
+String reactiontmp = "";
 
 const TextStyle headlineTextStyle = TextStyle(
     fontSize: 44, color: textPrimary, height: 1.2, fontFamily: fontFamily);

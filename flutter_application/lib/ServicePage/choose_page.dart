@@ -10,22 +10,24 @@ import 'choose_action_planner.dart';
 import 'choose_action_trello.dart';
 import 'choose_reaction_teams.dart';
 import 'confirm_area_page.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 chooseActionPage(context) async {
 
-  if (actionServiceChoose == "Github") {
+  if (areatmp.actionServiceChoose == "Github") {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ChooseActionsGithub()),
     );
   }
-  if (actionServiceChoose == "Trello") {
+  if (areatmp.actionServiceChoose == "Trello") {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ChooseActionsTrello()),
     );
   }
-  if (actionServiceChoose == "Microsoft Planner") {
+  if (areatmp.actionServiceChoose == "Microsoft Planner") {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ChooseActionsPlanner()),
@@ -35,22 +37,22 @@ chooseActionPage(context) async {
 
 chooseReactionPage(page, context) async {
 
-  if (reactionServiceChoose == "Twitter") {
-    action = page;
+  if (areatmp.reactionServiceChoose == "Twitter") {
+    areatmp.action = page;
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ChooseReactionsTwitter()),
     );
   }
-  if (reactionServiceChoose == "Discord") {
-    action = page;
+  if (areatmp.reactionServiceChoose == "Discord") {
+    areatmp.action = page;
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ChooseReactionsDiscord()),
     );
   }
-  if (reactionServiceChoose == "Microsoft Teams") {
-    action = page;
+  if (areatmp.reactionServiceChoose == "Microsoft Teams") {
+    areatmp.action = page;
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ChooseReactionTeams()),
@@ -60,7 +62,7 @@ chooseReactionPage(page, context) async {
 
 chooseReactionServicePage(page, context) async {
   if (page == "Github") {
-    actionServiceChoose = page;
+    areatmp.actionServiceChoose = page;
     buttonConnectionGitHub = "Connected";
     colbuttonConnectionGithub = const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
@@ -69,7 +71,7 @@ chooseReactionServicePage(page, context) async {
     );
   }
   if (page == "Trello") {
-    actionServiceChoose = page;
+    areatmp.actionServiceChoose = page;
     buttonConnectionTrello = "Connected";
     colbuttonConnectionTrello =  const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
@@ -78,7 +80,7 @@ chooseReactionServicePage(page, context) async {
     );
   }
   if (page == "Microsoft Planner") {
-    actionServiceChoose = page;
+    areatmp.actionServiceChoose = page;
     buttonConnectionPlanner = "Connected";
     colbuttonConnectionPlanner = const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
@@ -90,19 +92,19 @@ chooseReactionServicePage(page, context) async {
 
 setReactionService(page, context) async {
   if (page == "Twitter") {
-    reactionServiceChoose = page;
+    areatmp.reactionServiceChoose = page;
     buttonConnectionTwitter= "Connected";
     colbuttonConnectionTwitter = const Color.fromARGB(255, 68, 204, 5);
     chooseActionPage(context);
   }
   if (page == "Discord") {
-    reactionServiceChoose =  page;
+    areatmp.reactionServiceChoose =  page;
     buttonConnectionDiscord = "Connected";
     colbuttonConnectionDiscord = const Color.fromARGB(255, 68, 204, 5);
     chooseActionPage(context);
   }
   if (page == "Microsoft Teams") {
-    reactionServiceChoose = page;
+    areatmp.reactionServiceChoose = page;
     buttonConnectionTeams = "Connected";
     colbuttonConnectionTeams = const Color.fromARGB(255, 68, 204, 5);
     chooseActionPage(context);
@@ -111,32 +113,64 @@ setReactionService(page, context) async {
 
 chooseConnection(page, context) async {
   //print(page);
-  if (page == "yes" && reaction != "") {
-      print("a");
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone",)),
-      );
+  if (page == "Confirm link" && areatmp.reaction != "") {
+      area.actionServiceChoose = areatmp.actionServiceChoose;
+      area.reactionServiceChoose = areatmp.reactionServiceChoose;
+      area.action = areatmp.action;
+      area.reaction = areatmp.reaction;
+      var resJson = {
+        "actionService": areatmp.actionServiceChoose,
+        "reactionService": areatmp.reactionServiceChoose,
+        "actionId": "1",
+        "reactionId": "1",
+        "userId": connectedUser["id"].toString(),
+        "enabled": true.toString(),
+      };
+      print(resJson);
+      areatmp.actionServiceChoose = "";
+      areatmp.reactionServiceChoose = "";
+      areatmp.action = "";
+      areatmp.reaction = "";
+      AreaConnection(resJson, context);
   }
-  if (actionServiceChoose != "" && reactionServiceChoose != "" && action != "") {
-      reaction = page;
-      //var resJson = {
-      //  "actionService": actionServiceChoose,
-      //  "reactionService": reactionServiceChoose,
-      //  "actionId": 1,
-      //  "reactionId": 1,
-      //  "userId": connectedUser["id"],
-      //  "enabled": true,
-      //};
-      //print(resJson);
+  if (areatmp.actionServiceChoose != "" && areatmp.reactionServiceChoose != "" && areatmp.action != "") {
+      areatmp.reaction = page;
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const ConfirmAreaPage()),
       );
   }
-  if (actionServiceChoose != "" && reactionServiceChoose != "" && action == "") {
+  if (areatmp.actionServiceChoose != "" && areatmp.reactionServiceChoose != "" && areatmp.action == "") {
       chooseReactionPage(page, context);
   }
   chooseReactionServicePage(page, context);
   setReactionService(page, context);
+}
+
+AreaConnection(recJson, context) async {
+  var url = Uri.parse("http://localhost:8080/area/new");
+  final http.Response response = await http.post(
+    url,
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'userId': recJson["userId"],
+      'actionParam': recJson["actionService"],
+      'reactionParam': recJson["reactionService"],
+      'reactionsId': recJson["reactionId"],
+      'actionsId': recJson["actionId"],
+      'enabled': recJson["enabled"],
+    }),
+  );
+
+  if (response.statusCode == 201) {
+    print("a");
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone",)),
+    );
+  } else {
+    throw Exception('Failed to create account.');
+  }
 }

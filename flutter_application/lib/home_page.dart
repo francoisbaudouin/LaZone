@@ -14,13 +14,13 @@ class FlutterNewRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height : double.maxFinite,
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/i.jpg"),
-              fit: BoxFit.cover,),
-        ),
+        //height : double.maxFinite,
+        //width: double.infinity,
+        //decoration: const BoxDecoration(
+        //  image: DecorationImage(
+        //      image: AssetImage("assets/images/i.jpg"),
+        //      fit: BoxFit.cover,),
+        //),
       margin: blockMargin,
       child: SingleChildScrollView(
       child: ResponsiveRowColumn(

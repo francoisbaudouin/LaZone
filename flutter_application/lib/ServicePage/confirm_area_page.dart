@@ -38,7 +38,7 @@ class CreateConfirmCard extends StatelessWidget {
                 ),
                 FloatingActionButton.extended(
                     onPressed: () {
-                      chooseConnection("yes", context);
+                      chooseConnection("Confirm link", context);
                     },
                     backgroundColor: colorButton,
                     label: Text(textbutton),
@@ -67,7 +67,7 @@ class ConfirmAreaPage extends StatelessWidget {
         leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () {
-              reaction = "";
+                areatmp.reaction = "";
                 Navigator.pushNamed(
                   context,
                   '/home'
@@ -89,7 +89,8 @@ class ConfirmAreaPage extends StatelessWidget {
             children: const [
               ResponsiveRowColumnItem(
                 rowFlex: 1,
-                rowFit: FlexFit.tight,
+                rowFit: FlexFit.loose,
+                columnFit: FlexFit.loose,
                 child: CreateConfirmCard(
                   title: "Confirm you link ?",
                   textbutton :  "Confirm",
