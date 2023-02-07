@@ -30,6 +30,7 @@ node_modules
 
 # Keep environment variables out of version control
 .env
+test.js
 
 #useless dart files
 flutter_application/lib/tmp.dart
