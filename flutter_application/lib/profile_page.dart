@@ -76,7 +76,7 @@ class ProfilePage extends StatelessWidget {
             rowFit: FlexFit.tight,
             child: ProfileCards(
               type : "Firstname :",
-              message: firstname,
+              message: user.firstname,
               icon : const Icon(Icons.person, color: Colors.black),
             ),
           ),
@@ -85,7 +85,7 @@ class ProfilePage extends StatelessWidget {
             rowFit: FlexFit.tight,
             child: ProfileCards(
               type : "Lastname :",
-              message: lastname,
+              message: user.lastname,
               icon : const Icon(Icons.person, color: Colors.black),
             ),
           ),
@@ -94,7 +94,7 @@ class ProfilePage extends StatelessWidget {
             rowFit: FlexFit.tight,
             child: ProfileCards(
               type : "Pseudo :",
-              message: pseudo,
+              message: user.pseudo,
               icon : const Icon(Icons.person, color: Colors.black),
             ),
           ),
@@ -103,7 +103,7 @@ class ProfilePage extends StatelessWidget {
             rowFit: FlexFit.tight,
             child: ProfileCards(
               type : "Email :",
-              message: email,
+              message: user.email,
               icon : const Icon(Icons.mail, color: Colors.black),
             ),
           ),

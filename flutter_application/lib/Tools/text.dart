@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'color.dart';
 
-String firstname = "";
+class User {
+  String firstname;
+  String lastname;
+  String pseudo;
+  String email;
+  User({this.firstname = "", this.lastname = "", this.pseudo = "", this.email = ""});
+}
+User user = User();
 
-String lastname = "";
-
-String pseudo  = "";
-
-String email = "";
+var connectedUser;
 
 const String fontFamily = "Google Sans";
 
