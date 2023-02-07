@@ -25,10 +25,10 @@ class ButtonCreateAccount extends StatelessWidget {
       onTap: () async {
         bool isValid = EmailValidator.validate(email_);
         if (isValid) {
-          firstname = firstname_;
-          lastname = lastname_;
-          email = email_;
-          pseudo = pseudo_;
+          user.firstname = firstname_;
+          user.lastname = lastname_;
+          user.email = email_;
+          user.pseudo = pseudo_;
           signup(firstname_, lastname_, pseudo_, email_, password_, context);
         } else {
             throw Exception('Failed to login.');

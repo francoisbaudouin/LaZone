@@ -9,6 +9,7 @@ import 'choose_action_github.dart';
 import 'choose_action_planner.dart';
 import 'choose_action_trello.dart';
 import 'choose_reaction_teams.dart';
+import 'confirm_area_page.dart';
 
 chooseActionPage(context) async {
 
@@ -109,11 +110,28 @@ setReactionService(page, context) async {
 }
 
 chooseConnection(page, context) async {
-  if (actionServiceChoose != "" && reactionServiceChoose != "" && action != "") {
-      reaction = page;
+  //print(page);
+  if (page == "yes" && reaction != "") {
+      print("a");
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone",)),
+      );
+  }
+  if (actionServiceChoose != "" && reactionServiceChoose != "" && action != "") {
+      reaction = page;
+      //var resJson = {
+      //  "actionService": actionServiceChoose,
+      //  "reactionService": reactionServiceChoose,
+      //  "actionId": 1,
+      //  "reactionId": 1,
+      //  "userId": connectedUser["id"],
+      //  "enabled": true,
+      //};
+      //print(resJson);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ConfirmAreaPage()),
       );
   }
   if (actionServiceChoose != "" && reactionServiceChoose != "" && action == "") {
