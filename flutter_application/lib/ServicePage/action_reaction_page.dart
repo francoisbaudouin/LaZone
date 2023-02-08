@@ -8,13 +8,13 @@ import '../Tools/text.dart';
 String chooseImageServiceAction() {
   String res = "";
 
-  if (actionServiceChoose == "Github") {
+  if (area.actionServiceChoose == "Github") {
     res = "assets/images/github-logo.png";
   }
-  if (actionServiceChoose == "Trello") {
+  if (area.actionServiceChoose == "Trello") {
     res = "assets/images/Trello-Symbole.jpg";
   }
-  if (actionServiceChoose == "Planner") {
+  if (area.actionServiceChoose == "Planner") {
     res = "assets/images/Planner-logo.jpg";
   }
   return (res);
@@ -24,13 +24,13 @@ String chooseImageServiceAction() {
 String chooseImageServiceReaction() {
   String res = "";
 
-  if (reactionServiceChoose == "Twitter") {
+  if (area.reactionServiceChoose == "Twitter") {
     res = "assets/images/logo-twitter.jpg";
   }
-  if (reactionServiceChoose == "Discord") {
+  if (area.reactionServiceChoose == "Discord") {
     res = "assets/images/discord-logo.png";
   }
-  if (reactionServiceChoose == "Microsoft Teams") {
+  if (area.reactionServiceChoose == "Microsoft Teams") {
     res = "assets/images/Microsoft-Teams-Symbole.jpg";
   }
   return (res);
@@ -69,7 +69,7 @@ class ActionReactionCards extends StatelessWidget {
                 const SizedBox(height: 5),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text('$actionServiceChoose: \n$action', style: headlineSecondaryTextStyle, textAlign: TextAlign.center),
+                  child: Text('${area.actionServiceChoose}: \n${area.action}', style: headlineSecondaryTextStyle, textAlign: TextAlign.center),
                 ),
                 const SizedBox(height: 30),
                 const Padding(
@@ -83,21 +83,20 @@ class ActionReactionCards extends StatelessWidget {
                 const SizedBox(height: 5),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text('$reactionServiceChoose: \n$reaction', style: headlineSecondaryTextStyle, textAlign: TextAlign.center),
+                  child: Text('${area.reactionServiceChoose}: \n${area.reaction}', style: headlineSecondaryTextStyle, textAlign: TextAlign.center),
                 ),
                 FloatingActionButton.extended(
                     onPressed: () {
-                      actionServiceChoose = "";
-                      action = "";
-                      reactionServiceChoose = "";
-                      reaction = "";
+                      area.actionServiceChoose = "";
+                      area.action = "";
+                      area.reactionServiceChoose = "";
+                      area.reaction = "";
                     },
                     backgroundColor: Colors.red,
                     label: const Text("Delete"),
                     icon: const Icon(Icons.delete),
                     heroTag: null,
                 ),
-               
               ],
             ),
           ),

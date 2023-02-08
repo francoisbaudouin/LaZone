@@ -1,35 +1,38 @@
 import 'package:flutter/material.dart';
 import 'color.dart';
 
-String firstname = "";
+class User {
+  String firstname;
+  String lastname;
+  String pseudo;
+  String email;
+  User({this.firstname = "", this.lastname = "", this.pseudo = "", this.email = ""});
+}
+User user = User();
 
-String lastname = "";
+var connectedUser;
 
-String pseudo  = "";
-
-String email = "";
-
+class ButtonConnection {
+  String buttonConnectionGitHub;
+  String buttonConnectionTrello;
+  String buttonConnectionPlanner;
+  String buttonConnectionDiscord;
+  String buttonConnectionTwitter;
+  String buttonConnectionTeams;
+  ButtonConnection({this.buttonConnectionGitHub = "Disconected", this.buttonConnectionTrello = "Disconected", this.buttonConnectionPlanner = "Disconected", this.buttonConnectionDiscord = "Disconected", this.buttonConnectionTwitter = "Disconected", this.buttonConnectionTeams = "Disconected"});
+}
+ButtonConnection button = ButtonConnection();
 const String fontFamily = "Google Sans";
 
-String buttonConnectionGitHub = "Disconected";
-
-String buttonConnectionTrello = "Disconected";
-
-String buttonConnectionPlanner = "Disconected";
-
-String buttonConnectionDiscord = "Disconected";
-
-String buttonConnectionTwitter = "Disconected";
-
-String buttonConnectionTeams = "Disconected";
-
-String actionServiceChoose = "";
-
-String reactionServiceChoose = "";
-
-String action = "";
-
-String reaction = "";
+class Area {
+  String actionServiceChoose;
+  String reactionServiceChoose;
+  String action;
+  String reaction;
+  Area({this.actionServiceChoose = "", this.reactionServiceChoose = "", this.action = "", this.reaction = ""});
+}
+Area area = Area();
+Area areatmp = Area();
 
 const TextStyle headlineTextStyle = TextStyle(
     fontSize: 44, color: textPrimary, height: 1.2, fontFamily: fontFamily);

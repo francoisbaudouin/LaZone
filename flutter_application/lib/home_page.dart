@@ -15,13 +15,6 @@ class FlutterNewRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 200,
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/i.jpg"),
-              fit: BoxFit.cover),
-        ),
       margin: blockMargin,
       child: SingleChildScrollView(
       child: ResponsiveRowColumn(
@@ -38,8 +31,8 @@ class FlutterNewRow extends StatelessWidget {
             child: FlutterNewCard(
               title: "Github",
               imagePath: "assets/images/github-logo.png",
-              textbutton :  buttonConnectionGitHub,
-              colorButton : colbuttonConnectionGithub,
+              textbutton :  button.buttonConnectionGitHub,
+              colorButton : buttoncol.colbuttonConnectionGitHub,
             ),
           ),
           ResponsiveRowColumnItem(
@@ -48,8 +41,8 @@ class FlutterNewRow extends StatelessWidget {
             child: FlutterNewCard(
               title: "Trello",
               imagePath: "assets/images/Trello-Symbole.jpg",
-              textbutton :  buttonConnectionTrello,
-              colorButton : colbuttonConnectionTrello,
+              textbutton :  button.buttonConnectionTrello,
+              colorButton : buttoncol.colbuttonConnectionTrello,
             ),
           ),
           ResponsiveRowColumnItem(
@@ -58,8 +51,8 @@ class FlutterNewRow extends StatelessWidget {
             child: FlutterNewCard(
               title: "Microsoft Planner",
               imagePath: "assets/images/Planner-logo.jpg",
-              textbutton :  buttonConnectionPlanner,
-              colorButton : colbuttonConnectionPlanner,
+              textbutton :  button.buttonConnectionPlanner,
+              colorButton : buttoncol.colbuttonConnectionPlanner,
             ),
           ),
         ],
