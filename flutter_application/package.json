@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "email_validator": "^1.0.0"
+  }
+}
