@@ -74,7 +74,7 @@ class LoginAlready extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SingInApp()),
+                MaterialPageRoute(builder: (context) => SignInApp()),
               );
             },
             child: const Text(

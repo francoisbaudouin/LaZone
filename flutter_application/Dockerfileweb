@@ -11,7 +11,9 @@ EXPOSE 8081
 
 RUN flutter doctor
 
-RUN flutter clean
+RUN mkdir -p /areapp/
+
+RUN flutter pub get
 
 RUN flutter config --enable-web \
     && flutter precache --universal --web \

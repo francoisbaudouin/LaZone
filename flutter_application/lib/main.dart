@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       builder: (context, widget) => ResponsiveWrapper.builder(
         ClampingScrollWrapper.builder(context, widget!),
-        breakpoints: const[
+        breakpoints: const [
           ResponsiveBreakpoint.resize(350, name: MOBILE),
           ResponsiveBreakpoint.autoScale(600, name: TABLET),
           ResponsiveBreakpoint.resize(800, name: DESKTOP),
@@ -24,15 +24,16 @@ class MyApp extends StatelessWidget {
         ],
       ),
       title: 'Flutter Demo',
-      theme: ThemeData(primaryColor: Colors.white,),
+      theme: ThemeData(
+        primaryColor: Colors.white,
+      ),
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-      '/': (context) => SingInApp(),
+      '/': (context) => SignInApp(),
       '/home': (context) => const MyHomePage(title: "LaZone"),
       },
       //home: SingInApp()
     );
   }
 }
-
