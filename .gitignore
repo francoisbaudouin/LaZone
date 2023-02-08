@@ -31,6 +31,8 @@ node_modules
 # Keep environment variables out of version control
 .env
 secrets_db.txt
+db_password.txt
+db_root_password.txt
 
 #useless dart files
 flutter_application/lib/tmp.dart
