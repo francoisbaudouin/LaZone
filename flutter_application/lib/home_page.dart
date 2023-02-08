@@ -8,6 +8,7 @@ import 'ServicePage/action_reaction_page.dart';
 import 'profile_page.dart';
 
 const EdgeInsets blockMargin = EdgeInsets.fromLTRB(10, 0, 10, 32);
+
 class FlutterNewRow extends StatelessWidget {
   const FlutterNewRow({Key? key}) : super(key: key);
 
@@ -90,6 +91,7 @@ class BlockWrapper extends StatelessWidget {
 
 class HomeView extends StatefulWidget {
   final int currentIndex;
+
   /// Callback function
   final Function(int selectedIndex) onTapped;
   const HomeView(this.currentIndex, this.onTapped);
@@ -120,6 +122,7 @@ class _HomeViewState extends State<HomeView> {
     super.initState();
     _selectedIndex = widget.currentIndex;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -146,9 +149,7 @@ class _HomeViewState extends State<HomeView> {
       body: Row(
         children: [
           SideNavigationBar(
-            footer: const SideNavigationBarFooter(
-              label: Text('Reduce')
-            ),
+            footer: const SideNavigationBarFooter(label: Text('Reduce')),
             selectedIndex: _selectedIndex,
             items: const [
               SideNavigationBarItem(
@@ -191,18 +192,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-   int _currentIndex = 0;
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
-            return HomeView(_currentIndex, (index) {
-              setState(() {
-                _currentIndex = index;
-              });
+          return HomeView(_currentIndex, (index) {
+            setState(() {
+              _currentIndex = index;
             });
+          });
         },
       ),
     );
