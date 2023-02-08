@@ -60,7 +60,15 @@ _____________________________________
 - get(":id/relatedService") -> get the related service of the specified action
 
 ##### REACTIONS:
-*this is exactly like action but with reaction* 
+- get("/") -> get all reaction
+
+- get("/:id") -> get reaction by id
+
+- get("/areas") -> get all areas that have reaction
+
+- get(":id/areas") -> get all areas that have specified reaction
+
+- get(":id/relatedService") -> get the related service of the specified reaction
 
 ##### SERVICES:
 - get("/") -> get all services
