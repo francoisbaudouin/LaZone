@@ -17,7 +17,7 @@ class ChooseReactionsTwitter extends StatelessWidget {
         leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () {
-              areatmp.action = "";
+              areatmp.reactionServiceChoose = "";
               areatmp.reaction = "";
               Navigator.pop(context);
             }

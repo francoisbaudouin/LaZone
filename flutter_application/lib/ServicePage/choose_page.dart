@@ -13,46 +13,30 @@ import 'confirm_area_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-chooseActionPage(context) async {
+chooseReactionService(page, context) async {
 
-  if (areatmp.actionServiceChoose == "Github") {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const ChooseActionsGithub()),
-    );
-  }
-  if (areatmp.actionServiceChoose == "Trello") {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const ChooseActionsTrello()),
-    );
-  }
-  if (areatmp.actionServiceChoose == "Microsoft Planner") {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const ChooseActionsPlanner()),
-    );
-  }
-}
-
-chooseReactionPage(page, context) async {
-
-  if (areatmp.reactionServiceChoose == "Twitter") {
-    areatmp.action = page;
+  if (page == "Twitter") {
+    areatmp.reactionServiceChoose = page;
+    button.buttonConnectionTwitter= "Connected";
+    buttoncol.colbuttonConnectionTwitter = const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ChooseReactionsTwitter()),
     );
   }
-  if (areatmp.reactionServiceChoose == "Discord") {
-    areatmp.action = page;
+  if (page == "Discord") {
+    areatmp.reactionServiceChoose = page;
+    button.buttonConnectionDiscord = "Connected";
+    buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ChooseReactionsDiscord()),
     );
   }
-  if (areatmp.reactionServiceChoose == "Microsoft Teams") {
-    areatmp.action = page;
+  if (page == "Microsoft Teams") {
+    areatmp.reactionServiceChoose = page;
+    button.buttonConnectionTeams = "Connected";
+    buttoncol.colbuttonConnectionTeams = const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ChooseReactionTeams()),
@@ -60,29 +44,39 @@ chooseReactionPage(page, context) async {
   }
 }
 
-chooseReactionServicePage(page, context) async {
+chooseActionService(page, context) async {
   if (page == "Github") {
     areatmp.actionServiceChoose = page;
     button.buttonConnectionGitHub = "Connected";
     buttoncol.colbuttonConnectionGitHub = const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ReactionServicePage()),
+      MaterialPageRoute(builder: (context) => const ChooseActionsGithub()),
     );
   }
-  if (page == "Trello") {
+  else if (page == "Trello") {
     areatmp.actionServiceChoose = page;
     button.buttonConnectionTrello = "Connected";
     buttoncol.colbuttonConnectionTrello =  const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ReactionServicePage()),
+      MaterialPageRoute(builder: (context) => const ChooseActionsTrello()),
     );
   }
-  if (page == "Microsoft Planner") {
+  else if (page == "Microsoft Planner") {
     areatmp.actionServiceChoose = page;
     button.buttonConnectionPlanner = "Connected";
     buttoncol.colbuttonConnectionPlanner = const Color.fromARGB(255, 68, 204, 5);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const ChooseActionsPlanner()),
+    );
+  }
+}
+
+setAction(page, context) async {
+  if (areatmp.actionServiceChoose != "" && areatmp.action == "") {
+    areatmp.action = page;
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ReactionServicePage()),
@@ -90,60 +84,46 @@ chooseReactionServicePage(page, context) async {
   }
 }
 
-setReactionService(page, context) async {
-  if (page == "Twitter") {
-    areatmp.reactionServiceChoose = page;
-    button.buttonConnectionTwitter= "Connected";
-    buttoncol.colbuttonConnectionTwitter = const Color.fromARGB(255, 68, 204, 5);
-    chooseActionPage(context);
-  }
-  if (page == "Discord") {
-    areatmp.reactionServiceChoose =  page;
-    button.buttonConnectionDiscord = "Connected";
-    buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 68, 204, 5);
-    chooseActionPage(context);
-  }
-  if (page == "Microsoft Teams") {
-    areatmp.reactionServiceChoose = page;
-    button.buttonConnectionTeams = "Connected";
-    buttoncol.colbuttonConnectionTeams = const Color.fromARGB(255, 68, 204, 5);
-    chooseActionPage(context);
-  }
+setupSendActionReaction(page,context) {
+  area.actionServiceChoose = areatmp.actionServiceChoose;
+  area.reactionServiceChoose = areatmp.reactionServiceChoose;
+  area.action = areatmp.action;
+  area.reaction = areatmp.reaction;
+  var resJson = {
+    "actionParam": "UgoBoulestreau/POC-nodejs",
+    "reactionParam": "1072618196395380756",
+    "actionId": 1,
+    "reactionId": 1,
+    "userId": connectedUser["id"],
+    "enabled": true,
+  };
+  areatmp.actionServiceChoose = "";
+  areatmp.reactionServiceChoose = "";
+  areatmp.action = "";
+  areatmp.reaction = "";
+  AreaConnection(resJson, context);
 }
 
 chooseConnection(page, context) async {
-  if (page == "Confirm link" && areatmp.reaction != "") {
-      area.actionServiceChoose = areatmp.actionServiceChoose;
-      area.reactionServiceChoose = areatmp.reactionServiceChoose;
-      area.action = areatmp.action;
-      area.reaction = areatmp.reaction;
-      var resJson = {
-        "actionParam": "UgoBoulestreau/POC-nodejs",
-        "reactionParam": "1072618196395380756",
-        "actionId": 1,
-        "reactionId": 1,
-        "userId": connectedUser["id"],
-        "enabled": true,
-      };
-      print(resJson);
-      areatmp.actionServiceChoose = "";
-      areatmp.reactionServiceChoose = "";
-      areatmp.action = "";
-      areatmp.reaction = "";
-      AreaConnection(resJson, context);
+  if (areatmp.actionServiceChoose == "") {
+    chooseActionService(page, context);
   }
-  if (areatmp.actionServiceChoose != "" && areatmp.reactionServiceChoose != "" && areatmp.action != "") {
-      areatmp.reaction = page;
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const ConfirmAreaPage()),
-      );
+  else if(areatmp.actionServiceChoose != "" && areatmp.action == "") {
+    setAction(page, context);
   }
-  if (areatmp.actionServiceChoose != "" && areatmp.reactionServiceChoose != "" && areatmp.action == "") {
-      chooseReactionPage(page, context);
+  else if (areatmp.actionServiceChoose != "" && areatmp.action != "" && areatmp.reactionServiceChoose == "") {
+    chooseReactionService(page, context);
+  } 
+  else if (page == "Confirm link" && areatmp.reaction != "") {
+      setupSendActionReaction(page, context);
   }
-  chooseReactionServicePage(page, context);
-  setReactionService(page, context);
+  else {
+    areatmp.reaction = page;
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const ConfirmAreaPage()),
+    );
+  }
 }
 
 AreaConnection(recJson, context) async {

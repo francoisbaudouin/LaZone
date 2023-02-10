@@ -18,12 +18,9 @@ class ReactionServicePage extends StatelessWidget {
         leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () {
-              areatmp.actionServiceChoose = "";
+              areatmp.action = "";
               areatmp.reactionServiceChoose = "";
-                Navigator.pushNamed(
-                  context,
-                  '/home'
-                );
+              Navigator.pop(context);
             }
         ),
       ),
