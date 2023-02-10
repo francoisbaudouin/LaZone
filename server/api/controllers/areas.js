@@ -2,54 +2,27 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 // areas routes.
-exports.getAllAreas = async (req, res) => {
-  const areas = await prisma.areas.findMany();
+exports.resGetAllAreas = async (req, res) => {
+  const areas = await this.getAllAreas();
   res.json(areas);
 };
 
-exports.getAllEnabledAreas = async (req, res) => {
-  const enabledAreas = await prisma.areas.findMany({
-    where: {
-      enabled: true
-    }
-  })
+exports.resGetAllEnabledAreas = async (req, res) => {
+  const enabledAreas = await this.getEnabledAreas();
   res.json(enabledAreas);
 };
 
-exports.getAreaById =  async (req, res) => {
-  const area = await prisma.areas.findUnique({
-    where: {
-      id: Number(req.params.id),
-    }
-  })
+exports.resGetAreaById =  async (req, res) => {
+  const area = await this.getAreaById(req.params.id);
   res.json(area);
 };
 
-exports.getAreaByIdRelatedUser =  async (req, res) => {
-  const user = await prisma.users.findFirst({
-    where: {
-      areas: {
-        some: {
-          id: Number(req.params.id)
-        }
-      }
-    }
-  })
+exports.resGetAreaByIdRelatedUser =  async (req, res) => {
+  const user = await this.getAreaByIdRelatedUser(req.params.id);
   res.json(user);
 };
 
-exports.updateAreaTimestamp = async (areaId, timestamp) => {
-  await prisma.areas.update({
-    where:{
-      id:areaId
-    },
-    data: {
-      timestamp: timestamp
-    }
-  });
-};
-
-exports.postNewArea = async (req, res) => {
+exports.resPostNewArea = async (req, res) => {
   const user = await prisma.users.findFirst({
     where: {
       id: req.body.userId
@@ -76,18 +49,52 @@ exports.postNewArea = async (req, res) => {
     }
   })
   res.status(201).json({result: newArea, statusCode: res.statusCode})
-  //   status: "sucess",
-  //   data: {
-  //     userId: req.userId,
-  //     actionParam: "default",
-  //     reactionParam: "default",
-  //     reactionsId: req.actionId,
-  //     actionsId: req.actionId,
-  //     enabled: req.enabled
-  //   },
-  //   statusCode: res.statusCode
-  // })
-  //console.log(newArea);
-  // return newArea;
-  //await prisma.areas.create(newArea);
 }
+
+//areas function retrieve datas
+exports.getAllAreas = async () => {
+  const areas = await prisma.areas.findMany();
+  return areas;
+}
+
+exports.getEnabledAreas = async () => {
+  const enabledAreas = await prisma.areas.findMany({
+    where: {
+      enabled: true
+    }
+  });
+  return enabledAreas;
+}
+
+exports.getAreaById = async (areaId) => {
+  const area = await prisma.areas.findUnique({
+    where: {
+      id: Number(areaId),
+    }
+  });
+  return area;
+}
+
+exports.getAreaByIdRelatedUser = async (areaId) => {
+  const user = await prisma.users.findFirst({
+    where: {
+      areas: {
+        some: {
+          id: Number(areaId)
+        }
+      }
+    }
+  }); 
+  return user;
+}
+
+exports.updateAreaTimestamp = async (areaId, timestamp) => {
+  await prisma.areas.update({
+    where:{
+      id:areaId
+    },
+    data: {
+      timestamp: timestamp
+    }
+  });
+};

@@ -86,16 +86,15 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
 
-//const configdb = require("./api/utils/basicConfig.js");
+// const configdb = require("./api/utils/basicConfig.js");
 
-//configdb()
+// configdb()
 
 const userController = require('./api/controllers/users');
-
 const services = require("./services/servicesManager.js");
 
 async function serviceInterval() {
-  const users = await userController.getAllUsers2();
+  const users = await userController.getAllUsersIds();
     if (users) {
         users.forEach(async element => {
             const values = await userController.getUserModel(element.id);

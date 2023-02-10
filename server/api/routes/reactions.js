@@ -3,14 +3,14 @@ const router = express.Router();
 const reactionControler = require('../controllers/reactions.js')
 
 // reactions routes.
-router.get("/", reactionControler.getAllReactions);
+router.get("/", reactionControler.resGetAllReactions);
 
-router.get("/areas", reactionControler.getAllAreasWithReactions);
+router.get("/areas", reactionControler.resGetAllAreasWithReactions);
 
-router.get("/:id/areas", reactionControler.getAreabyIdRelatedAreas);
+router.get("/:id/areas", reactionControler.resGetReactionbyIdRelatedAreas);
 
-router.get("/:id", reactionControler.getReactionById);
+router.get("/:id", reactionControler.resGetReactionById);
 
-router.get("/:id/relatedService", reactionControler.getReactionByIdRelatedService);
+router.get("/:id/relatedService", reactionControler.resGetReactionByIdRelatedService);
 
 module.exports = router;
