@@ -1,39 +1,6 @@
 version: '3.8'
 services:
 
-  ##### SERVER #####
-
-  server:
-    env_file:
-      - server/.env
-    container_name: server
-    build: ./server
-    ports:
-      - "8080:8080"
-
-  ##### CLIENT #####
-
-  client_mobile:
-    container_name: client_mobile
-    build:
-      context: ./flutter_application
-      dockerfile: Dockerfilemobile
-    volumes:
-      - client:/areapp/
-
-  client_web:
-    container_name: client_web
-    build:
-      context: ./flutter_application
-      dockerfile: Dockerfileweb
-    ports:
-      - "8081:8081"
-    depends_on:
-      - server
-      - client_mobile
-    volumes:
-      - client:/areapp/
-
   ##### DB #####
 
   db-mysql:
@@ -49,6 +16,42 @@ services:
       - db:/var/lib/mysql
       - "./server/db/schema.sql:/docker-entrypoint-initdb.d/init.sql"
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+  ##### SERVER #####
+
+  server:
+    depends_on:
+      - db-mysql
+    env_file:
+      - server/.env
+    container_name: server
+    build: ./server
+    ports:
+      - "8080:8080"
+
+
+  ##### CLIENT #####
+
+  # client_mobile:
+  #   container_name: client_mobile
+  #   build:
+  #     context: ./flutter_application
+  #     dockerfile: Dockerfilemobile
+  #   volumes:
+  #     - client:/areapp/
+
+  client_web:
+    container_name: client_web
+    build:
+      context: ./flutter_application
+      dockerfile: Dockerfileweb
+    ports:
+      - "8081:8081"
+    depends_on:
+      - server
+      #- client_mobile
+    volumes:
+      - client:/areapp/
 
 volumes:
   client:
