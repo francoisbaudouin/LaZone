@@ -2,48 +2,75 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 // reactions routes.
-exports.getAllReactions = async (req, res) => {
-  const reactions = await prisma.reactions.findMany();
+exports.resGetAllReactions = async (req, res) => {
+  const reactions = await this.getAllReactions();
   res.json(reactions);
 };
 
-exports.getAllAreasWithReactions = async (req, res) => {
+exports.resGetAllAreasWithReactions = async (req, res) => {
+  const registeredAreas = await this.getAllAreasWithReactions();
+  res.json(registeredAreas);
+};
+
+exports.resGetReactionbyIdRelatedAreas = async (req, res) => {
+  const reactionsAreas = await this.getReactionbyIdRelatedAreas(req.params.id);
+  res.json(reactionsAreas);
+};
+
+exports.resGetReactionById = async (req, res) => {
+  const reactions = await this.getReactionById(req.params.id);
+  res.json(reactions);
+};
+
+
+exports.resGetReactionByIdRelatedService = async (req, res) => {
+  const service = await this.getReactionByIdRelatedService(req.params.id);
+  res.json(service);
+};
+
+// reactions functions retrieve datas
+exports.getAllReactions = async () => {
+  const reactions = await prisma.reactions.findMany();
+  return(reactions);
+};
+
+exports.getAllAreasWithReactions = async () => {
   const registeredAreas = await prisma.reactions.findMany({
     select: {
       areas: true
     }
   })
-  res.json(registeredAreas);
+  return(registeredAreas);
 };
 
-exports.getAreabyIdRelatedAreas = async (req, res) => {
+exports.getReactionbyIdRelatedAreas = async (reactionId) => {
   const reactionsAreas = await prisma.areas.findMany({
     where: {
-      actionsId: Number(req.params.id)
+      reactionsId: Number(reactionId)
     }
   })
-  res.json(reactionsAreas);
+  return(reactionsAreas);
 };
 
-exports.getReactionById = async (req, res) => {
+exports.getReactionById = async (reactionId) => {
   const reactions = await prisma.reactions.findUnique({
     where: {
-      id: Number(req.params.id),
+      id: Number(reactionId),
     }
   })
-  res.json(reactions);
+  return(reactions);
 };
 
 
-exports.getReactionByIdRelatedService = async (req, res) => {
+exports.getReactionByIdRelatedService = async (reactionId) => {
   const service = await prisma.services.findFirst({
     where: {
-      actions: {
+      reactions: {
         some: {
-          id: Number(req.params.id)
+          id: Number(reactionId)
         }
       }
     }
   })
-  res.json(service);
+  return(service);
 };

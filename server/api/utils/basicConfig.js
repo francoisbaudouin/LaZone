@@ -8,15 +8,15 @@ require("dotenv").config();
 const prisma = new PrismaClient();
 
 async function basicConfig() {
-  // const user = await prisma.users.create({
-  //   data: {
-  //     email: "test@testmail.com",
-  //     password: await hash("password"),
-  //     lastname: "test",
-  //     firstname: "Tets",
-  //     pseudo: "mypseudo",
-  //   }
-  // })
+  const user = await prisma.users.create({
+    data: {
+      email: "test@testmail.com",
+      password: await hash("password"),
+      lastname: "test",
+      firstname: "Tets",
+      pseudo: "mypseudo",
+    }
+  })
   const GitService = await prisma.services.create({
     data: {
       name: "Github",
@@ -27,6 +27,23 @@ async function basicConfig() {
     data: {
       name: "Discord",
       description: "This is discord service",
+    }
+  })
+
+  const DiscordToken = await prisma.tokens.create({
+    data: {
+      accessTokens: process.env.DISCORD_BOT_TOKEN,
+      refreshTokens: "Discord refreshTokens",
+      relatedServiceName: "Discord",
+      userId: 1
+    }
+  })
+  const GithubToken = await prisma.tokens.create({
+    data: {
+      accessTokens: process.env.GIT_TOKEN,
+      refreshTokens: "Github refreshTokens",
+      relatedServiceName: "Github",
+      userId: 1
     }
   })
 
@@ -42,7 +59,6 @@ async function basicConfig() {
       name: "new issue",
       description: "new issue occured",
       serviceName: "Github"
-
     }
   })
   const newMessageReaction = await prisma.reactions.create({
@@ -60,16 +76,16 @@ async function basicConfig() {
       serviceName: "Discord"
     }
   })
-  // const newAreas = await prisma.areas.create({
-  //   data: {
-  //     userId: 1,
-  //     actionsId: 1,
-  //     reactionsId: 1,
-  //     enabled: true,
-  //     actionsParams: "UgoBoulestreau/POC-nodejs",
-  //     reactionsParams: "1072600656583594065"
-  //   }
-  // })
+  const newAreas = await prisma.areas.create({
+    data: {
+      userId: 1,
+      actionsId: 1,
+      reactionsId: 1,
+      enabled: true,
+      actionsParams: "UgoBoulestreau/POC-nodejs",
+      reactionsParams: "1072600656583594065"
+    }
+  })
 }
 
 module.exports = basicConfig;

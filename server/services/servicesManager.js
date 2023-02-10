@@ -35,7 +35,6 @@ function activateAreasFromUser(user) {
         timestamp: element.timestamp.toISOString(),
       };
       await activateArea(area)
-      console.log(element.timestamp, area.timestamp);
       await updateAreaTimestamp(element.id, area.timestamp);
     });
   }

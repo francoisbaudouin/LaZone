@@ -3,14 +3,14 @@ const router = express.Router();
 const actionController = require('../controllers/actions')
 
 // actions routes.
-router.get("/", actionController.actionsGetAll);
+router.get("/", actionController.resGetAll);
 
-router.get("/areas", actionController.actionsGetAreasWithActions);
+router.get("/areas", actionController.resGetAreasWithActions);
 
-router.get("/:id/areas", actionController.actionsGetRelatedActionAreas);
+router.get("/:id/areas", actionController.resGetRelatedActionAreas);
 
-router.get("/:id", actionController.actionsGetAction);
+router.get("/:id", actionController.resGetAction);
 
-router.get("/:id/relatedService", actionController.actionsGetActionRelatedService);
+router.get("/:id/relatedService", actionController.resGetActionRelatedService);
 
 module.exports = router;

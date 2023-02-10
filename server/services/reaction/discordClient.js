@@ -11,7 +11,6 @@ const client = new Client({
   ],
 });
 
-console.log(process.env.DISCORD_BOT_TOKEN, process.env.temp_git);
 client.once(Events.ClientReady, client => {
   console.log(`Welcome aboard captain, ${client.user.tag} is online`);
 });

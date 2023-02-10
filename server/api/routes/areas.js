@@ -5,17 +5,16 @@ const areasController = require('../controllers/areas.js')
 // areas routes.
 
 // get
-router.get("/", areasController.getAllAreas);
+router.get("/", areasController.resGetAllAreas);
 
-router.get("/enabled", areasController.getAllEnabledAreas);
+router.get("/enabled", areasController.resGetAllEnabledAreas);
 
-router.get("/:id", areasController.getAreaById);
+router.get("/:id", areasController.resGetAreaById);
 
-router.get("/:id/user", areasController.getAreaByIdRelatedUser);
+router.get("/:id/user", areasController.resGetAreaByIdRelatedUser);
 
 // post
-
-router.post("/new", areasController.postNewArea);
+router.post("/new", areasController.resPostNewArea);
 
 
 module.exports = router;

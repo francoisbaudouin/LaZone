@@ -1,43 +1,65 @@
 const { PrismaClient } = require("@prisma/client");
-const { use } = require("passport");
 const prisma = new PrismaClient();
 
 // users controllers.
-exports.getAllUsers = async (req, res) => {
-    const users = await prisma.users.findMany();
+exports.resGetAllUsers = async (req, res) => {
+    const users = await this.getAllUsers();
     res.json(users);
 };
 
-exports.getUserById = async (req, res) => {
-    const user = await prisma.users.findUnique({
-        where: {
-            id: Number(req.params.id)
-        }
-    })
-    res.json(user);
+exports.resGetUserById = async (req, res) => {
+    const user = await this.getUserById(req.params.id);
+    res.json(user)
 };
 
-exports.getUserTokens = async (req, res) => {
-    const userTokens = await prisma.tokens.findMany({
-        where: {
-            userId: Number(req.params.id)
-        }
-    })
+exports.resGetUserTokens = async (req, res) => {
+    const userTokens = await this.getUserTokens(req.params.id);
     res.json(userTokens);
 };
 
-exports.getUserTokenByServiceName = async (req, res) => {
-    const userServiceTokens = await prisma.tokens.findFirst({
-        where: {
-            userId: Number(req.params.id),
-            relatedServiceName: req.params.serviceName
-        }
-    })
+exports.resGetUserTokenByServiceName = async (req, res) => {
+    const userServiceTokens = await this.getUserTokenByServiceName(req.params.id, req.params.serviceName);
     res.json(userServiceTokens);
 };
 
-exports.getAllUsers2 = async function () {
-  const users = prisma.users.findMany({
+// users fonction retrieve datas
+
+exports.getAllUsers = async () => {
+    const users = await prisma.users.findMany();
+    return(users);
+};
+
+exports.getUserById = async (userId) => {
+    const user = await prisma.users.findUnique({
+        where: {
+            id: Number(userId)
+        }
+    })
+    return(user);
+};
+
+exports.getUserTokens = async (userId) => {
+    const userTokens = await prisma.tokens.findMany({
+        where: {
+            userId: Number(userId)
+        }
+    })
+    return(userTokens);
+};
+
+exports.getUserTokenByServiceName = async (userId, serviceName) => {
+    const userServiceTokens = await prisma.tokens.findFirst({
+        where: {
+            userId: Number(userId),
+            relatedServiceName: serviceName
+        }
+    })
+    return(userServiceTokens);
+};
+
+// other
+exports.getAllUsersIds = async function () {
+  const users = await prisma.users.findMany({
     select: {
       id: true
     }
