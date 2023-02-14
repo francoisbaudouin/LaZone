@@ -14,16 +14,13 @@ class ReactionServicePage extends StatelessWidget {
         toolbarHeight: 80.0,
         backgroundColor: const Color.fromARGB(255, 127, 184, 250),
         elevation: 0.0,
-        title: const Center(child: Text('Github', textAlign: TextAlign.center)),
+        title: const Center(child: Text('Choose reaction service', textAlign: TextAlign.center)),
         leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () {
-              actionServiceChoose = "";
-              reactionServiceChoose = "";
-                Navigator.pushNamed(
-                  context,
-                  '/home'
-                );
+              areatmp.action = "";
+              areatmp.reactionServiceChoose = "";
+              Navigator.pop(context);
             }
         ),
       ),
@@ -45,8 +42,8 @@ class ReactionServicePage extends StatelessWidget {
                 child: FlutterNewCard(
                   title: "Twitter",
                   imagePath: "assets/images/logo-twitter.jpg",
-                  textbutton :  buttonConnectionTwitter,
-                  colorButton : colbuttonConnectionTwitter,
+                  textbutton :  button.buttonConnectionTwitter,
+                  colorButton : buttoncol.colbuttonConnectionTwitter,
                 ),
               ),
               ResponsiveRowColumnItem(
@@ -55,8 +52,8 @@ class ReactionServicePage extends StatelessWidget {
                 child: FlutterNewCard(
                   title: "Discord",
                   imagePath: "assets/images/discord-logo.png",
-                  textbutton :  buttonConnectionDiscord,
-                  colorButton : colbuttonConnectionDiscord,
+                  textbutton :  button.buttonConnectionDiscord,
+                  colorButton : buttoncol.colbuttonConnectionDiscord,
                 ),
               ),
               ResponsiveRowColumnItem(
@@ -65,8 +62,8 @@ class ReactionServicePage extends StatelessWidget {
                 child: FlutterNewCard(
                   title: "Microsoft Teams",
                   imagePath: "assets/images/Microsoft-Teams-Symbole.jpg",
-                  textbutton :  buttonConnectionTeams,
-                  colorButton : colbuttonConnectionTeams,
+                  textbutton :  button.buttonConnectionTeams,
+                  colorButton : buttoncol.colbuttonConnectionTeams,
                 ),
               ),],
           ),
