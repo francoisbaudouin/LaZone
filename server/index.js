@@ -88,27 +88,22 @@ app.listen(PORT, () => {
 
 const configdb = require('./api/utils/basicConfig.js');
 
-app.get('/setupDatabase', async function (req, res) {
-    configdb()
-})
+configdb()
 
+const userController = require('./api/controllers/users');
+const services = require("./services/servicesManager.js");
 
-app.get('/startTest', async function (req, res) {
-    const userController = require('./api/controllers/users');
-    const services = require("./services/servicesManager.js");
-    
-    async function serviceInterval() {
-      const users = await userController.getAllUsersIds();
-        if (users) {
-            users.forEach(async element => {
-                const values = await userController.getUserModel(element.id);
-                services.activateAreasFromUser(values);
-            });
-        }
+async function serviceInterval() {
+  const users = await userController.getAllUsersIds();
+    if (users) {
+        users.forEach(async element => {
+            const values = await userController.getUserModel(element.id);
+            services.activateAreasFromUser(values);
+        });
     }
-    
-    services.client.on('ready', async client => {
-      await setInterval(serviceInterval, 5000);
-    });
-})
+}
+
+services.client.on('ready', async client => {
+  await setInterval(serviceInterval, 5000);
+});
 
