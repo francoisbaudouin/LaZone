@@ -86,24 +86,28 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
 
-const configdb = require('./api/utils/basicConfig.js');
-
-configdb()
-
-const userController = require('./api/controllers/users');
-const services = require("./services/servicesManager.js");
-
-async function serviceInterval() {
-  const users = await userController.getAllUsersIds();
-    if (users) {
-        users.forEach(async element => {
-            const values = await userController.getUserModel(element.id);
-            services.activateAreasFromUser(values);
+async function startArea() {
+    try {
+        const configdb = require("./api/utils/basicConfig.js");
+        await configdb() 
+        const userController = require('./api/controllers/users');
+        const services = require("./services/servicesManager.js");
+        
+        async function serviceInterval() {
+          const users = await userController.getAllUsersIds();
+            if (users) {
+                users.forEach(async element => {
+                    const values = await userController.getUserModel(element.id);
+                    services.activateAreasFromUser(values);
+                });
+            }
+        }
+        services.client.on('ready', async client => {
+          await setInterval(serviceInterval, 5000);
         });
+    } catch (error) {
+        console.log("Error.");
     }
 }
 
-services.client.on('ready', async client => {
-  await setInterval(serviceInterval, 5000);
-});
-
+startArea(); 
