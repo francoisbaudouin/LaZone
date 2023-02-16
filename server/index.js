@@ -16,6 +16,10 @@ const auth = require('./api/utils/authorization.js');
 const passport = require("passport");
 const session = require("express-session");
 require('dotenv').config()
+const { PrismaClient } = require("@prisma/client");
+
+const prisma = new PrismaClient();
+
 
 // initialize session
 app.use(session({
@@ -86,6 +90,7 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
 
+//try connection
 async function startArea() {
     try {
         const configdb = require("./api/utils/basicConfig.js");
@@ -95,7 +100,7 @@ async function startArea() {
         
         async function serviceInterval() {
           const users = await userController.getAllUsersIds();
-            if (users) {
+          if (users) {
                 users.forEach(async element => {
                     const values = await userController.getUserModel(element.id);
                     services.activateAreasFromUser(values);
@@ -106,8 +111,17 @@ async function startArea() {
           await setInterval(serviceInterval, 5000);
         });
     } catch (error) {
-        console.log("Error.");
+        console.log(error);
     }
-}
+};
 
-startArea(); 
+const connectionInterval = setInterval(async () => {
+    try {
+        await prisma.$connect();
+        clearInterval(connectionInterval);
+        console.log('Prisma client is connected to the database.');
+        startArea();
+    } catch (error) {
+        console.error(`Error connecting to the database: ${error.message}`);
+    }
+}, 10000);
