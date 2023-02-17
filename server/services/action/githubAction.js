@@ -25,4 +25,20 @@ var getFromRepo = async function (callback, area) {
   }
 }
 
-module.exports = { getFromRepo }
+var getNewRepos = async function (callback, area) {
+  var result = []
+  var tmpTimestamp = area.timestamp;
+  const octokit = new Octokit({ auth: area.tokens.action });
+  var repos = (await octokit.rest.repos.listForAuthenticatedUser()).data;
+  repos.forEach(repo => {
+    repo.created_at = repo.created_at.replace(/.$/,".000" + repo.created_at.slice(-1));
+    if (repo.created_at > area.timestamp) {
+      result.push(repo);
+      if (repo.created_at > tmpTimestamp)
+        tmpTimestamp = repo.created_at;
+    }
+  });
+  callback(area, result)
+}
+
+module.exports = { getFromRepo, getNewRepos }
