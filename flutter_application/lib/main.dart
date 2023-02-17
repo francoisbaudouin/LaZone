@@ -33,7 +33,6 @@ class MyApp extends StatelessWidget {
       '/': (context) => SignInApp(),
       '/home': (context) => const MyHomePage(title: "LaZone"),
       },
-      //home: SingInApp()
     );
   }
 }

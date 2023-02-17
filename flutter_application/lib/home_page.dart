@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application/Tools/text.dart';
 import 'package:side_navigation/side_navigation.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'ServicePage/create_cards.dart';
+import 'Tools/create_cards.dart';
 import 'Tools/color.dart';
 import 'ServicePage/action_reaction_page.dart';
 import 'profile_page.dart';
+import 'Tools/setup_page.dart';
 
-const EdgeInsets blockMargin = EdgeInsets.fromLTRB(10, 0, 10, 32);
+const EdgeInsets blockMargin = EdgeInsets.fromLTRB(0, 100, 0, 0);
 
-class FlutterNewRow extends StatelessWidget {
-  const FlutterNewRow({Key? key}) : super(key: key);
+class HomePageServicesCards extends StatelessWidget {
+  const HomePageServicesCards({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: blockMargin,
+      padding: const EdgeInsets.all(15.0),
       child: SingleChildScrollView(
       child: ResponsiveRowColumn(
         layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
@@ -27,7 +28,7 @@ class FlutterNewRow extends StatelessWidget {
         children: [
           ResponsiveRowColumnItem(
             rowFlex: 1,
-            rowFit: FlexFit.tight,
+            rowFit: FlexFit.loose,
             child: FlutterNewCard(
               title: "Github",
               imagePath: "assets/images/github-logo.png",
@@ -40,7 +41,7 @@ class FlutterNewRow extends StatelessWidget {
             rowFit: FlexFit.tight,
             child: FlutterNewCard(
               title: "Trello",
-              imagePath: "assets/images/Trello-Symbole.jpg",
+              imagePath: "assets/images/Trello-Symbole.png",
               textbutton :  button.buttonConnectionTrello,
               colorButton : buttoncol.colbuttonConnectionTrello,
             ),
@@ -50,7 +51,7 @@ class FlutterNewRow extends StatelessWidget {
             rowFit: FlexFit.tight,
             child: FlutterNewCard(
               title: "Microsoft Planner",
-              imagePath: "assets/images/Planner-logo.jpg",
+              imagePath: "assets/images/Planner-logo.png",
               textbutton :  button.buttonConnectionPlanner,
               colorButton : buttoncol.colbuttonConnectionPlanner,
             ),
@@ -97,7 +98,7 @@ class _HomeViewState extends State<HomeView> {
   int _selectedIndex = 0;
   List<Widget> views =  [
     const SizedBox(
-        child : FlutterNewRow(),
+        child : SetPageContent(title: "Welcome,", message: "Choose a service :", services: HomePageServicesCards(),),
     ),
     const Center(
       child: CreateactionReactionCards(),
@@ -120,16 +121,18 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 80.0,
-        backgroundColor: const Color.fromARGB(255, 127, 184, 250),
+        toolbarHeight: 40.0,
+        backgroundColor: const Color.fromARGB(255, 18, 21, 41),
         elevation: 0.0,
-        title: const Center(child: Text('LaZone', textAlign: TextAlign.center)),
+        title: const Center(child: Text('LaZone', textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: "OldLondon"))),
         leading: IconButton(
+          color: Colors.white,
           icon: const Icon(Icons.download),
           onPressed: () {},
         ),
         actions: <Widget>[
           IconButton(
+            color: Colors.white,
             icon: const Icon(Icons.logout),
             onPressed: () {
               Navigator.pushNamed(
@@ -142,7 +145,7 @@ class _HomeViewState extends State<HomeView> {
       body: Row(
         children: [
           SideNavigationBar(
-            footer: const SideNavigationBarFooter(label: Text('Reduce')),
+            footer: const SideNavigationBarFooter(label: Text('Reduce', style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontFamily: "OldLondon"))),
             selectedIndex: _selectedIndex,
             items: const [
               SideNavigationBarItem(
@@ -167,6 +170,19 @@ class _HomeViewState extends State<HomeView> {
                 _selectedIndex = index;
               });
             },
+            theme: SideNavigationBarTheme(
+              backgroundColor: const Color.fromARGB(255, 18, 21, 41),
+              togglerTheme: SideNavigationBarTogglerTheme.standard(),
+              itemTheme: SideNavigationBarItemTheme(
+                        unselectedItemColor: Colors.white,
+                        selectedItemColor: const Color.fromARGB(255, 165, 216, 255),
+                        iconSize: 32.5,
+                        labelTextStyle: const TextStyle(
+                          fontFamily: "OldLondon",
+                        ),
+                        ),
+              dividerTheme: SideNavigationBarDividerTheme.standard(),
+            ),
           ),
           Expanded(
             child: views.elementAt(_selectedIndex),
