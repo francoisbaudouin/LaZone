@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/Tools/text.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:email_validator/email_validator.dart';
 import 'sign_in_page.dart';
@@ -21,7 +22,7 @@ class ForgottenPassword extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SingInApp()),
+                MaterialPageRoute(builder: (context) => SignInApp()),
               );
             },
             child: const Text(
@@ -152,10 +153,11 @@ signin(email, password, context) async {
   );
 
   if (response.statusCode == 201) {
-    Navigator.push(
+    Map<String, dynamic> data = json.decode(response.body);
+    connectedUser = data["data"]["user"];
+    Navigator.pushNamed(
       context,
-      MaterialPageRoute(
-          builder: (context) => const MyHomePage(title: "LaZone")),
+      '/home'
     );
   } else {
     throw Exception('Failed to login.');

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/home_page.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'Logs/sign_in_page.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       builder: (context, widget) => ResponsiveWrapper.builder(
         ClampingScrollWrapper.builder(context, widget!),
-        breakpoints: const[
+        breakpoints: const [
           ResponsiveBreakpoint.resize(350, name: MOBILE),
           ResponsiveBreakpoint.autoScale(600, name: TABLET),
           ResponsiveBreakpoint.resize(800, name: DESKTOP),
@@ -23,10 +24,16 @@ class MyApp extends StatelessWidget {
         ],
       ),
       title: 'Flutter Demo',
-      theme: ThemeData(primaryColor: Colors.white,),
+      theme: ThemeData(
+        primaryColor: Colors.white,
+      ),
       debugShowCheckedModeBanner: false,
-      home: SingInApp()
+      initialRoute: '/',
+      routes: {
+      '/': (context) => SignInApp(),
+      '/home': (context) => const MyHomePage(title: "LaZone"),
+      },
+      //home: SingInApp()
     );
   }
 }
-

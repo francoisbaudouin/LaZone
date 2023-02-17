@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'github_page.dart';
 import '../Tools/color.dart';
 import '../Tools/text.dart';
+import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
+import 'dart:convert' show jsonDecode;
 
 //chooseConnection(page, context) async {
 //  if (page == "Github") {
@@ -11,43 +12,68 @@ import '../Tools/text.dart';
 //}
 
 connectService(context) async {
-  var url = Uri.parse("http://localhost:8080/auth/github");
-  final http.Response response = await http.get(url);
+  final githubClientId = '5e06f93aa7ceec6b9e8c';
+  final callbackUrlScheme = 'http://localhost:8081/#/home';
+  final currentUrl = Uri.base;
 
-  if (response.statusCode == 201) {
-    buttonConnectionGitHub = "Connected";
-    colbuttonConnectionGithub = Color.fromARGB(255, 68, 204, 5);
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const GithubPage()),
-    );
-  } else {
-    throw Exception('Failed to connect service.');
-  }
+  // Construct the url
+  final url = Uri.https('github.com', '/login/oauth/authorize', {
+    'response_type': 'code',
+    'client_id': githubClientId,
+    //'redirect_uri': callbackUrlScheme,
+    'scope': 'email',
+  });
+
+  // Present the dialog to the user
+  // final result = await FlutterWebAuth2.authenticate(
+  //     url: url.toString(), callbackUrlScheme: callbackUrlScheme);
+  print('auth');
+  final result = await FlutterWebAuth2.authenticate(
+    url: url.toString(),
+    callbackUrlScheme: 'foobar',
+  );
+  // Extract code from resulting url
+  final code = Uri.parse(result).queryParameters['code'];
+  print('code');
+  print(code);
+
+  // Construct an Uri to Google's oauth2 endpoint
+  final url2 = Uri.https('github.com', '/login/oauth/access_token');
+
+  // Use this code to get an access token
+  final response = await http.post(url2, body: {
+    'client_id': githubClientId,
+    //'redirect_uri': 'http://localhost:8081/#/home',
+    'grant_type': 'authorization_code',
+    'code': code,
+  });
+  print('response');
+  print(response);
+
+  // Get the access token from the response
+  final accessToken = jsonDecode(response.body)['access_token'] as String;
+  print("accessToken");
+  print(accessToken);
 }
 
 class FlutterNewCard extends StatelessWidget {
-  FlutterNewCard(
+  const FlutterNewCard(
       {Key? key,
       required this.title,
       required this.imagePath,
-      required this.linkUrl,
-      required this.text,
       required this.textbutton,
       required this.colorButton})
       : super(key: key);
-  String title;
-  String imagePath;
-  String linkUrl;
-  String text;
-  String textbutton;
-  Color colorButton;
+  final String title;
+  final String imagePath;
+  final String textbutton;
+  final Color colorButton;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: border)),
       child: Column(
@@ -68,7 +94,11 @@ class FlutterNewCard extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () async {
-                    connectService(context);
+                    print("Bonjour");
+
+                    final test = await connectService(context);
+                    print(test);
+                    print("Bonjour mais apres");
                   },
                   child: Container(
                     alignment: Alignment.centerLeft,

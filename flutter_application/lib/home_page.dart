@@ -4,8 +4,11 @@ import 'package:side_navigation/side_navigation.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'ServicePage/create_cards.dart';
 import 'Tools/color.dart';
+import 'ServicePage/action_reaction_page.dart';
+import 'profile_page.dart';
 
 const EdgeInsets blockMargin = EdgeInsets.fromLTRB(10, 0, 10, 32);
+
 class FlutterNewRow extends StatelessWidget {
   const FlutterNewRow({Key? key}) : super(key: key);
 
@@ -27,12 +30,9 @@ class FlutterNewRow extends StatelessWidget {
             rowFit: FlexFit.tight,
             child: FlutterNewCard(
               title: "Github",
-              imagePath: "../assets/images/github-logo.png",
-              linkUrl:
-                  "https://developers.googleblog.com/2019/12/flutter-ui-ambient-computing.html",
-              text: "Disconnected",
-              textbutton :  buttonConnectionGitHub,
-              colorButton : colbuttonConnectionGithub,
+              imagePath: "assets/images/github-logo.png",
+              textbutton :  button.buttonConnectionGitHub,
+              colorButton : buttoncol.colbuttonConnectionGitHub,
             ),
           ),
           ResponsiveRowColumnItem(
@@ -40,12 +40,9 @@ class FlutterNewRow extends StatelessWidget {
             rowFit: FlexFit.tight,
             child: FlutterNewCard(
               title: "Trello",
-              imagePath: "../assets/images/Trello-Symbole.jpg",
-              linkUrl:
-                  "https://medium.com/flutter/announcing-codepen-support-for-flutter-bb346406fe50",
-              text: "Disconnected",
-              textbutton :  buttonConnectionTrello,
-              colorButton : colbuttonConnectionTrello,
+              imagePath: "assets/images/Trello-Symbole.jpg",
+              textbutton :  button.buttonConnectionTrello,
+              colorButton : buttoncol.colbuttonConnectionTrello,
             ),
           ),
           ResponsiveRowColumnItem(
@@ -53,12 +50,9 @@ class FlutterNewRow extends StatelessWidget {
             rowFit: FlexFit.tight,
             child: FlutterNewCard(
               title: "Microsoft Planner",
-              imagePath: "../assets/images/Planner-logo.jpg",
-              linkUrl:
-                  "https://medium.com/flutter/announcing-codepen-support-for-flutter-bb346406fe50",
-              text: "Disconnected",
-              textbutton :  buttonConnectionPlanner,
-              colorButton : colbuttonConnectionPlanner,
+              imagePath: "assets/images/Planner-logo.jpg",
+              textbutton :  button.buttonConnectionPlanner,
+              colorButton : buttoncol.colbuttonConnectionPlanner,
             ),
           ),
         ],
@@ -90,6 +84,7 @@ class BlockWrapper extends StatelessWidget {
 
 class HomeView extends StatefulWidget {
   final int currentIndex;
+
   /// Callback function
   final Function(int selectedIndex) onTapped;
   const HomeView(this.currentIndex, this.onTapped);
@@ -101,17 +96,14 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   int _selectedIndex = 0;
   List<Widget> views =  [
-    const Center(
+    const SizedBox(
         child : FlutterNewRow(),
     ),
     const Center(
-      child: Text('Account'),
+      child: CreateactionReactionCards(),
     ),
     const Center(
-      child: Text('Settings'),
-    ),
-    const Center(
-      child: Text('Settings'),
+      child: ProfilePage(),
     ),
     const Center(
       child: Text('Settings'),
@@ -123,6 +115,7 @@ class _HomeViewState extends State<HomeView> {
     super.initState();
     _selectedIndex = widget.currentIndex;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,16 +125,24 @@ class _HomeViewState extends State<HomeView> {
         elevation: 0.0,
         title: const Center(child: Text('LaZone', textAlign: TextAlign.center)),
         leading: IconButton(
-          icon: const Icon(Icons.accessibility),
+          icon: const Icon(Icons.download),
           onPressed: () {},
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                '/');
+            },
+          ),
+        ]
       ),
-        body: Row(
+      body: Row(
         children: [
           SideNavigationBar(
-            footer: const SideNavigationBarFooter(
-              label: Text('Reduce')
-            ),
+            footer: const SideNavigationBarFooter(label: Text('Reduce')),
             selectedIndex: _selectedIndex,
             items: const [
               SideNavigationBarItem(
@@ -149,7 +150,7 @@ class _HomeViewState extends State<HomeView> {
                 label: 'Action service',
               ),
               SideNavigationBarItem(
-                icon: Icons.alarm_on,
+                icon: Icons.account_tree_sharp,
                 label: 'Actions/Reactions',
               ),
               SideNavigationBarItem(
@@ -159,10 +160,6 @@ class _HomeViewState extends State<HomeView> {
               SideNavigationBarItem(
                 icon: Icons.settings,
                 label: 'Settings',
-              ),
-              SideNavigationBarItem(
-                icon: Icons.logout,
-                label: 'Logout',
               ),
             ],
             onTap: (index) {
@@ -188,18 +185,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-   int _currentIndex = 0;
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
-            return HomeView(_currentIndex, (index) {
-              setState(() {
-                _currentIndex = index;
-              });
+          return HomeView(_currentIndex, (index) {
+            setState(() {
+              _currentIndex = index;
             });
+          });
         },
       ),
     );

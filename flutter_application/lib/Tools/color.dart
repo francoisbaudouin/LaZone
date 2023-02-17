@@ -15,15 +15,13 @@ const Color background = Color(0xFFF8F9FA);
 const Color backgroundDark = Color(0xFF303c42);
 const Color border = Color(0x20000000);
 
-
-Color colbuttonConnectionGithub = Color.fromARGB(255, 202, 22, 22);
-
-Color colbuttonConnectionTrello = Color.fromARGB(255, 202, 22, 22);
-
-Color colbuttonConnectionPlanner = Color.fromARGB(255, 202, 22, 22);
-
-Color colbuttonConnectionDicord = Color.fromARGB(255, 202, 22, 22);
-
-Color colbuttonConnectionTwitter = Color.fromARGB(255, 202, 22, 22);
-
-Color colbuttonConnectionTeams = Color.fromARGB(255, 202, 22, 22);
+class ButtonConnectionColor {
+  Color colbuttonConnectionGitHub;
+  Color colbuttonConnectionTrello;
+  Color colbuttonConnectionPlanner;
+  Color colbuttonConnectionDiscord;
+  Color colbuttonConnectionTwitter;
+  Color colbuttonConnectionTeams;
+  ButtonConnectionColor({this.colbuttonConnectionGitHub = const Color.fromARGB(255, 202, 22, 22), this.colbuttonConnectionTrello = const Color.fromARGB(255, 202, 22, 22), this.colbuttonConnectionPlanner = const Color.fromARGB(255, 202, 22, 22), this.colbuttonConnectionDiscord = const Color.fromARGB(255, 202, 22, 22), this.colbuttonConnectionTwitter = const Color.fromARGB(255, 202, 22, 22), this.colbuttonConnectionTeams = const Color.fromARGB(255, 202, 22, 22)});
+}
+ButtonConnectionColor buttoncol = ButtonConnectionColor();
