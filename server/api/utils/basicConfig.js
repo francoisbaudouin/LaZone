@@ -83,7 +83,7 @@ async function basicConfig() {
       reactionsId: 1,
       enabled: true,
       actionsParams: "UgoBoulestreau/POC-nodejs",
-      reactionsParams: "1072600656583594065"
+      reactionsParams: "1067077985213100134"
     }
   })
 }
