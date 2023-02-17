@@ -128,7 +128,6 @@ chooseConnection(page, context) async {
 }
 
 AreaConnection(recJson, context) async {
-  print(recJson);
   var url = Uri.parse("http://localhost:8080/areas/new");
   final http.Response response = await http.post(
     url,

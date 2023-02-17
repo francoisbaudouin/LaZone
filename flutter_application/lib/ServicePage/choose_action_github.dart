@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import '../home_page.dart';
 import '../Tools/create_cards.dart';
-import '../Tools/text.dart';
 
 class ChooseActionsGithub extends StatelessWidget {
   const ChooseActionsGithub({super.key});
@@ -18,22 +16,23 @@ class ChooseActionsGithub extends StatelessWidget {
             rowCrossAxisAlignment: CrossAxisAlignment.start,
             rowSpacing: 10,
             columnSpacing: 10,
-            children: const [
+            children: [
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
-                child: FlutterNewCard(
+                child: CreateCardsOneChoice(
                   title: "Create a issue",
                   imagePath: "assets/images/github-logo.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.black,
+                  choice : "Choose a repository:"
                 ),
               ),
-              ResponsiveRowColumnItem(
+              const ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
-                child: FlutterNewCard(
-                  title: "Create a project",
+                child: ServiceCards(
+                  title: "Create a repository",
                   imagePath: "assets/images/github-logo.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.black,
@@ -42,11 +41,12 @@ class ChooseActionsGithub extends StatelessWidget {
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
-                child: FlutterNewCard(
+                child: CreateCardsOneChoice(
                   title: "Create a pull request",
                   imagePath: "assets/images/github-logo.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.black,
+                  choice : "Choose a repository:"
                 ),
               ),],
           ),

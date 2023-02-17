@@ -21,7 +21,7 @@ class ReactionServicePage extends StatelessWidget {
             ResponsiveRowColumnItem(
               rowFlex: 1,
               rowFit: FlexFit.tight,
-              child: FlutterNewCard(
+              child: ServiceCards(
                 title: "Twitter",
                 imagePath: "assets/images/logo-twitter.png",
                 textbutton :  button.buttonConnectionTwitter,
@@ -31,7 +31,7 @@ class ReactionServicePage extends StatelessWidget {
             ResponsiveRowColumnItem(
               rowFlex: 1,
               rowFit: FlexFit.tight,
-              child: FlutterNewCard(
+              child: ServiceCards(
                 title: "Discord",
                 imagePath: "assets/images/discord-logo.png",
                 textbutton :  button.buttonConnectionDiscord,
@@ -41,7 +41,7 @@ class ReactionServicePage extends StatelessWidget {
             ResponsiveRowColumnItem(
               rowFlex: 1,
               rowFit: FlexFit.tight,
-              child: FlutterNewCard(
+              child: ServiceCards(
                 title: "Microsoft Teams",
                 imagePath: "assets/images/Microsoft-Teams-Symbole.png",
                 textbutton :  button.buttonConnectionTeams,

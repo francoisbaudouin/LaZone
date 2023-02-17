@@ -16,21 +16,22 @@ class ChooseActionsTrello extends StatelessWidget {
             rowCrossAxisAlignment: CrossAxisAlignment.start,
             rowSpacing: 10,
             columnSpacing: 10,
-            children: const [
+            children: [
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
-                child: FlutterNewCard(
+                child: CreateCardsOneChoice(
                   title: "Create a cards",
                   imagePath: "assets/images/Trello-Symbole.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.blue,
+                  choice : "Choose a table:"
                 ),
               ),
-              ResponsiveRowColumnItem(
+              const ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
-                child: FlutterNewCard(
+                child: ServiceCards(
                   title: "Create a table",
                   imagePath: "assets/images/Trello-Symbole.png",
                   textbutton :  "Choose this action",
@@ -40,11 +41,12 @@ class ChooseActionsTrello extends StatelessWidget {
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
-                child: FlutterNewCard(
+                child: CreateCardsOneChoice(
                   title: "Create an organization",
                   imagePath: "assets/images/Trello-Symbole.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.blue,
+                  choice : "Choose a table:"
                 ),
               ),],
           ),

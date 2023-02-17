@@ -29,7 +29,7 @@ class HomePageServicesCards extends StatelessWidget {
           ResponsiveRowColumnItem(
             rowFlex: 1,
             rowFit: FlexFit.loose,
-            child: FlutterNewCard(
+            child: ServiceCards(
               title: "Github",
               imagePath: "assets/images/github-logo.png",
               textbutton :  button.buttonConnectionGitHub,
@@ -39,7 +39,7 @@ class HomePageServicesCards extends StatelessWidget {
           ResponsiveRowColumnItem(
             rowFlex: 1,
             rowFit: FlexFit.tight,
-            child: FlutterNewCard(
+            child: ServiceCards(
               title: "Trello",
               imagePath: "assets/images/Trello-Symbole.png",
               textbutton :  button.buttonConnectionTrello,
@@ -49,7 +49,7 @@ class HomePageServicesCards extends StatelessWidget {
           ResponsiveRowColumnItem(
             rowFlex: 1,
             rowFit: FlexFit.tight,
-            child: FlutterNewCard(
+            child: ServiceCards(
               title: "Microsoft Planner",
               imagePath: "assets/images/Planner-logo.png",
               textbutton :  button.buttonConnectionPlanner,

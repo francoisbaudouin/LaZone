@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import '../home_page.dart';
 import '../Tools/create_cards.dart';
-import '../Tools/text.dart';
 
 class ChooseReactionsTwitter extends StatelessWidget {
   const ChooseReactionsTwitter({super.key});
@@ -24,7 +23,7 @@ class ChooseReactionsTwitter extends StatelessWidget {
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.loose,
-                child: FlutterNewCard(
+                child: ServiceCards(
                   title: "Tweet",
                   imagePath: "assets/images/logo-twitter.png",
                   textbutton :  "Choose this action",

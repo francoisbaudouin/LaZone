@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import '../home_page.dart';
 import '../Tools/create_cards.dart';
-import '../Tools/text.dart';
 
 class ChooseReactionTeams extends StatelessWidget {
   const ChooseReactionTeams({super.key});
@@ -18,21 +16,23 @@ class ChooseReactionTeams extends StatelessWidget {
             rowCrossAxisAlignment: CrossAxisAlignment.start,
             rowSpacing: 10,
             columnSpacing: 10,
-            children: const [
+            children: [
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
-                child: FlutterNewCard(
+                child: CreateCardsTwoChoice(
                   title: "Post a message",
                   imagePath: "assets/images/Microsoft-Teams-Symbole.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.indigo,
+                  choiceOne: "Choose a team:",
+                  choiceTwo: "Choose a room:",
                 ),
               ),
-              ResponsiveRowColumnItem(
+              const ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
-                child: FlutterNewCard(
+                child: ServiceCards(
                   title: "Create a team",
                   imagePath: "assets/images/Microsoft-Teams-Symbole.png",
                   textbutton :  "Choose this action",
@@ -42,11 +42,12 @@ class ChooseReactionTeams extends StatelessWidget {
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
-                child: FlutterNewCard(
+                child: CreateCardsOneChoice(
                   title: "Create a room",
                   imagePath: "assets/images/Microsoft-Teams-Symbole.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.indigo,
+                  choice : "Choose a team:"
                 ),
               ),
             ],

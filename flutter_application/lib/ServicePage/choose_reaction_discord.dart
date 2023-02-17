@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import '../home_page.dart';
 import '../Tools/create_cards.dart';
-import '../Tools/text.dart';
 
 class ChooseReactionsDiscord extends StatelessWidget {
   const ChooseReactionsDiscord({super.key});
@@ -22,43 +20,39 @@ class ChooseReactionsDiscord extends StatelessWidget {
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
-                child: FlutterNewCard(
+                child: CreateCardsTwoChoice(
                   title: "Post a message",
                   imagePath: "assets/images/discord-logo.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.indigoAccent.shade100,
+                  choiceOne: "Choose a server:",
+                  choiceTwo: "Choose a channel:",
                 ),
               ),
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
-                child: FlutterNewCard(
+                child: CreateCardsOneChoice(
                   title: "Create a category",
                   imagePath: "assets/images/discord-logo.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.indigoAccent.shade100,
+                  choice : "Choose a server:"
                 ),
               ),
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
-                child: FlutterNewCard(
+                child: CreateCardsTwoChoice(
                   title: "Create a room",
                   imagePath: "assets/images/discord-logo.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.indigoAccent.shade100,
+                  choiceOne: "Choose a server:",
+                  choiceTwo: "Choose a category:",
                 ),
               ),
-              ResponsiveRowColumnItem(
-                rowFlex: 1,
-                rowFit: FlexFit.tight,
-                child: FlutterNewCard(
-                  title: "Create a discussion fill",
-                  imagePath: "assets/images/discord-logo.png",
-                  textbutton :  "Choose this action",
-                  colorButton : Colors.indigoAccent.shade100,
-                ),
-              ),],
+            ],
           ),
           ),
       );
