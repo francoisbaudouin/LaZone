@@ -22,7 +22,7 @@ class ButtonConnection {
   ButtonConnection({this.buttonConnectionGitHub = "Disconected", this.buttonConnectionTrello = "Disconected", this.buttonConnectionPlanner = "Disconected", this.buttonConnectionDiscord = "Disconected", this.buttonConnectionTwitter = "Disconected", this.buttonConnectionTeams = "Disconected"});
 }
 ButtonConnection button = ButtonConnection();
-const String fontFamily = "Google Sans";
+const String fontFamilies= "Google Sans";
 
 class Area {
   String actionServiceChoose;
@@ -35,15 +35,18 @@ Area area = Area();
 Area areatmp = Area();
 
 const TextStyle headlineTextStyle = TextStyle(
-    fontSize: 44, color: textPrimary, height: 1.2, fontFamily: fontFamily);
+    fontSize: 44, color: textPrimary, height: 1.2, fontFamily: "OldLondon");
 
 const TextStyle headlineSecondaryTextStyle = TextStyle(
-    fontSize: 28, color: textPrimary, height: 1.2, fontFamily: fontFamily);
+    fontSize: 28, color: Colors.black, height: 1.2, fontFamily: "OldLondon");
+
+const TextStyle headlineSecondaryTextStyle2 = TextStyle(
+    fontSize: 28, color: Colors.white, height: 1.2, fontFamily: "OldLondon");
 
 const TextStyle bodyTextStyle = TextStyle(
-    fontSize: 16, color: textPrimary, height: 1.5, fontFamily: "Roboto");
+    fontSize: 16, color: textPrimary, height: 1.5, fontFamily: "OldLondon");
 
 TextStyle bodyLinkTextStyle = bodyTextStyle.copyWith(color: primary);
 
 const TextStyle buttonTextStyle = TextStyle(
-    fontSize: 18, color: Colors.white, height: 1, fontFamily: fontFamily);
+    fontSize: 18, color: Colors.white, height: 1, fontFamily: "OldLondon");

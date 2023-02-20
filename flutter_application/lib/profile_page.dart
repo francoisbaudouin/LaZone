@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import '../home_page.dart';
 import '../Tools/color.dart';
 import '../Tools/text.dart';
 
@@ -19,17 +18,22 @@ class ProfileCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
-          color: Colors.white,
+          image: const DecorationImage(
+              image: AssetImage("assets/images/parchemin2.png"),
+              fit: BoxFit.fill,
+          ),
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: border)),
+          border: Border.all(color: border)
+      ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.fromLTRB(40, 40, 40, 40),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 IconButton(
                   icon: icon,
@@ -61,7 +65,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   return Container(
-      margin: blockMargin,
+      padding: const EdgeInsets.all(15.0),
       child: SingleChildScrollView(
       child: ResponsiveRowColumn(
         layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
@@ -73,7 +77,7 @@ class ProfilePage extends StatelessWidget {
         children: [
           ResponsiveRowColumnItem(
             rowFlex: 1,
-            rowFit: FlexFit.tight,
+            rowFit: FlexFit.loose,
             child: ProfileCards(
               type : "Firstname :",
               message: user.firstname,

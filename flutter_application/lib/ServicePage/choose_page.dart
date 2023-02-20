@@ -12,6 +12,7 @@ import 'choose_reaction_teams.dart';
 import 'confirm_area_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '../Tools/setup_page.dart';
 
 chooseReactionService(page, context) async {
 
@@ -21,7 +22,7 @@ chooseReactionService(page, context) async {
     buttoncol.colbuttonConnectionTwitter = const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ChooseReactionsTwitter()),
+      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your reaction:", services: ChooseReactionsTwitter())),
     );
   }
   if (page == "Discord") {
@@ -30,7 +31,7 @@ chooseReactionService(page, context) async {
     buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ChooseReactionsDiscord()),
+      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your reaction:", services: ChooseReactionsDiscord())),
     );
   }
   if (page == "Microsoft Teams") {
@@ -39,7 +40,7 @@ chooseReactionService(page, context) async {
     buttoncol.colbuttonConnectionTeams = const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ChooseReactionTeams()),
+      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your arection:", services: ChooseReactionTeams())),
     );
   }
 }
@@ -51,7 +52,7 @@ chooseActionService(page, context) async {
     buttoncol.colbuttonConnectionGitHub = const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ChooseActionsGithub()),
+      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your action:", services: ChooseActionsGithub())),
     );
   }
   else if (page == "Trello") {
@@ -60,7 +61,7 @@ chooseActionService(page, context) async {
     buttoncol.colbuttonConnectionTrello =  const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ChooseActionsTrello()),
+      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your action:", services: ChooseActionsTrello())),
     );
   }
   else if (page == "Microsoft Planner") {
@@ -69,7 +70,7 @@ chooseActionService(page, context) async {
     buttoncol.colbuttonConnectionPlanner = const Color.fromARGB(255, 68, 204, 5);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ChooseActionsPlanner()),
+      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your action:", services: ChooseActionsPlanner())),
     );
   }
 }
@@ -79,7 +80,7 @@ setAction(page, context) async {
     areatmp.action = page;
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ReactionServicePage()),
+      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your reaction service:", services:  ReactionServicePage())),
     );
   }
 }
@@ -121,13 +122,12 @@ chooseConnection(page, context) async {
     areatmp.reaction = page;
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ConfirmAreaPage()),
+      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "", services : ConfirmAreaPage())),
     );
   }
 }
 
 AreaConnection(recJson, context) async {
-  print(recJson);
   var url = Uri.parse("http://localhost:8080/areas/new");
   final http.Response response = await http.post(
     url,
