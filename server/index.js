@@ -16,6 +16,10 @@ const auth = require('./api/utils/authorization.js');
 const passport = require("passport");
 const session = require("express-session");
 require('dotenv').config()
+const { PrismaClient } = require("@prisma/client");
+
+const prisma = new PrismaClient();
+
 
 // initialize session
 app.use(session({
@@ -86,24 +90,38 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
 
-// const configdb = require("./api/utils/basicConfig.js");
-
-// configdb()
-
-const userController = require('./api/controllers/users');
-const services = require("./services/servicesManager.js");
-
-async function serviceInterval() {
-  const users = await userController.getAllUsersIds();
-    if (users) {
-        users.forEach(async element => {
-            const values = await userController.getUserModel(element.id);
-            services.activateAreasFromUser(values);
+//try connection
+async function startArea() {
+    try {
+        const configdb = require("./api/utils/basicConfig.js");
+        await configdb() 
+        const userController = require('./api/controllers/users');
+        const services = require("./services/servicesManager.js");
+        
+        async function serviceInterval() {
+          const users = await userController.getAllUsersIds();
+          if (users) {
+                users.forEach(async element => {
+                    const values = await userController.getUserModel(element.id);
+                    services.activateAreasFromUser(values);
+                });
+            }
+        }
+        services.client.on('ready', async client => {
+          await setInterval(serviceInterval, 5000);
         });
+    } catch (error) {
+        console.log(error);
     }
-}
+};
 
-services.client.on('ready', async client => {
-  await setInterval(serviceInterval, 5000);
-});
-
+const connectionInterval = setInterval(async () => {
+    try {
+        await prisma.$connect();
+        clearInterval(connectionInterval);
+        console.log('Prisma client is connected to the database.');
+        startArea();
+    } catch (error) {
+        console.error(`Error connecting to the database: ${error.message}`);
+    }
+}, 10000);

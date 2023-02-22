@@ -51,6 +51,7 @@ dependencies:
   oauth2: ^2.0.1
   oauth2_client: ^3.1.0
   flutter_web_auth: ^0.5.0
+  constants: ^0.0.1
 
 dev_dependencies:
   flutter_test:
@@ -90,12 +91,13 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+  fonts:
+    - family: OldLondon
+      fonts:
+        - asset: assets/fonts/OldLondon.ttf
+    - family: Ancient
+      fonts:
+        - asset: assets/fonts/Ancient_Medium.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
@@ -108,9 +110,10 @@ flutter:
     - assets/images/discord-logo.png
     - assets/images/github-logo.png
     - assets/images/google_logo.png
-    - assets/images/microsoft-teams-logo.jpg
-    - assets/images/Planner-logo.jpg
-    - assets/images/Trello-Symbole.jpg
-    - assets/images/i.jpg
-    - assets/images/Microsoft-Teams-Symbole.jpg
-    - assets/images/logo-twitter.jpg
+    - assets/images/Planner-logo.png
+    - assets/images/Trello-Symbole.png
+    - assets/images/Microsoft-Teams-Symbole.png
+    - assets/images/logo-twitter.png
+    - assets/images/font.jpg
+    - assets/images/parchemin2.png
+    - assets/images/parchemin.png
