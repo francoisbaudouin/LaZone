@@ -1,16 +1,17 @@
-const githubAction = require("./action/githubAction.js");
-const { sendMessage, client } = require("./reaction/discordReaction.js");
+const {getFromRepo, getNewRepos} = require("./action/githubAction.js");
+const { sendMessage, createChannel, client } = require("./reaction/discordReaction.js");
 
-const { updateAreaTimestamp } = require("../api/controllers/areas.js")
+const { updateAreaTimestamp } = require("../api/controllers/areas.js");
 
 const actionMap = new Map([
-  [1, githubAction.getFromRepo],
-  [2, githubAction.getFromRepo],
+  [1, getFromRepo],
+  [2, getFromRepo],
+  [3, getNewRepos],
 ]);
 
 const reactionMap = new Map([
   [1, sendMessage],
-  [2, console.log],
+  [2, createChannel],
 ]);
 
 async function activateArea(area) {

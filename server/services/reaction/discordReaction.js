@@ -10,4 +10,14 @@ var sendMessage = function (area, resultData) {
     });
 }
 
-module.exports = { sendMessage, client }
+var createChannel = function (area, resultData) {
+  const type = (area.actionId == 3 ? 0 : 4) // choose between a text (1) or a category (4) channel
+  client.guilds.cache.get(area.reactionParam).channels.create({
+    name: resultData.name,
+    type: type
+  }).then((channel) => {
+    channel.send('first')
+  });
+}
+
+module.exports = { sendMessage, createChannel, client }

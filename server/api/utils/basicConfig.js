@@ -47,13 +47,6 @@ async function basicConfig() {
     }
   })
 
-  const pullRequestAction = await prisma.actions.create({
-    data: {
-      name: "pull request",
-      description: "pull request occured",
-      serviceName: "Github"
-    }
-  })
   const newIssueAction = await prisma.actions.create({
     data: {
       name: "new issue",
@@ -61,6 +54,21 @@ async function basicConfig() {
       serviceName: "Github"
     }
   })
+  const pullRequestAction = await prisma.actions.create({
+    data: {
+      name: "pull request",
+      description: "pull request occured",
+      serviceName: "Github"
+    }
+  })
+  const newRepoAction = await prisma.actions.create({
+    data: {
+      name: "repo",
+      description: "new repo occured",
+      serviceName: "Github"
+    }
+  })
+
   const newMessageReaction = await prisma.reactions.create({
     data: {
       name: "DiscordMessage",
@@ -69,10 +77,10 @@ async function basicConfig() {
 
     }
   })
-  const reactReaction = await prisma.reactions.create({
+  const newChannelReaction = await prisma.reactions.create({
     data: {
-      name: "discord reaction emoji",
-      description: "put an emoji",
+      name: "DiscordChannel",
+      description: "create a channel",
       serviceName: "Discord"
     }
   })
