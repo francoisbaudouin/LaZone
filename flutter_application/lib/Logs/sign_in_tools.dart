@@ -84,7 +84,7 @@ class ButtonConnection extends StatelessWidget {
         width: 250,
         decoration: const BoxDecoration(
             image: DecorationImage(
-                   image: AssetImage("assets/images/but.jpg"),
+                   image: AssetImage("assets/images/button.jpg"),
                    fit: BoxFit.fitWidth,
                ),
         ),

@@ -39,11 +39,11 @@ class ButtonCreateAccount extends StatelessWidget {
         width: 250,
         decoration: const BoxDecoration(
              image: DecorationImage(
-                   image: AssetImage("assets/images/but.jpg"),
+                   image: AssetImage("assets/images/button.jpg"),
                    fit: BoxFit.fitWidth,
                ),),
         child: const Padding(
-          padding: EdgeInsets.all(12.0),
+          padding: EdgeInsets.all(50.0),
           child: Text(
             'Create account',
             style: TextStyle(

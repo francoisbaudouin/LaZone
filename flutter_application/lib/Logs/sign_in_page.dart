@@ -146,7 +146,7 @@ class LoginPage extends StatelessWidget {
       width: 1080,
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage("assets/images/f2.jpg"), fit: BoxFit.cover),
+            image: AssetImage("assets/images/font_menu.jpg"), fit: BoxFit.cover),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,

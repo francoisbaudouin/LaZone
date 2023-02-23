@@ -19,7 +19,7 @@ chooseReactionService(page, context) async {
   if (page == "Twitter") {
     areatmp.reactionServiceChoose = page;
     button.buttonConnectionTwitter= "Connected";
-    buttoncol.colbuttonConnectionTwitter = const Color.fromARGB(255, 68, 204, 5);
+    buttoncol.colbuttonConnectionTwitter = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your reaction:", services: ChooseReactionsTwitter())),
@@ -28,7 +28,7 @@ chooseReactionService(page, context) async {
   if (page == "Discord") {
     areatmp.reactionServiceChoose = page;
     button.buttonConnectionDiscord = "Connected";
-    buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 68, 204, 5);
+    buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your reaction:", services: ChooseReactionsDiscord())),
@@ -37,7 +37,7 @@ chooseReactionService(page, context) async {
   if (page == "Microsoft Teams") {
     areatmp.reactionServiceChoose = page;
     button.buttonConnectionTeams = "Connected";
-    buttoncol.colbuttonConnectionTeams = const Color.fromARGB(255, 68, 204, 5);
+    buttoncol.colbuttonConnectionTeams = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your arection:", services: ChooseReactionTeams())),
@@ -49,7 +49,7 @@ chooseActionService(page, context) async {
   if (page == "Github") {
     areatmp.actionServiceChoose = page;
     button.buttonConnectionGitHub = "Connected";
-    buttoncol.colbuttonConnectionGitHub = const Color.fromARGB(255, 68, 204, 5);
+    buttoncol.colbuttonConnectionGitHub = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your action:", services: ChooseActionsGithub())),
@@ -58,7 +58,7 @@ chooseActionService(page, context) async {
   else if (page == "Trello") {
     areatmp.actionServiceChoose = page;
     button.buttonConnectionTrello = "Connected";
-    buttoncol.colbuttonConnectionTrello =  const Color.fromARGB(255, 68, 204, 5);
+    buttoncol.colbuttonConnectionTrello =  const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your action:", services: ChooseActionsTrello())),
@@ -67,7 +67,7 @@ chooseActionService(page, context) async {
   else if (page == "Microsoft Planner") {
     areatmp.actionServiceChoose = page;
     button.buttonConnectionPlanner = "Connected";
-    buttoncol.colbuttonConnectionPlanner = const Color.fromARGB(255, 68, 204, 5);
+    buttoncol.colbuttonConnectionPlanner = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your action:", services: ChooseActionsPlanner())),
