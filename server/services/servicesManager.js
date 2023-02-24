@@ -1,16 +1,18 @@
-const githubAction = require("./action/githubAction.js");
-const { sendMessage, client } = require("./reaction/discordReaction.js");
+const { getFromRepo, getNewRepos } = require("./action/githubAction.js");
+const { sendMessage, createChannel, client } = require("./reaction/discordReaction.js");
 
-const { updateAreaTimestamp } = require("../api/controllers/areas.js")
+const { updateAreaTimestamp } = require("../api/controllers/areas.js");
 
 const actionMap = new Map([
-  [1, githubAction.getFromRepo],
-  [2, githubAction.getFromRepo],
+  [1, getFromRepo],
+  [2, getFromRepo],
+  [3, getNewRepos],
 ]);
 
 const reactionMap = new Map([
   [1, sendMessage],
-  [2, console.log],
+  [2, createChannel],
+  [3, createChannel],
 ]);
 
 async function activateArea(area) {
@@ -18,7 +20,7 @@ async function activateArea(area) {
 }
 
 function activateAreasFromUser(user) {
-  if (user.areas) {
+  if (user.areas.length > 0) {
     user.areas.forEach(async element => {
       const action = user.tokens.find(token => token.relatedServiceName == element.actionsServiceName)
       const reaction = user.tokens.find(token => token.relatedServiceName == element.reactionsServiceName)
@@ -34,8 +36,12 @@ function activateAreasFromUser(user) {
         reactionParam: element.reactionsParams,
         timestamp: element.timestamp.toISOString(),
       };
-      await activateArea(area)
-      await updateAreaTimestamp(element.id, area.timestamp);
+      try {
+        await activateArea(area)
+        await updateAreaTimestamp(element.id, area.timestamp);
+      } catch (error) {
+        console.error(error);
+      }
     });
   }
 }

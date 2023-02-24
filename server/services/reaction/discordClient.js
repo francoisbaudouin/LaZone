@@ -12,13 +12,18 @@ const client = new Client({
   ],
 });
 
-async function logDiscord () {
+async function logDiscord() {
   const GitTokens = (await tokenController.getTokensByServiceName("Discord")).at(0)["accessTokens"];
   client.once(Events.ClientReady, client => {
     console.log(`Welcome aboard captain, ${client.user.tag} is online`);
   });
   client.login(GitTokens);
 }
-logDiscord()
+
+try {
+  logDiscord()
+} catch (error) {
+  console.error(error);
+}
 
 module.exports = { client, EmbedBuilder };
