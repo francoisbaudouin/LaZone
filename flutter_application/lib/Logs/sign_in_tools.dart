@@ -49,7 +49,7 @@ class CreateAccount extends StatelessWidget {
             onPressed : () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SignUpPage()),
+                MaterialPageRoute(builder: (context) => const SignUpPage()),
               );
             },
             child: const Text(
@@ -108,27 +108,18 @@ class ButtonService extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        IconButton(
-            icon: const Icon(FontAwesomeIcons.facebook, color: Colors.blue),
+        FloatingActionButton.extended(
+            icon: const Icon(FontAwesomeIcons.microsoft, color: Colors.blue),
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => const MyHomePage(title: "LaZone")),
               );
-            }),
-        IconButton(
-            icon: const Icon(
-              FontAwesomeIcons.google,
-              color: Colors.redAccent,
+            },
+            backgroundColor: Colors.transparent,
+            label: const Text("Login with Microsoft", style: TextStyle(fontFamily: "OldLondon")),
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const MyHomePage(title: "LaZone")),
-              );
-            }),
       ],
     );
   }
