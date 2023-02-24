@@ -13,21 +13,20 @@ class ForgottenPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
+    return SizedBox(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextButton(
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SignInApp()),
+                MaterialPageRoute(builder: (context) => const LoginPage()),
               );
             },
             child: const Text(
               "Forgotten Password",
-              style: TextStyle(color: Colors.deepOrange),
+              style: TextStyle(color: Color.fromARGB(255, 74, 8, 136), fontFamily: "OldLondon", fontSize: 20),
             ),
           )
         ],
@@ -50,12 +49,12 @@ class CreateAccount extends StatelessWidget {
             onPressed : () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SignUpApp()),
+                MaterialPageRoute(builder: (context) => const SignUpPage()),
               );
             },
             child: const Text(
               "Click here to create a new account",
-              style: TextStyle(color: Colors.deepOrange),
+              style: TextStyle(color: Color.fromARGB(255, 74, 8, 136), fontFamily: "OldLondon", fontSize: 20),
             ),
           )
         ],
@@ -83,21 +82,17 @@ class ButtonConnection extends StatelessWidget {
         alignment: Alignment.center,
         width: 250,
         decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(50)),
-            gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [
-                  Color(0xFF8A2387),
-                  Color(0xFFE94057),
-                  Color(0xFFF27121),
-                ])),
+            image: DecorationImage(
+                   image: AssetImage("assets/images/button.jpg"),
+                   fit: BoxFit.fitWidth,
+               ),
+        ),
         child: const Padding(
-          padding: EdgeInsets.all(12.0),
+          padding: EdgeInsets.all(50.0),
           child: Text(
             'Connection',
             style: TextStyle(
-                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold, fontFamily: "OldLondon"),
           ),
         ),
       ),
@@ -111,29 +106,20 @@ class ButtonService extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        IconButton(
-            icon: const Icon(FontAwesomeIcons.facebook, color: Colors.blue),
+        FloatingActionButton.extended(
+            icon: const Icon(FontAwesomeIcons.microsoft, color: Colors.blue),
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => const MyHomePage(title: "LaZone")),
               );
-            }),
-        IconButton(
-            icon: const Icon(
-              FontAwesomeIcons.google,
-              color: Colors.redAccent,
+            },
+            backgroundColor: Colors.transparent,
+            label: const Text("Login with Microsoft", style: TextStyle(fontFamily: "OldLondon")),
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const MyHomePage(title: "LaZone")),
-              );
-            }),
       ],
     );
   }

@@ -100,10 +100,10 @@ class _HomeViewState extends State<HomeView> {
     const SizedBox(
         child : SetPageContent(title: "Welcome,", message: "Choose a service :", services: HomePageServicesCards(),),
     ),
-    const Center(
-      child: CreateactionReactionCards(),
+    const SizedBox(
+      child: CreateactionReactionPage(),
     ),
-    const Center(
+    const SizedBox(
       child: ProfilePage(),
     ),
     const Center(
@@ -145,7 +145,22 @@ class _HomeViewState extends State<HomeView> {
       body: Row(
         children: [
           SideNavigationBar(
-            footer: const SideNavigationBarFooter(label: Text('Reduce', style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontFamily: "OldLondon"))),
+            theme: SideNavigationBarTheme(
+              backgroundColor: const Color.fromARGB(255, 18, 21, 41),
+              togglerTheme: const SideNavigationBarTogglerTheme(expandIconColor: Colors.white, shrinkIconColor: Colors.white),
+              itemTheme: SideNavigationBarItemTheme(
+                        unselectedItemColor: Colors.white,
+                        selectedItemColor: const Color.fromARGB(255, 165, 216, 255),
+                        iconSize: 32.5,
+                        labelTextStyle: const TextStyle(
+                          fontFamily: "OldLondon",
+                        ),
+                        ),
+              dividerTheme: SideNavigationBarDividerTheme.standard(),
+            ),
+            footer: const SideNavigationBarFooter(
+              label: Text('Reduce', style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontFamily: "OldLondon")),
+            ),
             selectedIndex: _selectedIndex,
             items: const [
               SideNavigationBarItem(
@@ -170,19 +185,6 @@ class _HomeViewState extends State<HomeView> {
                 _selectedIndex = index;
               });
             },
-            theme: SideNavigationBarTheme(
-              backgroundColor: const Color.fromARGB(255, 18, 21, 41),
-              togglerTheme: SideNavigationBarTogglerTheme.standard(),
-              itemTheme: SideNavigationBarItemTheme(
-                        unselectedItemColor: Colors.white,
-                        selectedItemColor: const Color.fromARGB(255, 165, 216, 255),
-                        iconSize: 32.5,
-                        labelTextStyle: const TextStyle(
-                          fontFamily: "OldLondon",
-                        ),
-                        ),
-              dividerTheme: SideNavigationBarDividerTheme.standard(),
-            ),
           ),
           Expanded(
             child: views.elementAt(_selectedIndex),
