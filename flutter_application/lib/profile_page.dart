@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import '../Tools/color.dart';
-import '../Tools/text.dart';
+import 'Tools/text.dart';
+import 'Tools/title_cards.dart';
 
 class ProfileCards extends StatelessWidget {
   const ProfileCards(
@@ -19,13 +19,11 @@ class ProfileCards extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-          image: const DecorationImage(
+      decoration: const BoxDecoration(
+          image: DecorationImage(
               image: AssetImage("assets/images/parchemin2.png"),
               fit: BoxFit.fill,
           ),
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: border)
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -59,8 +57,8 @@ class ProfileCards extends StatelessWidget {
   }
 }
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+class ProfilePageContent extends StatelessWidget {
+  const ProfilePageContent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -115,5 +113,35 @@ class ProfilePage extends StatelessWidget {
       ),
     ),
  );
+  }
+}
+
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({Key? key}) : super(key:key);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 1920,
+      width: 1080,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage("assets/images/font.jpg"), 
+            fit: BoxFit.cover),
+      ),
+      child: Scaffold (
+        backgroundColor: Colors.transparent,
+        body: SizedBox(
+          child: SingleChildScrollView(
+            child: Column(
+                  children: const <Widget> [
+                    SizedBox(height: 20,),
+                    WelcomCards(title: "Your profile"),
+                    SizedBox(height: 60,),
+                    ProfilePageContent(),                  ],
+            ),
+          )
+        ),
+      ),
+    );
   }
 }

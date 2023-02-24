@@ -31,7 +31,7 @@ class SetPageContent extends StatelessWidget {
                   children: <Widget> [
                     const SizedBox(height: 20,),
                     WelcomCards(title: title),
-                    const SizedBox(height: 80,),
+                    const SizedBox(height: 70,),
                     TitleCards(message: message,),
                     const SizedBox(height: 30,),
                     services,
