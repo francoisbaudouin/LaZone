@@ -1,26 +1,38 @@
 const { EmbedBuilder } = require("../discordClient.js");
 
 function githubPulls(pullData) {
-  const embed = new EmbedBuilder()
-    .setTitle(`New PullRequest ${pullData.name}`)
-    .setURL(pullData.htmlUrl).setTimestamp()
-    .setFooter({ text: "test" });
-  return (embed);
+  try {
+    const embed = new EmbedBuilder()
+      .setTitle(`New PullRequest ${pullData.name}`)
+      .setURL(pullData.htmlUrl).setTimestamp()
+      .setFooter({ text: "test" });
+    return (embed);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function githubIssues(issueData) {
-  const embed = new EmbedBuilder()
-    .setTitle(`New Issue ${issueData.name}`)
-    .setURL(issueData.htmlUrl).setTimestamp()
-    .setFooter({ text: 'test'});
-  return (embed);
+  try {
+    const embed = new EmbedBuilder()
+      .setTitle(`New Issue ${issueData.name}`)
+      .setURL(issueData.htmlUrl).setTimestamp()
+      .setFooter({ text: 'test' });
+    return (embed);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function githubRepo(repoData) {
-  const embed = new EmbedBuilder().setTitle(`New Repo ${repoData.name}`)
-  .setURL(repoData.htmlUrl).setTimestamp()
-  .setFooter({text: "test"});
-  return (embed);
+  try {
+    const embed = new EmbedBuilder().setTitle(`New Repo ${repoData.name}`)
+      .setURL(repoData.htmlUrl).setTimestamp()
+      .setFooter({ text: "test" });
+    return (embed);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 const embeds = new Map([

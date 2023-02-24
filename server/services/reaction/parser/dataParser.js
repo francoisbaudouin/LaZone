@@ -1,7 +1,9 @@
 function parseGitIssues(data) {
+  if (data == undefined)
+    throw Error;
   var result = {
     type: "issue",
-    name: `${data.number} : ${data.title}`,
+    name: `${data.number}:${data.title}`,
     htmlUrl: data.html_url,
     owner: {
       name: data.user.login,
@@ -13,9 +15,11 @@ function parseGitIssues(data) {
 }
 
 function parseGitPulls(data) {
+  if (data == undefined)
+    throw Error;
   var result = {
     type: "Pull_Request",
-    name: `${data.number} : ${data.title}`,
+    name: `${data.number}:${data.title}`,
     htmlUrl: data.html_url,
     owner: {
       name: data.user.login,
@@ -27,6 +31,8 @@ function parseGitPulls(data) {
 }
 
 function parseGitRepos(data) {
+  if (data == undefined)
+    throw Error;
   var result = {
     type: "Pull_Request",
     name: data.name,
