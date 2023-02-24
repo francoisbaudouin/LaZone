@@ -7,6 +7,7 @@ import 'Tools/color.dart';
 import 'ServicePage/action_reaction_page.dart';
 import 'profile_page.dart';
 import 'Tools/setup_page.dart';
+import 'ServicePage/services_page.dart';
 
 const EdgeInsets blockMargin = EdgeInsets.fromLTRB(0, 100, 0, 0);
 
@@ -101,6 +102,9 @@ class _HomeViewState extends State<HomeView> {
         child : SetPageContent(title: "Welcome,", message: "Choose a service :", services: HomePageServicesCards(),),
     ),
     const SizedBox(
+      child: SetPageServices(message: "All services"),
+    ),
+    const SizedBox(
       child: CreateactionReactionPage(),
     ),
     const SizedBox(
@@ -166,6 +170,10 @@ class _HomeViewState extends State<HomeView> {
               SideNavigationBarItem(
                 icon: Icons.integration_instructions,
                 label: 'Action service',
+              ),
+              SideNavigationBarItem(
+                icon: Icons.account_tree_sharp,
+                label: 'Services',
               ),
               SideNavigationBarItem(
                 icon: Icons.account_tree_sharp,
