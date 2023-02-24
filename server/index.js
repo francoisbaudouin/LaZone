@@ -93,8 +93,8 @@ app.listen(PORT, () => {
 //try connection
 async function startArea() {
   try {
-    // const configdb = require("./api/utils/basicConfig.js");
-    // await configdb();
+    const configdb = require("./api/utils/basicConfig.js");
+    await configdb();
     const userController = require('./api/controllers/users');
     const services = require("./services/servicesManager.js");
 
