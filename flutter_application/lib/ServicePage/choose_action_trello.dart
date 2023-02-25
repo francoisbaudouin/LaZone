@@ -1,32 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import '../home_page.dart';
-import 'create_cards.dart';
-import '../Tools/text.dart';
+import '../Tools/create_cards.dart';
 
 class ChooseActionsTrello extends StatelessWidget {
   const ChooseActionsTrello({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 80.0,
-        backgroundColor: const Color.fromARGB(255, 127, 184, 250),
-        elevation: 0.0,
-        title: const Center(child: Text('Choose Action', textAlign: TextAlign.center)),
-        leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () {
-              areatmp.actionServiceChoose = "";
-              areatmp.action = "";
-              Navigator.pop(context);
-            }
-        ),
-      ),
-      body: Center(
+    return Container (
+          padding: const EdgeInsets.all(15.0),
           child: SingleChildScrollView(
-          child :Container(
-          margin: blockMargin,
           child: ResponsiveRowColumn(
             layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
                 ? ResponsiveRowColumnType.COLUMN
@@ -34,23 +16,24 @@ class ChooseActionsTrello extends StatelessWidget {
             rowCrossAxisAlignment: CrossAxisAlignment.start,
             rowSpacing: 10,
             columnSpacing: 10,
-            children: const [
+            children: [
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
-                child: FlutterNewCard(
+                child: CreateCardsOneChoice(
                   title: "Create a cards",
-                  imagePath: "assets/images/Trello-Symbole.jpg",
+                  imagePath: "assets/images/Trello-Symbole.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.blue,
+                  choice : "Choose a table:"
                 ),
               ),
-              ResponsiveRowColumnItem(
+              const ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
-                child: FlutterNewCard(
+                child: ServiceCards(
                   title: "Create a table",
-                  imagePath: "assets/images/Trello-Symbole.jpg",
+                  imagePath: "assets/images/Trello-Symbole.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.blue,
                 ),
@@ -58,17 +41,16 @@ class ChooseActionsTrello extends StatelessWidget {
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
-                child: FlutterNewCard(
+                child: CreateCardsOneChoice(
                   title: "Create an organization",
-                  imagePath: "assets/images/Trello-Symbole.jpg",
+                  imagePath: "assets/images/Trello-Symbole.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.blue,
+                  choice : "Choose a table:"
                 ),
               ),],
           ),
           ),
-          ),
-        ),
     );
   }
 }

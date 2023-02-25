@@ -38,21 +38,16 @@ class ButtonCreateAccount extends StatelessWidget {
         alignment: Alignment.center,
         width: 250,
         decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(50)),
-            gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [
-                  Color(0xFF8A2387),
-                  Color(0xFFE94057),
-                  Color(0xFFF27121),
-                ])),
+             image: DecorationImage(
+                   image: AssetImage("assets/images/button.jpg"),
+                   fit: BoxFit.fitWidth,
+               ),),
         child: const Padding(
-          padding: EdgeInsets.all(12.0),
+          padding: EdgeInsets.all(50.0),
           child: Text(
             'Create account',
             style: TextStyle(
-                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold, fontFamily: "OldLondon"),
           ),
         ),
       ),
@@ -68,18 +63,18 @@ class LoginAlready extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextButton(
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SignInApp()),
+                MaterialPageRoute(builder: (context) => const LoginPage()),
               );
             },
             child: const Text(
               "Already sign in ?",
-              style: TextStyle(color: Colors.deepOrange),
+              style: TextStyle(color: Color.fromARGB(255, 74, 8, 136), fontFamily: "OldLondon", fontSize: 20),
             ),
           )
         ],

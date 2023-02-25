@@ -1,13 +1,39 @@
 version: '3.8'
 services:
 
+  ##### DB #####
+
+  db-mysql:
+    secrets:
+      - db_root_password
+      - db_password
+    build:
+      context: ./server/db
+      dockerfile: Dockerfile
+    container_name: db-lazone
+    ports:
+      - "3306:3306"
+    expose:
+      - '3306'
+    volumes:
+      - db:/var/lib/mysql
+      - "./server/db/schema.sql:/docker-entrypoint-initdb.d/init.sql"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+      MYSQL_DATABASE: db_lazone
+      MYSQL_USER: dev
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
+
   ##### SERVER #####
 
   server:
     env_file:
       - server/.env
     container_name: server
-    build: ./server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
 
@@ -33,31 +59,6 @@ services:
       - client_mobile
     volumes:
       - client:/areapp/
-
-  ##### DB #####
-
-  db-mysql:
-    secrets:
-      - db_root_password
-      - db_password
-    build:
-      context: ./server/db
-      dockerfile: Dockerfile
-    container_name: db-lazone
-    ports:
-      - "3306:3306"
-    expose:
-      - '3306'
-    volumes:
-      - db:/var/lib/mysql
-      - "./server/db/schema.sql:/docker-entrypoint-initdb.d/init.sql"
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    environment:
-      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
-      MYSQL_DATABASE: db_lazone
-      MYSQL_USER: dev
-      MYSQL_PASSWORD_FILE: /run/secrets/db_password
-
 
 secrets:
    db_password:

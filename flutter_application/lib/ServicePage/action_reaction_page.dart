@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import '../home_page.dart';
-import '../Tools/color.dart';
 import '../Tools/text.dart';
+import '../Tools/title_cards.dart';
 
 
 String chooseImageServiceAction() {
@@ -25,7 +25,7 @@ String chooseImageServiceReaction() {
   String res = "";
 
   if (area.reactionServiceChoose == "Twitter") {
-    res = "assets/images/logo-twitter.jpg";
+    res = "assets/images/logo-twitter.png";
   }
   if (area.reactionServiceChoose == "Discord") {
     res = "assets/images/discord-logo.png";
@@ -46,20 +46,22 @@ class ActionReactionCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: border)),
+      padding: const EdgeInsets.all(8.0),
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/parchemin2.png"), 
+            fit: BoxFit.fill),),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.fromLTRB(40, 40, 40, 40),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
+                const SizedBox(height: 40),
                 const Padding(
-                  padding: EdgeInsets.only(bottom: 16),
+                  padding: EdgeInsets.only(bottom: 25),
                   child: Text("ACTION : ", style: headlineSecondaryTextStyle),
                 ),
                 Container(
@@ -97,6 +99,7 @@ class ActionReactionCards extends StatelessWidget {
                     icon: const Icon(Icons.delete),
                     heroTag: null,
                 ),
+                const SizedBox(height: 50),
               ],
             ),
           ),
@@ -112,6 +115,7 @@ class CreateactionReactionCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   return Container(
+      padding: const EdgeInsets.all(15.0),
       margin: blockMargin,
       child: SingleChildScrollView(
       child: ResponsiveRowColumn(
@@ -131,5 +135,35 @@ class CreateactionReactionCards extends StatelessWidget {
       ),
     ),
  );
+  }
+}
+
+class CreateactionReactionPage extends StatelessWidget {
+  const CreateactionReactionPage({Key? key}) : super(key:key);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 1920,
+      width: 1080,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage("assets/images/font.jpg"), 
+            fit: BoxFit.cover),
+      ),
+      child: Scaffold (
+        backgroundColor: Colors.transparent,
+        body: SizedBox(
+          child: SingleChildScrollView(
+            child: Column(
+                  children: const <Widget> [
+                    SizedBox(height: 20,),
+                    WelcomCards(title: "Your actions/reactions"),
+                    SizedBox(height: 10,),
+                    CreateactionReactionCards(),                  ],
+            ),
+          )
+        ),
+      ),
+    );
   }
 }
