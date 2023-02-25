@@ -2,58 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../Tools/color.dart';
 import '../Tools/text.dart';
-import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
-import 'dart:convert' show jsonDecode;
+import 'package:url_launcher/url_launcher.dart';
 
-//chooseConnection(page, context) async {
-//  if (page == "Github") {
-//    connectService(context);
-//  }
-//}
+connectService(context, serviceName) async {
+  const baseUrl = "http://localhost:8080/auth/";
+  final uri = Uri.parse(baseUrl + serviceName);
+  final uriPost = Uri.parse(baseUrl + serviceName);
 
-connectService(context) async {
-  final githubClientId = '5e06f93aa7ceec6b9e8c';
-  final callbackUrlScheme = 'http://localhost:8081/#/home';
-  final currentUrl = Uri.base;
-
-  // Construct the url
-  final url = Uri.https('github.com', '/login/oauth/authorize', {
-    'response_type': 'code',
-    'client_id': githubClientId,
-    //'redirect_uri': callbackUrlScheme,
-    'scope': 'email',
-  });
-
-  // Present the dialog to the user
-  // final result = await FlutterWebAuth2.authenticate(
-  //     url: url.toString(), callbackUrlScheme: callbackUrlScheme);
-  print('auth');
-  final result = await FlutterWebAuth2.authenticate(
-    url: url.toString(),
-    callbackUrlScheme: 'foobar',
-  );
-  // Extract code from resulting url
-  final code = Uri.parse(result).queryParameters['code'];
-  print('code');
-  print(code);
-
-  // Construct an Uri to Google's oauth2 endpoint
-  final url2 = Uri.https('github.com', '/login/oauth/access_token');
-
-  // Use this code to get an access token
-  final response = await http.post(url2, body: {
-    'client_id': githubClientId,
-    //'redirect_uri': 'http://localhost:8081/#/home',
-    'grant_type': 'authorization_code',
-    'code': code,
-  });
-  print('response');
-  print(response);
-
-  // Get the access token from the response
-  final accessToken = jsonDecode(response.body)['access_token'] as String;
-  print("accessToken");
-  print(accessToken);
+  if (await canLaunchUrl(uri)) {
+    final response = await http
+        .post(uriPost, body: {'userId': connectedUser['id'].toString()});
+    if (response.statusCode != 201) {
+      throw 'error in server, please retry';
+    }
+    await launchUrl(uri, webOnlyWindowName: "_self");
+  } else {
+    throw 'Could not launch $baseUrl of service named $serviceName.';
+  }
 }
 
 class FlutterNewCard extends StatelessWidget {
@@ -94,11 +59,7 @@ class FlutterNewCard extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () async {
-                    print("Bonjour");
-
-                    final test = await connectService(context);
-                    print(test);
-                    print("Bonjour mais apres");
+                    await connectService(context, 'discord');
                   },
                   child: Container(
                     alignment: Alignment.centerLeft,
