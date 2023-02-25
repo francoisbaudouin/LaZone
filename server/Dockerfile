@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM node:16.5.0-alpine3.11
+FROM node:latest
 
 EXPOSE 8080
 
