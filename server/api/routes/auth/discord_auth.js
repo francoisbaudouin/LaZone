@@ -14,10 +14,10 @@ router.post('/Discord', (req, res) => {
 })
 
 router.get('/Discord/callback', (req, res, next) => {
-  passport.authenticate('discord', { failureRedirect: '/', successRedirect: 'http://localhost:8081/#/home' }, (err, user, info) => {
+  passport.authenticate('discord', { failureRedirect: '/', successRedirect: 'http://localhost:8080/auth/success' }, (err, user, info) => {
     if (err) throw new Error(err);
     if (!user) { return res.json({message: "Error, cannot retrieve discord User."}) };
-    return res.status(201).redirect('http://localhost:8081/#/home');
+    return res.status(201).redirect('http://localhost:8080/auth/success');
   }) (req, res, next);
 });
 

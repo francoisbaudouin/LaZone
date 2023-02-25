@@ -12,34 +12,35 @@ import 'choose_reaction_teams.dart';
 import 'confirm_area_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '../Tools/setup_page.dart';
 
 chooseReactionService(page, context) async {
 
   if (page == "Twitter") {
     areatmp.reactionServiceChoose = page;
     button.buttonConnectionTwitter= "Connected";
-    buttoncol.colbuttonConnectionTwitter = const Color.fromARGB(255, 68, 204, 5);
+    buttoncol.colbuttonConnectionTwitter = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ChooseReactionsTwitter()),
+      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your reaction:", services: ChooseReactionsTwitter())),
     );
   }
   if (page == "Discord") {
     areatmp.reactionServiceChoose = page;
     button.buttonConnectionDiscord = "Connected";
-    buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 68, 204, 5);
+    buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ChooseReactionsDiscord()),
+      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your reaction:", services: ChooseReactionsDiscord())),
     );
   }
   if (page == "Microsoft Teams") {
     areatmp.reactionServiceChoose = page;
     button.buttonConnectionTeams = "Connected";
-    buttoncol.colbuttonConnectionTeams = const Color.fromARGB(255, 68, 204, 5);
+    buttoncol.colbuttonConnectionTeams = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ChooseReactionTeams()),
+      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your arection:", services: ChooseReactionTeams())),
     );
   }
 }
@@ -48,28 +49,28 @@ chooseActionService(page, context) async {
   if (page == "Github") {
     areatmp.actionServiceChoose = page;
     button.buttonConnectionGitHub = "Connected";
-    buttoncol.colbuttonConnectionGitHub = const Color.fromARGB(255, 68, 204, 5);
+    buttoncol.colbuttonConnectionGitHub = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ChooseActionsGithub()),
+      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your action:", services: ChooseActionsGithub())),
     );
   }
   else if (page == "Trello") {
     areatmp.actionServiceChoose = page;
     button.buttonConnectionTrello = "Connected";
-    buttoncol.colbuttonConnectionTrello =  const Color.fromARGB(255, 68, 204, 5);
+    buttoncol.colbuttonConnectionTrello =  const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ChooseActionsTrello()),
+      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your action:", services: ChooseActionsTrello())),
     );
   }
   else if (page == "Microsoft Planner") {
     areatmp.actionServiceChoose = page;
     button.buttonConnectionPlanner = "Connected";
-    buttoncol.colbuttonConnectionPlanner = const Color.fromARGB(255, 68, 204, 5);
+    buttoncol.colbuttonConnectionPlanner = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ChooseActionsPlanner()),
+      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your action:", services: ChooseActionsPlanner())),
     );
   }
 }
@@ -79,7 +80,7 @@ setAction(page, context) async {
     areatmp.action = page;
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ReactionServicePage()),
+      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your reaction service:", services:  ReactionServicePage())),
     );
   }
 }
@@ -121,13 +122,12 @@ chooseConnection(page, context) async {
     areatmp.reaction = page;
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ConfirmAreaPage()),
+      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "", services : ConfirmAreaPage())),
     );
   }
 }
 
 AreaConnection(recJson, context) async {
-  print(recJson);
   var url = Uri.parse("http://localhost:8080/areas/new");
   final http.Response response = await http.post(
     url,

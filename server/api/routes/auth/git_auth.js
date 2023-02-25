@@ -20,10 +20,10 @@ router.post('/Github', (req, res) => {
 });
 
 router.get('/Github/callback', (req, res, next) => {
-  passport.authenticate('github', { failureRedirect: '/', successRedirect: 'http://localhost:8081/#/home' }, (err, user, info) => {
+  passport.authenticate('github', { failureRedirect: '/', successRedirect: 'http://localhost:8080/auth/success' }, (err, user, info) => {
     if (err) throw new Error(err);
     if (!user) { return res.json({message: "Error, cannot retrieve git User."}) };
-    return res.redirect('http://localhost:8081/#/home');
+    return res.redirect('http://localhost:8080/auth/success');
   }) (req, res, next);
 });
 

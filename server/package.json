@@ -42,6 +42,7 @@
     "iconv-lite": "^0.4.24",
     "inherits": "^2.0.4",
     "ipaddr.js": "^1.9.1",
+    "jsdom": "^21.1.0",
     "jsonwebtoken": "^9.0.0",
     "media-typer": "^0.3.0",
     "merge-descriptors": "^1.0.1",
