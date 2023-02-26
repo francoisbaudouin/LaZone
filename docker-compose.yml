@@ -31,13 +31,13 @@ services:
 
   ##### CLIENT #####
 
-  # client_mobile:
-  #   container_name: client_mobile
-  #   build:
-  #     context: ./flutter_application
-  #     dockerfile: Dockerfilemobile
-  #   volumes:
-  #     - client:/areapp/
+  client_mobile:
+    container_name: client_mobile
+    build:
+      context: ./flutter_application
+      dockerfile: Dockerfilemobile
+    volumes:
+      - client:/areapp/
 
   client_web:
     container_name: client_web
@@ -48,7 +48,7 @@ services:
       - "8081:8081"
     depends_on:
       - server
-      # - client_mobile
+      - client_mobile
     volumes:
       - client:/areapp/
 

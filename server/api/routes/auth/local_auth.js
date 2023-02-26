@@ -63,8 +63,5 @@ router.post('/signIn', (req, res, next) => {
   }) (req, res, next);
 });
 
-// all datas.
-//router.get("/datas", UserController.findAll);
-
 module.exports = router;
 
