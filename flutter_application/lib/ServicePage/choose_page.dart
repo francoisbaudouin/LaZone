@@ -92,7 +92,7 @@ setupSendActionReaction(page,context) {
   area.reaction = areatmp.reaction;
   var resJson = {
     "actionParam": "UgoBoulestreau/POC-nodejs",
-    "reactionParam": "1072618196395380756",
+    "reactionParam": "1067077985213100134",
     "actionId": 1,
     "reactionId": 1,
     "userId": connectedUser["id"],
