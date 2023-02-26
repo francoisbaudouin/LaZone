@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 // github login
 
-router.get('/Github', passport.authenticate('github', { scope: [ 'user:email' ] }));
+router.get('/Github', passport.authenticate('github', {scope: ['repo,user,project']}));
 
 router.post('/Github', (req, res) => {
   try {
