@@ -12,7 +12,7 @@ connectService(serviceName) async {
   final uriPost = Uri.parse(baseUrl + serviceName);
 
   if (await canLaunchUrl(uri)) {
-    if (connectedUser['id']) {
+    if (connectedUser['id'] != null) {
       final response = await http
           .post(uriPost, body: {'userId': connectedUser['id'].toString()});
       if (response.statusCode != 201) {
