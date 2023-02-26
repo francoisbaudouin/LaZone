@@ -1,30 +1,16 @@
 // user.routes.js - User route module.
 
-const { PrismaClient } = require("@prisma/client");
 const express = require("express");
+const storage = require('node-sessionstorage')
 const passport = require("passport");
 const { generateToken } = require("../../utils/utils.js");
 const router = express.Router();
-const prisma = new PrismaClient();
-
-//const UserController = require("../../controllers/users.js")
-
-// Home page route.
-router.get("/", function (req, res) {
-  async function t () {
-    const y = await prisma.users.findMany();
-    return y;
-  };
-  const users = t();
-  if (!users) {
-    res.json({ message: "Error" })
-  }
-  users.then(function (result) {
-    res.json(result);
-  });
-});
 
 // post a user
+router.get("/success", (req, res) => {
+  res.status(201).send("Success, you can close this tab");
+})
+
 router.post("/signUp", (req, res, next) => {
   passport.authenticate('signUp', { session: false }, (err, user, info) => {
     if (err) {
@@ -39,6 +25,7 @@ router.post("/signUp", (req, res, next) => {
         statusCode: res.statusCode
       })
     }
+    storage.setItem('userId', user.id);
     const token = generateToken(user.id);
     return res.status(201).json({
       status: "sucess",
@@ -57,6 +44,7 @@ router.post('/signIn', (req, res, next) => {
     if (err) throw new Error(err);
     if (!user) { return res.json(info) };
     const token = generateToken(user.id);
+    storage.setItem('userId', user.id);
     return res.status(201).json({
       status: "success",
       data: {
@@ -68,9 +56,6 @@ router.post('/signIn', (req, res, next) => {
     });
   }) (req, res, next);
 });
-
-// all datas.
-//router.get("/datas", UserController.findAll);
 
 module.exports = router;
 

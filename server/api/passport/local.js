@@ -31,22 +31,6 @@ passport.use('signUp', new Strategy(options, async (req, email, password, cb) =>
           pseudo: req.body.pseudo,
         }
       });
-      const DiscordToken = await prisma.tokens.create({
-        data: {
-          accessTokens: process.env.DISCORD_BOT_TOKEN,
-          refreshTokens: "Discord refreshTokens",
-          relatedServiceName: "Discord",
-          userId: user.id
-        }
-      })
-      const GithubToken = await prisma.tokens.create({
-        data: {
-          accessTokens: process.env.GIT_TOKEN,
-          refreshTokens: "Github refreshTokens",
-          relatedServiceName: "Github",
-          userId: user.id
-        }
-      })
       return cb(null, user);
     }
   } catch (err) {

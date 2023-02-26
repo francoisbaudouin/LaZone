@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "email_validator": "^1.0.0"
+    "email_validator": "^1.0.0",
+    "flutter_web_auth_2": "^2.0.4"
   }
 }
