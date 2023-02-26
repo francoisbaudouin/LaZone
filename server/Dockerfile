@@ -14,7 +14,7 @@ RUN yarn install
 
 RUN yarn global add nodemon
 
-RUN yarn add cors express mysql express-session bcryptjs passport passport-local passport-jwt jsonwebtoken prisma @prisma/client dotenv nodemon passport-github2 passport-discord discord.js octokit jsdom
+RUN yarn add cors express mysql express-session bcryptjs passport passport-local passport-jwt jsonwebtoken prisma @prisma/client dotenv nodemon passport-github2 passport-discord discord.js octokit
 
 RUN cd api; npx prisma generate
 

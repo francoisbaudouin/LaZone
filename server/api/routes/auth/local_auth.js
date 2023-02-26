@@ -5,16 +5,10 @@ const storage = require('node-sessionstorage')
 const passport = require("passport");
 const { generateToken } = require("../../utils/utils.js");
 const router = express.Router();
-const jsdom = require('jsdom');
-const { JSDOM } = jsdom;
-
-const dom = new JSDOM();
-const window = dom.window;
 
 // post a user
 router.get("/success", (req, res) => {
   res.status(201).send("Success, you can close this tab");
-  window.close();
 })
 
 router.post("/signUp", (req, res, next) => {
