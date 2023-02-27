@@ -20,16 +20,23 @@ async function basicConfig() {
       description: "This is discord service",
     }
   })
+  await prisma.services.create({
+    data: {
+      name: "Twitter",
+      description: "This is twitter service",
+    }
+  })
+
   await prisma.actions.create({
     data: {
-      name: "new issue",
+      name: "issue",
       description: "new issue occured",
       serviceName: "Github"
     }
   })
   await prisma.actions.create({
     data: {
-      name: "pull request",
+      name: "pull-request",
       description: "pull request occured",
       serviceName: "Github"
     }
@@ -41,6 +48,7 @@ async function basicConfig() {
       serviceName: "Github"
     }
   })
+
   await prisma.reactions.create({
     data: {
       name: "DiscordMessage",
@@ -61,6 +69,13 @@ async function basicConfig() {
       name: "DiscordCategory",
       description: "create a category",
       serviceName: "Discord"
+    }
+  })
+  await prisma.reactions.create({
+    data: {
+      name: "TwitterTweet",
+      description: "create a category",
+      serviceName: "Twitter"
     }
   })
 }

@@ -90,8 +90,10 @@ exports.getUserModel = async function (userId) {
                 id: userAreas[i].reactionsId
             }
         })
-        userAreas[i].actionsServiceName = actionService.serviceName
-        userAreas[i].reactionsServiceName = reactionService.serviceName
+        userAreas[i].actionsName = actionService.name;
+        userAreas[i].reactionsName = reactionService.name;
+        userAreas[i].actionsServiceName = actionService.serviceName;
+        userAreas[i].reactionsServiceName = reactionService.serviceName;
     }
     const userModel = {
         id: userId,
