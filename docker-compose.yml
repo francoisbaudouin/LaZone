@@ -4,6 +4,9 @@ services:
   ##### DB #####
 
   db-mysql:
+    secrets:
+      - db_root_password
+      - db_password
     build:
       context: ./server/db
       dockerfile: Dockerfile
@@ -16,6 +19,11 @@ services:
       - db:/var/lib/mysql
       - "./server/db/schema.sql:/docker-entrypoint-initdb.d/init.sql"
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+      MYSQL_DATABASE: db_lazone
+      MYSQL_USER: dev
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
 
   ##### SERVER #####
 
@@ -35,7 +43,7 @@ services:
     container_name: client_mobile
     build:
       context: ./flutter_application
-      dockerfile: Dockerfilemobile
+      dockerfile: mobile.Dockerfile
     volumes:
       - client:/areapp/
 
@@ -43,7 +51,7 @@ services:
     container_name: client_web
     build:
       context: ./flutter_application
-      dockerfile: Dockerfileweb
+      dockerfile: web.Dockerfile
     ports:
       - "8081:8081"
     depends_on:
@@ -51,6 +59,12 @@ services:
       - client_mobile
     volumes:
       - client:/areapp/
+
+secrets:
+   db_password:
+     file: db_password.txt
+   db_root_password:
+     file: db_root_password.txt
 
 volumes:
   client:
