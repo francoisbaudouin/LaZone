@@ -77,11 +77,6 @@ app.use('/reactions', reactionsRouter);
 app.use('/services', servicesRouter);
 app.use('/tokens', tokensRouter);
 
-app.get('/logout', (req, res) => {
-  req.session.destroy();
-  res.redirect('/');
-})
-
 app.get('/about.json', (req, res) => {
   res.json(about_json);
 })
