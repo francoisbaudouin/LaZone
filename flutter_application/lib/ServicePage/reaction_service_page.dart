@@ -24,8 +24,8 @@ class ReactionServicePage extends StatelessWidget {
               child: ServiceCards(
                 title: "Twitter",
                 imagePath: "assets/images/logo-twitter.png",
-                textbutton :  button.buttonConnectionTwitter,
-                colorButton : buttoncol.colbuttonConnectionTwitter,
+                textbutton :  buttoncheck.buttonConnectionTwitter,
+                colorButton : buttonchoosecol.colbuttonChooseTwitter,
               ),
             ),
             ResponsiveRowColumnItem(
@@ -34,8 +34,8 @@ class ReactionServicePage extends StatelessWidget {
               child: ServiceCards(
                 title: "Discord",
                 imagePath: "assets/images/discord-logo.png",
-                textbutton :  button.buttonConnectionDiscord,
-                colorButton : buttoncol.colbuttonConnectionDiscord,
+                textbutton :  buttoncheck.buttonConnectionDiscord,
+                colorButton : buttonchoosecol.colbuttonChooseDiscord,
               ),
             ),
             ResponsiveRowColumnItem(
@@ -44,8 +44,8 @@ class ReactionServicePage extends StatelessWidget {
               child: ServiceCards(
                 title: "Microsoft Teams",
                 imagePath: "assets/images/Microsoft-Teams-Symbole.png",
-                textbutton :  button.buttonConnectionTeams,
-                colorButton : buttoncol.colbuttonConnectionTeams,
+                textbutton :  buttoncheck.buttonConnectionTeams,
+                colorButton : buttonchoosecol.colbuttonChooseTeams,
               ),
             ),
             ],
