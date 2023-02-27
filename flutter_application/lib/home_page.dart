@@ -33,8 +33,8 @@ class HomePageServicesCards extends StatelessWidget {
             child: ServiceCards(
               title: "Github",
               imagePath: "assets/images/github-logo.png",
-              textbutton :  button.buttonConnectionGitHub,
-              colorButton : buttoncol.colbuttonConnectionGitHub,
+              textbutton :  buttoncheck.buttonConnectionGitHub,
+              colorButton : buttonchoosecol.colbuttonChooseGitHub,
             ),
           ),
           ResponsiveRowColumnItem(
@@ -43,8 +43,8 @@ class HomePageServicesCards extends StatelessWidget {
             child: ServiceCards(
               title: "Trello",
               imagePath: "assets/images/Trello-Symbole.png",
-              textbutton :  button.buttonConnectionTrello,
-              colorButton : buttoncol.colbuttonConnectionTrello,
+              textbutton :  buttoncheck.buttonConnectionTrello,
+              colorButton : buttonchoosecol.colbuttonChooseTrello,
             ),
           ),
           ResponsiveRowColumnItem(
@@ -53,8 +53,8 @@ class HomePageServicesCards extends StatelessWidget {
             child: ServiceCards(
               title: "Microsoft Planner",
               imagePath: "assets/images/Planner-logo.png",
-              textbutton :  button.buttonConnectionPlanner,
-              colorButton : buttoncol.colbuttonConnectionPlanner,
+              textbutton : buttoncheck.buttonConnectionPlanner,
+              colorButton : buttonchoosecol.colbuttonChoosePlanner,
             ),
           ),
         ],
