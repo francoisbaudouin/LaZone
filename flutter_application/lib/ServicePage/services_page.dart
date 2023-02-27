@@ -30,6 +30,7 @@ connectService(serviceName) async {
 chooseConnectionServices(page) async {
   if (page == "Twitter") {
     areatmp.reactionServiceChoose = page;
+    await connectService('Twitter');
     button.buttonConnectionTwitter = "Connected";
     buttoncol.colbuttonConnectionTwitter = const Color.fromARGB(255, 14, 41, 2);
   } else if (page == "Discord") {
@@ -39,6 +40,7 @@ chooseConnectionServices(page) async {
     buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 14, 41, 2);
   } else if (page == "Microsoft Teams") {
     areatmp.reactionServiceChoose = page;
+    await connectService('Microsoft');
     button.buttonConnectionTeams = "Connected";
     buttoncol.colbuttonConnectionTeams = const Color.fromARGB(255, 14, 41, 2);
   } else if (page == "Github") {
@@ -51,6 +53,7 @@ chooseConnectionServices(page) async {
     button.buttonConnectionTrello = "Connected";
     buttoncol.colbuttonConnectionTrello = const Color.fromARGB(255, 14, 41, 2);
   } else if (page == "Microsoft Planner") {
+    await connectService('Microsoft');
     areatmp.actionServiceChoose = page;
     button.buttonConnectionPlanner = "Connected";
     buttoncol.colbuttonConnectionPlanner = const Color.fromARGB(255, 14, 41, 2);
