@@ -1,6 +1,8 @@
 const { getFromRepo, getNewRepos } = require("./action/githubAction.js");
 const { sendMessage, createChannel, client } = require("./reaction/discordReaction.js");
 
+const { sendTweet } = require("./reaction/twitterReaction.js")
+
 const { updateAreaTimestamp } = require("../api/controllers/areas.js");
 
 const actionMap = new Map([
@@ -13,6 +15,7 @@ const reactionMap = new Map([
   [1, sendMessage],
   [2, createChannel],
   [3, createChannel],
+  [4, sendTweet]
 ]);
 
 async function activateArea(area) {
@@ -34,6 +37,8 @@ function activateAreasFromUser(user) {
         reactionId: element.reactionsId,
         actionParam: element.actionsParams,
         reactionParam: element.reactionsParams,
+        actionName: element.actionsName,
+        reactionName: element.reactionsName,
         timestamp: element.timestamp.toISOString(),
       };
       try {

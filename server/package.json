@@ -78,6 +78,7 @@
     "side-channel": "^1.0.4",
     "statuses": "^2.0.1",
     "toidentifier": "^1.0.1",
+    "twitter-api-v2": "^1.14.2",
     "type-is": "^1.6.18",
     "unpipe": "^1.0.0",
     "utils-merge": "^1.0.1",
