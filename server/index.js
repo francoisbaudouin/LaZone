@@ -6,6 +6,8 @@ const PORT = process.env.PORT || 8080;
 const localAuthRouter = require('./api/routes/auth/local_auth.js');
 const gitAuthRouter = require('./api/routes/auth/git_auth.js');
 const discordAuthRouter = require('./api/routes/auth/discord_auth.js');
+const twitterAuthRouter = require('./api/routes/auth/twitter_auth.js');
+const microsoftAuthRouter = require('./api/routes/auth/microsoft_auth.js');
 const areasRouter = require('./api/routes/areas.js');
 const usersRouter = require('./api/routes/users.js');
 const actionsRouter = require('./api/routes/actions.js');
@@ -44,6 +46,8 @@ app.use(express.urlencoded({ extended: true }));
 require("./api/passport/local.js");
 require("./api/passport/git.js");
 require("./api/passport/discord.js");
+require("./api/passport/twitter.js");
+require("./api/passport/microsoft.js");
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -66,10 +70,15 @@ app.get("/", (req, res) => {
   res.send("Hello world !, <a href=http://localhost:8080/auth/github> here </a> you can auth with git ! <a href=http://localhost:8080/auth/discord> here </a> you can auth with discord !");
 });
 
-//routes - auth
+//routes
+//oauth
 app.use('/auth', localAuthRouter);
 app.use('/auth', gitAuthRouter);
 app.use('/auth', discordAuthRouter);
+app.use('/auth', twitterAuthRouter);
+app.use('/auth', microsoftAuthRouter);
+
+//api
 app.use('/areas', areasRouter);
 app.use('/users', usersRouter);
 app.use('/actions', actionsRouter);

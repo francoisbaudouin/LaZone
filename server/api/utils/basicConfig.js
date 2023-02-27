@@ -1,13 +1,11 @@
 const { PrismaClient } = require("@prisma/client");
-const { Strategy } = require("passport-local");
-const { hash, compare } = require("../utils/utils");
-const passport = require("passport");
 require("dotenv").config();
 
 // Initialize a prisma client
 const prisma = new PrismaClient();
 
 async function basicConfig() {
+  //SERVICES
   await prisma.services.create({
     data: {
       name: "Github",
@@ -20,6 +18,22 @@ async function basicConfig() {
       description: "This is discord service",
     }
   })
+  await prisma.services.create({
+    data: {
+      name: "Twitter",
+      description: "This is twitter service",
+    }
+  })
+  await prisma.services.create({
+    data: {
+      name: "Microsoft",
+      description: "This is microsoft service, used for teams and planner",
+    }
+  })
+
+  //ACTION
+
+  //git
   await prisma.actions.create({
     data: {
       name: "new issue",
@@ -41,6 +55,8 @@ async function basicConfig() {
       serviceName: "Github"
     }
   })
+
+  //REACTION
   await prisma.reactions.create({
     data: {
       name: "DiscordMessage",
