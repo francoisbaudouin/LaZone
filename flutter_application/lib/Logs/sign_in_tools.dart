@@ -7,6 +7,7 @@ import 'sign_up_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../home_page.dart';
+import '../Tools/global.dart';
 
 class ForgottenPassword extends StatelessWidget {
   const ForgottenPassword({super.key});
@@ -126,7 +127,7 @@ class ButtonService extends StatelessWidget {
 }
 
 signin(email, password, context) async {
-  var url = Uri.parse("http://localhost:8080/auth/signIn");
+  var url = Uri.parse("http://$serverAddress/auth/signIn");
   final http.Response response = await http.post(
     url,
     headers: <String, String>{

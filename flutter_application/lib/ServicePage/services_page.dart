@@ -5,9 +5,10 @@ import '../Tools/text.dart';
 import '../Tools/color.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../Tools/global.dart';
 
 connectService(serviceName) async {
-  const baseUrl = "http://localhost:8080/auth/";
+  String baseUrl = "http://$serverAddress/auth/";
   final uri = Uri.parse(baseUrl + serviceName);
   final uriPost = Uri.parse(baseUrl + serviceName);
 

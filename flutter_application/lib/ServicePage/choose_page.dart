@@ -13,6 +13,7 @@ import 'confirm_area_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../Tools/setup_page.dart';
+import '../Tools/global.dart';
 
 chooseReactionService(page, context) async {
   if (page == "Twitter" && buttonChoose.buttonChooseTwitter == true) {
@@ -132,7 +133,7 @@ chooseConnection(page, context) async {
 }
 
 AreaConnection(recJson, context) async {
-  var url = Uri.parse("http://localhost:8080/areas/new");
+  var url = Uri.parse("http://$serverAddress/areas/new");
   final http.Response response = await http.post(
     url,
     headers: <String, String>{
