@@ -10,7 +10,6 @@ const auth = (req, res, next) => {
     if (err) throw new Error(err);
     if (!user) throw new Error("Invalid token..");
     req.user = user;
-    console.log(user);
     return next();
   }) (req, res, next);
   } catch (err) {

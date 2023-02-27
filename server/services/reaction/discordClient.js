@@ -12,13 +12,18 @@ const client = new Client({
   ],
 });
 
-async function logDiscord () {
-  const GitTokens = (await tokenController.getTokensByServiceName("Discord")).at(0)["accessTokens"];
+async function logDiscord() {
+  const discordToken = process.env.DISCORD_BOT_TOKEN;
   client.once(Events.ClientReady, client => {
     console.log(`Welcome aboard captain, ${client.user.tag} is online`);
   });
-  client.login(GitTokens);
+  client.login(discordToken);
 }
-logDiscord()
+
+try {
+  logDiscord()
+} catch (error) {
+  console.error(error);
+}
 
 module.exports = { client, EmbedBuilder };

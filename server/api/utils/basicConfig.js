@@ -8,60 +8,40 @@ require("dotenv").config();
 const prisma = new PrismaClient();
 
 async function basicConfig() {
-  const user = await prisma.users.create({
-    data: {
-      email: "test@testmail.com",
-      password: await hash("password"),
-      lastname: "test",
-      firstname: "Tets",
-      pseudo: "mypseudo",
-    }
-  })
-  const GitService = await prisma.services.create({
+  await prisma.services.create({
     data: {
       name: "Github",
       description: "This is git service",
     }
   })
-  const DiscordService = await prisma.services.create({
+  await prisma.services.create({
     data: {
       name: "Discord",
       description: "This is discord service",
     }
   })
-
-  const DiscordToken = await prisma.tokens.create({
-    data: {
-      accessTokens: process.env.DISCORD_BOT_TOKEN,
-      refreshTokens: "Discord refreshTokens",
-      relatedServiceName: "Discord",
-      userId: 1
-    }
-  })
-  const GithubToken = await prisma.tokens.create({
-    data: {
-      accessTokens: process.env.GIT_TOKEN,
-      refreshTokens: "Github refreshTokens",
-      relatedServiceName: "Github",
-      userId: 1
-    }
-  })
-
-  const pullRequestAction = await prisma.actions.create({
-    data: {
-      name: "pull request",
-      description: "pull request occured",
-      serviceName: "Github"
-    }
-  })
-  const newIssueAction = await prisma.actions.create({
+  await prisma.actions.create({
     data: {
       name: "new issue",
       description: "new issue occured",
       serviceName: "Github"
     }
   })
-  const newMessageReaction = await prisma.reactions.create({
+  await prisma.actions.create({
+    data: {
+      name: "pull request",
+      description: "pull request occured",
+      serviceName: "Github"
+    }
+  })
+  await prisma.actions.create({
+    data: {
+      name: "repo",
+      description: "new repo occured",
+      serviceName: "Github"
+    }
+  })
+  await prisma.reactions.create({
     data: {
       name: "DiscordMessage",
       description: "discord message reaction",
@@ -69,21 +49,18 @@ async function basicConfig() {
 
     }
   })
-  const reactReaction = await prisma.reactions.create({
+  await prisma.reactions.create({
     data: {
-      name: "discord reaction emoji",
-      description: "put an emoji",
+      name: "DiscordChannel",
+      description: "create a channel",
       serviceName: "Discord"
     }
   })
-  const newAreas = await prisma.areas.create({
+  await prisma.reactions.create({
     data: {
-      userId: 1,
-      actionsId: 1,
-      reactionsId: 1,
-      enabled: true,
-      actionsParams: "UgoBoulestreau/POC-nodejs",
-      reactionsParams: "1067077985213100134"
+      name: "DiscordCategory",
+      description: "create a category",
+      serviceName: "Discord"
     }
   })
 }

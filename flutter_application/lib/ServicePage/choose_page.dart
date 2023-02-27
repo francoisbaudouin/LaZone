@@ -15,14 +15,16 @@ import 'dart:convert';
 import '../Tools/setup_page.dart';
 
 chooseReactionService(page, context) async {
-
   if (page == "Twitter") {
     areatmp.reactionServiceChoose = page;
-    button.buttonConnectionTwitter= "Connected";
+    button.buttonConnectionTwitter = "Connected";
     buttoncol.colbuttonConnectionTwitter = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your reaction:", services: ChooseReactionsTwitter())),
+      MaterialPageRoute(
+          builder: (context) => const SetPageContentService(
+              message: "Choose your reaction:",
+              services: ChooseReactionsTwitter())),
     );
   }
   if (page == "Discord") {
@@ -31,7 +33,10 @@ chooseReactionService(page, context) async {
     buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your reaction:", services: ChooseReactionsDiscord())),
+      MaterialPageRoute(
+          builder: (context) => const SetPageContentService(
+              message: "Choose your reaction:",
+              services: ChooseReactionsDiscord())),
     );
   }
   if (page == "Microsoft Teams") {
@@ -40,7 +45,10 @@ chooseReactionService(page, context) async {
     buttoncol.colbuttonConnectionTeams = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your arection:", services: ChooseReactionTeams())),
+      MaterialPageRoute(
+          builder: (context) => const SetPageContentService(
+              message: "Choose your arection:",
+              services: ChooseReactionTeams())),
     );
   }
 }
@@ -52,25 +60,30 @@ chooseActionService(page, context) async {
     buttoncol.colbuttonConnectionGitHub = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your action:", services: ChooseActionsGithub())),
+      MaterialPageRoute(
+          builder: (context) => const SetPageContentService(
+              message: "Choose your action:", services: ChooseActionsGithub())),
     );
-  }
-  else if (page == "Trello") {
+  } else if (page == "Trello") {
     areatmp.actionServiceChoose = page;
     button.buttonConnectionTrello = "Connected";
-    buttoncol.colbuttonConnectionTrello =  const Color.fromARGB(255, 14, 41, 2);
+    buttoncol.colbuttonConnectionTrello = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your action:", services: ChooseActionsTrello())),
+      MaterialPageRoute(
+          builder: (context) => const SetPageContentService(
+              message: "Choose your action:", services: ChooseActionsTrello())),
     );
-  }
-  else if (page == "Microsoft Planner") {
+  } else if (page == "Microsoft Planner") {
     areatmp.actionServiceChoose = page;
     button.buttonConnectionPlanner = "Connected";
     buttoncol.colbuttonConnectionPlanner = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your action:", services: ChooseActionsPlanner())),
+      MaterialPageRoute(
+          builder: (context) => const SetPageContentService(
+              message: "Choose your action:",
+              services: ChooseActionsPlanner())),
     );
   }
 }
@@ -80,19 +93,22 @@ setAction(page, context) async {
     areatmp.action = page;
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "Choose your reaction service:", services:  ReactionServicePage())),
+      MaterialPageRoute(
+          builder: (context) => const SetPageContentService(
+              message: "Choose your reaction service:",
+              services: ReactionServicePage())),
     );
   }
 }
 
-setupSendActionReaction(page,context) {
+setupSendActionReaction(page, context) {
   area.actionServiceChoose = areatmp.actionServiceChoose;
   area.reactionServiceChoose = areatmp.reactionServiceChoose;
   area.action = areatmp.action;
   area.reaction = areatmp.reaction;
   var resJson = {
     "actionParam": "UgoBoulestreau/POC-nodejs",
-    "reactionParam": "1072618196395380756",
+    "reactionParam": "1062389081973215262",
     "actionId": 1,
     "reactionId": 1,
     "userId": connectedUser["id"],
@@ -108,21 +124,21 @@ setupSendActionReaction(page,context) {
 chooseConnection(page, context) async {
   if (areatmp.actionServiceChoose == "") {
     chooseActionService(page, context);
-  }
-  else if(areatmp.actionServiceChoose != "" && areatmp.action == "") {
+  } else if (areatmp.actionServiceChoose != "" && areatmp.action == "") {
     setAction(page, context);
-  }
-  else if (areatmp.actionServiceChoose != "" && areatmp.action != "" && areatmp.reactionServiceChoose == "") {
+  } else if (areatmp.actionServiceChoose != "" &&
+      areatmp.action != "" &&
+      areatmp.reactionServiceChoose == "") {
     chooseReactionService(page, context);
-  } 
-  else if (page == "Confirm link" && areatmp.reaction != "") {
-      setupSendActionReaction(page, context);
-  }
-  else {
+  } else if (page == "Confirm link" && areatmp.reaction != "") {
+    setupSendActionReaction(page, context);
+  } else {
     areatmp.reaction = page;
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const SetPageContentService(message: "", services : ConfirmAreaPage())),
+      MaterialPageRoute(
+          builder: (context) => const SetPageContentService(
+              message: "", services: ConfirmAreaPage())),
     );
   }
 }
@@ -145,8 +161,11 @@ AreaConnection(recJson, context) async {
   );
   if (response.statusCode == 201) {
     Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const MyHomePage(title: "LaZone",)),
+      context,
+      MaterialPageRoute(
+          builder: (context) => const MyHomePage(
+                title: "LaZone",
+              )),
     );
   } else {
     throw Exception('Failed to create area');

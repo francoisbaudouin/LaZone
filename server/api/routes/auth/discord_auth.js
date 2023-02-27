@@ -6,24 +6,18 @@ const prisma = new PrismaClient();
 
 // discord login
 
-router.get('/discord',
-  passport.authenticate('discord'));
+router.get('/Discord',
+  passport.authenticate('discord', { permissions: 8 }));
 
+router.post('/Discord', (req, res) => {
+  res.status(201).json({message: "success"});
+})
 
-router.get('/discord/callback', (req, res, next) => {
-  passport.authenticate('discord', { failureRedirect: '/' }, (err, user, info) => {
+router.get('/Discord/callback', (req, res, next) => {
+  passport.authenticate('discord', { failureRedirect: '/', successRedirect: 'http://localhost:8080/auth/success' }, (err, user, info) => {
     if (err) throw new Error(err);
-    if (!user) { return res.json({message: "Error, cannot retrieve discord User."}) };
-    return res.status(201).json({
-      status: "success",
-      data: {
-        message: "Welcome back discord user.",
-        user,
-        statusCode: res.statusCode
-      },
-    });
+    return res.status(201).redirect('http://localhost:8080/auth/success');
   }) (req, res, next);
 });
 
 module.exports = router;
-
