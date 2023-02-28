@@ -92,31 +92,42 @@ setAction(page, context) async {
 
 getActionId(String action) {
   if (action == "Create a issue") {
+    areatmp.actionParam = "UgoBoulestreau/POC-nodejs";
     id.actionId = 1;
   } else if (action == "Create a repository") {
+    areatmp.actionParam = "";
     id.actionId = 2;
   } else if (action == "Create a pull request") {
+    areatmp.actionParam = "UgoBoulestreau/POC-nodejs";
     id.actionId = 3;
   } else if (action == "Create a plan") {
+    areatmp.actionParam = "";
     id.actionId = 4;
   } else if (action == "Create a task") {
+    areatmp.actionParam = "";
     id.actionId = 5;
   }
 }
 
 getReactionId(String action, String service) {
-  if (action == "Post a message" && service == "Discord") {
+  if (action == "Tweet" && service == "Twitter") {
+    areatmp.reactionParam = "";
     id.reactionId = 1;
-  } else if (action == "Create a category") {
+  } else if (action == "Post a message" && service == "Discord") {
+    areatmp.reactionParam = "1072600656583594065";
     id.reactionId = 2;
-  } else if (action == "Create a room" && service == "Discord") {
+  } else if (action == "Create a category") {
+    areatmp.reactionParam = "673641930608869513";
     id.reactionId = 3;
-  } else if (action == "Post a message" && service == "Microsoft Teams") {
+  } else if (action == "Create a room" && service == "Discord") {
+    areatmp.reactionParam = "673641930608869513";
     id.reactionId = 4;
-  } else if (action == "Create a team") {
+  } else if (action == "Post a message" && service == "Microsoft Teams") {
     id.reactionId = 5;
-  } else if (action == "Create a room" && service == "Microsoft Teams") {
+  } else if (action == "Create a team") {
     id.reactionId = 6;
+  } else if (action == "Create a room" && service == "Microsoft Teams") {
+    id.reactionId = 7;
   }
 }
 
@@ -127,9 +138,10 @@ setupSendActionReaction(page, context) {
   area.reaction = areatmp.reaction;
   getActionId(areatmp.action);
   getReactionId(areatmp.reaction, areatmp.reactionServiceChoose);
+
   var resJson = {
-    "actionParam": "UgoBoulestreau/POC-nodejs",
-    "reactionParam": "1062389081973215262",
+    "actionParam": areatmp.actionParam,
+    "reactionParam": areatmp.reactionParam,
     "actionId": id.actionId,
     "reactionId": id.reactionId,
     "userId": connectedUser["id"],
@@ -139,6 +151,10 @@ setupSendActionReaction(page, context) {
   areatmp.reactionServiceChoose = "";
   areatmp.action = "";
   areatmp.reaction = "";
+  areatmp.actionParam = "";
+  areatmp.reactionParam = "";
+
+  print(resJson);
   AreaConnection(resJson, context);
 }
 

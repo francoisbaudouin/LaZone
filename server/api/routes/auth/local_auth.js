@@ -1,5 +1,3 @@
-// user.routes.js - User route module.
-
 const express = require("express");
 const storage = require('node-sessionstorage')
 const passport = require("passport");

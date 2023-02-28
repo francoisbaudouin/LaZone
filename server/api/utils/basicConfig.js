@@ -1,13 +1,11 @@
 const { PrismaClient } = require("@prisma/client");
-const { Strategy } = require("passport-local");
-const { hash, compare } = require("../utils/utils");
-const passport = require("passport");
 require("dotenv").config();
 
 // Initialize a prisma client
 const prisma = new PrismaClient();
 
 async function basicConfig() {
+  //SERVICES
   await prisma.services.create({
     data: {
       name: "Github",
@@ -26,18 +24,26 @@ async function basicConfig() {
       description: "This is twitter service",
     }
   })
+  await prisma.services.create({
+    data: {
+      name: "Microsoft",
+      description: "This is microsoft service, used for teams and planner",
+    }
+  })
+  await prisma.services.create({
+    data: {
+      name: "Google",
+      description: "This is Google service",
+    }
+  })
 
+  //ACTION
+
+  //git
   await prisma.actions.create({
     data: {
       name: "issue",
       description: "new issue occured",
-      serviceName: "Github"
-    }
-  })
-  await prisma.actions.create({
-    data: {
-      name: "pull-request",
-      description: "pull request occured",
       serviceName: "Github"
     }
   })
@@ -48,20 +54,28 @@ async function basicConfig() {
       serviceName: "Github"
     }
   })
+  await prisma.actions.create({
+    data: {
+      name: "pull-request",
+      description: "pull request occured",
+      serviceName: "Github"
+    }
+  })
 
+  //REACTION
+  await prisma.reactions.create({
+    data: {
+      name: "TwitterTweet",
+      description: "tweet something",
+      serviceName: "Twitter"
+    }
+  })
   await prisma.reactions.create({
     data: {
       name: "DiscordMessage",
       description: "discord message reaction",
       serviceName: "Discord"
 
-    }
-  })
-  await prisma.reactions.create({
-    data: {
-      name: "DiscordChannel",
-      description: "create a channel",
-      serviceName: "Discord"
     }
   })
   await prisma.reactions.create({
@@ -73,9 +87,9 @@ async function basicConfig() {
   })
   await prisma.reactions.create({
     data: {
-      name: "TwitterTweet",
-      description: "create a category",
-      serviceName: "Twitter"
+      name: "DiscordChannel",
+      description: "create a channel",
+      serviceName: "Discord"
     }
   })
 }

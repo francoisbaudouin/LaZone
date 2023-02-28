@@ -29,7 +29,8 @@ connectService(serviceName) async {
 }
 
 chooseConnectionServices(page) async {
-  if (page == "Twitter" && buttonChoose.buttonChooseTwitter == false) {
+  if (page == "Twitter" /*&& buttonChoose.buttonChooseTwitter == false*/) {
+    await connectService('Twitter');
     buttonChoose.buttonChooseTwitter = true;
     button.buttonConnectionTwitter = "Connected";
     buttoncheck.buttonConnectionTwitter = "Choose";
@@ -42,7 +43,9 @@ chooseConnectionServices(page) async {
     buttoncheck.buttonConnectionDiscord = "Choose";
     buttonchoosecol.colbuttonChooseDiscord = colorConnected;
     buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 14, 41, 2);
-  } else if (page == "Microsoft Teams" && buttonChoose.buttonChooseTeams == false) {
+  } else if (page == "Microsoft Teams" &&
+      buttonChoose.buttonChooseTeams == false) {
+    await connectService('Microsoft');
     buttonChoose.buttonChooseTeams = true;
     button.buttonConnectionTeams = "Connected";
     buttoncheck.buttonConnectionTeams = "Choose";
@@ -61,7 +64,9 @@ chooseConnectionServices(page) async {
     buttoncheck.buttonConnectionTrello = "Choose";
     buttonchoosecol.colbuttonChooseTrello = colorConnected;
     buttoncol.colbuttonConnectionTrello = const Color.fromARGB(255, 14, 41, 2);
-  } else if (page == "Microsoft Planner" && buttonChoose.buttonChoosePlanner == false) {
+  } else if (page == "Microsoft Planner" &&
+      buttonChoose.buttonChoosePlanner == false) {
+    await connectService('Google');
     buttonChoose.buttonChoosePlanner = true;
     button.buttonConnectionPlanner = "Connected";
     buttoncheck.buttonConnectionPlanner = "Choose";

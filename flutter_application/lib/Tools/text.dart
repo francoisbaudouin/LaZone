@@ -6,8 +6,13 @@ class User {
   String lastname;
   String pseudo;
   String email;
-  User({this.firstname = "", this.lastname = "", this.pseudo = "", this.email = ""});
+  User(
+      {this.firstname = "",
+      this.lastname = "",
+      this.pseudo = "",
+      this.email = ""});
 }
+
 User user = User();
 
 var connectedUser;
@@ -19,8 +24,15 @@ class ButtonConnection {
   String buttonConnectionDiscord;
   String buttonConnectionTwitter;
   String buttonConnectionTeams;
-  ButtonConnection({this.buttonConnectionGitHub = "Disconected", this.buttonConnectionTrello = "Disconected", this.buttonConnectionPlanner = "Disconected", this.buttonConnectionDiscord = "Disconected", this.buttonConnectionTwitter = "Disconected", this.buttonConnectionTeams = "Disconected"});
+  ButtonConnection(
+      {this.buttonConnectionGitHub = "Disconected",
+      this.buttonConnectionTrello = "Disconected",
+      this.buttonConnectionPlanner = "Disconected",
+      this.buttonConnectionDiscord = "Disconected",
+      this.buttonConnectionTwitter = "Disconected",
+      this.buttonConnectionTeams = "Disconected"});
 }
+
 ButtonConnection button = ButtonConnection();
 
 class CheckConnectionText {
@@ -30,8 +42,15 @@ class CheckConnectionText {
   String buttonConnectionDiscord;
   String buttonConnectionTwitter;
   String buttonConnectionTeams;
-  CheckConnectionText({this.buttonConnectionGitHub = "Disconected", this.buttonConnectionTrello = "Disconected", this.buttonConnectionPlanner = "Disconected", this.buttonConnectionDiscord = "Disconected", this.buttonConnectionTwitter = "Disconected", this.buttonConnectionTeams = "Disconected"});
+  CheckConnectionText(
+      {this.buttonConnectionGitHub = "Disconected",
+      this.buttonConnectionTrello = "Disconected",
+      this.buttonConnectionPlanner = "Disconected",
+      this.buttonConnectionDiscord = "Disconected",
+      this.buttonConnectionTwitter = "Disconected",
+      this.buttonConnectionTeams = "Disconected"});
 }
+
 CheckConnectionText buttoncheck = CheckConnectionText();
 
 class CheckConnection {
@@ -41,8 +60,15 @@ class CheckConnection {
   bool buttonChooseDiscord;
   bool buttonChooseTwitter;
   bool buttonChooseTeams;
-  CheckConnection({this.buttonChooseGitHub = false, this.buttonChooseTrello = false, this.buttonChoosePlanner = false, this.buttonChooseDiscord = false, this.buttonChooseTwitter = false, this.buttonChooseTeams = false});
+  CheckConnection(
+      {this.buttonChooseGitHub = false,
+      this.buttonChooseTrello = false,
+      this.buttonChoosePlanner = false,
+      this.buttonChooseDiscord = false,
+      this.buttonChooseTwitter = false,
+      this.buttonChooseTeams = false});
 }
+
 CheckConnection buttonChoose = CheckConnection();
 
 class ActionsReactionsID {
@@ -50,18 +76,28 @@ class ActionsReactionsID {
   int reactionId;
   ActionsReactionsID({this.actionId = 0, this.reactionId = 0});
 }
+
 ActionsReactionsID id = ActionsReactionsID();
 
-
-const String fontFamilies= "Google Sans";
+const String fontFamilies = "Google Sans";
 
 class Area {
   String actionServiceChoose;
   String reactionServiceChoose;
   String action;
   String reaction;
-  Area({this.actionServiceChoose = "", this.reactionServiceChoose = "", this.action = "", this.reaction = ""});
+  String actionParam;
+  String reactionParam;
+
+  Area(
+      {this.actionServiceChoose = "",
+      this.reactionServiceChoose = "",
+      this.action = "",
+      this.reaction = "",
+      this.actionParam = "",
+      this.reactionParam = ""});
 }
+
 Area area = Area();
 Area areatmp = Area();
 
