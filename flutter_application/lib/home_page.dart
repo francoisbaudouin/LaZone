@@ -101,14 +101,17 @@ class _HomeViewState extends State<HomeView> {
   int _selectedIndex = 0;
   List<Widget> views = [
     const SizedBox(
-      child: SetPageContent(
+      child: SetPageServices(
         title: "Welcome,",
-        message: "Choose a service :",
-        services: HomePageServicesCards(),
+        message: "Connect to services :",
       ),
     ),
     const SizedBox(
-      child: SetPageServices(message: "All services"),
+      child: SetPageContent(
+        title: "",
+        message: "Choose a service :",
+        services: HomePageServicesCards(),
+      ),
     ),
     const SizedBox(
       child: CreateactionReactionPage(),
@@ -182,12 +185,12 @@ class _HomeViewState extends State<HomeView> {
             selectedIndex: _selectedIndex,
             items: const [
               SideNavigationBarItem(
-                icon: Icons.integration_instructions,
-                label: 'Action service',
+                icon: Icons.home,
+                label: 'Services',
               ),
               SideNavigationBarItem(
-                icon: Icons.account_tree_sharp,
-                label: 'Services',
+                icon: Icons.integration_instructions,
+                label: 'Create Area',
               ),
               SideNavigationBarItem(
                 icon: Icons.account_tree_sharp,
@@ -196,10 +199,6 @@ class _HomeViewState extends State<HomeView> {
               SideNavigationBarItem(
                 icon: Icons.person,
                 label: 'Account',
-              ),
-              SideNavigationBarItem(
-                icon: Icons.settings,
-                label: 'Settings',
               ),
             ],
             onTap: (index) {

@@ -1,15 +1,6 @@
 import 'package:flutter/material.dart';
 import 'color.dart';
 
-class User {
-  String firstname;
-  String lastname;
-  String pseudo;
-  String email;
-  User({this.firstname = "", this.lastname = "", this.pseudo = "", this.email = ""});
-}
-User user = User();
-
 var connectedUser;
 
 class ButtonConnection {
