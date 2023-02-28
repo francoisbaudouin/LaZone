@@ -95,7 +95,7 @@ getActionId(String action) {
     areatmp.actionParam = "UgoBoulestreau/POC-nodejs";
     id.actionId = 1;
   } else if (action == "Create a repository") {
-    areatmp.actionParam = "UgoBoulestreau/POC-nodejs";
+    areatmp.actionParam = "";
     id.actionId = 2;
   } else if (action == "Create a pull request") {
     areatmp.actionParam = "UgoBoulestreau/POC-nodejs";
