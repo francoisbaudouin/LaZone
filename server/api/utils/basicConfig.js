@@ -36,7 +36,12 @@ async function basicConfig() {
       description: "This is Google service",
     }
   })
-
+  await prisma.services.create({
+    data: {
+      name: "Facebook",
+      description: "This is Facebook service",
+    }
+  })
   //ACTION
 
   //git
