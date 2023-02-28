@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           ResponsiveBreakpoint.autoScale(1700, name: 'XL'),
         ],
       ),
-      title: 'Flutter Demo',
+      title: 'LaZone',
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
