@@ -45,6 +45,13 @@ class CheckConnection {
 }
 CheckConnection buttonChoose = CheckConnection();
 
+class ActionsReactionsID {
+  int actionId;
+  int reactionId;
+  ActionsReactionsID({this.actionId = 0, this.reactionId = 0});
+}
+ActionsReactionsID id = ActionsReactionsID();
+
 
 const String fontFamilies= "Google Sans";
 

@@ -89,16 +89,48 @@ setAction(page, context) async {
   }
 }
 
+getActionId(String action) {
+  if (action == "Create a issue") {
+    id.actionId = 1;
+  } else if (action == "Create a repository") {
+    id.actionId = 2;
+  } else if (action == "Create a pull request") {
+    id.actionId = 3;
+  } else if (action == "Create a plan") {
+    id.actionId = 4;
+  } else if (action == "Create a task") {
+    id.actionId = 5;
+  }
+}
+
+getRectionId(String action, String service) {
+  if (action == "Post a message" && service == "Discord") {
+    id.reactionId = 1;
+  } else if (action == "Create a category") {
+    id.reactionId = 2;
+  } else if (action == "Create a room" && service == "Discord") {
+    id.reactionId = 3;
+  } else if (action == "Post a message" && service == "Microsoft Teams") {
+    id.reactionId = 4;
+  } else if (action == "Create a team") {
+    id.reactionId = 5;
+  } else if (action == "Create a room" && service == "Microsoft Teams") {
+    id.reactionId = 6;
+  }
+}
+
 setupSendActionReaction(page, context) {
   area.actionServiceChoose = areatmp.actionServiceChoose;
   area.reactionServiceChoose = areatmp.reactionServiceChoose;
   area.action = areatmp.action;
   area.reaction = areatmp.reaction;
+  getActionId(areatmp.action);
+  getRectionId(areatmp.reaction, areatmp.reactionServiceChoose);
   var resJson = {
     "actionParam": "UgoBoulestreau/POC-nodejs",
     "reactionParam": "1062389081973215262",
-    "actionId": 1,
-    "reactionId": 1,
+    "actionId": id.actionId,
+    "reactionId": id.reactionId,
     "userId": connectedUser["id"],
     "enabled": true,
   };
