@@ -66,7 +66,7 @@ chooseConnectionServices(page) async {
     buttoncol.colbuttonConnectionTrello = const Color.fromARGB(255, 14, 41, 2);
   } else if (page == "Microsoft Planner" &&
       buttonChoose.buttonChoosePlanner == false) {
-    await connectService('Google');
+    await connectService('Facebook');
     buttonChoose.buttonChoosePlanner = true;
     button.buttonConnectionPlanner = "Connected";
     buttoncheck.buttonConnectionPlanner = "Choose";
