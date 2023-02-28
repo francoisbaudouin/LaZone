@@ -104,7 +104,7 @@ getActionId(String action) {
   }
 }
 
-getRectionId(String action, String service) {
+getReactionId(String action, String service) {
   if (action == "Post a message" && service == "Discord") {
     id.reactionId = 1;
   } else if (action == "Create a category") {
@@ -126,7 +126,7 @@ setupSendActionReaction(page, context) {
   area.action = areatmp.action;
   area.reaction = areatmp.reaction;
   getActionId(areatmp.action);
-  getRectionId(areatmp.reaction, areatmp.reactionServiceChoose);
+  getReactionId(areatmp.reaction, areatmp.reactionServiceChoose);
   var resJson = {
     "actionParam": "UgoBoulestreau/POC-nodejs",
     "reactionParam": "1062389081973215262",
