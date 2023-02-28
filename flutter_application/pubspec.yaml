@@ -51,10 +51,17 @@ dependencies:
   oauth2: ^2.0.1
   oauth2_client: ^3.1.0
   flutter_web_auth_2: ^2.0.4
+  flutter_launcher_icons: ^0.12.0
+  icons_launcher: ^2.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  image_path: "assets/images/logo.png"
+  android: true
+  ios: true
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -110,7 +117,7 @@ flutter:
     - assets/images/github-logo.png
     - assets/images/google_logo.png
     - assets/images/Planner-logo.png
-    - assets/images/Trello-Symbole.png
+    - assets/images/Youtube-Symbole.png
     - assets/images/Microsoft-Teams-Symbole.png
     - assets/images/logo-twitter.png
     - assets/images/font.jpg
@@ -118,3 +125,5 @@ flutter:
     - assets/images/parchemin2.png
     - assets/images/parchemin.png
     - assets/images/button.jpg
+    - assets/images/font-overlay.png
+    - assets/images/nothing.png
