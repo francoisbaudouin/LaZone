@@ -78,6 +78,9 @@ app.use('/services', servicesRouter);
 app.use('/tokens', tokensRouter);
 
 app.get('/about.json', (req, res) => {
+  about_json[' client '][' host '] = req.client.remoteAddress;
+  about_json[' server '][' current_time '] = Date.now();
+  res.statusCode = 201;
   res.json(about_json);
 })
 

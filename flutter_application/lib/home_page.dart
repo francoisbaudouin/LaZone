@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application/Tools/text.dart';
 import 'package:side_navigation/side_navigation.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'Tools/create_cards.dart';
 import 'Tools/color.dart';
 import 'ServicePage/action_reaction_page.dart';
 import 'profile_page.dart';
 import 'Tools/setup_page.dart';
 import 'ServicePage/services_page.dart';
+import 'Tools/global.dart';
 
 const EdgeInsets blockMargin = EdgeInsets.fromLTRB(0, 100, 0, 0);
 
@@ -19,24 +21,24 @@ class HomePageServicesCards extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(15.0),
       child: SingleChildScrollView(
-      child: ResponsiveRowColumn(
-        layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
-            ? ResponsiveRowColumnType.COLUMN
-            : ResponsiveRowColumnType.ROW,
-        rowCrossAxisAlignment: CrossAxisAlignment.center,
-        rowSpacing: 25,
-        columnSpacing: 25,
-        children: [
-          ResponsiveRowColumnItem(
-            rowFlex: 1,
-            rowFit: FlexFit.loose,
-            child: ServiceCards(
-              title: "Github",
-              imagePath: "assets/images/github-logo.png",
-              textbutton :  buttoncheck.buttonConnectionGitHub,
-              colorButton : buttonchoosecol.colbuttonChooseGitHub,
+        child: ResponsiveRowColumn(
+          layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
+              ? ResponsiveRowColumnType.COLUMN
+              : ResponsiveRowColumnType.ROW,
+          rowCrossAxisAlignment: CrossAxisAlignment.center,
+          rowSpacing: 25,
+          columnSpacing: 25,
+          children: [
+            ResponsiveRowColumnItem(
+              rowFlex: 1,
+              rowFit: FlexFit.loose,
+              child: ServiceCards(
+                title: "Github",
+                imagePath: "assets/images/github-logo.png",
+                textbutton: buttoncheck.buttonConnectionGitHub,
+                colorButton: buttonchoosecol.colbuttonChooseGitHub,
+              ),
             ),
-          ),
           ResponsiveRowColumnItem(
             rowFlex: 1,
             rowFit: FlexFit.tight,
@@ -47,18 +49,18 @@ class HomePageServicesCards extends StatelessWidget {
               colorButton : buttonchoosecol.colbuttonChooseYoutube,
             ),
           ),
-          ResponsiveRowColumnItem(
-            rowFlex: 1,
-            rowFit: FlexFit.tight,
-            child: ServiceCards(
-              title: "Microsoft Planner",
-              imagePath: "assets/images/Planner-logo.png",
-              textbutton : buttoncheck.buttonConnectionPlanner,
-              colorButton : buttonchoosecol.colbuttonChoosePlanner,
+            ResponsiveRowColumnItem(
+              rowFlex: 1,
+              rowFit: FlexFit.tight,
+              child: ServiceCards(
+                title: "Microsoft Planner",
+                imagePath: "assets/images/Planner-logo.png",
+                textbutton: buttoncheck.buttonConnectionPlanner,
+                colorButton: buttonchoosecol.colbuttonChoosePlanner,
+              ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
       ),
     );
   }
@@ -97,9 +99,13 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int _selectedIndex = 0;
-  List<Widget> views =  [
+  List<Widget> views = [
     const SizedBox(
-        child : SetPageContent(title: "Welcome,", message: "Choose a service :", services: HomePageServicesCards(),),
+      child: SetPageContent(
+        title: "Welcome,",
+        message: "Choose a service :",
+        services: HomePageServicesCards(),
+      ),
     ),
     const SizedBox(
       child: SetPageServices(message: "All services"),
@@ -125,45 +131,53 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 40.0,
-        backgroundColor: const Color.fromARGB(255, 18, 21, 41),
-        elevation: 0.0,
-        title: const Center(child: Text('LaZone', textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: "OldLondon"))),
-        leading: IconButton(
-          color: Colors.white,
-          icon: const Icon(Icons.download),
-          onPressed: () {},
-        ),
-        actions: <Widget>[
-          IconButton(
+          toolbarHeight: 40.0,
+          backgroundColor: const Color.fromARGB(255, 18, 21, 41),
+          elevation: 0.0,
+          title: const Center(
+              child: Text('LaZone',
+                  textAlign: TextAlign.center,
+                  style:
+                      TextStyle(color: Colors.white, fontFamily: "OldLondon"))),
+          leading: IconButton(
             color: Colors.white,
-            icon: const Icon(Icons.logout),
-            onPressed: () {
-              Navigator.pushNamed(
-                context,
-                '/');
+            icon: const Icon(Icons.download),
+            onPressed: () async {
+              var url = Uri.parse("http://$serverAddress/about.json");
+              launchUrl(url);
             },
           ),
-        ]
-      ),
+          actions: <Widget>[
+            IconButton(
+              color: Colors.white,
+              icon: const Icon(Icons.logout),
+              onPressed: () {
+                Navigator.pushNamed(context, '/');
+              },
+            ),
+          ]),
       body: Row(
         children: [
           SideNavigationBar(
             theme: SideNavigationBarTheme(
               backgroundColor: const Color.fromARGB(255, 18, 21, 41),
-              togglerTheme: const SideNavigationBarTogglerTheme(expandIconColor: Colors.white, shrinkIconColor: Colors.white),
+              togglerTheme: const SideNavigationBarTogglerTheme(
+                  expandIconColor: Colors.white, shrinkIconColor: Colors.white),
               itemTheme: SideNavigationBarItemTheme(
-                        unselectedItemColor: Colors.white,
-                        selectedItemColor: const Color.fromARGB(255, 165, 216, 255),
-                        iconSize: 32.5,
-                        labelTextStyle: const TextStyle(
-                          fontFamily: "OldLondon",
-                        ),
-                        ),
+                unselectedItemColor: Colors.white,
+                selectedItemColor: const Color.fromARGB(255, 165, 216, 255),
+                iconSize: 32.5,
+                labelTextStyle: const TextStyle(
+                  fontFamily: "OldLondon",
+                ),
+              ),
               dividerTheme: SideNavigationBarDividerTheme.standard(),
             ),
             footer: const SideNavigationBarFooter(
-              label: Text('Reduce', style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontFamily: "OldLondon")),
+              label: Text('Reduce',
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      fontFamily: "OldLondon")),
             ),
             selectedIndex: _selectedIndex,
             items: const [
