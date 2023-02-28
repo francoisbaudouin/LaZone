@@ -49,15 +49,15 @@ async function basicConfig() {
   })
   await prisma.actions.create({
     data: {
-      name: "pull-request",
-      description: "pull request occured",
+      name: "repo",
+      description: "new repo occured",
       serviceName: "Github"
     }
   })
   await prisma.actions.create({
     data: {
-      name: "repo",
-      description: "new repo occured",
+      name: "pull-request",
+      description: "pull request occured",
       serviceName: "Github"
     }
   })
@@ -80,15 +80,15 @@ async function basicConfig() {
   })
   await prisma.reactions.create({
     data: {
-      name: "DiscordChannel",
-      description: "create a channel",
+      name: "DiscordCategory",
+      description: "create a category",
       serviceName: "Discord"
     }
   })
   await prisma.reactions.create({
     data: {
-      name: "DiscordCategory",
-      description: "create a category",
+      name: "DiscordChannel",
+      description: "create a channel",
       serviceName: "Discord"
     }
   })
