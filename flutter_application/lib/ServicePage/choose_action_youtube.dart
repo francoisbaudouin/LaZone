@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import '../Tools/create_cards.dart';
 
-class ChooseActionsTrello extends StatelessWidget {
-  const ChooseActionsTrello({super.key});
+class ChooseActionsYoutube extends StatelessWidget {
+  const ChooseActionsYoutube({super.key});
   @override
   Widget build(BuildContext context) {
     return Container (
@@ -16,37 +16,35 @@ class ChooseActionsTrello extends StatelessWidget {
             rowCrossAxisAlignment: CrossAxisAlignment.start,
             rowSpacing: 10,
             columnSpacing: 10,
-            children: [
+            children: const [
               ResponsiveRowColumnItem(
-                rowFlex: 1,
-                rowFit: FlexFit.tight,
-                child: CreateCardsOneChoice(
-                  title: "Create a cards",
-                  imagePath: "assets/images/Trello-Symbole.png",
-                  textbutton :  "Choose this action",
-                  colorButton : Colors.blue,
-                  choice : "Choose a table:"
-                ),
-              ),
-              const ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
                 child: ServiceCards(
-                  title: "Create a table",
-                  imagePath: "assets/images/Trello-Symbole.png",
+                  title: "Like a video",
+                  imagePath: "assets/images/Youtube-Symbole.png",
                   textbutton :  "Choose this action",
-                  colorButton : Colors.blue,
+                  colorButton :  Color.fromARGB(255, 219, 38, 38),
                 ),
               ),
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
-                child: CreateCardsOneChoice(
-                  title: "Create an organization",
-                  imagePath: "assets/images/Trello-Symbole.png",
+                child: ServiceCards(
+                  title: "A video was posted \nby one of my subscriptions",
+                  imagePath: "assets/images/Youtube-Symbole.png",
                   textbutton :  "Choose this action",
-                  colorButton : Colors.blue,
-                  choice : "Choose a table:"
+                  colorButton :  Color.fromARGB(255, 219, 38, 38),
+                ),
+              ),
+              ResponsiveRowColumnItem(
+                rowFlex: 1,
+                rowFit: FlexFit.tight,
+                child: ServiceCards(
+                  title: "One of my subscriptions \nhas posted in the community tab",
+                  imagePath: "assets/images/Youtube-Symbole.png",
+                  textbutton :  "Choose this action",
+                  colorButton :  Color.fromARGB(255, 219, 38, 38),
                 ),
               ),],
           ),
