@@ -19,12 +19,6 @@ class ProfileCards extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(8.0),
-      //decoration: const BoxDecoration(
-      //    image: DecorationImage(
-      //        image: AssetImage("assets/images/parchemin2.png"),
-      //        fit: BoxFit.fill,
-      //    ),
-      //),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
