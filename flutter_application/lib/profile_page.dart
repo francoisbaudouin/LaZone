@@ -19,12 +19,6 @@ class ProfileCards extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(8.0),
-      decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/parchemin2.png"),
-              fit: BoxFit.fill,
-          ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
@@ -63,22 +57,22 @@ class ProfilePageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   return Container(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.only(left: 150.0),
       child: SingleChildScrollView(
       child: ResponsiveRowColumn(
         layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
             ? ResponsiveRowColumnType.COLUMN
             : ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.center,
-        rowSpacing: 25,
-        columnSpacing: 25,
+        rowSpacing: 15,
+        columnSpacing: 0,
         children: [
           ResponsiveRowColumnItem(
             rowFlex: 1,
             rowFit: FlexFit.loose,
             child: ProfileCards(
               type : "Firstname :",
-              message: user.firstname,
+              message: connectedUser["firstname"],
               icon : const Icon(Icons.person, color: Colors.black),
             ),
           ),
@@ -87,7 +81,7 @@ class ProfilePageContent extends StatelessWidget {
             rowFit: FlexFit.tight,
             child: ProfileCards(
               type : "Lastname :",
-              message: user.lastname,
+              message: connectedUser["lastname"],
               icon : const Icon(Icons.person, color: Colors.black),
             ),
           ),
@@ -96,7 +90,7 @@ class ProfilePageContent extends StatelessWidget {
             rowFit: FlexFit.tight,
             child: ProfileCards(
               type : "Pseudo :",
-              message: user.pseudo,
+              message: connectedUser["pseudo"],
               icon : const Icon(Icons.person, color: Colors.black),
             ),
           ),
@@ -105,7 +99,7 @@ class ProfilePageContent extends StatelessWidget {
             rowFit: FlexFit.tight,
             child: ProfileCards(
               type : "Email :",
-              message: user.email,
+              message: connectedUser["email"],
               icon : const Icon(Icons.mail, color: Colors.black),
             ),
           ),
@@ -125,7 +119,7 @@ class ProfilePage extends StatelessWidget {
       width: 1080,
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage("assets/images/font.jpg"), 
+            image: AssetImage("assets/images/font-overlay.png"), 
             fit: BoxFit.cover),
       ),
       child: Scaffold (

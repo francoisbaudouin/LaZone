@@ -6,13 +6,13 @@ import '../Tools/title_cards.dart';
 
 
 String chooseImageServiceAction() {
-  String res = "";
+  String res = "assets/images/nothing.png";
 
   if (area.actionServiceChoose == "Github") {
     res = "assets/images/github-logo.png";
   }
-  if (area.actionServiceChoose == "Trello") {
-    res = "assets/images/Trello-Symbole.jpg";
+  if (area.actionServiceChoose == "Youtube") {
+    res = "assets/images/Youtube-Symbole.jpg";
   }
   if (area.actionServiceChoose == "Planner") {
     res = "assets/images/Planner-logo.jpg";
@@ -22,7 +22,7 @@ String chooseImageServiceAction() {
 }
 
 String chooseImageServiceReaction() {
-  String res = "";
+  String res = "assets/images/nothing.png";
 
   if (area.reactionServiceChoose == "Twitter") {
     res = "assets/images/logo-twitter.png";

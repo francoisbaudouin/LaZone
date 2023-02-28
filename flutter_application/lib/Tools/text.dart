@@ -1,32 +1,18 @@
 import 'package:flutter/material.dart';
 import 'color.dart';
 
-class User {
-  String firstname;
-  String lastname;
-  String pseudo;
-  String email;
-  User(
-      {this.firstname = "",
-      this.lastname = "",
-      this.pseudo = "",
-      this.email = ""});
-}
-
-User user = User();
-
 var connectedUser;
 
 class ButtonConnection {
   String buttonConnectionGitHub;
-  String buttonConnectionTrello;
+  String buttonConnectionYoutube;
   String buttonConnectionPlanner;
   String buttonConnectionDiscord;
   String buttonConnectionTwitter;
   String buttonConnectionTeams;
   ButtonConnection(
       {this.buttonConnectionGitHub = "Disconected",
-      this.buttonConnectionTrello = "Disconected",
+      this.buttonConnectionYoutube = "Disconected",
       this.buttonConnectionPlanner = "Disconected",
       this.buttonConnectionDiscord = "Disconected",
       this.buttonConnectionTwitter = "Disconected",
@@ -37,14 +23,14 @@ ButtonConnection button = ButtonConnection();
 
 class CheckConnectionText {
   String buttonConnectionGitHub;
-  String buttonConnectionTrello;
+  String buttonConnectionYoutube;
   String buttonConnectionPlanner;
   String buttonConnectionDiscord;
   String buttonConnectionTwitter;
   String buttonConnectionTeams;
   CheckConnectionText(
       {this.buttonConnectionGitHub = "Disconected",
-      this.buttonConnectionTrello = "Disconected",
+      this.buttonConnectionYoutube = "Disconected",
       this.buttonConnectionPlanner = "Disconected",
       this.buttonConnectionDiscord = "Disconected",
       this.buttonConnectionTwitter = "Disconected",
@@ -55,14 +41,14 @@ CheckConnectionText buttoncheck = CheckConnectionText();
 
 class CheckConnection {
   bool buttonChooseGitHub;
-  bool buttonChooseTrello;
+  bool buttonChooseYoutube;
   bool buttonChoosePlanner;
   bool buttonChooseDiscord;
   bool buttonChooseTwitter;
   bool buttonChooseTeams;
   CheckConnection(
       {this.buttonChooseGitHub = false,
-      this.buttonChooseTrello = false,
+      this.buttonChooseYoutube = false,
       this.buttonChoosePlanner = false,
       this.buttonChooseDiscord = false,
       this.buttonChooseTwitter = false,
