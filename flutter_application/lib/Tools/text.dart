@@ -22,6 +22,30 @@ class ButtonConnection {
   ButtonConnection({this.buttonConnectionGitHub = "Disconected", this.buttonConnectionTrello = "Disconected", this.buttonConnectionPlanner = "Disconected", this.buttonConnectionDiscord = "Disconected", this.buttonConnectionTwitter = "Disconected", this.buttonConnectionTeams = "Disconected"});
 }
 ButtonConnection button = ButtonConnection();
+
+class CheckConnectionText {
+  String buttonConnectionGitHub;
+  String buttonConnectionTrello;
+  String buttonConnectionPlanner;
+  String buttonConnectionDiscord;
+  String buttonConnectionTwitter;
+  String buttonConnectionTeams;
+  CheckConnectionText({this.buttonConnectionGitHub = "Disconected", this.buttonConnectionTrello = "Disconected", this.buttonConnectionPlanner = "Disconected", this.buttonConnectionDiscord = "Disconected", this.buttonConnectionTwitter = "Disconected", this.buttonConnectionTeams = "Disconected"});
+}
+CheckConnectionText buttoncheck = CheckConnectionText();
+
+class CheckConnection {
+  bool buttonChooseGitHub;
+  bool buttonChooseTrello;
+  bool buttonChoosePlanner;
+  bool buttonChooseDiscord;
+  bool buttonChooseTwitter;
+  bool buttonChooseTeams;
+  CheckConnection({this.buttonChooseGitHub = false, this.buttonChooseTrello = false, this.buttonChoosePlanner = false, this.buttonChooseDiscord = false, this.buttonChooseTwitter = false, this.buttonChooseTeams = false});
+}
+CheckConnection buttonChoose = CheckConnection();
+
+
 const String fontFamilies= "Google Sans";
 
 class Area {

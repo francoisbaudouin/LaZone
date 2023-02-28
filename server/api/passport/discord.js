@@ -2,7 +2,7 @@ const DiscordStrategy = require('passport-discord').Strategy;
 const passport = require('passport');
 require("dotenv").config();
 
-const scopes = ['bot'];
+const scopes = ['bot', 'identify'];
 
 passport.use(new DiscordStrategy({
   clientID: process.env.DISCORD_CLIENT_ID,
@@ -11,5 +11,9 @@ passport.use(new DiscordStrategy({
   scope: scopes
   },
   function(accessToken, refreshToken, profile, done) {
-    return done(null, profile);
+    try {
+      return done(undefined, false);
+    } catch (error) {
+      console.error(error);
+    }
 }));

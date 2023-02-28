@@ -25,3 +25,18 @@ class ButtonConnectionColor {
   ButtonConnectionColor({this.colbuttonConnectionGitHub = const Color.fromARGB(255, 68, 12, 10), this.colbuttonConnectionTrello = const Color.fromARGB(255, 68, 12, 10), this.colbuttonConnectionPlanner = const Color.fromARGB(255, 68, 12, 10), this.colbuttonConnectionDiscord = const Color.fromARGB(255, 68, 12, 10), this.colbuttonConnectionTwitter = const Color.fromARGB(255, 68, 12, 10), this.colbuttonConnectionTeams = const Color.fromARGB(255, 68, 12, 10)});
 }
 ButtonConnectionColor buttoncol = ButtonConnectionColor();
+
+const colorDisconnected= const Color.fromARGB(255, 97, 97, 97);
+const colorConnected = const Color.fromARGB(255, 0, 0, 0);
+
+
+class ButtonChooseColor {
+  Color colbuttonChooseGitHub;
+  Color colbuttonChooseTrello;
+  Color colbuttonChoosePlanner;
+  Color colbuttonChooseDiscord;
+  Color colbuttonChooseTwitter;
+  Color colbuttonChooseTeams;
+  ButtonChooseColor({this.colbuttonChooseGitHub = colorDisconnected, this.colbuttonChooseTrello = colorDisconnected, this.colbuttonChoosePlanner = colorDisconnected, this.colbuttonChooseDiscord = colorDisconnected, this.colbuttonChooseTwitter = colorDisconnected, this.colbuttonChooseTeams = colorDisconnected});
+}
+ButtonChooseColor buttonchoosecol = ButtonChooseColor();

@@ -28,34 +28,48 @@ connectService(serviceName) async {
 }
 
 chooseConnectionServices(page) async {
-  if (page == "Twitter") {
-    areatmp.reactionServiceChoose = page;
+  if (page == "Twitter" /*&& buttonChoose.buttonChooseTwitter == false*/) {
     await connectService('Twitter');
+    buttonChoose.buttonChooseTwitter = true;
     button.buttonConnectionTwitter = "Connected";
+    buttoncheck.buttonConnectionTwitter = "Choose";
+    buttonchoosecol.colbuttonChooseTwitter = colorConnected;
     buttoncol.colbuttonConnectionTwitter = const Color.fromARGB(255, 14, 41, 2);
-  } else if (page == "Discord") {
-    areatmp.reactionServiceChoose = page;
+  } else if (page == "Discord" && buttonChoose.buttonChooseDiscord == false) {
     await connectService('Discord');
+    buttonChoose.buttonChooseDiscord = true;
     button.buttonConnectionDiscord = "Connected";
+    buttoncheck.buttonConnectionDiscord = "Choose";
+    buttonchoosecol.colbuttonChooseDiscord = colorConnected;
     buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 14, 41, 2);
-  } else if (page == "Microsoft Teams") {
-    areatmp.reactionServiceChoose = page;
+  } else if (page == "Microsoft Teams" &&
+      buttonChoose.buttonChooseTeams == false) {
     await connectService('Microsoft');
+    buttonChoose.buttonChooseTeams = true;
     button.buttonConnectionTeams = "Connected";
+    buttoncheck.buttonConnectionTeams = "Choose";
+    buttonchoosecol.colbuttonChooseTeams = colorConnected;
     buttoncol.colbuttonConnectionTeams = const Color.fromARGB(255, 14, 41, 2);
-  } else if (page == "Github") {
-    areatmp.actionServiceChoose = page;
+  } else if (page == "Github" && buttonChoose.buttonChooseGitHub == false) {
     await connectService('Github');
+    buttonChoose.buttonChooseGitHub = true;
     button.buttonConnectionGitHub = "Connected";
+    buttoncheck.buttonConnectionGitHub = "Choose";
+    buttonchoosecol.colbuttonChooseGitHub = colorConnected;
     buttoncol.colbuttonConnectionGitHub = const Color.fromARGB(255, 14, 41, 2);
-  } else if (page == "Trello") {
-    areatmp.actionServiceChoose = page;
+  } else if (page == "Trello" && buttonChoose.buttonChooseTrello == false) {
+    buttonChoose.buttonChooseTrello = true;
     button.buttonConnectionTrello = "Connected";
+    buttoncheck.buttonConnectionTrello = "Choose";
+    buttonchoosecol.colbuttonChooseTrello = colorConnected;
     buttoncol.colbuttonConnectionTrello = const Color.fromARGB(255, 14, 41, 2);
-  } else if (page == "Microsoft Planner") {
-    await connectService('Microsoft');
-    areatmp.actionServiceChoose = page;
+  } else if (page == "Microsoft Planner" &&
+      buttonChoose.buttonChoosePlanner == false) {
+    await connectService('Google');
+    buttonChoose.buttonChoosePlanner = true;
     button.buttonConnectionPlanner = "Connected";
+    buttoncheck.buttonConnectionPlanner = "Choose";
+    buttonchoosecol.colbuttonChoosePlanner = colorConnected;
     buttoncol.colbuttonConnectionPlanner = const Color.fromARGB(255, 14, 41, 2);
   }
 }

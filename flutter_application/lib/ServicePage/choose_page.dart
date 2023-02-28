@@ -15,10 +15,8 @@ import 'dart:convert';
 import '../Tools/setup_page.dart';
 
 chooseReactionService(page, context) async {
-  if (page == "Twitter") {
+  if (page == "Twitter" && buttonChoose.buttonChooseTwitter == true) {
     areatmp.reactionServiceChoose = page;
-    button.buttonConnectionTwitter = "Connected";
-    buttoncol.colbuttonConnectionTwitter = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -27,10 +25,8 @@ chooseReactionService(page, context) async {
               services: ChooseReactionsTwitter())),
     );
   }
-  if (page == "Discord") {
+  if (page == "Discord" && buttonChoose.buttonChooseDiscord == true) {
     areatmp.reactionServiceChoose = page;
-    button.buttonConnectionDiscord = "Connected";
-    buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -39,10 +35,8 @@ chooseReactionService(page, context) async {
               services: ChooseReactionsDiscord())),
     );
   }
-  if (page == "Microsoft Teams") {
+  if (page == "Microsoft Teams" && buttonChoose.buttonChooseTeams == true) {
     areatmp.reactionServiceChoose = page;
-    button.buttonConnectionTeams = "Connected";
-    buttoncol.colbuttonConnectionTeams = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -54,30 +48,24 @@ chooseReactionService(page, context) async {
 }
 
 chooseActionService(page, context) async {
-  if (page == "Github") {
+  if (page == "Github" && buttonChoose.buttonChooseGitHub == true) {
     areatmp.actionServiceChoose = page;
-    button.buttonConnectionGitHub = "Connected";
-    buttoncol.colbuttonConnectionGitHub = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
               message: "Choose your action:", services: ChooseActionsGithub())),
     );
-  } else if (page == "Trello") {
+  } else if (page == "Trello" && buttonChoose.buttonChooseTrello == true) {
     areatmp.actionServiceChoose = page;
-    button.buttonConnectionTrello = "Connected";
-    buttoncol.colbuttonConnectionTrello = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
               message: "Choose your action:", services: ChooseActionsTrello())),
     );
-  } else if (page == "Microsoft Planner") {
+  } else if (page == "Microsoft Planner" && buttonChoose.buttonChoosePlanner) {
     areatmp.actionServiceChoose = page;
-    button.buttonConnectionPlanner = "Connected";
-    buttoncol.colbuttonConnectionPlanner = const Color.fromARGB(255, 14, 41, 2);
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -108,9 +96,9 @@ setupSendActionReaction(page, context) {
   area.reaction = areatmp.reaction;
   var resJson = {
     "actionParam": "UgoBoulestreau/POC-nodejs",
-    "reactionParam": "1062389081973215262",
+    "reactionParam": "",
     "actionId": 1,
-    "reactionId": 1,
+    "reactionId": 4,
     "userId": connectedUser["id"],
     "enabled": true,
   };

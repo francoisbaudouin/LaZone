@@ -30,20 +30,26 @@ async function basicConfig() {
       description: "This is microsoft service, used for teams and planner",
     }
   })
+  await prisma.services.create({
+    data: {
+      name: "Google",
+      description: "This is Google service",
+    }
+  })
 
   //ACTION
 
   //git
   await prisma.actions.create({
     data: {
-      name: "new issue",
+      name: "issue",
       description: "new issue occured",
       serviceName: "Github"
     }
   })
   await prisma.actions.create({
     data: {
-      name: "pull request",
+      name: "pull-request",
       description: "pull request occured",
       serviceName: "Github"
     }
@@ -57,6 +63,13 @@ async function basicConfig() {
   })
 
   //REACTION
+  await prisma.reactions.create({
+    data: {
+      name: "TwitterTweet",
+      description: "tweet something",
+      serviceName: "Twitter"
+    }
+  })
   await prisma.reactions.create({
     data: {
       name: "DiscordMessage",
