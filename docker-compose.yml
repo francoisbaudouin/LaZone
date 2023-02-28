@@ -1,40 +1,12 @@
 version: '3.8'
 services:
 
-  ##### SERVER #####
-
-  server:
-    container_name: server
-    build: ./server
-    ports:
-      - "8080:8080"
-
-  ##### CLIENT #####
-
-  client_mobile:
-    container_name: client_mobile
-    build:
-      context: ./flutter_application
-      dockerfile: Dockerfilemobile
-    volumes:
-      - client:/home
-
-  client_web:
-    container_name: client_web
-    build:
-      context: ./flutter_application
-      dockerfile: Dockerfileweb
-    ports:
-      - "8081:8081"
-    depends_on:
-      - server
-      - client_mobile
-    volumes:
-      - client:/home
-
   ##### DB #####
 
   db-mysql:
+    secrets:
+      - db_root_password
+      - db_password
     build:
       context: ./server/db
       dockerfile: Dockerfile
@@ -44,9 +16,58 @@ services:
     expose:
       - '3306'
     volumes:
-      - client:/var/lib/mysql
+      - db:/var/lib/mysql
+      - "./server/db/schema.sql:/docker-entrypoint-initdb.d/init.sql"
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+      MYSQL_DATABASE: db_lazone
+      MYSQL_USER: dev
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
+
+  ##### SERVER #####
+
+  server:
+    env_file:
+      - server/.env
+    container_name: server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+
+  ##### CLIENT #####
+
+  client_mobile:
+    container_name: client_mobile
+    build:
+      context: ./flutter_application
+      dockerfile: mobile.Dockerfile
+    volumes:
+      - client:/areapp/
+
+  client_web:
+    container_name: client_web
+    build:
+      context: ./flutter_application
+      dockerfile: web.Dockerfile
+    ports:
+      - "8081:8081"
+    depends_on:
+      - server
+      - client_mobile
+    volumes:
+      - client:/areapp/
+
+secrets:
+   db_password:
+     file: db_password.txt
+   db_root_password:
+     file: db_root_password.txt
 
 volumes:
   client:
+    driver: local
+  db:
     driver: local

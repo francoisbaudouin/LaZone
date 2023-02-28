@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id         Int      @id @default(autoincrement())
+  email      String   @unique(map: "email") @db.VarChar(255)
+  password   String   @db.VarChar(255)
+  lastname   String   @db.VarChar(255)
+  firstname  String   @db.VarChar(255)
+  pseudo     String   @db.VarChar(255)
+  created_at DateTime @default(now()) @db.DateTime(0)
+  areas      Areas[]
+  tokens     Tokens[]
+}
+
+model Services {
+  id                Int    @id @default(autoincrement())
+  name              String @unique
+  description       String
+  subscribedTokens  Tokens[]
+  actions           Actions[]
+  reactions         Reactions[]
+}
+
+model Tokens {
+  user                users     @relation(fields: [userId], references: [id])
+  userId              Int
+  relatedService      Services  @relation(fields: [relatedServiceName], references: [name])
+  relatedServiceName  String
+  accessTokens        String    @unique
+  refreshTokens       String
+}
+
+model Areas {
+  id              Int       @id @default(autoincrement())
+  user            users     @relation(fields: [userId], references: [id])
+  action          Actions   @relation(fields: [actionsId], references: [id])
+  reaction        Reactions @relation(fields: [reactionsId], references: [id])
+  actionsParams   String
+  reactionsParams String
+  userId          Int
+  reactionsId     Int
+  actionsId       Int
+  enabled         Boolean
+  timestamp DateTime @default(now()) @db.DateTime(0)
+}
+
+model Actions {
+  id            Int    @id @default(autoincrement())
+  name          String
+  description   String
+  areas         Areas[]
+  service       Services @relation(fields: [serviceName], references: [name])
+  serviceName   String
+}
+
+model Reactions {
+  id            Int    @id @default(autoincrement())
+  name          String
+  description   String
+  areas         Areas[]
+  service       Services @relation(fields: [serviceName], references: [name])
+  serviceName   String
+}

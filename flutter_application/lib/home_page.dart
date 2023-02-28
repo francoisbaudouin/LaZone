@@ -1,89 +1,230 @@
 import 'package:flutter/material.dart';
-import 'navigate_bar.dart';
+import 'package:flutter_application/Tools/text.dart';
+import 'package:side_navigation/side_navigation.dart';
+import 'package:responsive_framework/responsive_framework.dart';
+import 'Tools/create_cards.dart';
+import 'Tools/color.dart';
+import 'ServicePage/action_reaction_page.dart';
+import 'profile_page.dart';
+import 'Tools/setup_page.dart';
+import 'ServicePage/services_page.dart';
+
+const EdgeInsets blockMargin = EdgeInsets.fromLTRB(0, 100, 0, 0);
+
+class HomePageServicesCards extends StatelessWidget {
+  const HomePageServicesCards({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(15.0),
+      child: SingleChildScrollView(
+      child: ResponsiveRowColumn(
+        layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
+            ? ResponsiveRowColumnType.COLUMN
+            : ResponsiveRowColumnType.ROW,
+        rowCrossAxisAlignment: CrossAxisAlignment.center,
+        rowSpacing: 25,
+        columnSpacing: 25,
+        children: [
+          ResponsiveRowColumnItem(
+            rowFlex: 1,
+            rowFit: FlexFit.loose,
+            child: ServiceCards(
+              title: "Github",
+              imagePath: "assets/images/github-logo.png",
+              textbutton :  buttoncheck.buttonConnectionGitHub,
+              colorButton : buttonchoosecol.colbuttonChooseGitHub,
+            ),
+          ),
+          ResponsiveRowColumnItem(
+            rowFlex: 1,
+            rowFit: FlexFit.tight,
+            child: ServiceCards(
+              title: "Trello",
+              imagePath: "assets/images/Trello-Symbole.png",
+              textbutton :  buttoncheck.buttonConnectionTrello,
+              colorButton : buttonchoosecol.colbuttonChooseTrello,
+            ),
+          ),
+          ResponsiveRowColumnItem(
+            rowFlex: 1,
+            rowFit: FlexFit.tight,
+            child: ServiceCards(
+              title: "Microsoft Planner",
+              imagePath: "assets/images/Planner-logo.png",
+              textbutton : buttoncheck.buttonConnectionPlanner,
+              colorButton : buttonchoosecol.colbuttonChoosePlanner,
+            ),
+          ),
+        ],
+      ),
+      ),
+    );
+  }
+}
+
+const List<Condition> blockWidthConstraints = [
+  Condition.equals(name: MOBILE, value: BoxConstraints(maxWidth: 600)),
+  Condition.equals(name: TABLET, value: BoxConstraints(maxWidth: 700)),
+  Condition.largerThan(name: TABLET, value: BoxConstraints(maxWidth: 1280)),
+];
+
+class BlockWrapper extends StatelessWidget {
+  final Widget widget;
+
+  const BlockWrapper(this.widget, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ResponsiveConstraints(
+          constraintsWhen: blockWidthConstraints, child: widget),
+    );
+  }
+}
+
+class HomeView extends StatefulWidget {
+  final int currentIndex;
+
+  /// Callback function
+  final Function(int selectedIndex) onTapped;
+  const HomeView(this.currentIndex, this.onTapped);
+
+  @override
+  _HomeViewState createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  int _selectedIndex = 0;
+  List<Widget> views =  [
+    const SizedBox(
+        child : SetPageContent(title: "Welcome,", message: "Choose a service :", services: HomePageServicesCards(),),
+    ),
+    const SizedBox(
+      child: SetPageServices(message: "All services"),
+    ),
+    const SizedBox(
+      child: CreateactionReactionPage(),
+    ),
+    const SizedBox(
+      child: ProfilePage(),
+    ),
+    const Center(
+      child: Text('Settings'),
+    ),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.currentIndex;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 40.0,
+        backgroundColor: const Color.fromARGB(255, 18, 21, 41),
+        elevation: 0.0,
+        title: const Center(child: Text('LaZone', textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: "OldLondon"))),
+        leading: IconButton(
+          color: Colors.white,
+          icon: const Icon(Icons.download),
+          onPressed: () {},
+        ),
+        actions: <Widget>[
+          IconButton(
+            color: Colors.white,
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                '/');
+            },
+          ),
+        ]
+      ),
+      body: Row(
+        children: [
+          SideNavigationBar(
+            theme: SideNavigationBarTheme(
+              backgroundColor: const Color.fromARGB(255, 18, 21, 41),
+              togglerTheme: const SideNavigationBarTogglerTheme(expandIconColor: Colors.white, shrinkIconColor: Colors.white),
+              itemTheme: SideNavigationBarItemTheme(
+                        unselectedItemColor: Colors.white,
+                        selectedItemColor: const Color.fromARGB(255, 165, 216, 255),
+                        iconSize: 32.5,
+                        labelTextStyle: const TextStyle(
+                          fontFamily: "OldLondon",
+                        ),
+                        ),
+              dividerTheme: SideNavigationBarDividerTheme.standard(),
+            ),
+            footer: const SideNavigationBarFooter(
+              label: Text('Reduce', style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontFamily: "OldLondon")),
+            ),
+            selectedIndex: _selectedIndex,
+            items: const [
+              SideNavigationBarItem(
+                icon: Icons.integration_instructions,
+                label: 'Action service',
+              ),
+              SideNavigationBarItem(
+                icon: Icons.account_tree_sharp,
+                label: 'Services',
+              ),
+              SideNavigationBarItem(
+                icon: Icons.account_tree_sharp,
+                label: 'Actions/Reactions',
+              ),
+              SideNavigationBarItem(
+                icon: Icons.person,
+                label: 'Account',
+              ),
+              SideNavigationBarItem(
+                icon: Icons.settings,
+                label: 'Settings',
+              ),
+            ],
+            onTap: (index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+          ),
+          Expanded(
+            child: views.elementAt(_selectedIndex),
+          )
+        ],
+      ),
+    );
+  }
+}
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      drawer: const NavBar(),
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        backgroundColor: const Color(0xFFE94057),
-        title: Center(
-            child: Text(widget.title),
-        ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return HomeView(_currentIndex, (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          });
+        },
       ),
-      body: Center(
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
