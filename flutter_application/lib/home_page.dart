@@ -41,10 +41,10 @@ class HomePageServicesCards extends StatelessWidget {
             rowFlex: 1,
             rowFit: FlexFit.tight,
             child: ServiceCards(
-              title: "Trello",
-              imagePath: "assets/images/Trello-Symbole.png",
-              textbutton :  buttoncheck.buttonConnectionTrello,
-              colorButton : buttonchoosecol.colbuttonChooseTrello,
+              title: "Youtube",
+              imagePath: "assets/images/Youtube-Symbole.png",
+              textbutton :  buttoncheck.buttonConnectionYoutube,
+              colorButton : buttonchoosecol.colbuttonChooseYoutube,
             ),
           ),
           ResponsiveRowColumnItem(

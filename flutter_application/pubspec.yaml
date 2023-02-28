@@ -110,7 +110,7 @@ flutter:
     - assets/images/github-logo.png
     - assets/images/google_logo.png
     - assets/images/Planner-logo.png
-    - assets/images/Trello-Symbole.png
+    - assets/images/Youtube-Symbole.png
     - assets/images/Microsoft-Teams-Symbole.png
     - assets/images/logo-twitter.png
     - assets/images/font.jpg
@@ -118,3 +118,4 @@ flutter:
     - assets/images/parchemin2.png
     - assets/images/parchemin.png
     - assets/images/button.jpg
+    - assets/images/font-overlay.png

@@ -17,12 +17,12 @@ const Color border = Color(0x20000000);
 
 class ButtonConnectionColor {
   Color colbuttonConnectionGitHub;
-  Color colbuttonConnectionTrello;
+  Color colbuttonConnectionYoutube;
   Color colbuttonConnectionPlanner;
   Color colbuttonConnectionDiscord;
   Color colbuttonConnectionTwitter;
   Color colbuttonConnectionTeams;
-  ButtonConnectionColor({this.colbuttonConnectionGitHub = const Color.fromARGB(255, 68, 12, 10), this.colbuttonConnectionTrello = const Color.fromARGB(255, 68, 12, 10), this.colbuttonConnectionPlanner = const Color.fromARGB(255, 68, 12, 10), this.colbuttonConnectionDiscord = const Color.fromARGB(255, 68, 12, 10), this.colbuttonConnectionTwitter = const Color.fromARGB(255, 68, 12, 10), this.colbuttonConnectionTeams = const Color.fromARGB(255, 68, 12, 10)});
+  ButtonConnectionColor({this.colbuttonConnectionGitHub = const Color.fromARGB(255, 68, 12, 10), this.colbuttonConnectionYoutube = const Color.fromARGB(255, 68, 12, 10), this.colbuttonConnectionPlanner = const Color.fromARGB(255, 68, 12, 10), this.colbuttonConnectionDiscord = const Color.fromARGB(255, 68, 12, 10), this.colbuttonConnectionTwitter = const Color.fromARGB(255, 68, 12, 10), this.colbuttonConnectionTeams = const Color.fromARGB(255, 68, 12, 10)});
 }
 ButtonConnectionColor buttoncol = ButtonConnectionColor();
 
@@ -32,11 +32,11 @@ const colorConnected = const Color.fromARGB(255, 0, 0, 0);
 
 class ButtonChooseColor {
   Color colbuttonChooseGitHub;
-  Color colbuttonChooseTrello;
+  Color colbuttonChooseYoutube;
   Color colbuttonChoosePlanner;
   Color colbuttonChooseDiscord;
   Color colbuttonChooseTwitter;
   Color colbuttonChooseTeams;
-  ButtonChooseColor({this.colbuttonChooseGitHub = colorDisconnected, this.colbuttonChooseTrello = colorDisconnected, this.colbuttonChoosePlanner = colorDisconnected, this.colbuttonChooseDiscord = colorDisconnected, this.colbuttonChooseTwitter = colorDisconnected, this.colbuttonChooseTeams = colorDisconnected});
+  ButtonChooseColor({this.colbuttonChooseGitHub = colorDisconnected, this.colbuttonChooseYoutube = colorDisconnected, this.colbuttonChoosePlanner = colorDisconnected, this.colbuttonChooseDiscord = colorDisconnected, this.colbuttonChooseTwitter = colorDisconnected, this.colbuttonChooseTeams = colorDisconnected});
 }
 ButtonChooseColor buttonchoosecol = ButtonChooseColor();

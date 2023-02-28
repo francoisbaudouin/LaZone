@@ -55,12 +55,12 @@ chooseConnectionServices(page) async {
     buttoncheck.buttonConnectionGitHub = "Choose";
     buttonchoosecol.colbuttonChooseGitHub = colorConnected;
     buttoncol.colbuttonConnectionGitHub = const Color.fromARGB(255, 14, 41, 2);
-  } else if (page == "Trello" && buttonChoose.buttonChooseTrello == false) {
-    buttonChoose.buttonChooseTrello = true;
-    button.buttonConnectionTrello = "Connected";
-    buttoncheck.buttonConnectionTrello = "Choose";
-    buttonchoosecol.colbuttonChooseTrello = colorConnected;
-    buttoncol.colbuttonConnectionTrello = const Color.fromARGB(255, 14, 41, 2);
+  } else if (page == "Youtube" && buttonChoose.buttonChooseYoutube == false) {
+    buttonChoose.buttonChooseYoutube = true;
+    button.buttonConnectionYoutube = "Connected";
+    buttoncheck.buttonConnectionYoutube = "Choose";
+    buttonchoosecol.colbuttonChooseYoutube = colorConnected;
+    buttoncol.colbuttonConnectionYoutube = const Color.fromARGB(255, 14, 41, 2);
   } else if (page == "Microsoft Planner" && buttonChoose.buttonChoosePlanner == false) {
     buttonChoose.buttonChoosePlanner = true;
     button.buttonConnectionPlanner = "Connected";
@@ -217,10 +217,10 @@ class ActionsServicesCards extends StatelessWidget {
               rowFlex: 1,
               rowFit: FlexFit.tight,
               child: ServicesCardsInformations(
-                title: "Trello",
-                imagePath: "assets/images/Trello-Symbole.png",
-                textbutton: button.buttonConnectionTrello,
-                colorButton: buttoncol.colbuttonConnectionTrello,
+                title: "Youtube",
+                imagePath: "assets/images/Youtube-Symbole.png",
+                textbutton: button.buttonConnectionYoutube,
+                colorButton: buttoncol.colbuttonConnectionYoutube,
               ),
             ),
             ResponsiveRowColumnItem(

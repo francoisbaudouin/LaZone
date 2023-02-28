@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/ServicePage/choose_action_youtube.dart';
 import 'package:flutter_application/ServicePage/choose_reaction_discord.dart';
 import 'package:flutter_application/ServicePage/choose_reaction_twitter.dart';
 import 'package:flutter_application/home_page.dart';
 import 'reaction_service_page.dart';
-import '../Tools/color.dart';
 import '../Tools/text.dart';
 import 'choose_action_github.dart';
 import 'choose_action_planner.dart';
-import 'choose_action_trello.dart';
 import 'choose_reaction_teams.dart';
 import 'confirm_area_page.dart';
 import 'package:http/http.dart' as http;
@@ -57,13 +56,13 @@ chooseActionService(page, context) async {
           builder: (context) => const SetPageContentService(
               message: "Choose your action:", services: ChooseActionsGithub())),
     );
-  } else if (page == "Trello" && buttonChoose.buttonChooseTrello == true) {
+  } else if (page == "Youtube" && buttonChoose.buttonChooseYoutube == true) {
     areatmp.actionServiceChoose = page;
     Navigator.push(
       context,
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
-              message: "Choose your action:", services: ChooseActionsTrello())),
+              message: "Choose your action:", services: ChooseActionsYoutube())),
     );
   } else if (page == "Microsoft Planner" && buttonChoose.buttonChoosePlanner) {
     areatmp.actionServiceChoose = page;
