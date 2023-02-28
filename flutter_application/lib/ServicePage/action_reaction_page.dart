@@ -6,7 +6,7 @@ import '../Tools/title_cards.dart';
 
 
 String chooseImageServiceAction() {
-  String res = "";
+  String res = "assets/images/nothing.png";
 
   if (area.actionServiceChoose == "Github") {
     res = "assets/images/github-logo.png";
@@ -22,7 +22,7 @@ String chooseImageServiceAction() {
 }
 
 String chooseImageServiceReaction() {
-  String res = "";
+  String res = "assets/images/nothing.png";
 
   if (area.reactionServiceChoose == "Twitter") {
     res = "assets/images/logo-twitter.png";

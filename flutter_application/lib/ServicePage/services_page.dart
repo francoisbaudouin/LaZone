@@ -193,14 +193,14 @@ class ActionsServicesCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(0.0),
       child: SingleChildScrollView(
         child: ResponsiveRowColumn(
           layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
               ? ResponsiveRowColumnType.COLUMN
               : ResponsiveRowColumnType.ROW,
           rowCrossAxisAlignment: CrossAxisAlignment.center,
-          rowSpacing: 25,
+          rowSpacing: 0,
           columnSpacing: 25,
           children: [
             ResponsiveRowColumnItem(
@@ -243,8 +243,10 @@ class ActionsServicesCards extends StatelessWidget {
 class SetPageServices extends StatelessWidget {
   const SetPageServices({
     Key? key,
+    required this.title,
     required this.message,
   }) : super(key: key);
+  final String title;
   final String message;
   @override
   Widget build(BuildContext context) {
@@ -253,7 +255,8 @@ class SetPageServices extends StatelessWidget {
       width: 1080,
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage("assets/images/font.jpg"), fit: BoxFit.cover),
+            image: AssetImage("assets/images/font.jpg"), 
+            fit: BoxFit.cover),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -261,16 +264,13 @@ class SetPageServices extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                TitleCards(
-                  message: message,
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
+                const SizedBox(height: 20,),
+                WelcomCards(title: title),
+                const SizedBox(height: 70,),
+                TitleCards(message: message,),
+                const SizedBox(height: 30,),
                 const ActionsServicesCards(),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10,),
                 const ReactionServicesCards(),
               ],
             ),
