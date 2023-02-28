@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../home_page.dart';
 import '../Tools/text.dart';
+import '../Tools/global.dart';
 
 class ButtonCreateAccount extends StatelessWidget {
   ButtonCreateAccount(
@@ -31,23 +32,27 @@ class ButtonCreateAccount extends StatelessWidget {
           user.pseudo = pseudo_;
           signup(firstname_, lastname_, pseudo_, email_, password_, context);
         } else {
-            throw Exception('Failed to login.');
+          throw Exception('Failed to login.');
         }
       },
       child: Container(
         alignment: Alignment.center,
         width: 250,
         decoration: const BoxDecoration(
-             image: DecorationImage(
-                   image: AssetImage("assets/images/button.jpg"),
-                   fit: BoxFit.fitWidth,
-               ),),
+          image: DecorationImage(
+            image: AssetImage("assets/images/button.jpg"),
+            fit: BoxFit.fitWidth,
+          ),
+        ),
         child: const Padding(
           padding: EdgeInsets.all(50.0),
           child: Text(
             'Create account',
             style: TextStyle(
-                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold, fontFamily: "OldLondon"),
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                fontFamily: "OldLondon"),
           ),
         ),
       ),
@@ -74,7 +79,10 @@ class LoginAlready extends StatelessWidget {
             },
             child: const Text(
               "Already sign in ?",
-              style: TextStyle(color: Color.fromARGB(255, 74, 8, 136), fontFamily: "OldLondon", fontSize: 20),
+              style: TextStyle(
+                  color: Color.fromARGB(255, 74, 8, 136),
+                  fontFamily: "OldLondon",
+                  fontSize: 20),
             ),
           )
         ],
@@ -84,7 +92,7 @@ class LoginAlready extends StatelessWidget {
 }
 
 signup(firstname, lastname, pseudo, email, password, context) async {
-  var url = Uri.parse("http://localhost:8080/auth/signUp");
+  var url = Uri.parse("http://$serverAddress/auth/signUp");
   final http.Response response = await http.post(
     url,
     headers: <String, String>{
