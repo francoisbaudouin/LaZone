@@ -1,4 +1,6 @@
 const { getFromRepo, getNewRepos } = require("./action/githubAction.js");
+const { getNewPosts, getNewAlbum } = require("./action/facebookAction.js");
+
 const { sendMessage, createChannel, client } = require("./reaction/discordReaction.js");
 
 const { sendTweet } = require("./reaction/twitterReaction.js")
@@ -9,6 +11,8 @@ const actionMap = new Map([
   [1, getFromRepo],
   [2, getNewRepos],
   [3, getFromRepo],
+  [4, getNewPosts],
+  [5, getNewAlbum],
 ]);
 
 const reactionMap = new Map([
@@ -27,7 +31,7 @@ function activateAreasFromUser(user) {
     user.areas.forEach(async element => {
       const action = user.tokens.find(token => token.relatedServiceName == element.actionsServiceName)
       const reaction = user.tokens.find(token => token.relatedServiceName == element.reactionsServiceName)
-      var area = {
+      let area = {
         userId: user.id,
         tokens: {
           action: (action ? action.accessTokens : undefined),
@@ -43,6 +47,7 @@ function activateAreasFromUser(user) {
       };
       try {
         await activateArea(area)
+        console.log("after activate area = " + area.timestamp);
         await updateAreaTimestamp(element.id, area.timestamp);
       } catch (error) {
         console.error(error);

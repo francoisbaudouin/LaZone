@@ -62,7 +62,8 @@ chooseActionService(page, context) async {
       context,
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
-              message: "Choose your action:", services: ChooseActionsYoutube())),
+              message: "Choose your action:",
+              services: ChooseActionsYoutube())),
     );
   } else if (page == "Microsoft Planner" && buttonChoose.buttonChoosePlanner) {
     areatmp.actionServiceChoose = page;
@@ -99,17 +100,18 @@ getActionId(String action) {
   } else if (action == "Create a pull request") {
     areatmp.actionParam = "UgoBoulestreau/POC-nodejs";
     id.actionId = 3;
+  } else if (action == "Like a video") {
+    id.actionId = 4;
+  } else if (action == "A video was posted \nby one of my subscriptions") {
+    id.actionId = 5;
+  } else if (action ==
+      "One of my subscriptions \nhas posted in the community tab") {
+    id.actionId = 6;
   } else if (action == "Create a plan") {
     areatmp.actionParam = "";
-    id.actionId = 4;
+    id.actionId = 7;
   } else if (action == "Create a task") {
     areatmp.actionParam = "";
-    id.actionId = 5;
-  } else if (action == "Like a video") {
-    id.actionId = 6;
-  } else if (action == "A video was posted \nby one of my subscriptions") {
-    id.actionId = 7;
-  } else if (action == "One of my subscriptions \nhas posted in the community tab") {
     id.actionId = 8;
   }
 }
