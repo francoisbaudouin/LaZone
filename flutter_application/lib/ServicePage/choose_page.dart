@@ -16,7 +16,7 @@ import '../Tools/global.dart';
 
 chooseReactionService(page, context) async {
   if (page == "Twitter" && buttonChoose.buttonChooseTwitter == true) {
-    areatmp.reactionServiceChoose = page;
+    area.reactionServiceChoose = page;
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -26,7 +26,7 @@ chooseReactionService(page, context) async {
     );
   }
   if (page == "Discord" && buttonChoose.buttonChooseDiscord == true) {
-    areatmp.reactionServiceChoose = page;
+    area.reactionServiceChoose = page;
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -36,7 +36,7 @@ chooseReactionService(page, context) async {
     );
   }
   if (page == "Microsoft Teams" && buttonChoose.buttonChooseTeams == true) {
-    areatmp.reactionServiceChoose = page;
+    area.reactionServiceChoose = page;
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -49,7 +49,7 @@ chooseReactionService(page, context) async {
 
 chooseActionService(page, context) async {
   if (page == "Github" && buttonChoose.buttonChooseGitHub == true) {
-    areatmp.actionServiceChoose = page;
+    area.actionServiceChoose = page;
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -57,7 +57,7 @@ chooseActionService(page, context) async {
               message: "Choose your action:", services: ChooseActionsGithub())),
     );
   } else if (page == "Youtube" && buttonChoose.buttonChooseYoutube == true) {
-    areatmp.actionServiceChoose = page;
+    area.actionServiceChoose = page;
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -65,7 +65,7 @@ chooseActionService(page, context) async {
               message: "Choose your action:", services: ChooseActionsYoutube())),
     );
   } else if (page == "Microsoft Planner" && buttonChoose.buttonChoosePlanner) {
-    areatmp.actionServiceChoose = page;
+    area.actionServiceChoose = page;
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -77,8 +77,8 @@ chooseActionService(page, context) async {
 }
 
 setAction(page, context) async {
-  if (areatmp.actionServiceChoose != "" && areatmp.action == "") {
-    areatmp.action = page;
+  if (area.actionServiceChoose != "" && area.action == "") {
+    area.action = page;
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -126,12 +126,8 @@ getReactionId(String action, String service) {
 }
 
 setupSendActionReaction(page, context) {
-  area.actionServiceChoose = areatmp.actionServiceChoose;
-  area.reactionServiceChoose = areatmp.reactionServiceChoose;
-  area.action = areatmp.action;
-  area.reaction = areatmp.reaction;
-  getActionId(areatmp.action);
-  getReactionId(areatmp.reaction, areatmp.reactionServiceChoose);
+  getActionId(area.action);
+  getReactionId(area.reaction, area.reactionServiceChoose);
   var resJson = {
     "actionParam": "UgoBoulestreau/POC-nodejs",
     "reactionParam": "1062389081973215262",
@@ -140,26 +136,22 @@ setupSendActionReaction(page, context) {
     "userId": connectedUser["id"],
     "enabled": true,
   };
-  areatmp.actionServiceChoose = "";
-  areatmp.reactionServiceChoose = "";
-  areatmp.action = "";
-  areatmp.reaction = "";
   AreaConnection(resJson, context);
 }
 
 chooseConnection(page, context) async {
-  if (areatmp.actionServiceChoose == "") {
+  if (area.actionServiceChoose == "") {
     chooseActionService(page, context);
-  } else if (areatmp.actionServiceChoose != "" && areatmp.action == "") {
+  } else if (area.actionServiceChoose != "" && area.action == "") {
     setAction(page, context);
-  } else if (areatmp.actionServiceChoose != "" &&
-      areatmp.action != "" &&
-      areatmp.reactionServiceChoose == "") {
+  } else if (area.actionServiceChoose != "" &&
+      area.action != "" &&
+      area.reactionServiceChoose == "") {
     chooseReactionService(page, context);
-  } else if (page == "Confirm link" && areatmp.reaction != "") {
+  } else if (page == "Confirm link" && area.reaction != "") {
     setupSendActionReaction(page, context);
   } else {
-    areatmp.reaction = page;
+    area.reaction = page;
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -167,6 +159,20 @@ chooseConnection(page, context) async {
               message: "", services: ConfirmAreaPage())),
     );
   }
+}
+
+addNewAreatoArealist() {
+  Map<String, dynamic> newArea = {
+      "actionServiceChoose": area.actionServiceChoose,
+      "action": area.action,
+      "reactionServiceChoose": area.reactionServiceChoose,
+      "reaction": area.reaction,
+    };
+    areas.add(newArea);
+    area.actionServiceChoose = "";
+    area.reactionServiceChoose = "";
+    area.action = "";
+    area.reaction = "";
 }
 
 AreaConnection(recJson, context) async {

@@ -116,7 +116,7 @@ class CreateCardsOneChoice extends StatelessWidget {
                 const SizedBox(height: 10,),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 0),
-                  child: Text(choice, style: headlineSecondaryTextStyle),
+                  child: Text(choice, style: lineSecondaryTextStyle),
                 ),
                 DropdownButton(
                 value: dropdownvalue,
@@ -206,7 +206,7 @@ class CreateCardsTwoChoice extends StatelessWidget {
                 const SizedBox(height: 10,),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(choiceOne, style: headlineSecondaryTextStyle),
+                  child: Text(choiceOne, style: lineSecondaryTextStyle),
                 ),
                 DropdownButton(
                 value: dropdownvalue,
@@ -223,7 +223,7 @@ class CreateCardsTwoChoice extends StatelessWidget {
                 const SizedBox(height: 10,),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(choiceTwo, style: headlineSecondaryTextStyle),
+                  child: Text(choiceTwo, style: lineSecondaryTextStyle),
                 ),
                 DropdownButton(
                 value: dropdownvalue,
