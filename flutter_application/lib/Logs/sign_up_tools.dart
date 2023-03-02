@@ -8,25 +8,15 @@ import '../Tools/text.dart';
 import '../Tools/global.dart';
 
 class ButtonCreateAccount extends StatelessWidget {
-  ButtonCreateAccount(
-      {super.key,
-      required this.firstname_,
-      required this.lastname_,
-      required this.pseudo_,
-      required this.email_,
-      required this.password_});
-  String firstname_;
-  String lastname_;
-  String pseudo_;
-  String email_;
-  String password_;
+  ButtonCreateAccount({super.key});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        bool isValid = EmailValidator.validate(email_);
+        bool isValid = EmailValidator.validate(globalEmail);
         if (isValid) {
-          signup(firstname_, lastname_, pseudo_, email_, password_, context);
+          signup(globalFirstname, globalLastname, globalPseudo, globalEmail,
+              globalPassword, context);
         } else {
           throw Exception('Failed to login.');
         }
