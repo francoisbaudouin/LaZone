@@ -22,7 +22,7 @@ connectService(serviceName) async {
     } else {
       throw 'no user id';
     }
-    await launchUrl(uri);
+    launchUrl(uri, mode: LaunchMode.externalApplication);
   } else {
     throw 'Could not launch $baseUrl of service named $serviceName.';
   }

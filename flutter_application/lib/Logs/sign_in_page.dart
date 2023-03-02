@@ -6,8 +6,7 @@ import '../Tools/global.dart';
 
 class LoginCards extends StatelessWidget {
   LoginCards({super.key});
-  final button = ButtonConnection(
-      email: "", password: "");
+  final button = ButtonConnection();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -83,7 +82,7 @@ class LoginCards extends StatelessWidget {
               height: 60,
               child: TextField(
                 onChanged: (value) {
-                  button.email = value;
+                  globalEmail = value;
                 },
                 decoration: const InputDecoration(
                   enabledBorder: OutlineInputBorder(
@@ -117,7 +116,7 @@ class LoginCards extends StatelessWidget {
               child: TextField(
                 obscureText: true,
                 onChanged: (value) {
-                  button.password = value;
+                  globalPassword = value;
                 },
                 decoration: const InputDecoration(
                   enabledBorder: OutlineInputBorder(
