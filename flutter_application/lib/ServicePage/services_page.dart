@@ -28,13 +28,21 @@ connectService(serviceName) async {
   }
 }
 
-chooseConnectionServices(page) async {
+refreshPage(context) {
+  Navigator.pushNamed(
+      context,
+      '/home'
+  );
+}
+
+chooseConnectionServices(page, context) async {
   if (page == "Twitter" && buttonChoose.buttonChooseTwitter == false) {
     buttonChoose.buttonChooseTwitter = true;
     button.buttonConnectionTwitter = "Connected";
     buttoncheck.buttonConnectionTwitter = "Choose";
     buttonchoosecol.colbuttonChooseTwitter = colorConnected;
     buttoncol.colbuttonConnectionTwitter = const Color.fromARGB(255, 14, 41, 2);
+    refreshPage(context);
   } else if (page == "Discord" && buttonChoose.buttonChooseDiscord == false) {
     await connectService('Discord');
     buttonChoose.buttonChooseDiscord = true;
@@ -42,12 +50,14 @@ chooseConnectionServices(page) async {
     buttoncheck.buttonConnectionDiscord = "Choose";
     buttonchoosecol.colbuttonChooseDiscord = colorConnected;
     buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 14, 41, 2);
+    refreshPage(context);
   } else if (page == "Microsoft Teams" && buttonChoose.buttonChooseTeams == false) {
     buttonChoose.buttonChooseTeams = true;
     button.buttonConnectionTeams = "Connected";
     buttoncheck.buttonConnectionTeams = "Choose";
     buttonchoosecol.colbuttonChooseTeams = colorConnected;
     buttoncol.colbuttonConnectionTeams = const Color.fromARGB(255, 14, 41, 2);
+    refreshPage(context);
   } else if (page == "Github" && buttonChoose.buttonChooseGitHub == false) {
     await connectService('Github');
     buttonChoose.buttonChooseGitHub = true;
@@ -55,18 +65,21 @@ chooseConnectionServices(page) async {
     buttoncheck.buttonConnectionGitHub = "Choose";
     buttonchoosecol.colbuttonChooseGitHub = colorConnected;
     buttoncol.colbuttonConnectionGitHub = const Color.fromARGB(255, 14, 41, 2);
+    refreshPage(context);
   } else if (page == "Youtube" && buttonChoose.buttonChooseYoutube == false) {
     buttonChoose.buttonChooseYoutube = true;
     button.buttonConnectionYoutube = "Connected";
     buttoncheck.buttonConnectionYoutube = "Choose";
     buttonchoosecol.colbuttonChooseYoutube = colorConnected;
     buttoncol.colbuttonConnectionYoutube = const Color.fromARGB(255, 14, 41, 2);
-  } else if (page == "Microsoft Planner" && buttonChoose.buttonChoosePlanner == false) {
-    buttonChoose.buttonChoosePlanner = true;
-    button.buttonConnectionPlanner = "Connected";
-    buttoncheck.buttonConnectionPlanner = "Choose";
-    buttonchoosecol.colbuttonChoosePlanner = colorConnected;
-    buttoncol.colbuttonConnectionPlanner = const Color.fromARGB(255, 14, 41, 2);
+    refreshPage(context);
+  } else if (page == "Facebook" && buttonChoose.buttonChooseFacebook == false) {
+    buttonChoose.buttonChooseFacebook = true;
+    button.buttonConnectionFacebook = "Connected";
+    buttoncheck.buttonConnectionFacebook = "Choose";
+    buttonchoosecol.colbuttonChooseFacebook = colorConnected;
+    buttoncol.colbuttonConnectionFacebook = const Color.fromARGB(255, 14, 41, 2);
+    refreshPage(context);
   }
 }
 
@@ -117,7 +130,7 @@ class ServicesCardsInformations extends StatelessWidget {
                 ),
                 FloatingActionButton.extended(
                   onPressed: () {
-                    chooseConnectionServices(title);
+                    chooseConnectionServices(title, context);
                   },
                   backgroundColor: colorButton,
                   label: Text(textbutton,
@@ -227,10 +240,10 @@ class ActionsServicesCards extends StatelessWidget {
               rowFlex: 1,
               rowFit: FlexFit.tight,
               child: ServicesCardsInformations(
-                title: "Microsoft Planner",
-                imagePath: "assets/images/Planner-logo.png",
-                textbutton: button.buttonConnectionPlanner,
-                colorButton: buttoncol.colbuttonConnectionPlanner,
+                title: "Facebook",
+                imagePath: "assets/images/Facebook-logo.png",
+                textbutton: button.buttonConnectionFacebook,
+                colorButton: buttoncol.colbuttonConnectionFacebook,
               ),
             ),
           ],

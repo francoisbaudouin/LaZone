@@ -6,7 +6,7 @@ import 'package:flutter_application/home_page.dart';
 import 'reaction_service_page.dart';
 import '../Tools/text.dart';
 import 'choose_action_github.dart';
-import 'choose_action_planner.dart';
+import 'choose_action_facebook.dart';
 import 'choose_reaction_teams.dart';
 import 'confirm_area_page.dart';
 import 'package:http/http.dart' as http;
@@ -64,14 +64,14 @@ chooseActionService(page, context) async {
           builder: (context) => const SetPageContentService(
               message: "Choose your action:", services: ChooseActionsYoutube())),
     );
-  } else if (page == "Microsoft Planner" && buttonChoose.buttonChoosePlanner) {
+  } else if (page == "Facebook" && buttonChoose.buttonChooseFacebook) {
     area.actionServiceChoose = page;
     Navigator.push(
       context,
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
               message: "Choose your action:",
-              services: ChooseActionsPlanner())),
+              services: ChooseActionsFacebook())),
     );
   }
 }
@@ -96,9 +96,9 @@ getActionId(String action) {
     id.actionId = 2;
   } else if (action == "Create a pull request") {
     id.actionId = 3;
-  } else if (action == "Create a plan") {
+  } else if (action == "Like a post") {
     id.actionId = 4;
-  } else if (action == "Create a task") {
+  } else if (action == "Create a group of discussion") {
     id.actionId = 5;
   } else if (action == "Like a video") {
     id.actionId = 6;

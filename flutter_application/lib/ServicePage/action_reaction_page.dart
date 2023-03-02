@@ -14,8 +14,8 @@ String chooseImageServiceAction(actionServiceChoose) {
   if (actionServiceChoose == "Youtube") {
     res = "assets/images/Youtube-Symbole.jpg";
   }
-  if (actionServiceChoose == "Planner") {
-    res = "assets/images/Planner-logo.jpg";
+  if (actionServiceChoose == "Facebook") {
+    res = "assets/images/Facebook-logo.jpg";
   }
   return (res);
 
