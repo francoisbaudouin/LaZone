@@ -21,38 +21,45 @@ class ServiceCards extends StatelessWidget {
       padding: const EdgeInsets.all(0.0),
       decoration: const BoxDecoration(
         image: DecorationImage(
-              image: AssetImage("assets/images/parchemin2.png"),
-              fit: BoxFit.fill,
+          image: AssetImage("assets/images/parchemin2.png"),
+          fit: BoxFit.fill,
         ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          const SizedBox(height: 85,),
+          const SizedBox(
+            height: 85,
+          ),
           Container(
             constraints: const BoxConstraints(maxHeight: 300),
             child: Image.asset(imagePath, fit: BoxFit.fill),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(40, 0, 40, 40),
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 40),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(title, style: headlineSecondaryTextStyle, textAlign:TextAlign.center),
+                  child: Text(title, style: headlineSecondaryTextStyle),
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 FloatingActionButton.extended(
-                    onPressed: () {
-                      chooseConnection(title, context);
-                    },
-                    backgroundColor: colorButton,
-                    label: Text(textbutton, style: const TextStyle(fontFamily: "OldLondon")),
-                    icon: const Icon(Icons.navigate_next),
-                    heroTag: null,
+                  onPressed: () {
+                    chooseConnection(title, context);
+                  },
+                  backgroundColor: colorButton,
+                  label: Text(textbutton,
+                      style: const TextStyle(fontFamily: "OldLondon")),
+                  icon: const Icon(Icons.navigate_next),
+                  heroTag: null,
                 ),
-                const SizedBox(height: 50,),
+                const SizedBox(
+                  height: 50,
+                ),
               ],
             ),
           ),
