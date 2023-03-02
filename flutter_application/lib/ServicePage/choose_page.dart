@@ -7,7 +7,7 @@ import 'reaction_service_page.dart';
 import '../Tools/text.dart';
 import 'choose_action_github.dart';
 import 'choose_action_facebook.dart';
-import 'choose_reaction_teams.dart';
+import 'choose_reaction_reddit.dart';
 import 'confirm_area_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -35,14 +35,14 @@ chooseReactionService(page, context) async {
               services: ChooseReactionsDiscord())),
     );
   }
-  if (page == "Microsoft Teams" && buttonChoose.buttonChooseTeams == true) {
+  if (page == "Reddit" && buttonChoose.buttonChooseReddit == true) {
     area.reactionServiceChoose = page;
     Navigator.push(
       context,
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
               message: "Choose your arection:",
-              services: ChooseReactionTeams())),
+              services: ChooseReactionReddit())),
     );
   }
 }
@@ -116,11 +116,11 @@ getReactionId(String action, String service) {
     id.reactionId = 2;
   } else if (action == "Create a room" && service == "Discord") {
     id.reactionId = 3;
-  } else if (action == "Post a message" && service == "Microsoft Teams") {
+  } else if (action == "Post a message" && service == "Reddit") {
     id.reactionId = 4;
   } else if (action == "Create a team") {
     id.reactionId = 5;
-  } else if (action == "Create a room" && service == "Microsoft Teams") {
+  } else if (action == "Create a room" && service == "Reddit") {
     id.reactionId = 6;
   }
 }
