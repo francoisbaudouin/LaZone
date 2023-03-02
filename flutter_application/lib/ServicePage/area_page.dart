@@ -1,0 +1,58 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_application/Tools/text.dart';
+import 'package:responsive_framework/responsive_framework.dart';
+import '../Tools/create_cards.dart';
+import '../Tools/color.dart';
+
+class AreaPageServicesCards extends StatelessWidget {
+  const AreaPageServicesCards({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(15.0),
+      child: SingleChildScrollView(
+        child: ResponsiveRowColumn(
+          layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
+              ? ResponsiveRowColumnType.COLUMN
+              : ResponsiveRowColumnType.ROW,
+          rowCrossAxisAlignment: CrossAxisAlignment.center,
+          rowSpacing: 25,
+          columnSpacing: 25,
+          children: [
+            ResponsiveRowColumnItem(
+              rowFlex: 1,
+              rowFit: FlexFit.loose,
+              child: ServiceCards(
+                title: "Github",
+                imagePath: "assets/images/github-logo.png",
+                textbutton: buttoncheck.buttonConnectionGitHub,
+                colorButton: buttonchoosecol.colbuttonChooseGitHub,
+              ),
+            ),
+          ResponsiveRowColumnItem(
+            rowFlex: 1,
+            rowFit: FlexFit.tight,
+            child: ServiceCards(
+              title: "Youtube",
+              imagePath: "assets/images/Youtube-Symbole.png",
+              textbutton :  buttoncheck.buttonConnectionYoutube,
+              colorButton : buttonchoosecol.colbuttonChooseYoutube,
+            ),
+          ),
+            ResponsiveRowColumnItem(
+              rowFlex: 1,
+              rowFit: FlexFit.tight,
+              child: ServiceCards(
+                title: "Microsoft Planner",
+                imagePath: "assets/images/Planner-logo.png",
+                textbutton: buttoncheck.buttonConnectionPlanner,
+                colorButton: buttonchoosecol.colbuttonChoosePlanner,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

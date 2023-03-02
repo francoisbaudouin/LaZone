@@ -54,12 +54,14 @@ class Area {
   Area({this.actionServiceChoose = "", this.reactionServiceChoose = "", this.action = "", this.reaction = ""});
 }
 Area area = Area();
-Area areatmp = Area();
 
 const TextStyle headlineTextStyle = TextStyle(
     fontSize: 44, color: textPrimary, height: 1.2, fontFamily: "OldLondon");
 
 const TextStyle headlineSecondaryTextStyle = TextStyle(
+    fontSize: 28, color: Colors.black, height: 1.2, fontFamily: "OldLondon", decoration: TextDecoration.underline);
+
+const TextStyle lineSecondaryTextStyle = TextStyle(
     fontSize: 28, color: Colors.black, height: 1.2, fontFamily: "OldLondon");
 
 const TextStyle headlineSecondaryTextStyle2 = TextStyle(
