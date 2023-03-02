@@ -36,25 +36,6 @@ class CheckConnection {
 }
 CheckConnection buttonChoose = CheckConnection();
 
-class ActionsReactionsID {
-  int actionId;
-  int reactionId;
-  ActionsReactionsID({this.actionId = 0, this.reactionId = 0});
-}
-ActionsReactionsID id = ActionsReactionsID();
-
-
-const String fontFamilies= "Google Sans";
-
-class Area {
-  String actionServiceChoose;
-  String reactionServiceChoose;
-  String action;
-  String reaction;
-  Area({this.actionServiceChoose = "", this.reactionServiceChoose = "", this.action = "", this.reaction = ""});
-}
-Area area = Area();
-
 const TextStyle headlineTextStyle = TextStyle(
     fontSize: 44, color: textPrimary, height: 1.2, fontFamily: "OldLondon");
 
