@@ -42,7 +42,6 @@ chooseConnectionServices(page, context) async {
     buttoncheck.buttonConnectionTwitter = "Choose";
     buttonchoosecol.colbuttonChooseTwitter = colorConnected;
     buttoncol.colbuttonConnectionTwitter = const Color.fromARGB(255, 14, 41, 2);
-    refreshPage(context);
   } else if (page == "Discord" && buttonChoose.buttonChooseDiscord == false) {
     await connectService('Discord');
     buttonChoose.buttonChooseDiscord = true;
@@ -50,14 +49,12 @@ chooseConnectionServices(page, context) async {
     buttoncheck.buttonConnectionDiscord = "Choose";
     buttonchoosecol.colbuttonChooseDiscord = colorConnected;
     buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 14, 41, 2);
-    refreshPage(context);
   } else if (page == "Microsoft Teams" && buttonChoose.buttonChooseTeams == false) {
     buttonChoose.buttonChooseTeams = true;
     button.buttonConnectionTeams = "Connected";
     buttoncheck.buttonConnectionTeams = "Choose";
     buttonchoosecol.colbuttonChooseTeams = colorConnected;
     buttoncol.colbuttonConnectionTeams = const Color.fromARGB(255, 14, 41, 2);
-    refreshPage(context);
   } else if (page == "Github" && buttonChoose.buttonChooseGitHub == false) {
     await connectService('Github');
     buttonChoose.buttonChooseGitHub = true;
@@ -65,22 +62,20 @@ chooseConnectionServices(page, context) async {
     buttoncheck.buttonConnectionGitHub = "Choose";
     buttonchoosecol.colbuttonChooseGitHub = colorConnected;
     buttoncol.colbuttonConnectionGitHub = const Color.fromARGB(255, 14, 41, 2);
-    refreshPage(context);
   } else if (page == "Youtube" && buttonChoose.buttonChooseYoutube == false) {
     buttonChoose.buttonChooseYoutube = true;
     button.buttonConnectionYoutube = "Connected";
     buttoncheck.buttonConnectionYoutube = "Choose";
     buttonchoosecol.colbuttonChooseYoutube = colorConnected;
     buttoncol.colbuttonConnectionYoutube = const Color.fromARGB(255, 14, 41, 2);
-    refreshPage(context);
   } else if (page == "Facebook" && buttonChoose.buttonChooseFacebook == false) {
     buttonChoose.buttonChooseFacebook = true;
     button.buttonConnectionFacebook = "Connected";
     buttoncheck.buttonConnectionFacebook = "Choose";
     buttonchoosecol.colbuttonChooseFacebook = colorConnected;
     buttoncol.colbuttonConnectionFacebook = const Color.fromARGB(255, 14, 41, 2);
-    refreshPage(context);
   }
+  refreshPage(context);
 }
 
 class ServicesCardsInformations extends StatelessWidget {
