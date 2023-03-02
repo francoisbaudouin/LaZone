@@ -96,10 +96,9 @@ signup(firstname, lastname, pseudo, email, password, context) async {
   if (response.statusCode == 201) {
     Map<String, dynamic> data = json.decode(response.body);
     connectedUser = data["data"]["user"];
-    Navigator.push(
+    Navigator.pushNamed(
       context,
-      MaterialPageRoute(
-          builder: (context) => const MyHomePage(title: "LaZone")),
+      '/home'
     );
   } else {
     throw Exception('Failed to create account.');
