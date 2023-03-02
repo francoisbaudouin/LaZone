@@ -45,7 +45,7 @@ chooseConnectionServices(page) async {
     buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 14, 41, 2);
   } else if (page == "Microsoft Teams" &&
       buttonChoose.buttonChooseTeams == false) {
-    await connectService('Microsoft');
+    await connectService('Reddit');
     buttonChoose.buttonChooseTeams = true;
     button.buttonConnectionTeams = "Connected";
     buttoncheck.buttonConnectionTeams = "Choose";
