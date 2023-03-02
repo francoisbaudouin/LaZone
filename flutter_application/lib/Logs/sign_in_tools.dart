@@ -27,7 +27,10 @@ class ForgottenPassword extends StatelessWidget {
             },
             child: const Text(
               "Forgotten Password",
-              style: TextStyle(color: Color.fromARGB(255, 74, 8, 136), fontFamily: "OldLondon", fontSize: 20),
+              style: TextStyle(
+                  color: Color.fromARGB(255, 74, 8, 136),
+                  fontFamily: "OldLondon",
+                  fontSize: 20),
             ),
           )
         ],
@@ -47,7 +50,7 @@ class CreateAccount extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextButton(
-            onPressed : () {
+            onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const SignUpPage()),
@@ -55,7 +58,10 @@ class CreateAccount extends StatelessWidget {
             },
             child: const Text(
               "Click here to create a new account",
-              style: TextStyle(color: Color.fromARGB(255, 74, 8, 136), fontFamily: "OldLondon", fontSize: 20),
+              style: TextStyle(
+                  color: Color.fromARGB(255, 74, 8, 136),
+                  fontFamily: "OldLondon",
+                  fontSize: 20),
             ),
           )
         ],
@@ -65,35 +71,36 @@ class CreateAccount extends StatelessWidget {
 }
 
 class ButtonConnection extends StatelessWidget {
-  ButtonConnection({super.key, required this.email, required this.password});
-  String email;
-  String password;
+  ButtonConnection({super.key});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        bool isValid = EmailValidator.validate(email);
+        bool isValid = EmailValidator.validate(globalEmail);
         if (isValid) {
-            signin(email, password, context);
+          signin(globalEmail, globalPassword, context);
         } else {
-            throw Exception('Failed to login.');
+          throw Exception('Failed to login.');
         }
       },
       child: Container(
         alignment: Alignment.center,
         width: 250,
         decoration: const BoxDecoration(
-            image: DecorationImage(
-                   image: AssetImage("assets/images/button.jpg"),
-                   fit: BoxFit.fitWidth,
-               ),
+          image: DecorationImage(
+            image: AssetImage("assets/images/button.jpg"),
+            fit: BoxFit.fitWidth,
+          ),
         ),
         child: const Padding(
           padding: EdgeInsets.all(50.0),
           child: Text(
             'Connection',
             style: TextStyle(
-                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold, fontFamily: "OldLondon"),
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                fontFamily: "OldLondon"),
           ),
         ),
       ),
@@ -110,17 +117,18 @@ class ButtonService extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         FloatingActionButton.extended(
-            icon: const Icon(FontAwesomeIcons.microsoft, color: Colors.blue),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const MyHomePage(title: "LaZone")),
-              );
-            },
-            backgroundColor: Colors.transparent,
-            label: const Text("Login with Microsoft", style: TextStyle(fontFamily: "OldLondon")),
-            ),
+          icon: const Icon(FontAwesomeIcons.microsoft, color: Colors.blue),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const MyHomePage(title: "LaZone")),
+            );
+          },
+          backgroundColor: Colors.transparent,
+          label: const Text("Login with Microsoft",
+              style: TextStyle(fontFamily: "OldLondon")),
+        ),
       ],
     );
   }
@@ -142,10 +150,7 @@ signin(email, password, context) async {
   if (response.statusCode == 201) {
     Map<String, dynamic> data = json.decode(response.body);
     connectedUser = data["data"]["user"];
-    Navigator.pushNamed(
-      context,
-      '/home'
-    );
+    Navigator.pushNamed(context, '/home');
   } else {
     throw Exception('Failed to login.');
   }

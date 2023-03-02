@@ -6,12 +6,7 @@ import '../Tools/global.dart';
 
 class SignUpCards extends StatelessWidget {
   SignUpCards({super.key});
-  final button = ButtonCreateAccount(
-      firstname_: "",
-      lastname_: "",
-      pseudo_: "",
-      email_: "",
-      password_: "");
+  final button = ButtonCreateAccount();
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +66,7 @@ class SignUpCards extends StatelessWidget {
             height: 60,
             child: TextField(
               onChanged: (value) {
-                button.firstname_ = value;
+                globalFirstname = value;
               },
               decoration: const InputDecoration(
                 enabledBorder: OutlineInputBorder(
@@ -101,7 +96,7 @@ class SignUpCards extends StatelessWidget {
             height: 60,
             child: TextField(
               onChanged: (value) {
-                button.lastname_ = value;
+                globalLastname = value;
               },
               decoration: const InputDecoration(
                 enabledBorder: OutlineInputBorder(
@@ -131,7 +126,7 @@ class SignUpCards extends StatelessWidget {
             height: 60,
             child: TextField(
               onChanged: (value) {
-                button.pseudo_ = value;
+                globalPseudo = value;
               },
               decoration: const InputDecoration(
                 enabledBorder: OutlineInputBorder(
@@ -161,21 +156,23 @@ class SignUpCards extends StatelessWidget {
             height: 60,
             child: TextField(
               onChanged: (value) {
-                button.email_ = value;
+                globalEmail = value;
               },
               decoration: const InputDecoration(
-                  suffix: Icon(
-                    FontAwesomeIcons.envelope,
-                    color: Colors.deepPurple,
-                  ),
-                  labelText: "Email",
-                  labelStyle: TextStyle(
-                      fontFamily: "OldLondon",
-                      color: Colors.black,
-                      fontSize: 25),
-                  border: OutlineInputBorder(
+                enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8)),
-                  )),
+                    borderSide: BorderSide(width: 1.5)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                    borderSide: BorderSide(width: 2, color: Colors.lightBlue)),
+                suffix: Icon(
+                  FontAwesomeIcons.envelope,
+                  color: Colors.deepPurple,
+                ),
+                labelText: "Email",
+                labelStyle: TextStyle(
+                    fontFamily: "OldLondon", color: Colors.black, fontSize: 25),
+              ),
             ),
           ),
         ),
@@ -190,7 +187,7 @@ class SignUpCards extends StatelessWidget {
             child: TextField(
               obscureText: true,
               onChanged: (value) {
-                button.password_ = value;
+                globalPassword = value;
               },
               decoration: const InputDecoration(
                 enabledBorder: OutlineInputBorder(

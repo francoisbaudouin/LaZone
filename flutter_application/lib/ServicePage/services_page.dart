@@ -22,7 +22,7 @@ connectService(serviceName) async {
     } else {
       throw 'no user id';
     }
-    await launchUrl(uri);
+    launchUrl(uri, mode: LaunchMode.externalApplication);
   } else {
     throw 'Could not launch $baseUrl of service named $serviceName.';
   }
@@ -116,8 +116,8 @@ class ServicesCardsInformations extends StatelessWidget {
                   height: 10,
                 ),
                 FloatingActionButton.extended(
-                  onPressed: () {
-                    chooseConnectionServices(title);
+                  onPressed: () async {
+                    await chooseConnectionServices(title);
                   },
                   backgroundColor: colorButton,
                   label: Text(textbutton,
