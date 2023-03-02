@@ -3,8 +3,8 @@ import 'package:responsive_framework/responsive_framework.dart';
 import '../home_page.dart';
 import '../Tools/create_cards.dart';
 
-class ChooseActionsPlanner extends StatelessWidget {
-  const ChooseActionsPlanner({super.key});
+class ChooseActionsFacebook extends StatelessWidget {
+  const ChooseActionsFacebook({super.key});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,21 +24,20 @@ class ChooseActionsPlanner extends StatelessWidget {
                 rowFlex: 1,
                 rowFit: FlexFit.loose,
                 child: ServiceCards(
-                  title: "Create a plan",
-                  imagePath: "assets/images/Planner-logo.png",
+                  title: "Like a post",
+                  imagePath: "assets/images/Facebook-logo.png",
                   textbutton :  "Choose this action",
-                  colorButton : Colors.green,
+                  colorButton : Color.fromARGB(255, 53, 119, 206),
                 ),
               ),
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.loose,
-                child: CreateCardsOneChoice(
-                  title: "Create a task",
-                  imagePath: "assets/images/Planner-logo.png",
+                child: ServiceCards(
+                  title: "Create a group of discussion",
+                  imagePath: "assets/images/Facebook-logo.png",
                   textbutton :  "Choose this action",
-                  colorButton : Colors.green,
-                  choice : "Choose a plan:"
+                  colorButton : Color.fromARGB(255, 53, 119, 206),
                 ),
               ),
             ],

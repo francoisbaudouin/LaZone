@@ -6,14 +6,14 @@ var connectedUser;
 class ButtonConnection {
   String buttonConnectionGitHub;
   String buttonConnectionYoutube;
-  String buttonConnectionPlanner;
+  String buttonConnectionFacebook;
   String buttonConnectionDiscord;
   String buttonConnectionTwitter;
   String buttonConnectionTeams;
   ButtonConnection(
       {this.buttonConnectionGitHub = "Disconected",
       this.buttonConnectionYoutube = "Disconected",
-      this.buttonConnectionPlanner = "Disconected",
+      this.buttonConnectionFacebook = "Disconected",
       this.buttonConnectionDiscord = "Disconected",
       this.buttonConnectionTwitter = "Disconected",
       this.buttonConnectionTeams = "Disconected"});
@@ -24,14 +24,14 @@ ButtonConnection button = ButtonConnection();
 class CheckConnectionText {
   String buttonConnectionGitHub;
   String buttonConnectionYoutube;
-  String buttonConnectionPlanner;
+  String buttonConnectionFacebook;
   String buttonConnectionDiscord;
   String buttonConnectionTwitter;
   String buttonConnectionTeams;
   CheckConnectionText(
       {this.buttonConnectionGitHub = "Disconected",
       this.buttonConnectionYoutube = "Disconected",
-      this.buttonConnectionPlanner = "Disconected",
+      this.buttonConnectionFacebook = "Disconected",
       this.buttonConnectionDiscord = "Disconected",
       this.buttonConnectionTwitter = "Disconected",
       this.buttonConnectionTeams = "Disconected"});
@@ -42,14 +42,14 @@ CheckConnectionText buttoncheck = CheckConnectionText();
 class CheckConnection {
   bool buttonChooseGitHub;
   bool buttonChooseYoutube;
-  bool buttonChoosePlanner;
+  bool buttonChooseFacebook;
   bool buttonChooseDiscord;
   bool buttonChooseTwitter;
   bool buttonChooseTeams;
   CheckConnection(
       {this.buttonChooseGitHub = false,
       this.buttonChooseYoutube = false,
-      this.buttonChoosePlanner = false,
+      this.buttonChooseFacebook = false,
       this.buttonChooseDiscord = false,
       this.buttonChooseTwitter = false,
       this.buttonChooseTeams = false});
@@ -85,12 +85,18 @@ class Area {
 }
 
 Area area = Area();
-Area areatmp = Area();
 
 const TextStyle headlineTextStyle = TextStyle(
     fontSize: 44, color: textPrimary, height: 1.2, fontFamily: "OldLondon");
 
 const TextStyle headlineSecondaryTextStyle = TextStyle(
+    fontSize: 28,
+    color: Colors.black,
+    height: 1.2,
+    fontFamily: "OldLondon",
+    decoration: TextDecoration.underline);
+
+const TextStyle lineSecondaryTextStyle = TextStyle(
     fontSize: 28, color: Colors.black, height: 1.2, fontFamily: "OldLondon");
 
 const TextStyle headlineSecondaryTextStyle2 = TextStyle(

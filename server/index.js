@@ -51,10 +51,8 @@ require("./api/passport/local.js");
 require("./api/passport/git.js");
 require("./api/passport/discord.js");
 require("./api/passport/twitter.js");
-require("./api/passport/microsoft.js");
 require("./api/passport/google.js");
 require("./api/passport/facebook.js");
-require("./api/passport/reddit.js");
 
 app.use(passport.initialize());
 app.use(passport.session());

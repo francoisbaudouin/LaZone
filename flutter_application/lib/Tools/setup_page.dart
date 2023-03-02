@@ -92,18 +92,18 @@ class SetPageContentService extends StatelessWidget {
 
 checkAreaValues(message) {
   if (message == "Choose your action:") {
-    areatmp.actionServiceChoose = "";
-    areatmp.action = "";
+    area.actionServiceChoose = "";
+    area.action = "";
   }
   else if (message == "Choose your reaction service:") {
-    areatmp.reactionServiceChoose = "";
-    areatmp.action = "";
+    area.reactionServiceChoose = "";
+    area.action = "";
   }
   else if (message == "Choose your reaction:") {
-    areatmp.reactionServiceChoose = "";
-    areatmp.reaction = "";
+    area.reactionServiceChoose = "";
+    area.reaction = "";
   }
   else if (message == "") {
-    areatmp.reaction = "";
+    area.reaction = "";
   }
 }
