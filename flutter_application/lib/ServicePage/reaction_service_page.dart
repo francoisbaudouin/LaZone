@@ -33,7 +33,7 @@ class ReactionServicePage extends StatelessWidget {
               rowFit: FlexFit.tight,
               child: ServiceCards(
                 title: "Discord",
-                imagePath: "assets/images/discord-logo.png",
+                imagePath: "assets/images/logo-discord.png",
                 textbutton :  buttoncheck.buttonConnectionDiscord,
                 colorButton : buttonchoosecol.colbuttonChooseDiscord,
               ),

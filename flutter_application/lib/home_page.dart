@@ -78,40 +78,105 @@ class _HomeViewState extends State<HomeView> {
   @override
 Widget build(BuildContext context) {
   return Scaffold(
+    //appBar: AppBar(
+    //  toolbarHeight: 40.0,
+    //  backgroundColor: const Color.fromARGB(255, 18, 21, 41),
+    //  elevation: 0.0,
+    //  title: const Center(
+    //    child: Text('LaZone',
+    //      textAlign: TextAlign.center,
+    //      style: TextStyle(color: Colors.white, fontFamily: "OldLondon")
+    //    ),
+    //  ),
+    //  leading: IconButton(
+    //    color: Colors.white,
+    //    icon: const Icon(Icons.settings_ethernet),
+    //    onPressed: () async {
+    //      var url = Uri.parse("http://$serverAddress/about.json");
+    //      launchUrl(url);
+    //    },
+    //    tooltip: "about.json"
+    //  ),
+    //  actions: <Widget>[
+    //    IconButton(
+    //      alignment: Alignment.topLeft,
+    //      color: Colors.white,
+    //      icon: const Icon(Icons.download),
+    //      onPressed: () async {
+    //        var url = Uri.parse("http://localhost:8081/client.apk");
+    //        launchUrl(url);
+    //      },
+    //      tooltip: "client.apk"
+    //    ),
+    //    IconButton(
+    //      color: Colors.white,
+    //      icon: const Icon(Icons.logout),
+    //      onPressed: () {
+    //        globalFirstname = "";
+    //        globalLastname = "";
+    //        globalPseudo = "";
+    //        globalEmail = "";
+    //        globalPassword = "";
+    //        areas.clear();
+    //        Navigator.pushNamed(context, '/');
+    //      },
+    //    ),
+    //  ]
+    //),
     appBar: AppBar(
-      toolbarHeight: 40.0,
-      backgroundColor: const Color.fromARGB(255, 18, 21, 41),
-      elevation: 0.0,
-      title: const Center(
-        child: Text('LaZone',
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.white, fontFamily: "OldLondon")
-        ),
-      ),
-      leading: IconButton(
-        color: Colors.white,
-        icon: const Icon(Icons.download),
-        onPressed: () async {
-          var url = Uri.parse("http://$serverAddress/about.json");
-          launchUrl(url);
-        },
-      ),
-      actions: <Widget>[
-        IconButton(
-          color: Colors.white,
-          icon: const Icon(Icons.logout),
-          onPressed: () {
-            globalFirstname = "";
-            globalLastname = "";
-            globalPseudo = "";
-            globalEmail = "";
-            globalPassword = "";
-            areas.clear();
-            Navigator.pushNamed(context, '/');
-          },
-        ),
-      ]
+  toolbarHeight: 40.0,
+  backgroundColor: const Color.fromARGB(255, 18, 21, 41),
+  elevation: 0.0,
+  title: const Center(
+    child: Text(
+      'LaZone',
+      textAlign: TextAlign.center,
+      style: TextStyle(color: Colors.white, fontFamily: "OldLondon"),
     ),
+  ),
+  leading: Row(
+    children: [
+      Expanded(
+        child: IconButton(
+          color: Colors.white,
+          icon: const Icon(Icons.settings_ethernet),
+          onPressed: () async {
+            var url = Uri.parse("http://$serverAddress/about.json");
+            launchUrl(url);
+          },
+          tooltip: "about.json"
+        ),
+      ),
+      Expanded(
+        child: IconButton(
+          color: Colors.white,
+          icon: const Icon(Icons.download),
+          onPressed: () async {
+            var url = Uri.parse("http://localhost:8081/client.apk");
+            launchUrl(url);
+          },
+          tooltip: "client.apk",
+        ),
+      ),
+    ],
+  ),
+  actions: <Widget>[
+    IconButton(
+      color: Colors.white,
+      icon: const Icon(Icons.logout),
+      onPressed: () {
+        globalFirstname = "";
+        globalLastname = "";
+        globalPseudo = "";
+        globalEmail = "";
+        globalPassword = "";
+        areas.clear();
+        Navigator.pushNamed(context, '/');
+      },
+    ),
+  ],
+),
+
     body: Stack(
       children: [
         Positioned.fill(
@@ -147,6 +212,7 @@ Widget build(BuildContext context) {
               ),
             ),
             selectedIndex: _selectedIndex,
+            initiallyExpanded: false,
             items: const [
               SideNavigationBarItem(
                 icon: Icons.home,

@@ -164,7 +164,7 @@ class ReactionServicesCards extends StatelessWidget {
             rowFit: FlexFit.tight,
             child: ServicesCardsInformations(
               title: "Twitter",
-              imagePath: "assets/images/logo-twitter.png",
+              imagePath: "assets/images/twitter-logo.png",
               textbutton: button.buttonConnectionTwitter,
               colorButton: buttoncol.colbuttonConnectionTwitter,
             ),
@@ -174,7 +174,7 @@ class ReactionServicesCards extends StatelessWidget {
             rowFit: FlexFit.tight,
             child: ServicesCardsInformations(
               title: "Discord",
-              imagePath: "assets/images/discord-logo.png",
+              imagePath: "assets/images/logo-discord.png",
               textbutton: button.buttonConnectionDiscord,
               colorButton: buttoncol.colbuttonConnectionDiscord,
             ),
@@ -213,7 +213,7 @@ class ActionsServicesCards extends StatelessWidget {
           children: [
             ResponsiveRowColumnItem(
               rowFlex: 1,
-              rowFit: FlexFit.loose,
+              rowFit: FlexFit.tight,
               child: ServicesCardsInformations(
                 title: "Github",
                 imagePath: "assets/images/github-logo.png",

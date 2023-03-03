@@ -28,7 +28,7 @@ String chooseImageServiceReaction(reactionServiceChoose) {
     res = "assets/images/logo-twitter.png";
   }
   if (reactionServiceChoose == "Discord") {
-    res = "assets/images/discord-logo.png";
+    res = "assets/images/logo-discord.png";
   }
   if (reactionServiceChoose == "Reddit") {
     res = "assets/images/Reddit-Logo.jpg";
