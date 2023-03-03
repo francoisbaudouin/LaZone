@@ -76,6 +76,7 @@
     "serve-static": "^1.15.0",
     "setprototypeof": "^1.2.0",
     "side-channel": "^1.0.4",
+    "snoowrap": "^1.23.0",
     "statuses": "^2.0.1",
     "toidentifier": "^1.0.1",
     "twitter-api-v2": "^1.14.2",
