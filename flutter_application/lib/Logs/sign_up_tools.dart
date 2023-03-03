@@ -28,11 +28,11 @@ class ButtonCreateAccount extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/button.jpg"),
-            fit: BoxFit.fitWidth,
+            fit: BoxFit.fill,
           ),
         ),
         child: const Padding(
-          padding: EdgeInsets.all(50.0),
+          padding: EdgeInsets.all(22.0),
           child: Text(
             'Create account',
             style: TextStyle(
@@ -40,6 +40,7 @@ class ButtonCreateAccount extends StatelessWidget {
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 fontFamily: "OldLondon"),
+                textAlign: TextAlign.center,
           ),
         ),
       ),
@@ -52,12 +53,7 @@ class LoginAlready extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextButton(
+    return TextButton(
             onPressed: () {
               Navigator.push(
                 context,
@@ -71,9 +67,6 @@ class LoginAlready extends StatelessWidget {
                   fontFamily: "OldLondon",
                   fontSize: 20),
             ),
-          )
-        ],
-      ),
     );
   }
 }

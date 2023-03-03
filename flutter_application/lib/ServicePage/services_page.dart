@@ -258,6 +258,7 @@ class SetPageServices extends StatelessWidget {
   final String message;
   @override
   Widget build(BuildContext context) {
+    var sidebarWidth = 72.0;
     return Container(
       height: 1920,
       width: 1080,
@@ -275,11 +276,22 @@ class SetPageServices extends StatelessWidget {
                 const SizedBox(height: 20,),
                 WelcomCards(title: title),
                 const SizedBox(height: 70,),
-                TitleCards(message: message,),
+                Padding(
+                  padding: EdgeInsets.only(left: sidebarWidth),
+                  child: TitleCards(
+                      message: message,
+                    ),
+                ),
                 const SizedBox(height: 30,),
-                const ActionsServicesCards(),
+                Padding(
+                  padding: EdgeInsets.only(left: sidebarWidth),
+                  child: const ActionsServicesCards(),
+                ),
                 const SizedBox(height: 10,),
-                const ReactionServicesCards(),
+                Padding(
+                  padding: EdgeInsets.only(left: sidebarWidth),
+                  child: const ReactionServicesCards(),
+                ),
               ],
             ),
           ),
