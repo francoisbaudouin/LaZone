@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'title_cards.dart';
-import 'text.dart';
+import 'global.dart';
 
 const EdgeInsets blockMargin = EdgeInsets.fromLTRB(0, 100, 0, 0);
 

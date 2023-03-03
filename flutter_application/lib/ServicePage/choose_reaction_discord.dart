@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/Tools/global.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import '../Tools/create_cards.dart';
 
@@ -27,6 +28,7 @@ class ChooseReactionsDiscord extends StatelessWidget {
                   colorButton : Colors.indigoAccent.shade100,
                   choiceOne: "Choose a server:",
                   choiceTwo: "Choose a channel:",
+                  SecondChoiceList: DiscordChannelList,
                 ),
               ),
               ResponsiveRowColumnItem(
@@ -37,19 +39,20 @@ class ChooseReactionsDiscord extends StatelessWidget {
                   imagePath: "assets/images/discord-logo.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.indigoAccent.shade100,
-                  choice : "Choose a server:"
+                  choice : "Choose a server:",
+                  choiceList: DiscordServerList,
                 ),
               ),
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
-                child: CreateCardsTwoChoice(
+                child: CreateCardsOneChoice(
                   title: "Create a room",
                   imagePath: "assets/images/discord-logo.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.indigoAccent.shade100,
-                  choiceOne: "Choose a server:",
-                  choiceTwo: "Choose a category:",
+                  choice: "Choose a server:",
+                  choiceList: DiscordServerList,
                 ),
               ),
             ],
