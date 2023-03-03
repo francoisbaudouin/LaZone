@@ -112,7 +112,7 @@ class ServicesCardsInformations extends StatelessWidget {
             child: Image.asset(imagePath, fit: BoxFit.fill),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(40, 0, 40, 40),
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 40),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[

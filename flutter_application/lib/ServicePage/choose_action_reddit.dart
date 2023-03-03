@@ -3,8 +3,8 @@ import 'package:flutter_application/Tools/global.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import '../Tools/create_cards.dart';
 
-class ChooseReactionReddit extends StatelessWidget {
-  const ChooseReactionReddit({super.key});
+class ChooseActionReddit extends StatelessWidget {
+  const ChooseActionReddit({super.key});
   @override
   Widget build(BuildContext context) {
     return Container (
@@ -21,13 +21,12 @@ class ChooseReactionReddit extends StatelessWidget {
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.loose,
-                child: CreateCardsTwoChoicewithText(
-                  title: "Post a message",
+                child: CreateCardsOneChoice(
+                  title: "New post in a subreddit",
                   imagePath: "assets/images/Reddit-Logo.png",
                   textbutton :  "Choose this action",
                   colorButton : Color.fromARGB(255, 214, 86, 11),
                   choice :"Choose a subreddit:",
-                  choice2:"Enter your message",
                   choiceList: SubRedditList,
                 ),
               ),

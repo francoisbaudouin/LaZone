@@ -7,6 +7,7 @@ import 'reaction_service_page.dart';
 import '../Tools/text.dart';
 import 'choose_action_github.dart';
 import 'choose_action_facebook.dart';
+import 'choose_action_reddit.dart';
 import 'choose_reaction_reddit.dart';
 import 'confirm_area_page.dart';
 import 'package:http/http.dart' as http;
@@ -41,7 +42,7 @@ chooseReactionService(page, context) async {
       context,
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
-              message: "Choose your arection:",
+              message: "Choose your reaction:",
               services: ChooseReactionReddit())),
     );
   }
@@ -64,7 +65,7 @@ chooseActionService(page, context) async {
           builder: (context) => const SetPageContentService(
               message: "Choose your action:", services: ChooseActionsYoutube())),
     );
-  } else if (page == "Facebook" && buttonChoose.buttonChooseFacebook) {
+  } else if (page == "Facebook" && buttonChoose.buttonChooseFacebook == true) {
     area.actionServiceChoose = page;
     Navigator.push(
       context,
@@ -72,6 +73,15 @@ chooseActionService(page, context) async {
           builder: (context) => const SetPageContentService(
               message: "Choose your action:",
               services: ChooseActionsFacebook())),
+    );
+  } else if (page == "Reddit" && buttonChoose.buttonChooseReddit == true) {
+    area.actionServiceChoose = page;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => const SetPageContentService(
+              message: "Choose your action:",
+              services: ChooseActionReddit())),
     );
   }
 }

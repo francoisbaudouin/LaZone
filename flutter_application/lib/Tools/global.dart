@@ -34,6 +34,14 @@ String DiscordChannelList = '''
     ]
   ''';
 
+String SubRedditList = '''
+    [
+      {
+        "name": "Subreddit A"
+      }
+    ]
+  ''';
+
 class ActionsReactionsID {
   int actionId;
   int reactionId;
@@ -53,6 +61,8 @@ class Area {
   String discordchannel;
   String discordcategory;
   String githubrepository;
-  Area({this.actionServiceChoose = "", this.reactionServiceChoose = "", this.action = "", this.reaction = "", this.discordserver = "", this.discordchannel = "", this.discordcategory = "",this.githubrepository = ""});
+  String redditmessage;
+  String subreddit;
+  Area({this.actionServiceChoose = "", this.reactionServiceChoose = "", this.action = "", this.reaction = "", this.discordserver = "", this.discordchannel = "", this.discordcategory = "",this.githubrepository = "", this.redditmessage = "", this.subreddit = ""});
 }
 Area area = Area();
