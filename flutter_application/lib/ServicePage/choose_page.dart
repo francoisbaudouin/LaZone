@@ -48,6 +48,37 @@ chooseReactionService(page, context) async {
   }
 }
 
+getServiceActionParameters(context, serviceName) async {
+  var url = Uri.parse("http://$serverAddress/");
+  final http.Response response = await http.post(
+    url,
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'userId': connectedUser["id"],
+      'service': serviceName
+    }),
+  );
+  Map<String, dynamic> data = json.decode(response.body);
+
+  // if (response.statusCode == 201) {
+  //   connectedUser = data["data"]["user"];
+  //   Navigator.pushNamed(
+  //     context,
+  //     '/home'
+  //   );
+  // } else {
+  //   if (data["data"]["info"]["message"] == "Email already exists.")
+  //     notifyCredentialError(context);
+  //   throw Exception('Failed to create account.');
+  // }
+}
+
+setServiceActionParameters(parameters) {
+  return;
+}
+
 chooseActionService(page, context) async {
   if (page == "Github" && buttonChoose.buttonChooseGitHub == true) {
     area.actionServiceChoose = page;
