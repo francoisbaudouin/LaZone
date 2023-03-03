@@ -76,47 +76,58 @@ class _HomeViewState extends State<HomeView> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          toolbarHeight: 40.0,
-          backgroundColor: const Color.fromARGB(255, 18, 21, 41),
-          elevation: 0.0,
-          title: const Center(
-              child: Text('LaZone',
-                  textAlign: TextAlign.center,
-                  style:
-                      TextStyle(color: Colors.white, fontFamily: "OldLondon"))),
-          leading: IconButton(
-            color: Colors.white,
-            icon: const Icon(Icons.download),
-            onPressed: () async {
-              var url = Uri.parse("http://$serverAddress/about.json");
-              launchUrl(url);
-            },
-          ),
-          actions: <Widget>[
-            IconButton(
-              color: Colors.white,
-              icon: const Icon(Icons.logout),
-              onPressed: () {
-                globalFirstname = "";
-                globalLastname = "";
-                globalPseudo = "";
-                globalEmail = "";
-                globalPassword = "";
-                areas.clear();
-                Navigator.pushNamed(context, '/');
-              },
-            ),
-          ]),
-      body: Row(
-        children: [
-          SideNavigationBar(
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      toolbarHeight: 40.0,
+      backgroundColor: const Color.fromARGB(255, 18, 21, 41),
+      elevation: 0.0,
+      title: const Center(
+        child: Text('LaZone',
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Colors.white, fontFamily: "OldLondon")
+        ),
+      ),
+      leading: IconButton(
+        color: Colors.white,
+        icon: const Icon(Icons.download),
+        onPressed: () async {
+          var url = Uri.parse("http://$serverAddress/about.json");
+          launchUrl(url);
+        },
+      ),
+      actions: <Widget>[
+        IconButton(
+          color: Colors.white,
+          icon: const Icon(Icons.logout),
+          onPressed: () {
+            globalFirstname = "";
+            globalLastname = "";
+            globalPseudo = "";
+            globalEmail = "";
+            globalPassword = "";
+            areas.clear();
+            Navigator.pushNamed(context, '/');
+          },
+        ),
+      ]
+    ),
+    body: Stack(
+      children: [
+        Positioned.fill(
+          child: views.elementAt(_selectedIndex),
+        ),
+        Positioned(
+          top: 0,
+          bottom: 0,
+          left: 0,
+          child: SideNavigationBar(
             theme: SideNavigationBarTheme(
               backgroundColor: const Color.fromARGB(255, 18, 21, 41),
               togglerTheme: const SideNavigationBarTogglerTheme(
-                  expandIconColor: Colors.white, shrinkIconColor: Colors.white),
+                expandIconColor: Colors.white,
+                shrinkIconColor: Colors.white
+              ),
               itemTheme: SideNavigationBarItemTheme(
                 unselectedItemColor: Colors.white,
                 selectedItemColor: const Color.fromARGB(255, 165, 216, 255),
@@ -129,9 +140,11 @@ class _HomeViewState extends State<HomeView> {
             ),
             footer: const SideNavigationBarFooter(
               label: Text('Reduce',
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      fontFamily: "OldLondon")),
+                style: TextStyle(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  fontFamily: "OldLondon"
+                )
+              ),
             ),
             selectedIndex: _selectedIndex,
             items: const [
@@ -158,13 +171,11 @@ class _HomeViewState extends State<HomeView> {
               });
             },
           ),
-          Expanded(
-            child: views.elementAt(_selectedIndex),
-          )
-        ],
-      ),
-    );
-  }
+        ),
+      ],
+    ),
+  );
+}
 }
 
 class MyHomePage extends StatefulWidget {
