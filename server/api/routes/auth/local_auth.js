@@ -34,7 +34,7 @@ router.post("/signUp", (req, res, next) => {
       },
       statusCode: res.statusCode
     })
-  }) (req, res, next);
+  })(req, res, next);
 });
 
 router.post('/signIn', (req, res, next) => {
@@ -52,7 +52,7 @@ router.post('/signIn', (req, res, next) => {
       },
       statusCode: res.statusCode
     });
-  }) (req, res, next);
+  })(req, res, next);
 });
 
 module.exports = router;

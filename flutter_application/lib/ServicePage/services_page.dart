@@ -47,14 +47,12 @@ chooseConnectionServices(page, context) async {
     buttoncheck.buttonConnectionDiscord = "Choose";
     buttonchoosecol.colbuttonChooseDiscord = colorConnected;
     buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 14, 41, 2);
-  } else if (page == "Microsoft Teams" &&
-      buttonChoose.buttonChooseTeams == false) {
-    await connectService('Reddit');
-    buttonChoose.buttonChooseTeams = true;
-    button.buttonConnectionTeams = "Connected";
-    buttoncheck.buttonConnectionTeams = "Choose";
-    buttonchoosecol.colbuttonChooseTeams = colorConnected;
-    buttoncol.colbuttonConnectionTeams = const Color.fromARGB(255, 14, 41, 2);
+  } else if (page == "Reddit" && buttonChoose.buttonChooseReddit == false) {
+    buttonChoose.buttonChooseReddit = true;
+    button.buttonConnectionReddit = "Connected";
+    buttoncheck.buttonConnectionReddit = "Choose";
+    buttonchoosecol.colbuttonChooseReddit = colorConnected;
+    buttoncol.colbuttonConnectionReddit = const Color.fromARGB(255, 14, 41, 2);
   } else if (page == "Github" && buttonChoose.buttonChooseGitHub == false) {
     await connectService('Github');
     buttonChoose.buttonChooseGitHub = true;
@@ -115,7 +113,7 @@ class ServicesCardsInformations extends StatelessWidget {
             child: Image.asset(imagePath, fit: BoxFit.fill),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(40, 0, 40, 40),
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 40),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
@@ -186,10 +184,10 @@ class ReactionServicesCards extends StatelessWidget {
             rowFlex: 1,
             rowFit: FlexFit.tight,
             child: ServicesCardsInformations(
-              title: "Microsoft Teams",
-              imagePath: "assets/images/Microsoft-Teams-Symbole.png",
-              textbutton: button.buttonConnectionTeams,
-              colorButton: buttoncol.colbuttonConnectionTeams,
+              title: "Reddit",
+              imagePath: "assets/images/Reddit-Logo.png",
+              textbutton: button.buttonConnectionReddit,
+              colorButton: buttoncol.colbuttonConnectionReddit,
             ),
           ),
         ],
@@ -261,6 +259,7 @@ class SetPageServices extends StatelessWidget {
   final String message;
   @override
   Widget build(BuildContext context) {
+    var sidebarWidth = 72.0;
     return Container(
       height: 1920,
       width: 1080,
@@ -278,20 +277,23 @@ class SetPageServices extends StatelessWidget {
                   height: 20,
                 ),
                 WelcomCards(title: title),
-                const SizedBox(
-                  height: 70,
+                const SizedBox(height: 70,),
+                Padding(
+                  padding: EdgeInsets.only(left: sidebarWidth),
+                  child: TitleCards(
+                      message: message,
+                    ),
                 ),
-                TitleCards(
-                  message: message,
+                const SizedBox(height: 30,),
+                Padding(
+                  padding: EdgeInsets.only(left: sidebarWidth),
+                  child: const ActionsServicesCards(),
                 ),
-                const SizedBox(
-                  height: 30,
+                const SizedBox(height: 10,),
+                Padding(
+                  padding: EdgeInsets.only(left: sidebarWidth),
+                  child: const ReactionServicesCards(),
                 ),
-                const ActionsServicesCards(),
-                const SizedBox(
-                  height: 10,
-                ),
-                const ReactionServicesCards(),
               ],
             ),
           ),

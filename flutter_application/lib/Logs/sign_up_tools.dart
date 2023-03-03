@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'sign_in_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -27,11 +28,11 @@ class ButtonCreateAccount extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/button.jpg"),
-            fit: BoxFit.fitWidth,
+            fit: BoxFit.fill,
           ),
         ),
         child: const Padding(
-          padding: EdgeInsets.all(50.0),
+          padding: EdgeInsets.all(22.0),
           child: Text(
             'Create account',
             style: TextStyle(
@@ -39,6 +40,7 @@ class ButtonCreateAccount extends StatelessWidget {
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 fontFamily: "OldLondon"),
+                textAlign: TextAlign.center,
           ),
         ),
       ),
@@ -51,12 +53,7 @@ class LoginAlready extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextButton(
+    return TextButton(
             onPressed: () {
               Navigator.push(
                 context,
@@ -70,9 +67,6 @@ class LoginAlready extends StatelessWidget {
                   fontFamily: "OldLondon",
                   fontSize: 20),
             ),
-          )
-        ],
-      ),
     );
   }
 }
@@ -92,16 +86,37 @@ signup(firstname, lastname, pseudo, email, password, context) async {
       'password': password,
     }),
   );
+  Map<String, dynamic> data = json.decode(response.body);
 
   if (response.statusCode == 201) {
-    Map<String, dynamic> data = json.decode(response.body);
     connectedUser = data["data"]["user"];
-    Navigator.push(
+    Navigator.pushNamed(
       context,
-      MaterialPageRoute(
-          builder: (context) => const MyHomePage(title: "LaZone")),
+      '/home'
     );
   } else {
+    if (data["data"]["info"]["message"] == "Email already exists.")
+      notifyCredentialError(context);
     throw Exception('Failed to create account.');
   }
+}
+
+notifyCredentialError(context) {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) => AlertDialog(
+      title: const Text('Credentials error !!'),
+      content: const Text('Email already used'),
+      icon: Icon(
+        FontAwesomeIcons.envelope,
+        color: Colors.deepPurple,
+      ),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () => Navigator.pop(context, 'OK'),
+          child: const Text('OK'),
+        ),
+      ],
+    ),
+  );
 }

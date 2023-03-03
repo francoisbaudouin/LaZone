@@ -11,17 +11,17 @@ class SignUpCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 15.0),
+      padding: const EdgeInsets.fromLTRB(100, 0, 100 , 40),
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/images/parchemin2.png"),
-          fit: BoxFit.fitHeight,
+          fit: BoxFit.fill,
         ),
       ),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <
-          Widget>[
+      child: Column(crossAxisAlignment: CrossAxisAlignment.center, 
+      children: <Widget>[
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 55.0),
+          padding: const EdgeInsets.symmetric(vertical: 50.0),
           child: SizedBox(
             width: 260,
             height: 60,
@@ -55,6 +55,7 @@ class SignUpCards extends StatelessWidget {
             fontWeight: FontWeight.bold,
             fontFamily: "OldLondon",
           ),
+          textAlign: TextAlign.center
         ),
         const SizedBox(
           height: 13,
@@ -211,12 +212,9 @@ class SignUpCards extends StatelessWidget {
           height: 5,
         ),
         const LoginAlready(),
-        const SizedBox(
-          height: 5,
-        ),
         button,
         const SizedBox(
-          height: 125,
+          height: 110,
         ),
       ]),
     );
@@ -229,7 +227,7 @@ class SignUpPageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(0.0),
       child: SingleChildScrollView(
         child: ResponsiveRowColumn(
           layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
@@ -237,11 +235,11 @@ class SignUpPageContent extends StatelessWidget {
               : ResponsiveRowColumnType.ROW,
           rowCrossAxisAlignment: CrossAxisAlignment.center,
           rowSpacing: 25,
-          columnSpacing: 25,
+          columnSpacing: 0,
           children: [
             ResponsiveRowColumnItem(
               rowFlex: 1,
-              rowFit: FlexFit.tight,
+              rowFit: FlexFit.loose,
               child: SignUpCards(),
             ),
           ],
@@ -264,19 +262,26 @@ class SignUpPage extends StatelessWidget {
             fit: BoxFit.cover),
       ),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: SizedBox(
-            child: SingleChildScrollView(
-          child: Column(
-            children: const <Widget>[
-              SizedBox(
-                height: 30,
+      backgroundColor: Colors.transparent,
+      body: Center(
+        child: SizedBox(
+          width: 500,
+          child: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const <Widget>[
+                  SizedBox(
+                    height: 20,
+                  ),
+                  SignUpPageContent(),
+                ],
               ),
-              SignUpPageContent(),
-            ],
+            ),
           ),
-        )),
+        ),
       ),
+    ),
     );
   }
 }
