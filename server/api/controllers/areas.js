@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 // areas routes.
 exports.resGetAllAreas = async (req, res) => {
   const areas = await this.getAllAreas();
-  res.json(areas);
+  res.status(201).json(areas);
 };
 
 exports.resGetAllEnabledAreas = async (req, res) => {

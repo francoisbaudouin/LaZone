@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/Tools/text.dart';
 import 'package:side_navigation/side_navigation.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -8,6 +9,8 @@ import 'profile_page.dart';
 import 'Tools/setup_page.dart';
 import 'ServicePage/services_page.dart';
 import 'Tools/global.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 const EdgeInsets blockMargin = EdgeInsets.fromLTRB(0, 100, 0, 0);
 
@@ -76,106 +79,120 @@ class _HomeViewState extends State<HomeView> {
   }
 
   @override
-Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(
-      toolbarHeight: 40.0,
-      backgroundColor: const Color.fromARGB(255, 18, 21, 41),
-      elevation: 0.0,
-      title: const Center(
-        child: Text('LaZone',
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.white, fontFamily: "OldLondon")
-        ),
-      ),
-      leading: IconButton(
-        color: Colors.white,
-        icon: const Icon(Icons.download),
-        onPressed: () async {
-          var url = Uri.parse("http://$serverAddress/about.json");
-          launchUrl(url);
-        },
-      ),
-      actions: <Widget>[
-        IconButton(
-          color: Colors.white,
-          icon: const Icon(Icons.logout),
-          onPressed: () {
-            globalFirstname = "";
-            globalLastname = "";
-            globalPseudo = "";
-            globalEmail = "";
-            globalPassword = "";
-            areas.clear();
-            Navigator.pushNamed(context, '/');
-          },
-        ),
-      ]
-    ),
-    body: Stack(
-      children: [
-        Positioned.fill(
-          child: views.elementAt(_selectedIndex),
-        ),
-        Positioned(
-          top: 0,
-          bottom: 0,
-          left: 0,
-          child: SideNavigationBar(
-            theme: SideNavigationBarTheme(
-              backgroundColor: const Color.fromARGB(255, 18, 21, 41),
-              togglerTheme: const SideNavigationBarTogglerTheme(
-                expandIconColor: Colors.white,
-                shrinkIconColor: Colors.white
-              ),
-              itemTheme: SideNavigationBarItemTheme(
-                unselectedItemColor: Colors.white,
-                selectedItemColor: const Color.fromARGB(255, 165, 216, 255),
-                iconSize: 32.5,
-                labelTextStyle: const TextStyle(
-                  fontFamily: "OldLondon",
-                ),
-              ),
-              dividerTheme: SideNavigationBarDividerTheme.standard(),
-            ),
-            footer: const SideNavigationBarFooter(
-              label: Text('Reduce',
-                style: TextStyle(
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  fontFamily: "OldLondon"
-                )
-              ),
-            ),
-            selectedIndex: _selectedIndex,
-            items: const [
-              SideNavigationBarItem(
-                icon: Icons.home,
-                label: 'Services',
-              ),
-              SideNavigationBarItem(
-                icon: Icons.integration_instructions,
-                label: 'Create Area',
-              ),
-              SideNavigationBarItem(
-                icon: Icons.account_tree_sharp,
-                label: 'Actions/Reactions',
-              ),
-              SideNavigationBarItem(
-                icon: Icons.person,
-                label: 'Account',
-              ),
-            ],
-            onTap: (index) {
-              setState(() {
-                _selectedIndex = index;
-              });
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+          toolbarHeight: 40.0,
+          backgroundColor: const Color.fromARGB(255, 18, 21, 41),
+          elevation: 0.0,
+          title: const Center(
+            child: Text('LaZone',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white, fontFamily: "OldLondon")),
+          ),
+          leading: IconButton(
+            color: Colors.white,
+            icon: const Icon(Icons.download),
+            onPressed: () async {
+              var url = Uri.parse("http://$serverAddress/about.json");
+              launchUrl(url);
             },
           ),
-        ),
-      ],
-    ),
-  );
+          actions: <Widget>[
+            IconButton(
+              color: Colors.white,
+              icon: const Icon(Icons.logout),
+              onPressed: () {
+                globalFirstname = "";
+                globalLastname = "";
+                globalPseudo = "";
+                globalEmail = "";
+                globalPassword = "";
+                areas.clear();
+                Navigator.pushNamed(context, '/');
+              },
+            ),
+          ]),
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: views.elementAt(_selectedIndex),
+          ),
+          Positioned(
+            top: 0,
+            bottom: 0,
+            left: 0,
+            child: SideNavigationBar(
+              theme: SideNavigationBarTheme(
+                backgroundColor: const Color.fromARGB(255, 18, 21, 41),
+                togglerTheme: const SideNavigationBarTogglerTheme(
+                    expandIconColor: Colors.white,
+                    shrinkIconColor: Colors.white),
+                itemTheme: SideNavigationBarItemTheme(
+                  unselectedItemColor: Colors.white,
+                  selectedItemColor: const Color.fromARGB(255, 165, 216, 255),
+                  iconSize: 32.5,
+                  labelTextStyle: const TextStyle(
+                    fontFamily: "OldLondon",
+                  ),
+                ),
+                dividerTheme: SideNavigationBarDividerTheme.standard(),
+              ),
+              footer: const SideNavigationBarFooter(
+                label: Text('Reduce',
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        fontFamily: "OldLondon")),
+              ),
+              selectedIndex: _selectedIndex,
+              items: const [
+                SideNavigationBarItem(
+                  icon: Icons.home,
+                  label: 'Services',
+                ),
+                SideNavigationBarItem(
+                  icon: Icons.integration_instructions,
+                  label: 'Create Area',
+                ),
+                SideNavigationBarItem(
+                  icon: Icons.account_tree_sharp,
+                  label: 'Actions/Reactions',
+                ),
+                SideNavigationBarItem(
+                  icon: Icons.person,
+                  label: 'Account',
+                ),
+              ],
+              onTap: (index) {
+                if (index == 2) {
+                  getUsersAreas();
+                }
+                setState(() {
+                  _selectedIndex = index;
+                });
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
+
+getUsersAreas() async {
+  var url = Uri.parse("http://$serverAddress/areas");
+  final http.Response response = await http.get(url, headers: <String, String>{
+    'Content-Type': 'application/json; charset=UTF-8',
+  });
+  Map<String, dynamic> data = json.decode(response.body);
+
+  if (response.statusCode == 201) {
+    for (var i = 0; i < data.length; i += 1) {
+      if (data[i]["userID"] == connectedUser["id"]) areas.add(data[i]);
+    }
+  } else {
+    throw Exception('Failed to retrieve all areas.');
+  }
 }
 
 class MyHomePage extends StatefulWidget {
