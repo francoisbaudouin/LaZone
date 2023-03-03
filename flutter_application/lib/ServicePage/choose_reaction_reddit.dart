@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/Tools/global.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import '../Tools/create_cards.dart';
 
-class ChooseReactionTeams extends StatelessWidget {
-  const ChooseReactionTeams({super.key});
+class ChooseReactionReddit extends StatelessWidget {
+  const ChooseReactionReddit({super.key});
   @override
   Widget build(BuildContext context) {
     return Container (
@@ -17,24 +18,17 @@ class ChooseReactionTeams extends StatelessWidget {
             rowSpacing: 10,
             columnSpacing: 10,
             children: [
-              const ResponsiveRowColumnItem(
-                rowFlex: 1,
-                rowFit: FlexFit.tight,
-                child: ServiceCards(
-                  title: "Create a team",
-                  imagePath: "assets/images/Microsoft-Teams-Symbole.png",
-                  textbutton :  "Choose this action",
-                  colorButton : Colors.indigo,
-                ),
-              ),
               ResponsiveRowColumnItem(
                 rowFlex: 1,
-                rowFit: FlexFit.tight,
-                child: ServiceCards(
-                  title: "Create a room",
-                  imagePath: "assets/images/Microsoft-Teams-Symbole.png",
+                rowFit: FlexFit.loose,
+                child: CreateCardsTwoChoicewithText(
+                  title: "Post a message",
+                  imagePath: "assets/images/Reddit-Logo.png",
                   textbutton :  "Choose this action",
-                  colorButton : Colors.indigo,
+                  colorButton : Color.fromARGB(255, 214, 86, 11),
+                  choice :"Choose a subreddit:",
+                  choice2:"Enter your message",
+                  choiceList: SubRedditList,
                 ),
               ),
             ],

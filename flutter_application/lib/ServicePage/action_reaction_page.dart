@@ -30,8 +30,8 @@ String chooseImageServiceReaction(reactionServiceChoose) {
   if (reactionServiceChoose == "Discord") {
     res = "assets/images/discord-logo.png";
   }
-  if (reactionServiceChoose == "Microsoft Teams") {
-    res = "assets/images/Microsoft-Teams-Symbole.jpg";
+  if (reactionServiceChoose == "Reddit") {
+    res = "assets/images/Reddit-Logo.jpg";
   }
   return (res);
 }

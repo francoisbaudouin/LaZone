@@ -50,6 +50,16 @@ class AreaPageServicesCards extends StatelessWidget {
                 colorButton: buttonchoosecol.colbuttonChooseFacebook,
               ),
             ),
+            ResponsiveRowColumnItem(
+              rowFlex: 1,
+              rowFit: FlexFit.tight,
+              child: ServiceCards(
+                title: "Reddit",
+                imagePath: "assets/images/Reddit-Logo.png",
+                textbutton: buttoncheck.buttonConnectionReddit,
+                colorButton: buttonchoosecol.colbuttonChooseReddit,
+              ),
+            ),
           ],
         ),
       ),

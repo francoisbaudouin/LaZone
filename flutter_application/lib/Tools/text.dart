@@ -9,8 +9,8 @@ class ButtonConnection {
   String buttonConnectionFacebook;
   String buttonConnectionDiscord;
   String buttonConnectionTwitter;
-  String buttonConnectionTeams;
-  ButtonConnection({this.buttonConnectionGitHub = "Disconected", this.buttonConnectionYoutube = "Disconected", this.buttonConnectionFacebook = "Disconected", this.buttonConnectionDiscord = "Disconected", this.buttonConnectionTwitter = "Disconected", this.buttonConnectionTeams = "Disconected"});
+  String buttonConnectionReddit;
+  ButtonConnection({this.buttonConnectionGitHub = "Disconected", this.buttonConnectionYoutube = "Disconected", this.buttonConnectionFacebook = "Disconected", this.buttonConnectionDiscord = "Disconected", this.buttonConnectionTwitter = "Disconected", this.buttonConnectionReddit = "Disconected"});
 }
 ButtonConnection button = ButtonConnection();
 
@@ -20,8 +20,8 @@ class CheckConnectionText {
   String buttonConnectionFacebook;
   String buttonConnectionDiscord;
   String buttonConnectionTwitter;
-  String buttonConnectionTeams;
-  CheckConnectionText({this.buttonConnectionGitHub = "Disconected", this.buttonConnectionYoutube = "Disconected", this.buttonConnectionFacebook = "Disconected", this.buttonConnectionDiscord = "Disconected", this.buttonConnectionTwitter = "Disconected", this.buttonConnectionTeams = "Disconected"});
+  String buttonConnectionReddit;
+  CheckConnectionText({this.buttonConnectionGitHub = "Disconected", this.buttonConnectionYoutube = "Disconected", this.buttonConnectionFacebook = "Disconected", this.buttonConnectionDiscord = "Disconected", this.buttonConnectionTwitter = "Disconected", this.buttonConnectionReddit = "Disconected"});
 }
 CheckConnectionText buttoncheck = CheckConnectionText();
 
@@ -31,8 +31,8 @@ class CheckConnection {
   bool buttonChooseFacebook;
   bool buttonChooseDiscord;
   bool buttonChooseTwitter;
-  bool buttonChooseTeams;
-  CheckConnection({this.buttonChooseGitHub = false, this.buttonChooseYoutube = false, this.buttonChooseFacebook = false, this.buttonChooseDiscord = false, this.buttonChooseTwitter = false, this.buttonChooseTeams = false});
+  bool buttonChooseReddit;
+  CheckConnection({this.buttonChooseGitHub = false, this.buttonChooseYoutube = false, this.buttonChooseFacebook = false, this.buttonChooseDiscord = false, this.buttonChooseTwitter = false, this.buttonChooseReddit = false});
 }
 CheckConnection buttonChoose = CheckConnection();
 
