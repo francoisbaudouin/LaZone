@@ -1,17 +1,16 @@
 const passport = require('passport');
-const MicrosoftStrategy = require('passport-microsoft').Strategy;
-const storage = require('node-sessionstorage');
+const storage = require('node-sessionstorage')
+var FacebookStrategy = require('passport-facebook').Strategy;
 const { PrismaClient } = require("@prisma/client");
 require("dotenv").config();
 
+// Initialize a prisma client
 const prisma = new PrismaClient();
 
-passport.use(new MicrosoftStrategy({
-    // Standard OAuth2 options
-    clientID: process.env.MICROSOFT_CLIENT_ID,
-    clientSecret: process.env.MICROSOFT_CLIENT_SECRET,
-    callbackURL: "http://localhost:8080/auth/Microsoft/callback",
-    scope: ['user.read'],
+passport.use(new FacebookStrategy({
+  clientID: process.env.FACEBOOK_CLIENT_ID,
+  clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+  callbackURL: "http://localhost:8080/auth/Facebook/callback"
   },
   async function(accessToken, refreshToken, profile, done) {
     try {
@@ -19,7 +18,7 @@ passport.use(new MicrosoftStrategy({
         data: {
           accessTokens: accessToken,
           refreshTokens: refreshToken ? refreshToken : 'NoRefreshToken',
-          relatedServiceName: 'Microsoft',
+          relatedServiceName: 'Facebook',
           userId: Number(storage.getItem('userId')),
         }
       })

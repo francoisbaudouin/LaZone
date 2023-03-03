@@ -22,14 +22,18 @@ connectService(serviceName) async {
     } else {
       throw 'no user id';
     }
-    await launchUrl(uri);
+    launchUrl(uri, mode: LaunchMode.externalApplication);
   } else {
     throw 'Could not launch $baseUrl of service named $serviceName.';
   }
 }
 
-chooseConnectionServices(page) async {
-  if (page == "Twitter" /*&& buttonChoose.buttonChooseTwitter == false*/) {
+refreshPage(context) {
+  Navigator.pushNamed(context, '/home');
+}
+
+chooseConnectionServices(page, context) async {
+  if (page == "Twitter" && buttonChoose.buttonChooseTwitter == false) {
     await connectService('Twitter');
     buttonChoose.buttonChooseTwitter = true;
     button.buttonConnectionTwitter = "Connected";
@@ -45,7 +49,7 @@ chooseConnectionServices(page) async {
     buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 14, 41, 2);
   } else if (page == "Microsoft Teams" &&
       buttonChoose.buttonChooseTeams == false) {
-    await connectService('Microsoft');
+    await connectService('Reddit');
     buttonChoose.buttonChooseTeams = true;
     button.buttonConnectionTeams = "Connected";
     buttoncheck.buttonConnectionTeams = "Choose";
@@ -58,21 +62,23 @@ chooseConnectionServices(page) async {
     buttoncheck.buttonConnectionGitHub = "Choose";
     buttonchoosecol.colbuttonChooseGitHub = colorConnected;
     buttoncol.colbuttonConnectionGitHub = const Color.fromARGB(255, 14, 41, 2);
-  } else if (page == "Trello" && buttonChoose.buttonChooseTrello == false) {
-    buttonChoose.buttonChooseTrello = true;
-    button.buttonConnectionTrello = "Connected";
-    buttoncheck.buttonConnectionTrello = "Choose";
-    buttonchoosecol.colbuttonChooseTrello = colorConnected;
-    buttoncol.colbuttonConnectionTrello = const Color.fromARGB(255, 14, 41, 2);
-  } else if (page == "Microsoft Planner" &&
-      buttonChoose.buttonChoosePlanner == false) {
+  } else if (page == "Youtube" && buttonChoose.buttonChooseYoutube == false) {
     await connectService('Google');
-    buttonChoose.buttonChoosePlanner = true;
-    button.buttonConnectionPlanner = "Connected";
-    buttoncheck.buttonConnectionPlanner = "Choose";
-    buttonchoosecol.colbuttonChoosePlanner = colorConnected;
-    buttoncol.colbuttonConnectionPlanner = const Color.fromARGB(255, 14, 41, 2);
+    buttonChoose.buttonChooseYoutube = true;
+    button.buttonConnectionYoutube = "Connected";
+    buttoncheck.buttonConnectionYoutube = "Choose";
+    buttonchoosecol.colbuttonChooseYoutube = colorConnected;
+    buttoncol.colbuttonConnectionYoutube = const Color.fromARGB(255, 14, 41, 2);
+  } else if (page == "Facebook" && buttonChoose.buttonChooseFacebook == false) {
+    await connectService('Facebook');
+    buttonChoose.buttonChooseFacebook = true;
+    button.buttonConnectionFacebook = "Connected";
+    buttoncheck.buttonConnectionFacebook = "Choose";
+    buttonchoosecol.colbuttonChooseFacebook = colorConnected;
+    buttoncol.colbuttonConnectionFacebook =
+        const Color.fromARGB(255, 14, 41, 2);
   }
+  refreshPage(context);
 }
 
 class ServicesCardsInformations extends StatelessWidget {
@@ -122,7 +128,7 @@ class ServicesCardsInformations extends StatelessWidget {
                 ),
                 FloatingActionButton.extended(
                   onPressed: () {
-                    chooseConnectionServices(title);
+                    chooseConnectionServices(title, context);
                   },
                   backgroundColor: colorButton,
                   label: Text(textbutton,
@@ -198,14 +204,14 @@ class ActionsServicesCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(0.0),
       child: SingleChildScrollView(
         child: ResponsiveRowColumn(
           layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
               ? ResponsiveRowColumnType.COLUMN
               : ResponsiveRowColumnType.ROW,
           rowCrossAxisAlignment: CrossAxisAlignment.center,
-          rowSpacing: 25,
+          rowSpacing: 0,
           columnSpacing: 25,
           children: [
             ResponsiveRowColumnItem(
@@ -222,20 +228,20 @@ class ActionsServicesCards extends StatelessWidget {
               rowFlex: 1,
               rowFit: FlexFit.tight,
               child: ServicesCardsInformations(
-                title: "Trello",
-                imagePath: "assets/images/Trello-Symbole.png",
-                textbutton: button.buttonConnectionTrello,
-                colorButton: buttoncol.colbuttonConnectionTrello,
+                title: "Youtube",
+                imagePath: "assets/images/Youtube-Symbole.png",
+                textbutton: button.buttonConnectionYoutube,
+                colorButton: buttoncol.colbuttonConnectionYoutube,
               ),
             ),
             ResponsiveRowColumnItem(
               rowFlex: 1,
               rowFit: FlexFit.tight,
               child: ServicesCardsInformations(
-                title: "Microsoft Planner",
-                imagePath: "assets/images/Planner-logo.png",
-                textbutton: button.buttonConnectionPlanner,
-                colorButton: buttoncol.colbuttonConnectionPlanner,
+                title: "Facebook",
+                imagePath: "assets/images/Facebook-logo.png",
+                textbutton: button.buttonConnectionFacebook,
+                colorButton: buttoncol.colbuttonConnectionFacebook,
               ),
             ),
           ],
@@ -248,8 +254,10 @@ class ActionsServicesCards extends StatelessWidget {
 class SetPageServices extends StatelessWidget {
   const SetPageServices({
     Key? key,
+    required this.title,
     required this.message,
   }) : super(key: key);
+  final String title;
   final String message;
   @override
   Widget build(BuildContext context) {
@@ -266,6 +274,13 @@ class SetPageServices extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
+                const SizedBox(
+                  height: 20,
+                ),
+                WelcomCards(title: title),
+                const SizedBox(
+                  height: 70,
+                ),
                 TitleCards(
                   message: message,
                 ),

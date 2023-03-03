@@ -10,7 +10,13 @@ router.get('/Discord',
   passport.authenticate('discord', { permissions: 8 }));
 
 router.post('/Discord', (req, res) => {
-  res.status(201).json({message: "success"});
+  try {
+    storage.removeItem('userId');
+    storage.setItem('userId', req.body.userId);
+    res.status(201).json({message:'success'});
+  } catch (error) {
+    res.status(400).json({error: error});
+  }
 })
 
 router.get('/Discord/callback', (req, res, next) => {

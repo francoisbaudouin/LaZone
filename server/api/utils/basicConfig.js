@@ -26,17 +26,22 @@ async function basicConfig() {
   })
   await prisma.services.create({
     data: {
-      name: "Microsoft",
-      description: "This is microsoft service, used for teams and planner",
-    }
-  })
-  await prisma.services.create({
-    data: {
       name: "Google",
       description: "This is Google service",
     }
   })
-
+  await prisma.services.create({
+    data: {
+      name: "Facebook",
+      description: "This is Facebook service",
+    }
+  })
+  await prisma.services.create({
+    data: {
+      name: "Reddit",
+      description: "This is Reddit service",
+    }
+  })
   //ACTION
 
   //git
