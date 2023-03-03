@@ -100,6 +100,12 @@ class _HomeViewState extends State<HomeView> {
               color: Colors.white,
               icon: const Icon(Icons.logout),
               onPressed: () {
+                globalFirstname = "";
+                globalLastname = "";
+                globalPseudo = "";
+                globalEmail = "";
+                globalPassword = "";
+                areas.clear();
                 Navigator.pushNamed(context, '/');
               },
             ),
