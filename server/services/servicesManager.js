@@ -1,7 +1,9 @@
 const { getFromRepo, getNewRepos } = require("./action/githubAction.js");
-const { sendMessage, createChannel, client } = require("./reaction/discordReaction.js");
+const { getFromSubReddit } = require('./action/redditAction.js')
 
+const { sendMessage, createChannel, client } = require("./reaction/discordReaction.js");
 const { sendTweet } = require("./reaction/twitterReaction.js")
+const {  } = require('./reaction/redditReaction.js')
 
 const { updateAreaTimestamp } = require("../api/controllers/areas.js");
 
