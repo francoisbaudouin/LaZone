@@ -34,13 +34,29 @@ function parseGitRepos(data) {
   if (data == undefined)
     throw Error;
   var result = {
-    type: "Pull_Request",
+    type: "Repo",
     name: data.name,
     htmlUrl: data.html_url,
     owner: {
       name: data.owner.login,
       htmlUrl: data.owner.html_url,
       avatarUrl: data.owner.avatar_url,
+    }
+  }
+  return (result);
+}
+
+function parseSubReddit(data) {
+  if (data == undefined)
+    throw Error;
+  var result = {
+    type: "Post on subReddit",
+    name: data.title,
+    htmlUrl: data.url,
+    owner: {
+      name: data.author.name,
+      htmlUrl: `https://www.reddit.com/user/${data.author.name}`,
+      avatarUrl: data.author.icon_img,
     }
   }
   return (result);
