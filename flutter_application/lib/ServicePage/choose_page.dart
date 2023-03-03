@@ -48,7 +48,7 @@ chooseReactionService(page, context) async {
   }
 }
 
-getServiceActionParameters(context, serviceName) async {
+getServiceActionsReactionsParameters(context, serviceName) async {
   var url = Uri.parse("http://$serverAddress/");
   final http.Response response = await http.post(
     url,
@@ -60,23 +60,22 @@ getServiceActionParameters(context, serviceName) async {
       'service': serviceName
     }),
   );
-  Map<String, dynamic> data = json.decode(response.body);
 
-  // if (response.statusCode == 201) {
-  //   connectedUser = data["data"]["user"];
-  //   Navigator.pushNamed(
-  //     context,
-  //     '/home'
-  //   );
-  // } else {
-  //   if (data["data"]["info"]["message"] == "Email already exists.")
-  //     notifyCredentialError(context);
-  //   throw Exception('Failed to create account.');
-  // }
+  if (response.statusCode == 201) {
+    setServiceActionsParameters(response.body);
+  } else if (response.statusCode == 202) {
+    setServiceReactionsParameters(response.body);
+  } else {
+    throw Exception('Failed to retrieve $serviceName actions parameters.');
+  }
 }
 
-setServiceActionParameters(parameters) {
-  return;
+setServiceActionsParameters(parameters) {
+  globalActionParameters = json.decode(parameters);
+}
+
+setServiceReactionsParameters(parameters) {
+  globalReactionParameters = json.decode(parameters);
 }
 
 chooseActionService(page, context) async {
@@ -94,7 +93,8 @@ chooseActionService(page, context) async {
       context,
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
-              message: "Choose your action:", services: ChooseActionsYoutube())),
+              message: "Choose your action:",
+              services: ChooseActionsYoutube())),
     );
   } else if (page == "Facebook" && buttonChoose.buttonChooseFacebook == true) {
     area.actionServiceChoose = page;
@@ -111,8 +111,7 @@ chooseActionService(page, context) async {
       context,
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
-              message: "Choose your action:",
-              services: ChooseActionReddit())),
+              message: "Choose your action:", services: ChooseActionReddit())),
     );
   }
 }
@@ -145,7 +144,8 @@ getActionId(String action) {
     id.actionId = 6;
   } else if (action == "A video was posted \nby one of my subscriptions") {
     id.actionId = 7;
-  } else if (action == "One of my subscriptions \nhas posted in the community tab") {
+  } else if (action ==
+      "One of my subscriptions \nhas posted in the community tab") {
     id.actionId = 8;
   }
 }
@@ -204,16 +204,16 @@ chooseConnection(page, context) async {
 
 addNewAreatoArealist() {
   Map<String, dynamic> newArea = {
-      "actionServiceChoose": area.actionServiceChoose,
-      "action": area.action,
-      "reactionServiceChoose": area.reactionServiceChoose,
-      "reaction": area.reaction,
-    };
-    areas.add(newArea);
-    area.actionServiceChoose = "";
-    area.reactionServiceChoose = "";
-    area.action = "";
-    area.reaction = "";
+    "actionServiceChoose": area.actionServiceChoose,
+    "action": area.action,
+    "reactionServiceChoose": area.reactionServiceChoose,
+    "reaction": area.reaction,
+  };
+  areas.add(newArea);
+  area.actionServiceChoose = "";
+  area.reactionServiceChoose = "";
+  area.action = "";
+  area.reaction = "";
 }
 
 AreaConnection(recJson, context) async {
