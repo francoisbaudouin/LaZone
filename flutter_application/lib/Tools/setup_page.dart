@@ -16,7 +16,7 @@ class SetPageContent extends StatelessWidget {
   final services;
   @override
   Widget build(BuildContext context) {
-    var sidebarWidth = 72.0; // Largeur de votre SideNavigationBar
+    var sidebarWidth = 72.0;
     return Container(
       height: 1920,
       width: 1080,
@@ -63,7 +63,7 @@ class SetPageContentService extends StatelessWidget {
   final services;
   @override
   Widget build(BuildContext context) {
-    var sidebarWidth = 72.0; // Largeur de votre SideNavigationBar
+    var sidebarWidth = 72.0;
     return Container(
       height: 1920,
       width: 1080,
