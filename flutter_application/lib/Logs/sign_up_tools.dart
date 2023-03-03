@@ -97,10 +97,9 @@ signup(firstname, lastname, pseudo, email, password, context) async {
 
   if (response.statusCode == 201) {
     connectedUser = data["data"]["user"];
-    Navigator.push(
+    Navigator.pushNamed(
       context,
-      MaterialPageRoute(
-          builder: (context) => const MyHomePage(title: "LaZone")),
+      '/home'
     );
   } else {
     if (data["data"]["info"]["message"] == "Email already exists.")

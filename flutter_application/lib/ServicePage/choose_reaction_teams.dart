@@ -17,18 +17,6 @@ class ChooseReactionTeams extends StatelessWidget {
             rowSpacing: 10,
             columnSpacing: 10,
             children: [
-              ResponsiveRowColumnItem(
-                rowFlex: 1,
-                rowFit: FlexFit.tight,
-                child: CreateCardsTwoChoice(
-                  title: "Post a message",
-                  imagePath: "assets/images/Microsoft-Teams-Symbole.png",
-                  textbutton :  "Choose this action",
-                  colorButton : Colors.indigo,
-                  choiceOne: "Choose a team:",
-                  choiceTwo: "Choose a room:",
-                ),
-              ),
               const ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
@@ -42,12 +30,11 @@ class ChooseReactionTeams extends StatelessWidget {
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
-                child: CreateCardsOneChoice(
+                child: ServiceCards(
                   title: "Create a room",
                   imagePath: "assets/images/Microsoft-Teams-Symbole.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.indigo,
-                  choice : "Choose a team:"
                 ),
               ),
             ],
