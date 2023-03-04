@@ -103,12 +103,7 @@ class _HomeViewState extends State<HomeView> {
               color: Colors.white,
               icon: const Icon(Icons.logout),
               onPressed: () {
-                globalFirstname = "";
-                globalLastname = "";
-                globalPseudo = "";
-                globalEmail = "";
-                globalPassword = "";
-                areas.clear();
+                reset();
                 Navigator.pushNamed(context, '/');
               },
             ),
@@ -163,9 +158,10 @@ class _HomeViewState extends State<HomeView> {
                   label: 'Account',
                 ),
               ],
-              onTap: (index) {
+              onTap: (index) async {
                 if (index == 2) {
-                  getUsersAreas();
+                  areas.clear();
+                  await getUsersAreas();
                 }
                 setState(() {
                   _selectedIndex = index;
@@ -179,19 +175,56 @@ class _HomeViewState extends State<HomeView> {
   }
 }
 
+reset() {
+  globalFirstname = "";
+  globalLastname = "";
+  globalPseudo = "";
+  globalEmail = "";
+  globalPassword = "";
+  connectedUser = {};
+  button = ButtonConnection();
+  buttonChoose = CheckConnection();
+  buttoncheck = CheckConnectionText();
+  areas.clear();
+}
+
 getUsersAreas() async {
   var url = Uri.parse("http://$serverAddress/areas");
-  final http.Response response = await http.get(url, headers: <String, String>{
+  http.Response response = await http.get(url, headers: <String, String>{
     'Content-Type': 'application/json; charset=UTF-8',
   });
   Map<String, dynamic> data = json.decode(response.body);
 
   if (response.statusCode == 201) {
     for (var i = 0; i < data.length; i += 1) {
-      if (data[i]["userID"] == connectedUser["id"]) areas.add(data[i]);
+      if (data[i]["id"] == connectedUser["id"]) {
+        Map<String, dynamic> action = await getActionReactionData(data[i]['actionsId'], 'actions');
+        Map<String, dynamic> reaction = await getActionReactionData(data[i]['reactionsId'], 'reactions');
+        areas.add({
+          "actionServiceChoose": action['serviceName'],
+          "action": action['name'],
+          "reactionServiceChoose": reaction['serviceName'],
+          "reaction": reaction['name']
+        });
+      }
     }
   } else {
     throw Exception('Failed to retrieve all areas.');
+  }
+}
+
+getActionReactionData(id, type) async {
+  var url =
+      Uri.parse("http://$serverAddress/$type/$id");
+  final response = await http.get(url, headers: <String, String>{
+    'Content-Type': 'application/json; charset=UTF-8',
+  });
+  if (response.statusCode == 200) {
+    Map<String, dynamic> returnValue = json.decode(response.body);
+
+    return returnValue;
+  } else {
+    throw Exception('Failed to retrieve action/reaction data.');
   }
 }
 
