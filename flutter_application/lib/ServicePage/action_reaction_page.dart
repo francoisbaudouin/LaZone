@@ -196,6 +196,9 @@ class CreateActionReactionPage extends StatelessWidget {
                 height: 20,
               ),
               WelcomCards(title: "Your actions/reactions"),
+              SizedBox(
+                height: 20,
+              ),
               Padding(
                 padding: EdgeInsets.only(left: sidebarWidth),
                 child: CreateActionReactionCards(),
