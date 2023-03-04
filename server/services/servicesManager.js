@@ -4,6 +4,9 @@ const { sendMessage, createChannel, client } = require("./reaction/discordReacti
 const { sendTweet } = require("./reaction/twitterReaction.js")
 
 const { updateAreaTimestamp } = require("../api/controllers/areas.js");
+const { getUserTokenFromService } = require("../api/controllers/users.js");
+
+const { serviceInit } = require('./servicesInitialisation.js');
 
 const actionMap = new Map([
   [1, getFromRepo],
@@ -51,4 +54,20 @@ function activateAreasFromUser(user) {
   }
 }
 
-module.exports = { activateAreasFromUser, client }
+async function getServiceData(serviceName, userId) {
+  try {
+    var userData = {
+      id: userId,
+      token: getUserTokenFromService(serviceName, userId)
+    };
+
+    if (serviceName == "Discord") {
+      return (serviceInit[serviceName](client, userData))
+    } else
+      return (serviceInit[serviceName](userData));
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+module.exports = { activateAreasFromUser, getServiceData, client }

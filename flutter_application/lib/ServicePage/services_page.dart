@@ -11,10 +11,11 @@ connectService(serviceName) async {
   String baseUrl = "http://$serverAddress/auth/";
   final uri = Uri.parse(baseUrl + serviceName);
   final uriPost = Uri.parse(baseUrl + serviceName);
+  final response;
 
   if (await canLaunchUrl(uri)) {
     if (connectedUser['id'] != null) {
-      final response = await http
+      response = await http
           .post(uriPost, body: {'userId': connectedUser['id'].toString()});
       if (response.statusCode != 201) {
         throw 'error in server, please retry';
@@ -22,6 +23,7 @@ connectService(serviceName) async {
     } else {
       throw 'no user id';
     }
+    print(response.body);
     launchUrl(uri, mode: LaunchMode.externalApplication);
   } else {
     throw 'Could not launch $baseUrl of service named $serviceName.';
@@ -29,10 +31,7 @@ connectService(serviceName) async {
 }
 
 refreshPage(context) {
-  Navigator.pushNamed(
-      context,
-      '/home'
-  );
+  Navigator.pushNamed(context, '/home');
 }
 
 chooseConnectionServices(page, context) async {
@@ -73,7 +72,8 @@ chooseConnectionServices(page, context) async {
     button.buttonConnectionFacebook = "Connected";
     buttoncheck.buttonConnectionFacebook = "Choose";
     buttonchoosecol.colbuttonChooseFacebook = colorConnected;
-    buttoncol.colbuttonConnectionFacebook = const Color.fromARGB(255, 14, 41, 2);
+    buttoncol.colbuttonConnectionFacebook =
+        const Color.fromARGB(255, 14, 41, 2);
   }
   refreshPage(context);
 }
@@ -264,8 +264,7 @@ class SetPageServices extends StatelessWidget {
       width: 1080,
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage("assets/images/font.jpg"), 
-            fit: BoxFit.cover),
+            image: AssetImage("assets/images/font.jpg"), fit: BoxFit.cover),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -273,7 +272,9 @@ class SetPageServices extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 WelcomCards(title: title),
                 const SizedBox(height: 70,),
                 Padding(

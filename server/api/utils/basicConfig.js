@@ -26,6 +26,12 @@ async function basicConfig() {
       description: "This is twitter service",
     }
   })
+  await prisma.services.create({
+    data: {
+      name: "Reddit",
+      description: "This is reddit service",
+    }
+  })
 
   await prisma.actions.create({
     data: {
