@@ -10,9 +10,9 @@ String chooseImageServiceAction(String actionServiceChoose) {
     case "Github":
       return "assets/images/github-logo.png";
     case "Youtube":
-      return "assets/images/Youtube-Symbole.jpg";
+      return "assets/images/Youtube-Symbole.png";
     case "Facebook":
-      return "assets/images/Facebook-logo.jpg";
+      return "assets/images/Facebook-logo.png";
     default:
       return "assets/images/nothing.png";
   }
@@ -25,7 +25,7 @@ String chooseImageServiceReaction(String reactionServiceChoose) {
     case "Discord":
       return "assets/images/logo-discord.png";
     case "Reddit":
-      return "assets/images/Reddit-Logo.jpg";
+      return "assets/images/Reddit-Logo.png";
     default:
       return "assets/images/nothing.png";
   }
