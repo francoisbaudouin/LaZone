@@ -21,13 +21,12 @@ class ChooseReactionReddit extends StatelessWidget {
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.loose,
-                child: CreateCardsTwoChoicewithText(
+                child: CreateCardsOneChoice(
                   title: "Post a message",
                   imagePath: "assets/images/Reddit-Logo.png",
                   textbutton :  "Choose this action",
                   colorButton : Color.fromARGB(255, 214, 86, 11),
                   choice :"Choose a subreddit:",
-                  choice2:"Enter your message:",
                   choiceList: SubRedditList,
                 ),
               ),

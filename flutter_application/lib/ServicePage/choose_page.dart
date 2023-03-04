@@ -104,7 +104,6 @@ void chooseActionService(String page, BuildContext context) {
   }
 }
 
-
 setAction(page, context) async {
   if (area.actionServiceChoose != "" && area.action == "") {
     area.action = page;
@@ -113,7 +112,8 @@ setAction(page, context) async {
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
               message: "Choose your reaction service:",
-              services: ReactionServicePage(), sidebarWidth: 0)),
+              services: ReactionServicePage(),
+              sidebarWidth: 0)),
     );
   }
 }
@@ -133,7 +133,10 @@ chooseConnection(page, context) async {
       context,
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
-              message: "", services: ConfirmAreaPage(), sidebarWidth: 0,)),
+                message: "",
+                services: ConfirmAreaPage(),
+                sidebarWidth: 0,
+              )),
     );
   }
 }
@@ -166,43 +169,18 @@ getReactionId(String action, String service) {
 }
 
 setupSendActionReaction(page, context) {
-  //getActionId(area.action);
-  //getReactionId(area.reaction, area.reactionServiceChoose);
-  addNewAreatoArealist();
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) => const MyHomePage(
-                title: "LaZone",
-              )),
-    );
-  //var resJson = {
-  //  "actionParam": "UgoBoulestreau/POC-nodejs",
-  //  "reactionParam": "1062389081973215262",
-  //  "actionId": id.actionId,
-  //  "reactionId": id.reactionId,
-  //  "userId": connectedUser["id"],
-  //  "enabled": true,
-  //};
-  //AreaConnection(resJson, context);
-}
+  getActionId(area.action);
+  getReactionId(area.reaction, area.reactionServiceChoose);
 
-addNewAreatoArealist() {
-  print(area.actionServiceChoose);
-  print(area.action);
-  print(area.reactionServiceChoose);
-  print(area.reaction);
-  Map<String, dynamic> newArea = {
-      "actionServiceChoose": area.actionServiceChoose,
-      "action": area.action,
-      "reactionServiceChoose": area.reactionServiceChoose,
-      "reaction": area.reaction,
-    };
-    areas.add(newArea);
-    area.actionServiceChoose = "";
-    area.reactionServiceChoose = "";
-    area.action = "";
-    area.reaction = "";
+  var resJson = {
+    "actionParam": area.actionParam,
+    "reactionParam": area.reactionParam,
+    "actionId": id.actionId,
+    "reactionId": id.reactionId,
+    "userId": connectedUser["id"],
+    "enabled": true,
+  };
+  AreaConnection(resJson, context);
 }
 
 AreaConnection(recJson, context) async {
@@ -222,7 +200,12 @@ AreaConnection(recJson, context) async {
     }),
   );
   if (response.statusCode == 201) {
-    addNewAreatoArealist();
+    area.actionServiceChoose = "";
+    area.reactionServiceChoose = "";
+    area.action = "";
+    area.reaction = "";
+    area.actionParam = "";
+    area.reactionParam = "";
     Navigator.push(
       context,
       MaterialPageRoute(
