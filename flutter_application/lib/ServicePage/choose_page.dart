@@ -110,6 +110,26 @@ setAction(page, context) async {
   }
 }
 
+chooseConnection(page, context) async {
+  if (area.actionServiceChoose == "") {
+    chooseActionService(page, context);
+  } else if (area.action == "") {
+    setAction(page, context);
+  } else if (area.reactionServiceChoose == "") {
+    chooseReactionService(page, context);
+  } else if (page == "Confirm link" && area.reaction != "") {
+    setupSendActionReaction(page, context);
+  } else {
+    area.reaction = page;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => const SetPageContentService(
+              message: "", services: ConfirmAreaPage(), sidebarWidth: 0,)),
+    );
+  }
+}
+
 getActionId(String action) {
   var actionIds = {
     "Create a issue": 1,
@@ -150,27 +170,6 @@ setupSendActionReaction(page, context) {
   AreaConnection(resJson, context);
 }
 
-chooseConnection(page, context) async {
-  if (area.actionServiceChoose == "") {
-    chooseActionService(page, context);
-  } else if (area.action == "") {
-    setAction(page, context);
-  } else if (area.reactionServiceChoose == "") {
-    chooseReactionService(page, context);
-  } else if (page == "Confirm link" && area.reaction != "") {
-    setupSendActionReaction(page, context);
-  } else {
-    area.reaction = page;
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) => const SetPageContentService(
-              message: "", services: ConfirmAreaPage(), sidebarWidth: 0,)),
-    );
-  }
-}
-
-
 addNewAreatoArealist() {
   Map<String, dynamic> newArea = {
       "actionServiceChoose": area.actionServiceChoose,
@@ -202,6 +201,7 @@ AreaConnection(recJson, context) async {
     }),
   );
   if (response.statusCode == 201) {
+    addNewAreatoArealist();
     Navigator.push(
       context,
       MaterialPageRoute(
