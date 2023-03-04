@@ -10,14 +10,14 @@ router.get('/Discord',
   passport.authenticate('discord', { permissions: 8 }));
 
 router.post('/Discord', (req, res) => {
-  res.status(201).json({message: "success"});
+  res.status(201).json({ message: req.body['userId'] }); // envoie des infos du service liées à l'utilisateur
 })
 
 router.get('/Discord/callback', (req, res, next) => {
   passport.authenticate('discord', { failureRedirect: '/', successRedirect: 'http://localhost:8080/auth/success' }, (err, user, info) => {
     if (err) throw new Error(err);
     return res.status(201).redirect('http://localhost:8080/auth/success');
-  }) (req, res, next);
+  })(req, res, next);
 });
 
 module.exports = router;

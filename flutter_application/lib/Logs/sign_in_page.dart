@@ -6,16 +6,15 @@ import '../Tools/global.dart';
 
 class LoginCards extends StatelessWidget {
   LoginCards({super.key});
-  final button = ButtonConnection(
-      email: "", password: "");
+  final button = ButtonConnection();
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 15.0),
+      padding: const EdgeInsets.fromLTRB(100, 0, 100 , 40),
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/images/parchemin.png"),
-          fit: BoxFit.fitHeight,
+          fit: BoxFit.fill,
         ),
       ),
       child: Column(
@@ -83,7 +82,7 @@ class LoginCards extends StatelessWidget {
               height: 60,
               child: TextField(
                 onChanged: (value) {
-                  button.email = value;
+                  globalEmail = value;
                 },
                 decoration: const InputDecoration(
                   enabledBorder: OutlineInputBorder(
@@ -117,7 +116,7 @@ class LoginCards extends StatelessWidget {
               child: TextField(
                 obscureText: true,
                 onChanged: (value) {
-                  button.password = value;
+                  globalPassword = value;
                 },
                 decoration: const InputDecoration(
                   enabledBorder: OutlineInputBorder(
@@ -159,13 +158,14 @@ class LoginPageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(0.0),
       child: SingleChildScrollView(
         child: ResponsiveRowColumn(
           layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
               ? ResponsiveRowColumnType.COLUMN
               : ResponsiveRowColumnType.ROW,
           rowCrossAxisAlignment: CrossAxisAlignment.center,
+          columnCrossAxisAlignment: CrossAxisAlignment.center,
           rowSpacing: 25,
           columnSpacing: 25,
           children: [
@@ -195,18 +195,25 @@ class LoginPage extends StatelessWidget {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: SizedBox(
+        body: Center(
+          child: SizedBox(
+            width: 500,
             child: SingleChildScrollView(
-          child: Column(
-            children: const <Widget>[
-              SizedBox(
-                height: 60,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const <Widget>[
+                    SizedBox(
+                      height: 30,
+                    ),
+                    LoginPageContent(),
+                  ],
+                ),
               ),
-              LoginPageContent(),
-            ],
+            ),
           ),
-        )),
       ),
+    ),
     );
   }
 }

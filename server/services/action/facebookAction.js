@@ -52,6 +52,6 @@ var getNewAlbum = async function (callback, area) {
   }
 }
 
-module.exports = { getNewPosts, getNewAlbum, getLikes }
+module.exports = { getNewPosts, getNewAlbum }
 
 

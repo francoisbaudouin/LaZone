@@ -6,17 +6,17 @@ var connectedUser;
 class ButtonConnection {
   String buttonConnectionGitHub;
   String buttonConnectionYoutube;
-  String buttonConnectionPlanner;
+  String buttonConnectionFacebook;
   String buttonConnectionDiscord;
   String buttonConnectionTwitter;
-  String buttonConnectionTeams;
+  String buttonConnectionReddit;
   ButtonConnection(
       {this.buttonConnectionGitHub = "Disconected",
       this.buttonConnectionYoutube = "Disconected",
-      this.buttonConnectionPlanner = "Disconected",
+      this.buttonConnectionFacebook = "Disconected",
       this.buttonConnectionDiscord = "Disconected",
       this.buttonConnectionTwitter = "Disconected",
-      this.buttonConnectionTeams = "Disconected"});
+      this.buttonConnectionReddit = "Disconected"});
 }
 
 ButtonConnection button = ButtonConnection();
@@ -24,17 +24,17 @@ ButtonConnection button = ButtonConnection();
 class CheckConnectionText {
   String buttonConnectionGitHub;
   String buttonConnectionYoutube;
-  String buttonConnectionPlanner;
+  String buttonConnectionFacebook;
   String buttonConnectionDiscord;
   String buttonConnectionTwitter;
-  String buttonConnectionTeams;
+  String buttonConnectionReddit;
   CheckConnectionText(
       {this.buttonConnectionGitHub = "Disconected",
       this.buttonConnectionYoutube = "Disconected",
-      this.buttonConnectionPlanner = "Disconected",
+      this.buttonConnectionFacebook = "Disconected",
       this.buttonConnectionDiscord = "Disconected",
       this.buttonConnectionTwitter = "Disconected",
-      this.buttonConnectionTeams = "Disconected"});
+      this.buttonConnectionReddit = "Disconected"});
 }
 
 CheckConnectionText buttoncheck = CheckConnectionText();
@@ -42,55 +42,32 @@ CheckConnectionText buttoncheck = CheckConnectionText();
 class CheckConnection {
   bool buttonChooseGitHub;
   bool buttonChooseYoutube;
-  bool buttonChoosePlanner;
+  bool buttonChooseFacebook;
   bool buttonChooseDiscord;
   bool buttonChooseTwitter;
-  bool buttonChooseTeams;
+  bool buttonChooseReddit;
   CheckConnection(
       {this.buttonChooseGitHub = false,
       this.buttonChooseYoutube = false,
-      this.buttonChoosePlanner = false,
+      this.buttonChooseFacebook = false,
       this.buttonChooseDiscord = false,
       this.buttonChooseTwitter = false,
-      this.buttonChooseTeams = false});
+      this.buttonChooseReddit = false});
 }
 
 CheckConnection buttonChoose = CheckConnection();
-
-class ActionsReactionsID {
-  int actionId;
-  int reactionId;
-  ActionsReactionsID({this.actionId = 0, this.reactionId = 0});
-}
-
-ActionsReactionsID id = ActionsReactionsID();
-
-const String fontFamilies = "Google Sans";
-
-class Area {
-  String actionServiceChoose;
-  String reactionServiceChoose;
-  String action;
-  String reaction;
-  String actionParam;
-  String reactionParam;
-
-  Area(
-      {this.actionServiceChoose = "",
-      this.reactionServiceChoose = "",
-      this.action = "",
-      this.reaction = "",
-      this.actionParam = "",
-      this.reactionParam = ""});
-}
-
-Area area = Area();
-Area areatmp = Area();
 
 const TextStyle headlineTextStyle = TextStyle(
     fontSize: 44, color: textPrimary, height: 1.2, fontFamily: "OldLondon");
 
 const TextStyle headlineSecondaryTextStyle = TextStyle(
+    fontSize: 28,
+    color: Colors.black,
+    height: 1.2,
+    fontFamily: "OldLondon",
+    decoration: TextDecoration.underline);
+
+const TextStyle lineSecondaryTextStyle = TextStyle(
     fontSize: 28, color: Colors.black, height: 1.2, fontFamily: "OldLondon");
 
 const TextStyle headlineSecondaryTextStyle2 = TextStyle(

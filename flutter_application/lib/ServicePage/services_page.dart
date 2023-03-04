@@ -11,10 +11,11 @@ connectService(serviceName) async {
   String baseUrl = "http://$serverAddress/auth/";
   final uri = Uri.parse(baseUrl + serviceName);
   final uriPost = Uri.parse(baseUrl + serviceName);
+  final response;
 
   if (await canLaunchUrl(uri)) {
     if (connectedUser['id'] != null) {
-      final response = await http
+      response = await http
           .post(uriPost, body: {'userId': connectedUser['id'].toString()});
       if (response.statusCode != 201) {
         throw 'error in server, please retry';
@@ -22,15 +23,19 @@ connectService(serviceName) async {
     } else {
       throw 'no user id';
     }
-    await launchUrl(uri);
+    print(response.body);
+    launchUrl(uri, mode: LaunchMode.externalApplication);
   } else {
     throw 'Could not launch $baseUrl of service named $serviceName.';
   }
 }
 
-chooseConnectionServices(page) async {
-  if (page == "Twitter" /*&& buttonChoose.buttonChooseTwitter == false*/) {
-    await connectService('Twitter');
+refreshPage(context) {
+  Navigator.pushNamed(context, '/home');
+}
+
+chooseConnectionServices(page, context) async {
+  if (page == "Twitter" && buttonChoose.buttonChooseTwitter == false) {
     buttonChoose.buttonChooseTwitter = true;
     button.buttonConnectionTwitter = "Connected";
     buttoncheck.buttonConnectionTwitter = "Choose";
@@ -43,14 +48,12 @@ chooseConnectionServices(page) async {
     buttoncheck.buttonConnectionDiscord = "Choose";
     buttonchoosecol.colbuttonChooseDiscord = colorConnected;
     buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 14, 41, 2);
-  } else if (page == "Microsoft Teams" &&
-      buttonChoose.buttonChooseTeams == false) {
-    await connectService('Microsoft');
-    buttonChoose.buttonChooseTeams = true;
-    button.buttonConnectionTeams = "Connected";
-    buttoncheck.buttonConnectionTeams = "Choose";
-    buttonchoosecol.colbuttonChooseTeams = colorConnected;
-    buttoncol.colbuttonConnectionTeams = const Color.fromARGB(255, 14, 41, 2);
+  } else if (page == "Reddit" && buttonChoose.buttonChooseReddit == false) {
+    buttonChoose.buttonChooseReddit = true;
+    button.buttonConnectionReddit = "Connected";
+    buttoncheck.buttonConnectionReddit = "Choose";
+    buttonchoosecol.colbuttonChooseReddit = colorConnected;
+    buttoncol.colbuttonConnectionReddit = const Color.fromARGB(255, 14, 41, 2);
   } else if (page == "Github" && buttonChoose.buttonChooseGitHub == false) {
     await connectService('Github');
     buttonChoose.buttonChooseGitHub = true;
@@ -65,15 +68,15 @@ chooseConnectionServices(page) async {
     buttoncheck.buttonConnectionYoutube = "Choose";
     buttonchoosecol.colbuttonChooseYoutube = colorConnected;
     buttoncol.colbuttonConnectionYoutube = const Color.fromARGB(255, 14, 41, 2);
-  } else if (page == "Microsoft Planner" &&
-      buttonChoose.buttonChoosePlanner == false) {
-    await connectService('Google');
-    buttonChoose.buttonChoosePlanner = true;
-    button.buttonConnectionPlanner = "Connected";
-    buttoncheck.buttonConnectionPlanner = "Choose";
-    buttonchoosecol.colbuttonChoosePlanner = colorConnected;
-    buttoncol.colbuttonConnectionPlanner = const Color.fromARGB(255, 14, 41, 2);
+  } else if (page == "Facebook" && buttonChoose.buttonChooseFacebook == false) {
+    buttonChoose.buttonChooseFacebook = true;
+    button.buttonConnectionFacebook = "Connected";
+    buttoncheck.buttonConnectionFacebook = "Choose";
+    buttonchoosecol.colbuttonChooseFacebook = colorConnected;
+    buttoncol.colbuttonConnectionFacebook =
+        const Color.fromARGB(255, 14, 41, 2);
   }
+  refreshPage(context);
 }
 
 class ServicesCardsInformations extends StatelessWidget {
@@ -110,7 +113,7 @@ class ServicesCardsInformations extends StatelessWidget {
             child: Image.asset(imagePath, fit: BoxFit.fill),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(40, 0, 40, 40),
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 40),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
@@ -123,7 +126,7 @@ class ServicesCardsInformations extends StatelessWidget {
                 ),
                 FloatingActionButton.extended(
                   onPressed: () {
-                    chooseConnectionServices(title);
+                    chooseConnectionServices(title, context);
                   },
                   backgroundColor: colorButton,
                   label: Text(textbutton,
@@ -148,21 +151,21 @@ class ReactionServicesCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(0.0),
       child: ResponsiveRowColumn(
         layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
             ? ResponsiveRowColumnType.COLUMN
             : ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.start,
-        rowSpacing: 10,
-        columnSpacing: 10,
+        rowSpacing: 0,
+        columnSpacing: 25,
         children: [
           ResponsiveRowColumnItem(
             rowFlex: 1,
             rowFit: FlexFit.tight,
             child: ServicesCardsInformations(
               title: "Twitter",
-              imagePath: "assets/images/logo-twitter.png",
+              imagePath: "assets/images/twitter-logo.png",
               textbutton: button.buttonConnectionTwitter,
               colorButton: buttoncol.colbuttonConnectionTwitter,
             ),
@@ -172,7 +175,7 @@ class ReactionServicesCards extends StatelessWidget {
             rowFit: FlexFit.tight,
             child: ServicesCardsInformations(
               title: "Discord",
-              imagePath: "assets/images/discord-logo.png",
+              imagePath: "assets/images/logo-discord.png",
               textbutton: button.buttonConnectionDiscord,
               colorButton: buttoncol.colbuttonConnectionDiscord,
             ),
@@ -181,10 +184,10 @@ class ReactionServicesCards extends StatelessWidget {
             rowFlex: 1,
             rowFit: FlexFit.tight,
             child: ServicesCardsInformations(
-              title: "Microsoft Teams",
-              imagePath: "assets/images/Microsoft-Teams-Symbole.png",
-              textbutton: button.buttonConnectionTeams,
-              colorButton: buttoncol.colbuttonConnectionTeams,
+              title: "Reddit",
+              imagePath: "assets/images/Reddit-Logo.png",
+              textbutton: button.buttonConnectionReddit,
+              colorButton: buttoncol.colbuttonConnectionReddit,
             ),
           ),
         ],
@@ -211,7 +214,7 @@ class ActionsServicesCards extends StatelessWidget {
           children: [
             ResponsiveRowColumnItem(
               rowFlex: 1,
-              rowFit: FlexFit.loose,
+              rowFit: FlexFit.tight,
               child: ServicesCardsInformations(
                 title: "Github",
                 imagePath: "assets/images/github-logo.png",
@@ -233,10 +236,10 @@ class ActionsServicesCards extends StatelessWidget {
               rowFlex: 1,
               rowFit: FlexFit.tight,
               child: ServicesCardsInformations(
-                title: "Microsoft Planner",
-                imagePath: "assets/images/Planner-logo.png",
-                textbutton: button.buttonConnectionPlanner,
-                colorButton: buttoncol.colbuttonConnectionPlanner,
+                title: "Facebook",
+                imagePath: "assets/images/Facebook-logo.png",
+                textbutton: button.buttonConnectionFacebook,
+                colorButton: buttoncol.colbuttonConnectionFacebook,
               ),
             ),
           ],
@@ -256,6 +259,7 @@ class SetPageServices extends StatelessWidget {
   final String message;
   @override
   Widget build(BuildContext context) {
+    var sidebarWidth = 60.0;
     return Container(
       height: 1920,
       width: 1080,
@@ -276,17 +280,26 @@ class SetPageServices extends StatelessWidget {
                 const SizedBox(
                   height: 70,
                 ),
-                TitleCards(
-                  message: message,
+                Padding(
+                  padding: EdgeInsets.only(left: sidebarWidth),
+                  child: TitleCards(
+                    message: message,
+                  ),
                 ),
                 const SizedBox(
                   height: 30,
                 ),
-                const ActionsServicesCards(),
+                Padding(
+                  padding: EdgeInsets.only(left: sidebarWidth),
+                  child: const ActionsServicesCards(),
+                ),
                 const SizedBox(
                   height: 10,
                 ),
-                const ReactionServicesCards(),
+                Padding(
+                  padding: EdgeInsets.only(left: sidebarWidth),
+                  child: const ReactionServicesCards(),
+                ),
               ],
             ),
           ),

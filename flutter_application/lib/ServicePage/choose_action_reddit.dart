@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/Tools/global.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import '../home_page.dart';
 import '../Tools/create_cards.dart';
 
-class ChooseActionsPlanner extends StatelessWidget {
-  const ChooseActionsPlanner({super.key});
+class ChooseActionReddit extends StatelessWidget {
+  const ChooseActionReddit({super.key});
   @override
   Widget build(BuildContext context) {
-    return Container(
-          padding: const EdgeInsets.all(5.0),
+    return Container (
+          padding: const EdgeInsets.all(15.0),
           child: SingleChildScrollView(
-          child :Container(
-          margin: blockMargin,
           child: ResponsiveRowColumn(
             layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
                 ? ResponsiveRowColumnType.COLUMN
@@ -20,29 +18,19 @@ class ChooseActionsPlanner extends StatelessWidget {
             rowSpacing: 10,
             columnSpacing: 10,
             children: [
-              const ResponsiveRowColumnItem(
-                rowFlex: 1,
-                rowFit: FlexFit.loose,
-                child: ServiceCards(
-                  title: "Create a plan",
-                  imagePath: "assets/images/Planner-logo.png",
-                  textbutton :  "Choose this action",
-                  colorButton : Colors.green,
-                ),
-              ),
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.loose,
                 child: CreateCardsOneChoice(
-                  title: "Create a task",
-                  imagePath: "assets/images/Planner-logo.png",
+                  title: "New post in a subreddit",
+                  imagePath: "assets/images/Reddit-Logo.png",
                   textbutton :  "Choose this action",
-                  colorButton : Colors.green,
-                  choice : "Choose a plan:"
+                  colorButton : Color.fromARGB(255, 214, 86, 11),
+                  choice :"Choose a subreddit:",
+                  choiceList: SubRedditList,
                 ),
               ),
             ],
-          ),
           ),
           ),
     );

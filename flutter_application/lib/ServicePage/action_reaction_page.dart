@@ -3,114 +3,109 @@ import 'package:responsive_framework/responsive_framework.dart';
 import '../home_page.dart';
 import '../Tools/text.dart';
 import '../Tools/title_cards.dart';
+import '../Tools/global.dart';
 
-
-String chooseImageServiceAction() {
-  String res = "assets/images/nothing.png";
-
-  if (area.actionServiceChoose == "Github") {
-    res = "assets/images/github-logo.png";
+String chooseImageServiceAction(String actionServiceChoose) {
+  switch (actionServiceChoose) {
+    case "Github":
+      return "assets/images/github-logo.png";
+    case "Youtube":
+      return "assets/images/Youtube-Symbole.png";
+    case "Facebook":
+      return "assets/images/Facebook-logo.png";
+    default:
+      return "assets/images/nothing.png";
   }
-  if (area.actionServiceChoose == "Youtube") {
-    res = "assets/images/Youtube-Symbole.jpg";
-  }
-  if (area.actionServiceChoose == "Planner") {
-    res = "assets/images/Planner-logo.jpg";
-  }
-  return (res);
-
 }
 
-String chooseImageServiceReaction() {
-  String res = "assets/images/nothing.png";
-
-  if (area.reactionServiceChoose == "Twitter") {
-    res = "assets/images/logo-twitter.png";
+String chooseImageServiceReaction(String reactionServiceChoose) {
+  switch (reactionServiceChoose) {
+    case "Twitter":
+      return "assets/images/logo-twitter.png";
+    case "Discord":
+      return "assets/images/logo-discord.png";
+    case "Reddit":
+      return "assets/images/Reddit-Logo.png";
+    default:
+      return "assets/images/nothing.png";
   }
-  if (area.reactionServiceChoose == "Discord") {
-    res = "assets/images/discord-logo.png";
-  }
-  if (area.reactionServiceChoose == "Microsoft Teams") {
-    res = "assets/images/Microsoft-Teams-Symbole.jpg";
-  }
-  return (res);
-
 }
-
 
 class ActionReactionCards extends StatelessWidget {
-  const ActionReactionCards(
-      {Key? key})
-      : super(key: key);
+  final Map<String, dynamic> area;
+  final VoidCallback onDelete;
+  const ActionReactionCards({Key? key, required this.area, required this.onDelete}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(0.0),
       decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/parchemin2.png"), 
+            image: AssetImage("assets/images/parchemin.png"), 
             fit: BoxFit.fill),),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(40, 40, 40, 40),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                const SizedBox(height: 40),
-                const Padding(
+          const SizedBox(height: 150,),
+          const Padding(
                   padding: EdgeInsets.only(bottom: 25),
-                  child: Text("ACTION : ", style: headlineSecondaryTextStyle),
-                ),
-                Container(
-                  constraints: const BoxConstraints(maxHeight: 100),
-                  child: Image.asset(chooseImageServiceAction(), fit: BoxFit.cover),
-                ),
-                const SizedBox(height: 5),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
-                  child: Text('${area.actionServiceChoose}: \n${area.action}', style: headlineSecondaryTextStyle, textAlign: TextAlign.center),
-                ),
-                const SizedBox(height: 30),
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 16),
-                  child: Text("REACTION : ", style: headlineSecondaryTextStyle),
-                ),
-                Container(
-                  constraints: const BoxConstraints(maxHeight: 100),
-                  child: Image.asset(chooseImageServiceReaction(), fit: BoxFit.cover),
-                ),
-                const SizedBox(height: 5),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
-                  child: Text('${area.reactionServiceChoose}: \n${area.reaction}', style: headlineSecondaryTextStyle, textAlign: TextAlign.center),
-                ),
-                FloatingActionButton.extended(
-                    onPressed: () {
-                      area.actionServiceChoose = "";
-                      area.action = "";
-                      area.reactionServiceChoose = "";
-                      area.reaction = "";
-                    },
-                    backgroundColor: Colors.red,
-                    label: const Text("Delete"),
-                    icon: const Icon(Icons.delete),
-                    heroTag: null,
-                ),
-                const SizedBox(height: 50),
-              ],
-            ),
+                  child: Text("ACTION", style: headlineSecondaryTextStyle, textAlign: TextAlign.center),
           ),
+          Padding(
+                 padding: const EdgeInsets.only(bottom: 16),
+                 child: Text('${area["actionServiceChoose"]}: \n${area["action"]}', style: lineSecondaryTextStyle, textAlign: TextAlign.center),
+               ),
+          Container(
+                  constraints: const BoxConstraints(maxHeight: 175),
+                  child: Image.asset(chooseImageServiceAction(area["actionServiceChoose"]), fit: BoxFit.cover),
+          ),
+          const SizedBox(height: 20),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 25),
+            child: Text("REACTION", style: headlineSecondaryTextStyle, textAlign: TextAlign.center),
+          ),
+          Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: Text('${area["reactionServiceChoose"]}: \n${area["reaction"]}', style: lineSecondaryTextStyle, textAlign: TextAlign.center),
+                ),
+          Container(
+            constraints: const BoxConstraints(maxHeight: 175),
+            child: Image.asset(chooseImageServiceReaction(area["reactionServiceChoose"]), fit: BoxFit.cover),
+          ),
+          const SizedBox(height: 20),
+          FloatingActionButton.extended(
+              onPressed: () {
+                onDelete();
+              },  
+              backgroundColor: Color.fromARGB(255, 139, 28, 21),
+              label: const Text("Delete"),
+              icon: const Icon(Icons.delete),
+              heroTag: null,
+          ),
+          const SizedBox(height: 170),
         ],
       ),
     );
   }
 }
 
-class CreateactionReactionCards extends StatelessWidget {
-  const CreateactionReactionCards({Key? key}) : super(key: key);
+bool isDisplayDesktop(BuildContext context) {
+  return ResponsiveWrapper.of(context).isDesktop;
+}
+class CreateactionReactionCards extends StatefulWidget {
+  CreateactionReactionCards({Key? key}) : super(key: key);
+  @override
+  _CreateactionReactionCardsState createState() => _CreateactionReactionCardsState();
+}
+
+class _CreateactionReactionCardsState extends State<CreateactionReactionCards> {
+
+  void deleteArea(int index) {
+    setState(() {
+      areas.removeAt(index);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,18 +118,25 @@ class CreateactionReactionCards extends StatelessWidget {
             ? ResponsiveRowColumnType.COLUMN
             : ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.center,
+        columnCrossAxisAlignment: CrossAxisAlignment.center,
         rowSpacing: 25,
         columnSpacing: 25,
-        children: const [
-          ResponsiveRowColumnItem(
-            rowFlex: 1,
-            rowFit: FlexFit.loose,
-            child: ActionReactionCards(),
-          ),
+        children: [
+          for (var i = 0; i < areas.length; i += 1)
+              ResponsiveRowColumnItem(
+              rowFlex: 1,
+              rowFit: FlexFit.loose,
+              child: ActionReactionCards(
+                area: areas[i],
+                onDelete: () {
+                  deleteArea(i);
+                },
+              ),
+            ),
         ],
+        ),
       ),
-    ),
- );
+  );
   }
 }
 
@@ -142,6 +144,7 @@ class CreateactionReactionPage extends StatelessWidget {
   const CreateactionReactionPage({Key? key}) : super(key:key);
   @override
   Widget build(BuildContext context) {
+    var sidebarWidth = 50.0;
     return Container(
       height: 1920,
       width: 1080,
@@ -155,11 +158,14 @@ class CreateactionReactionPage extends StatelessWidget {
         body: SizedBox(
           child: SingleChildScrollView(
             child: Column(
-                  children: const <Widget> [
+                  children: <Widget> [
                     SizedBox(height: 20,),
                     WelcomCards(title: "Your actions/reactions"),
-                    SizedBox(height: 10,),
-                    CreateactionReactionCards(),                  ],
+                    Padding(
+                      padding: EdgeInsets.only(left: sidebarWidth),
+                      child: CreateactionReactionCards(),
+                    ),
+                  ],
             ),
           )
         ),

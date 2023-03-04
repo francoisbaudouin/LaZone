@@ -13,4 +13,6 @@ router.get("/:name/reactions", serviceController.resGetServiceReactions);
 
 router.get("/:name/tokens", serviceController.resGetServiceTokens);
 
+router.post("/parameters", serviceController.resPostServiceParameters);
+
 module.exports = router;

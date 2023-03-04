@@ -1,54 +1,68 @@
 import 'package:flutter/material.dart';
 import 'title_cards.dart';
-import 'text.dart';
+import 'global.dart';
 
 const EdgeInsets blockMargin = EdgeInsets.fromLTRB(0, 100, 0, 0);
 
 class SetPageContent extends StatelessWidget {
-  const SetPageContent({Key? key,
-                      required this.title,
-                      required this.message,
-                      required this.services,
-                      }) : super(key:key);
+  const SetPageContent({
+    Key? key,
+    required this.title,
+    required this.message,
+    required this.services,
+  }) : super(key: key);
   final String title;
   final String message;
   final services;
   @override
   Widget build(BuildContext context) {
+    var sidebarWidth = 50.0;
     return Container(
       height: 1920,
       width: 1080,
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage("assets/images/font.jpg"), 
-            fit: BoxFit.cover),
+          image: AssetImage("assets/images/font.jpg"),
+          fit: BoxFit.cover,
+        ),
       ),
-      child: Scaffold (
+      child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SizedBox(
           child: SingleChildScrollView(
             child: Column(
-                  children: <Widget> [
-                    const SizedBox(height: 20,),
-                    WelcomCards(title: title),
-                    const SizedBox(height: 70,),
-                    TitleCards(message: message,),
-                    services,
-                  ],
+              children: <Widget>[
+                const SizedBox(height: 20),
+                WelcomCards(title: title),
+                const SizedBox(height: 70,),
+                Padding(
+                  padding: EdgeInsets.only(left: sidebarWidth),
+                  child: TitleCards(
+                      message: message,
+                    ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: sidebarWidth),
+                  child: services,
+                ),
+              ],
             ),
-          )
+          ),
         ),
       ),
     );
   }
 }
 
+
 class SetPageContentService extends StatelessWidget {
   const SetPageContentService({Key? key,
                       required this.message,
-                      required this.services}) : super(key:key);
+                      required this.services,
+                      required this.sidebarWidth}) : super(key:key);
   final String message;
   final services;
+  final sidebarWidth;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -77,10 +91,18 @@ class SetPageContentService extends StatelessWidget {
         body: SizedBox(
           child: SingleChildScrollView(
             child: Column(
-                  children: <Widget> [         
-                      TitleCards(message: message,),
+                  children: <Widget> [
+                      Padding(
+                        padding: EdgeInsets.only(left: sidebarWidth),
+                        child: TitleCards(
+                            message: message,
+                          ),
+                      ),
                       const SizedBox(height: 30,),
-                      services,
+                      Padding(
+                        padding: EdgeInsets.only(left: sidebarWidth),
+                        child: services,
+                      ),
                   ],
             ),
           ),
@@ -92,18 +114,18 @@ class SetPageContentService extends StatelessWidget {
 
 checkAreaValues(message) {
   if (message == "Choose your action:") {
-    areatmp.actionServiceChoose = "";
-    areatmp.action = "";
+    area.actionServiceChoose = "";
+    area.action = "";
   }
   else if (message == "Choose your reaction service:") {
-    areatmp.reactionServiceChoose = "";
-    areatmp.action = "";
+    area.reactionServiceChoose = "";
+    area.action = "";
   }
   else if (message == "Choose your reaction:") {
-    areatmp.reactionServiceChoose = "";
-    areatmp.reaction = "";
+    area.reactionServiceChoose = "";
+    area.reaction = "";
   }
   else if (message == "") {
-    areatmp.reaction = "";
+    area.reaction = "";
   }
 }

@@ -80,13 +80,6 @@ async function basicConfig() {
       serviceName: "Facebook"
     }
   })
-  await prisma.actions.create({
-    data: {
-      name: "new like",
-      description: "user liked a post",
-      serviceName: "Facebook"
-    }
-  })
 
   //REACTION
   await prisma.reactions.create({
