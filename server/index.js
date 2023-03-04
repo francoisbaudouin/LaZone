@@ -8,9 +8,9 @@ const localAuthRouter = require('./api/routes/auth/local_auth.js');
 const gitAuthRouter = require('./api/routes/auth/git_auth.js');
 const discordAuthRouter = require('./api/routes/auth/discord_auth.js');
 const twitterAuthRouter = require('./api/routes/auth/twitter_auth.js');
-const microsoftAuthRouter = require('./api/routes/auth/microsoft_auth.js');
 const googleAuthRouter = require('./api/routes/auth/google_auth.js');
 const facebookAuthRouter = require('./api/routes/auth/facebook_auth.js');
+const redditAuthRouter = require('./api/routes/auth/reddit_auth.js');
 
 const areasRouter = require('./api/routes/areas.js');
 const usersRouter = require('./api/routes/users.js');
@@ -51,10 +51,8 @@ require("./api/passport/local.js");
 require("./api/passport/git.js");
 require("./api/passport/discord.js");
 require("./api/passport/twitter.js");
-require("./api/passport/microsoft.js");
 require("./api/passport/google.js");
 require("./api/passport/facebook.js");
-
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -83,10 +81,9 @@ app.use('/auth', localAuthRouter);
 app.use('/auth', gitAuthRouter);
 app.use('/auth', discordAuthRouter);
 app.use('/auth', twitterAuthRouter);
-app.use('/auth', microsoftAuthRouter);
 app.use('/auth', googleAuthRouter);
 app.use('/auth', facebookAuthRouter);
-
+app.use('/auth', redditAuthRouter);
 
 //api
 app.use('/areas', areasRouter);

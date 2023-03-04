@@ -9,6 +9,10 @@ router.get("/success", (req, res) => {
   res.status(201).send("Success, you can close this tab");
 })
 
+router.get("/failure", (req, res) => {
+  res.status(400).send("Oops, something went wrong, close this tab and retry !");
+})
+
 router.post("/signUp", (req, res, next) => {
   passport.authenticate('signUp', { session: false }, (err, user, info) => {
     if (err) {
