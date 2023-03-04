@@ -62,9 +62,9 @@ async function getServiceData(serviceName, userId) {
     };
 
     if (serviceName == "Discord") {
-      return (serviceInit[serviceName](client, userData.user))
+      return (serviceInit[serviceName](client, userData))
     } else
-      return (serviceInit[serviceName](userData.user));
+      return (serviceInit[serviceName](userData));
   } catch (error) {
     console.error(error);
   }
