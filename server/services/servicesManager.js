@@ -50,7 +50,6 @@ async function activateAreasFromUser(users) {
           timestamp: element.timestamp.toISOString(),
         };
         try {
-          console.log(area)
           await activateArea(area)
           await updateAreaTimestamp(element.id, area.timestamp);
         } catch (error) {

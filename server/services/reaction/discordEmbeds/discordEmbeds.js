@@ -39,7 +39,7 @@ function facebookPost(repoData) {
   try {
     const embed = new EmbedBuilder().setTitle(`new facebook post`)
       .setURL(repoData.htmlUrl).setTimestamp()
-      .setDescription(repoData.message)
+      .setDescription(repoData.name)
       .setFooter({ text: "test" });
     return (embed);
   } catch (error) {

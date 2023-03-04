@@ -20,10 +20,12 @@ async function logDiscord() {
   client.login(discordToken);
 }
 
-try {
-  logDiscord()
-} catch (error) {
-  console.error(error);
+function initDiscord() {
+  try {
+    logDiscord()
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-module.exports = { client, EmbedBuilder };
+module.exports = { client, EmbedBuilder, initDiscord };

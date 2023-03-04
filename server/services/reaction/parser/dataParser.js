@@ -52,10 +52,9 @@ function parseGitRepos(data) {
 function parseFacebookPost(data) {
   if (data == undefined)
     throw Error;
-  console.log(data);
   var result = {
     type: "new post",
-    message: data.message,
+    name: data.message,
     htmlUrl: data.permalink_url,
     owner: {
       name: data.from.name,
@@ -69,7 +68,6 @@ function parseFacebookPost(data) {
 function parseFacebookNewAlbum(data) {
   if (data == undefined)
     throw Error;
-  console.log(data);
   var result = {
     type: "new album",
     name: data.name,
