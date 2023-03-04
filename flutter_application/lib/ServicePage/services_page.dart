@@ -11,10 +11,11 @@ connectService(serviceName) async {
   String baseUrl = "http://$serverAddress/auth/";
   final uri = Uri.parse(baseUrl + serviceName);
   final uriPost = Uri.parse(baseUrl + serviceName);
+  final response;
 
   if (await canLaunchUrl(uri)) {
     if (connectedUser['id'] != null) {
-      final response = await http
+      response = await http
           .post(uriPost, body: {'userId': connectedUser['id'].toString()});
       if (response.statusCode != 201) {
         throw 'error in server, please retry';
@@ -22,6 +23,7 @@ connectService(serviceName) async {
     } else {
       throw 'no user id';
     }
+    print(response.body);
     launchUrl(uri, mode: LaunchMode.externalApplication);
   } else {
     throw 'Could not launch $baseUrl of service named $serviceName.';
@@ -29,10 +31,7 @@ connectService(serviceName) async {
 }
 
 refreshPage(context) {
-  Navigator.pushNamed(
-      context,
-      '/home'
-  );
+  Navigator.pushNamed(context, '/home');
 }
 
 chooseConnectionServices(page, context) async {
@@ -73,7 +72,8 @@ chooseConnectionServices(page, context) async {
     button.buttonConnectionFacebook = "Connected";
     buttoncheck.buttonConnectionFacebook = "Choose";
     buttonchoosecol.colbuttonChooseFacebook = colorConnected;
-    buttoncol.colbuttonConnectionFacebook = const Color.fromARGB(255, 14, 41, 2);
+    buttoncol.colbuttonConnectionFacebook =
+        const Color.fromARGB(255, 14, 41, 2);
   }
   refreshPage(context);
 }
@@ -150,21 +150,21 @@ class ReactionServicesCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(0.0),
       child: ResponsiveRowColumn(
         layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
             ? ResponsiveRowColumnType.COLUMN
             : ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.start,
-        rowSpacing: 10,
-        columnSpacing: 10,
+        rowSpacing: 0,
+        columnSpacing: 25,
         children: [
           ResponsiveRowColumnItem(
             rowFlex: 1,
             rowFit: FlexFit.tight,
             child: ServicesCardsInformations(
               title: "Twitter",
-              imagePath: "assets/images/logo-twitter.png",
+              imagePath: "assets/images/twitter-logo.png",
               textbutton: button.buttonConnectionTwitter,
               colorButton: buttoncol.colbuttonConnectionTwitter,
             ),
@@ -174,7 +174,7 @@ class ReactionServicesCards extends StatelessWidget {
             rowFit: FlexFit.tight,
             child: ServicesCardsInformations(
               title: "Discord",
-              imagePath: "assets/images/discord-logo.png",
+              imagePath: "assets/images/logo-discord.png",
               textbutton: button.buttonConnectionDiscord,
               colorButton: buttoncol.colbuttonConnectionDiscord,
             ),
@@ -213,7 +213,7 @@ class ActionsServicesCards extends StatelessWidget {
           children: [
             ResponsiveRowColumnItem(
               rowFlex: 1,
-              rowFit: FlexFit.loose,
+              rowFit: FlexFit.tight,
               child: ServicesCardsInformations(
                 title: "Github",
                 imagePath: "assets/images/github-logo.png",
@@ -258,14 +258,13 @@ class SetPageServices extends StatelessWidget {
   final String message;
   @override
   Widget build(BuildContext context) {
-    var sidebarWidth = 72.0;
+    var sidebarWidth = 60.0;
     return Container(
       height: 1920,
       width: 1080,
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage("assets/images/font.jpg"), 
-            fit: BoxFit.cover),
+            image: AssetImage("assets/images/font.jpg"), fit: BoxFit.cover),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -273,7 +272,9 @@ class SetPageServices extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 WelcomCards(title: title),
                 const SizedBox(height: 70,),
                 Padding(

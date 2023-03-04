@@ -47,6 +47,16 @@ exports.getUserTokens = async (userId) => {
     return (userTokens);
 };
 
+exports.getUserTokenFromService = async (serviceName, userId) => {
+  const token = await prisma.tokens.findFirst({
+    where: {
+      userId: Number(userId),
+      relatedServiceName: serviceName
+    }
+  })
+  return (token);
+};
+
 exports.getUserTokenByServiceName = async (userId, serviceName) => {
     const userServiceTokens = await prisma.tokens.findFirst({
         where: {

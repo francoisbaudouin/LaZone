@@ -113,16 +113,16 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
-    - assets/images/discord-logo.png
-    - assets/images/github-logo.png
     - assets/images/google_logo.png
-    - assets/images/Facebook-logo.png
     - assets/images/Youtube-Symbole.png
-    - assets/images/Reddit-Logo.png
-    - assets/images/logo-twitter.png
     - assets/images/font.jpg
     - assets/images/font_menu.jpg
     - assets/images/parchemin2.png
     - assets/images/parchemin.png
     - assets/images/button.jpg
     - assets/images/nothing.png
+    - assets/images/github-logo.png
+    - assets/images/Facebook-logo.png
+    - assets/images/Reddit-Logo.png
+    - assets/images/logo-discord.png
+    - assets/images/twitter-logo.png

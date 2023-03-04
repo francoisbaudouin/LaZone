@@ -38,7 +38,6 @@ class BlockWrapper extends StatelessWidget {
 class HomeView extends StatefulWidget {
   final int currentIndex;
 
-  /// Callback function
   final Function(int selectedIndex) onTapped;
   const HomeView(this.currentIndex, this.onTapped);
 
@@ -63,7 +62,7 @@ class _HomeViewState extends State<HomeView> {
       ),
     ),
     SizedBox(
-      child: CreateactionReactionPage(),
+      child: CreateActionReactionPage(),
     ),
     const SizedBox(
       child: ProfilePage(),
@@ -83,32 +82,52 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          toolbarHeight: 40.0,
-          backgroundColor: const Color.fromARGB(255, 18, 21, 41),
-          elevation: 0.0,
-          title: const Center(
-            child: Text('LaZone',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white, fontFamily: "OldLondon")),
+        toolbarHeight: 40.0,
+        backgroundColor: const Color.fromARGB(255, 18, 21, 41),
+        elevation: 0.0,
+        title: const Center(
+          child: Text(
+            'LaZone',
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white, fontFamily: "OldLondon"),
           ),
-          leading: IconButton(
+        ),
+        leading: Row(
+          children: [
+            Expanded(
+              child: IconButton(
+                  color: Colors.white,
+                  icon: const Icon(Icons.settings_ethernet),
+                  onPressed: () async {
+                    var url = Uri.parse("http://$serverAddress/about.json");
+                    launchUrl(url);
+                  },
+                  tooltip: "about.json"),
+            ),
+            Expanded(
+              child: IconButton(
+                color: Colors.white,
+                icon: const Icon(Icons.download),
+                onPressed: () async {
+                  var url = Uri.parse("http://localhost:8081/client.apk");
+                  launchUrl(url);
+                },
+                tooltip: "client.apk",
+              ),
+            ),
+          ],
+        ),
+        actions: <Widget>[
+          IconButton(
             color: Colors.white,
-            icon: const Icon(Icons.download),
-            onPressed: () async {
-              var url = Uri.parse("http://$serverAddress/about.json");
-              launchUrl(url);
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+              reset();
+              Navigator.pushNamed(context, '/');
             },
           ),
-          actions: <Widget>[
-            IconButton(
-              color: Colors.white,
-              icon: const Icon(Icons.logout),
-              onPressed: () {
-                reset();
-                Navigator.pushNamed(context, '/');
-              },
-            ),
-          ]),
+        ],
+      ),
       body: Stack(
         children: [
           Positioned.fill(
@@ -140,6 +159,7 @@ class _HomeViewState extends State<HomeView> {
                         color: Color.fromARGB(255, 255, 255, 255),
                         fontFamily: "OldLondon")),
               ),
+              initiallyExpanded: false,
               selectedIndex: _selectedIndex,
               items: const [
                 SideNavigationBarItem(
