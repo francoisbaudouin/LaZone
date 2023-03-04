@@ -13,6 +13,8 @@ String chooseImageServiceAction(String actionServiceChoose) {
       return "assets/images/Youtube-Symbole.png";
     case "Facebook":
       return "assets/images/Facebook-logo.png";
+    case "Reddit":
+      return "assets/images/Reddit-Logo.png";
     default:
       return "assets/images/nothing.png";
   }
@@ -21,11 +23,13 @@ String chooseImageServiceAction(String actionServiceChoose) {
 String chooseImageServiceReaction(String reactionServiceChoose) {
   switch (reactionServiceChoose) {
     case "Twitter":
-      return "assets/images/logo-twitter.png";
+      return "assets/images/twitter-logo.png";
     case "Discord":
       return "assets/images/logo-discord.png";
     case "Reddit":
       return "assets/images/Reddit-Logo.png";
+    case "Youtube":
+      return "assets/images/Youtube-Symbole.png";
     default:
       return "assets/images/nothing.png";
   }
@@ -43,7 +47,7 @@ class ActionReactionCards extends StatelessWidget {
       decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/parchemin.png"), 
-            fit: BoxFit.fill),),
+            fit: BoxFit.contain),),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
@@ -109,36 +113,68 @@ class _CreateactionReactionCardsState extends State<CreateactionReactionCards> {
 
   @override
   Widget build(BuildContext context) {
-  return Container(
-      padding: const EdgeInsets.all(15.0),
+    final width = MediaQuery.of(context).size.width;
+
+    return Container(
+      padding: const EdgeInsets.all(0.0),
       margin: blockMargin,
-      child: SingleChildScrollView(
-      child: ResponsiveRowColumn(
-        layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
-            ? ResponsiveRowColumnType.COLUMN
-            : ResponsiveRowColumnType.ROW,
-        rowCrossAxisAlignment: CrossAxisAlignment.center,
-        columnCrossAxisAlignment: CrossAxisAlignment.center,
-        rowSpacing: 25,
-        columnSpacing: 25,
+      child: Column(
         children: [
-          for (var i = 0; i < areas.length; i += 1)
-              ResponsiveRowColumnItem(
-              rowFlex: 1,
-              rowFit: FlexFit.loose,
-              child: ActionReactionCards(
-                area: areas[i],
-                onDelete: () {
-                  deleteArea(i);
-                },
-              ),
+          for (var i = 0; i < areas.length; i += 4)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                for (var j = i; j < i + 4 && j < areas.length; j++)
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                      child: ActionReactionCards(
+                        area: areas[j],
+                        onDelete: () {
+                          deleteArea(j);
+                        },
+                      ),
+                    ),
+                  ),
+              ],
             ),
         ],
-        ),
       ),
-  );
+    );
   }
+  //Widget build(BuildContext context) {
+  //  return Container(
+  //    padding: const EdgeInsets.all(15.0),
+  //    margin: blockMargin,
+  //    child: SingleChildScrollView(
+  //      child: ResponsiveRowColumn(
+  //        layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
+  //            ? ResponsiveRowColumnType.COLUMN
+  //            : ResponsiveRowColumnType.ROW,
+  //        rowCrossAxisAlignment: CrossAxisAlignment.center,
+  //        columnCrossAxisAlignment: CrossAxisAlignment.center,
+  //        rowSpacing: 25,
+  //        columnSpacing: 25,
+  //        children: [
+  //          for (var i = 0; i < areas.length; i += 1)
+  //            ResponsiveRowColumnItem(
+  //              rowFlex: 1,
+  //              rowFit: FlexFit.loose,
+  //              child: ActionReactionCards(
+  //                area: areas[i],
+  //                onDelete: () {
+  //                  deleteArea(i);
+  //                },
+  //              ),
+  //            ),
+  //        ],
+  //      ),
+  //    ),
+  //  );
+  //}
 }
+
 
 class CreateactionReactionPage extends StatelessWidget {
   const CreateactionReactionPage({Key? key}) : super(key:key);

@@ -160,26 +160,38 @@ getReactionId(String action, String service) {
     "Post a message-Room-Discord": 3,
     "Post a message-Reddit": 4,
     "Tweet": 5,
-    "Suprise": 6,
+    "Suprise": 6
   };
   id.reactionId = reactionIds["$action-$service"]!;
 }
 
 setupSendActionReaction(page, context) {
-  getActionId(area.action);
-  getReactionId(area.reaction, area.reactionServiceChoose);
-  var resJson = {
-    "actionParam": "UgoBoulestreau/POC-nodejs",
-    "reactionParam": "1062389081973215262",
-    "actionId": id.actionId,
-    "reactionId": id.reactionId,
-    "userId": connectedUser["id"],
-    "enabled": true,
-  };
-  AreaConnection(resJson, context);
+  //getActionId(area.action);
+  //getReactionId(area.reaction, area.reactionServiceChoose);
+  addNewAreatoArealist();
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => const MyHomePage(
+                title: "LaZone",
+              )),
+    );
+  //var resJson = {
+  //  "actionParam": "UgoBoulestreau/POC-nodejs",
+  //  "reactionParam": "1062389081973215262",
+  //  "actionId": id.actionId,
+  //  "reactionId": id.reactionId,
+  //  "userId": connectedUser["id"],
+  //  "enabled": true,
+  //};
+  //AreaConnection(resJson, context);
 }
 
 addNewAreatoArealist() {
+  print(area.actionServiceChoose);
+  print(area.action);
+  print(area.reactionServiceChoose);
+  print(area.reaction);
   Map<String, dynamic> newArea = {
       "actionServiceChoose": area.actionServiceChoose,
       "action": area.action,
