@@ -143,7 +143,7 @@ chooseConnection(page, context) async {
 
 getActionId(String action) {
   var actionIds = {
-    "Create a issue": 1,
+    "Create an issue": 1,
     "Create a repository": 2,
     "Create a pull request": 3,
     "Creation of a post": 4,
@@ -153,16 +153,18 @@ getActionId(String action) {
     "Activity": 8,
     "New post in a subreddit": 9
   };
-  id.actionId = actionIds[action]!;
+  print(action);
+  id.actionId = actionIds["$action"]!;
+  print(id.actionId);
 }
 
 getReactionId(String action, String service) {
   var reactionIds = {
     "Post a message-Discord": 1,
-    "Create a category": 2,
+    "Create a category-Discord": 2,
     "Post a message-Room-Discord": 3,
     "Post a message-Reddit": 4,
-    "Tweet": 5,
+    "Tweet-Twitter": 5,
     "Suprise": 6
   };
   id.reactionId = reactionIds["$action-$service"]!;
