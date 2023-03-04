@@ -57,23 +57,11 @@ class Area {
   String reactionServiceChoose;
   String action;
   String reaction;
-  String discordserver;
-  String discordchannel;
-  String discordcategory;
-  String githubrepository;
-  String redditmessage;
-  String subreddit;
   String actionParam;
   String reactionParam;
   Area({this.actionServiceChoose = "", 
       this.reactionServiceChoose = "", 
       this.action = "", this.reaction = "", 
-      this.discordserver = "", 
-      this.discordchannel = "", 
-      this.discordcategory = "",
-      this.githubrepository = "",
-      this.redditmessage = "", 
-      this.subreddit = "",
       this.actionParam = "",
       this.reactionParam = ""});
 }

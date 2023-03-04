@@ -163,33 +163,23 @@ getReactionId(String action, String service) {
     "Post a message-Room-Discord": 3,
     "Post a message-Reddit": 4,
     "Tweet": 5,
-    "Suprise": 6,
+    "Suprise": 6
   };
   id.reactionId = reactionIds["$action-$service"]!;
 }
 
 setupSendActionReaction(page, context) {
-  area.actionServiceChoose = area.actionServiceChoose;
-  area.reactionServiceChoose = area.reactionServiceChoose;
-  area.action = area.action;
-  area.reaction = area.reaction;
   getActionId(area.action);
   getReactionId(area.reaction, area.reactionServiceChoose);
 
   var resJson = {
-    "actionParam": '',
-    "reactionParam": '',
+    "actionParam": area.actionParam,
+    "reactionParam": area.reactionParam,
     "actionId": id.actionId,
     "reactionId": id.reactionId,
     "userId": connectedUser["id"],
     "enabled": true,
   };
-  area.actionServiceChoose = "";
-  area.reactionServiceChoose = "";
-  area.action = "";
-  area.reaction = "";
-
-  print(resJson);
   AreaConnection(resJson, context);
 }
 
@@ -214,6 +204,8 @@ AreaConnection(recJson, context) async {
     area.reactionServiceChoose = "";
     area.action = "";
     area.reaction = "";
+    area.actionParam = "";
+    area.reactionParam = "";
     Navigator.push(
       context,
       MaterialPageRoute(
