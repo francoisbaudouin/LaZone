@@ -11,6 +11,7 @@ import 'ServicePage/services_page.dart';
 import 'Tools/global.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'Tools/color.dart';
 
 const EdgeInsets blockMargin = EdgeInsets.fromLTRB(0, 100, 0, 0);
 
@@ -185,7 +186,10 @@ reset() {
   button = ButtonConnection();
   buttonChoose = CheckConnection();
   buttoncheck = CheckConnectionText();
+  buttoncol = ButtonConnectionColor();
+  buttonchoosecol = ButtonChooseColor();
   areas.clear();
+  area = Area();
 }
 
 getUsersAreas() async {
