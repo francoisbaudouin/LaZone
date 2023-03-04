@@ -24,12 +24,13 @@ CREATE TABLE `Services` (
 
 -- CreateTable
 CREATE TABLE `Tokens` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `userId` INTEGER NOT NULL,
     `relatedServiceName` VARCHAR(191) NOT NULL,
-    `accessTokens` VARCHAR(191) NOT NULL,
+    `accessTokens` TEXT NOT NULL,
     `refreshTokens` VARCHAR(191) NOT NULL,
 
-    UNIQUE INDEX `Tokens_accessTokens_key`(`accessTokens`)
+    PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable

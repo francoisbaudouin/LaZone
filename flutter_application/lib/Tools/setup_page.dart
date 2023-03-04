@@ -16,7 +16,7 @@ class SetPageContent extends StatelessWidget {
   final services;
   @override
   Widget build(BuildContext context) {
-    var sidebarWidth = 72.0;
+    var sidebarWidth = 50.0;
     return Container(
       height: 1920,
       width: 1080,
@@ -58,12 +58,13 @@ class SetPageContent extends StatelessWidget {
 class SetPageContentService extends StatelessWidget {
   const SetPageContentService({Key? key,
                       required this.message,
-                      required this.services}) : super(key:key);
+                      required this.services,
+                      required this.sidebarWidth}) : super(key:key);
   final String message;
   final services;
+  final sidebarWidth;
   @override
   Widget build(BuildContext context) {
-    var sidebarWidth = 72.0;
     return Container(
       height: 1920,
       width: 1080,

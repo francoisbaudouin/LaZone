@@ -1,11 +1,17 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
+const { getServiceData } = require("../../services/servicesManager.js");
 
 // services controllers.
 exports.resGetAllServices = async (req, res) => {
   const services = await this.getAllServices()
   res.json(services)
 };
+
+exports.resPostServiceParameters = async (req, res) => {
+  const parameters = await getServiceData(req.service, req.userId);
+  res.status(201).json(parameters);
+}
 
 exports.resGetServiceByName = async (req, res) => {
   const service = await this.getServiceByName(req.params.name);
@@ -30,7 +36,7 @@ exports.resGetServiceTokens = async (req, res) => {
 // service functions retrieve datas
 exports.getAllServices = async () => {
   const services = await prisma.services.findMany();
-  return(services);
+  return (services);
 };
 
 exports.getServiceByName = async (serviceName) => {
@@ -39,7 +45,7 @@ exports.getServiceByName = async (serviceName) => {
       name: serviceName
     }
   })
-  return(service);
+  return (service);
 };
 
 exports.getServiceActions = async (serviceName) => {
@@ -48,7 +54,7 @@ exports.getServiceActions = async (serviceName) => {
       serviceName: serviceName
     }
   })
-  return(serviceActions);
+  return (serviceActions);
 };
 
 exports.getServiceReactions = async (serviceName) => {
@@ -57,7 +63,7 @@ exports.getServiceReactions = async (serviceName) => {
       serviceName: serviceName
     }
   })
-  return(serviceReactions);
+  return (serviceReactions);
 };
 
 exports.getServiceTokens = async (serviceName) => {
@@ -66,5 +72,5 @@ exports.getServiceTokens = async (serviceName) => {
       relatedServiceName: serviceName
     }
   })
-  return(serviceTokens);
+  return (serviceTokens);
 };

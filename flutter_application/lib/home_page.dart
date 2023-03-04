@@ -34,7 +34,6 @@ class BlockWrapper extends StatelessWidget {
 class HomeView extends StatefulWidget {
   final int currentIndex;
 
-  /// Callback function
   final Function(int selectedIndex) onTapped;
   const HomeView(this.currentIndex, this.onTapped);
 
@@ -76,26 +75,45 @@ class _HomeViewState extends State<HomeView> {
   }
 
   @override
-Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
   return Scaffold(
     appBar: AppBar(
-      toolbarHeight: 40.0,
-      backgroundColor: const Color.fromARGB(255, 18, 21, 41),
-      elevation: 0.0,
-      title: const Center(
-        child: Text('LaZone',
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.white, fontFamily: "OldLondon")
+    toolbarHeight: 40.0,
+    backgroundColor: const Color.fromARGB(255, 18, 21, 41),
+    elevation: 0.0,
+    title: const Center(
+      child: Text(
+        'LaZone',
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.white, fontFamily: "OldLondon"),
+      ),
+    ),
+    leading: Row(
+      children: [
+        Expanded(
+          child: IconButton(
+            color: Colors.white,
+            icon: const Icon(Icons.settings_ethernet),
+            onPressed: () async {
+              var url = Uri.parse("http://$serverAddress/about.json");
+              launchUrl(url);
+            },
+            tooltip: "about.json"
+          ),
         ),
-      ),
-      leading: IconButton(
-        color: Colors.white,
-        icon: const Icon(Icons.download),
-        onPressed: () async {
-          var url = Uri.parse("http://$serverAddress/about.json");
-          launchUrl(url);
-        },
-      ),
+        Expanded(
+          child: IconButton(
+            color: Colors.white,
+            icon: const Icon(Icons.download),
+            onPressed: () async {
+              var url = Uri.parse("http://localhost:8081/client.apk");
+              launchUrl(url);
+            },
+            tooltip: "client.apk",
+          ),
+        ),
+      ],
+    ),
       actions: <Widget>[
         IconButton(
           color: Colors.white,
@@ -110,7 +128,7 @@ Widget build(BuildContext context) {
             Navigator.pushNamed(context, '/');
           },
         ),
-      ]
+      ],
     ),
     body: Stack(
       children: [
@@ -147,6 +165,7 @@ Widget build(BuildContext context) {
               ),
             ),
             selectedIndex: _selectedIndex,
+            initiallyExpanded: false,
             items: const [
               SideNavigationBarItem(
                 icon: Icons.home,

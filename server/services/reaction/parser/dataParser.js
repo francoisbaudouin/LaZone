@@ -64,8 +64,8 @@ function parseSubReddit(data) {
 
 const dataParsers = new Map([
   [1, parseGitIssues],
-  [2, parseGitPulls],
-  [3, parseGitRepos],
+  [2, parseGitRepos],
+  [3, parseGitPulls],
 ])
 
 function parseData(actionId, data) {

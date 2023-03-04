@@ -23,32 +23,22 @@ exports.resGetAreaByIdRelatedUser =  async (req, res) => {
 };
 
 exports.resPostNewArea = async (req, res) => {
-  const user = await prisma.users.findFirst({
-    where: {
-      id: req.body.userId
-    }
-  })
-  const action = await prisma.actions.findFirst({
-    where: {
-      id: req.body.action
-    }
-  })
-  const reaction = await prisma.reactions.findFirst({
-    where: {
-      id: req.body.reaction
-    }
-  })
-  const newArea = await prisma.areas.create({
-    data: {
-      userId: user.id,
-      actionsId: action.id,
-      reactionsId: reaction.id,
-      actionsParams: req.body.actionParam,
-      reactionsParams: req.body.reactionParam,
-      enabled: req.body.enabled      
-    }
-  })
-  res.status(201).json({result: newArea, statusCode: res.statusCode})
+  try {
+    const newArea = await prisma.areas.create({
+      data: {
+        userId: req.body.userId,
+        actionsId:  req.body.actionsId,
+        reactionsId:  req.body.reactionsId,
+        actionsParams: req.body.actionParam,
+        reactionsParams: req.body.reactionParam,
+        enabled: req.body.enabled      
+      }
+    })
+    res.status(201).json({result: newArea, statusCode: res.statusCode});
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({errorMessage: error, statusCode: res.statusCode});
+  }
 }
 
 //areas function retrieve datas

@@ -23,7 +23,7 @@ class ChooseReactionsDiscord extends StatelessWidget {
                 rowFit: FlexFit.tight,
                 child: CreateCardsTwoChoice(
                   title: "Post a message",
-                  imagePath: "assets/images/discord-logo.png",
+                  imagePath: "assets/images/logo-discord.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.indigoAccent.shade100,
                   choiceOne: "Choose a server:",
@@ -36,7 +36,7 @@ class ChooseReactionsDiscord extends StatelessWidget {
                 rowFit: FlexFit.tight,
                 child: CreateCardsOneChoice(
                   title: "Create a category",
-                  imagePath: "assets/images/discord-logo.png",
+                  imagePath: "assets/images/logo-discord.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.indigoAccent.shade100,
                   choice : "Choose a server:",
@@ -48,7 +48,7 @@ class ChooseReactionsDiscord extends StatelessWidget {
                 rowFit: FlexFit.tight,
                 child: CreateCardsOneChoice(
                   title: "Create a room",
-                  imagePath: "assets/images/discord-logo.png",
+                  imagePath: "assets/images/logo-discord.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.indigoAccent.shade100,
                   choice: "Choose a server:",
