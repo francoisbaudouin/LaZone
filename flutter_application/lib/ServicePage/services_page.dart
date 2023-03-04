@@ -36,42 +36,42 @@ refreshPage(context) {
 
 chooseConnectionServices(page, context) async {
   if (page == "Twitter" && buttonChoose.buttonChooseTwitter == false) {
-    //await connectService('Twitter');
+    await connectService('Twitter');
     buttonChoose.buttonChooseTwitter = true;
     button.buttonConnectionTwitter = "Connected";
     buttoncheck.buttonConnectionTwitter = "Choose";
     buttonchoosecol.colbuttonChooseTwitter = colorConnected;
     buttoncol.colbuttonConnectionTwitter = const Color.fromARGB(255, 14, 41, 2);
   } else if (page == "Discord" && buttonChoose.buttonChooseDiscord == false) {
-    //await connectService('Discord');
+    await connectService('Discord');
     buttonChoose.buttonChooseDiscord = true;
     button.buttonConnectionDiscord = "Connected";
     buttoncheck.buttonConnectionDiscord = "Choose";
     buttonchoosecol.colbuttonChooseDiscord = colorConnected;
     buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 14, 41, 2);
   } else if (page == "Reddit" && buttonChoose.buttonChooseReddit == false) {
-    //await connectService('Reddit');
+    await connectService('Reddit');
     buttonChoose.buttonChooseReddit = true;
     button.buttonConnectionReddit = "Connected";
     buttoncheck.buttonConnectionReddit = "Choose";
     buttonchoosecol.colbuttonChooseReddit = colorConnected;
     buttoncol.colbuttonConnectionReddit = const Color.fromARGB(255, 14, 41, 2);
   } else if (page == "Github" && buttonChoose.buttonChooseGitHub == false) {
-    //await connectService('Github');
+    await connectService('Github');
     buttonChoose.buttonChooseGitHub = true;
     button.buttonConnectionGitHub = "Connected";
     buttoncheck.buttonConnectionGitHub = "Choose";
     buttonchoosecol.colbuttonChooseGitHub = colorConnected;
     buttoncol.colbuttonConnectionGitHub = const Color.fromARGB(255, 14, 41, 2);
   } else if (page == "Youtube" && buttonChoose.buttonChooseYoutube == false) {
-    //await connectService('Google');
+    await connectService('Google');
     buttonChoose.buttonChooseYoutube = true;
     button.buttonConnectionYoutube = "Connected";
     buttoncheck.buttonConnectionYoutube = "Choose";
     buttonchoosecol.colbuttonChooseYoutube = colorConnected;
     buttoncol.colbuttonConnectionYoutube = const Color.fromARGB(255, 14, 41, 2);
   } else if (page == "Facebook" && buttonChoose.buttonChooseFacebook == false) {
-    //await connectService('Facebook');
+    await connectService('Facebook');
     buttonChoose.buttonChooseFacebook = true;
     button.buttonConnectionFacebook = "Connected";
     buttoncheck.buttonConnectionFacebook = "Choose";
