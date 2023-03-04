@@ -25,7 +25,7 @@ class ChooseReactionsTwitter extends StatelessWidget {
                 rowFit: FlexFit.loose,
                 child: ServiceCards(
                   title: "Tweet",
-                  imagePath: "assets/images/logo-twitter.png",
+                  imagePath: "assets/images/twitter-logo.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.lightBlue,
                 ),

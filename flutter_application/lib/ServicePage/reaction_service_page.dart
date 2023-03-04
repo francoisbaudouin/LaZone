@@ -23,7 +23,7 @@ class ReactionServicePage extends StatelessWidget {
               rowFit: FlexFit.tight,
               child: ServiceCards(
                 title: "Twitter",
-                imagePath: "assets/images/logo-twitter.png",
+                imagePath: "assets/images/twitter-logo.png",
                 textbutton :  buttoncheck.buttonConnectionTwitter,
                 colorButton : buttonchoosecol.colbuttonChooseTwitter,
               ),
