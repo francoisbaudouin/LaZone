@@ -1,5 +1,3 @@
-// user.routes.js - User route module.
-
 const express = require("express");
 const storage = require('node-sessionstorage')
 const passport = require("passport");
@@ -9,6 +7,10 @@ const router = express.Router();
 // post a user
 router.get("/success", (req, res) => {
   res.status(201).send("Success, you can close this tab");
+})
+
+router.get("/failure", (req, res) => {
+  res.status(400).send("Oops, something went wrong, close this tab and retry !");
 })
 
 router.post("/signUp", (req, res, next) => {

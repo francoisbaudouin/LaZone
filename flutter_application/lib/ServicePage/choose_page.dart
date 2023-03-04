@@ -104,7 +104,6 @@ void chooseActionService(String page, BuildContext context) {
   }
 }
 
-
 setAction(page, context) async {
   if (area.actionServiceChoose != "" && area.action == "") {
     area.action = page;
@@ -113,7 +112,8 @@ setAction(page, context) async {
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
               message: "Choose your reaction service:",
-              services: ReactionServicePage(), sidebarWidth: 0)),
+              services: ReactionServicePage(),
+              sidebarWidth: 0)),
     );
   }
 }
@@ -133,7 +133,10 @@ chooseConnection(page, context) async {
       context,
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
-              message: "", services: ConfirmAreaPage(), sidebarWidth: 0,)),
+                message: "",
+                services: ConfirmAreaPage(),
+                sidebarWidth: 0,
+              )),
     );
   }
 }
@@ -166,31 +169,42 @@ getReactionId(String action, String service) {
 }
 
 setupSendActionReaction(page, context) {
+  area.actionServiceChoose = area.actionServiceChoose;
+  area.reactionServiceChoose = area.reactionServiceChoose;
+  area.action = area.action;
+  area.reaction = area.reaction;
   getActionId(area.action);
   getReactionId(area.reaction, area.reactionServiceChoose);
+
   var resJson = {
-    "actionParam": "UgoBoulestreau/POC-nodejs",
-    "reactionParam": "1062389081973215262",
+    "actionParam": '',
+    "reactionParam": '',
     "actionId": id.actionId,
     "reactionId": id.reactionId,
     "userId": connectedUser["id"],
     "enabled": true,
   };
+  area.actionServiceChoose = "";
+  area.reactionServiceChoose = "";
+  area.action = "";
+  area.reaction = "";
+
+  print(resJson);
   AreaConnection(resJson, context);
 }
 
 addNewAreatoArealist() {
   Map<String, dynamic> newArea = {
-      "actionServiceChoose": area.actionServiceChoose,
-      "action": area.action,
-      "reactionServiceChoose": area.reactionServiceChoose,
-      "reaction": area.reaction,
-    };
-    areas.add(newArea);
-    area.actionServiceChoose = "";
-    area.reactionServiceChoose = "";
-    area.action = "";
-    area.reaction = "";
+    "actionServiceChoose": area.actionServiceChoose,
+    "action": area.action,
+    "reactionServiceChoose": area.reactionServiceChoose,
+    "reaction": area.reaction,
+  };
+  areas.add(newArea);
+  area.actionServiceChoose = "";
+  area.reactionServiceChoose = "";
+  area.action = "";
+  area.reaction = "";
 }
 
 AreaConnection(recJson, context) async {

@@ -7,9 +7,11 @@ const prisma = new PrismaClient();
 
 // github login
 
-router.get('/Github', passport.authenticate('github', {scope: ['repo,user,project']}));
+router.get('/Facebook', passport.authenticate('facebook', {
+  scope: ['email', 'user_location', 'user_likes','user_posts']
+}));
 
-router.post('/Github', (req, res) => {
+router.post('/Facebook', (req, res) => {
   try {
     storage.removeItem('userId');
     storage.setItem('userId', req.body.userId);
@@ -19,10 +21,10 @@ router.post('/Github', (req, res) => {
   }
 });
 
-router.get('/Github/callback', (req, res, next) => {
-  passport.authenticate('github', { failureRedirect: 'http://localhost:8080/auth/failure', successRedirect: 'http://localhost:8080/auth/success' }, (err, user, info) => {
+router.get('/Facebook/callback', (req, res, next) => {
+  passport.authenticate('facebook', { failureRedirect: 'http://localhost:8080/auth/failure', successRedirect: 'http://localhost:8080/auth/success' }, (err, user, info) => {
     if (err) throw new Error(err);
-    if (!user) { return res.json({message: "Error, cannot retrieve git User."}) };
+    if (!user) { return res.json({message: "Error, cannot retrieve facebook User."}) };
     return res.redirect('http://localhost:8080/auth/success');
   }) (req, res, next);
 });

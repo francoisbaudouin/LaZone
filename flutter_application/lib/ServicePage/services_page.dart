@@ -36,6 +36,7 @@ refreshPage(context) {
 
 chooseConnectionServices(page, context) async {
   if (page == "Twitter" && buttonChoose.buttonChooseTwitter == false) {
+    await connectService('Twitter');
     buttonChoose.buttonChooseTwitter = true;
     button.buttonConnectionTwitter = "Connected";
     buttoncheck.buttonConnectionTwitter = "Choose";
@@ -49,6 +50,7 @@ chooseConnectionServices(page, context) async {
     buttonchoosecol.colbuttonChooseDiscord = colorConnected;
     buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 14, 41, 2);
   } else if (page == "Reddit" && buttonChoose.buttonChooseReddit == false) {
+    await connectService('Reddit');
     buttonChoose.buttonChooseReddit = true;
     button.buttonConnectionReddit = "Connected";
     buttoncheck.buttonConnectionReddit = "Choose";
@@ -62,12 +64,14 @@ chooseConnectionServices(page, context) async {
     buttonchoosecol.colbuttonChooseGitHub = colorConnected;
     buttoncol.colbuttonConnectionGitHub = const Color.fromARGB(255, 14, 41, 2);
   } else if (page == "Youtube" && buttonChoose.buttonChooseYoutube == false) {
+    await connectService('Google');
     buttonChoose.buttonChooseYoutube = true;
     button.buttonConnectionYoutube = "Connected";
     buttoncheck.buttonConnectionYoutube = "Choose";
     buttonchoosecol.colbuttonChooseYoutube = colorConnected;
     buttoncol.colbuttonConnectionYoutube = const Color.fromARGB(255, 14, 41, 2);
   } else if (page == "Facebook" && buttonChoose.buttonChooseFacebook == false) {
+    await connectService('Facebook');
     buttonChoose.buttonChooseFacebook = true;
     button.buttonConnectionFacebook = "Connected";
     buttoncheck.buttonConnectionFacebook = "Choose";
@@ -276,19 +280,25 @@ class SetPageServices extends StatelessWidget {
                   height: 20,
                 ),
                 WelcomCards(title: title),
-                const SizedBox(height: 70,),
+                const SizedBox(
+                  height: 70,
+                ),
                 Padding(
                   padding: EdgeInsets.only(left: sidebarWidth),
                   child: TitleCards(
-                      message: message,
-                    ),
+                    message: message,
+                  ),
                 ),
-                const SizedBox(height: 30,),
+                const SizedBox(
+                  height: 30,
+                ),
                 Padding(
                   padding: EdgeInsets.only(left: sidebarWidth),
                   child: const ActionsServicesCards(),
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 Padding(
                   padding: EdgeInsets.only(left: sidebarWidth),
                   child: const ReactionServicesCards(),
