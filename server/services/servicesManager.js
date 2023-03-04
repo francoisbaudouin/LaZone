@@ -10,15 +10,15 @@ const { serviceInit } = require('./servicesInitialisation.js');
 
 const actionMap = new Map([
   [1, getFromRepo],
-  [2, getFromRepo],
-  [3, getNewRepos],
+  [2, getNewRepos],
+  [3, getFromRepo],
 ]);
 
 const reactionMap = new Map([
-  [1, sendMessage],
-  [2, createChannel],
+  [1, sendTweet],
+  [2, sendMessage],
   [3, createChannel],
-  [4, sendTweet]
+  [4, createChannel],
 ]);
 
 async function activateArea(area) {

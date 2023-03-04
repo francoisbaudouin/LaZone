@@ -10,8 +10,15 @@ class ButtonConnection {
   String buttonConnectionDiscord;
   String buttonConnectionTwitter;
   String buttonConnectionReddit;
-  ButtonConnection({this.buttonConnectionGitHub = "Disconected", this.buttonConnectionYoutube = "Disconected", this.buttonConnectionFacebook = "Disconected", this.buttonConnectionDiscord = "Disconected", this.buttonConnectionTwitter = "Disconected", this.buttonConnectionReddit = "Disconected"});
+  ButtonConnection(
+      {this.buttonConnectionGitHub = "Disconected",
+      this.buttonConnectionYoutube = "Disconected",
+      this.buttonConnectionFacebook = "Disconected",
+      this.buttonConnectionDiscord = "Disconected",
+      this.buttonConnectionTwitter = "Disconected",
+      this.buttonConnectionReddit = "Disconected"});
 }
+
 ButtonConnection button = ButtonConnection();
 
 class CheckConnectionText {
@@ -21,8 +28,15 @@ class CheckConnectionText {
   String buttonConnectionDiscord;
   String buttonConnectionTwitter;
   String buttonConnectionReddit;
-  CheckConnectionText({this.buttonConnectionGitHub = "Disconected", this.buttonConnectionYoutube = "Disconected", this.buttonConnectionFacebook = "Disconected", this.buttonConnectionDiscord = "Disconected", this.buttonConnectionTwitter = "Disconected", this.buttonConnectionReddit = "Disconected"});
+  CheckConnectionText(
+      {this.buttonConnectionGitHub = "Disconected",
+      this.buttonConnectionYoutube = "Disconected",
+      this.buttonConnectionFacebook = "Disconected",
+      this.buttonConnectionDiscord = "Disconected",
+      this.buttonConnectionTwitter = "Disconected",
+      this.buttonConnectionReddit = "Disconected"});
 }
+
 CheckConnectionText buttoncheck = CheckConnectionText();
 
 class CheckConnection {
@@ -32,15 +46,26 @@ class CheckConnection {
   bool buttonChooseDiscord;
   bool buttonChooseTwitter;
   bool buttonChooseReddit;
-  CheckConnection({this.buttonChooseGitHub = false, this.buttonChooseYoutube = false, this.buttonChooseFacebook = false, this.buttonChooseDiscord = false, this.buttonChooseTwitter = false, this.buttonChooseReddit = false});
+  CheckConnection(
+      {this.buttonChooseGitHub = false,
+      this.buttonChooseYoutube = false,
+      this.buttonChooseFacebook = false,
+      this.buttonChooseDiscord = false,
+      this.buttonChooseTwitter = false,
+      this.buttonChooseReddit = false});
 }
+
 CheckConnection buttonChoose = CheckConnection();
 
 const TextStyle headlineTextStyle = TextStyle(
     fontSize: 44, color: textPrimary, height: 1.2, fontFamily: "OldLondon");
 
 const TextStyle headlineSecondaryTextStyle = TextStyle(
-    fontSize: 28, color: Colors.black, height: 1.2, fontFamily: "OldLondon", decoration: TextDecoration.underline);
+    fontSize: 28,
+    color: Colors.black,
+    height: 1.2,
+    fontFamily: "OldLondon",
+    decoration: TextDecoration.underline);
 
 const TextStyle lineSecondaryTextStyle = TextStyle(
     fontSize: 28, color: Colors.black, height: 1.2, fontFamily: "OldLondon");
