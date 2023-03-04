@@ -135,8 +135,8 @@ getActionId(String action) {
     "Create a issue": 1,
     "Create a repository": 2,
     "Create a pull request": 3,
-    "Like a post": 4,
-    "Create a group of discussion": 5,
+    "Creation of a post": 4,
+    "Create of an album": 5,
     "Like a video": 6,
     "Creation of a playlist": 7,
     "Activity": 8,
@@ -149,9 +149,9 @@ getReactionId(String action, String service) {
   var reactionIds = {
     "Post a message-Discord": 1,
     "Create a category": 2,
+    "Post a message-Room-Discord": 3,
     "Post a message-Reddit": 4,
     "Tweet": 5,
-    "Post a message-Room-Discord": 3
   };
   id.reactionId = reactionIds["$action-$service"]!;
 }
