@@ -9,7 +9,6 @@ var sendTweet = async function (area, resultData) {
     await resultData.map(async (element) => {
       await client.v2.tweet(`New ${area.actionName}\n ${element.name}\n${element.htmlUrl}`);
     });
-    console.log("TWITTER");
   } catch (error) {
     console.error(error);
   }

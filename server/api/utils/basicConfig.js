@@ -84,17 +84,10 @@ async function basicConfig() {
   //REACTION
   await prisma.reactions.create({
     data: {
-      name: "TwitterTweet",
-      description: "tweet something",
-      serviceName: "Twitter"
-    }
-  })
-  await prisma.reactions.create({
-    data: {
       name: "DiscordMessage",
       description: "discord message reaction",
       serviceName: "Discord"
-
+      
     }
   })
   await prisma.reactions.create({
@@ -109,6 +102,14 @@ async function basicConfig() {
       name: "DiscordChannel",
       description: "create a channel",
       serviceName: "Discord"
+    }
+  })
+  await prisma.reactions.create({
+    data: {
+      id: 5,
+      name: "TwitterTweet",
+      description: "tweet something",
+      serviceName: "Twitter"
     }
   })
 }

@@ -106,26 +106,27 @@ app.listen(PORT, () => {
 
 //try connection
 async function startArea() {
+  console.log('LOOP');
   try {
     const configdb = require("./api/utils/basicConfig.js");
-    await configdb();
+    configdb();
     const userController = require('./api/controllers/users');
     const services = require("./services/servicesManager.js");
-
+    
     async function serviceInterval() {
       try {
         const users = await userController.getAllUsersIds();
         if (users.length > 0) {
-          users.forEach(async element => {
-            const values = await userController.getUserModel(element.id);
-            services.activateAreasFromUser(values);
-          });
+          userController.getUserModel(users).then((usersModels) => {
+            services.activateAreasFromUser(usersModels);
+        })
         }
       } catch (error) {
         console.error(error);
       }
     }
     services.client.on('ready', async client => {
+      console.log('LOOP');
       await setInterval(serviceInterval, 5000);
     });
   } catch (error) {

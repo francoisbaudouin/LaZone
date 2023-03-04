@@ -6,6 +6,7 @@ const { parseData } = require("../reaction/parser/dataParser.js")
 
 var getNewPosts = async function (callback, area) {
   try {
+    console.log('IM HERE ');
     let timestampTmp = area.timestamp;
     let response = await new Promise(function(resolve, reject) {
       FB.setAccessToken(area.tokens.action);
