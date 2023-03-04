@@ -5,35 +5,30 @@ import '../Tools/text.dart';
 import '../Tools/title_cards.dart';
 import '../Tools/global.dart';
 
-String chooseImageServiceAction(actionServiceChoose) {
-  String res = "assets/images/nothing.png";
-
-  if (actionServiceChoose == "Github") {
-    res = "assets/images/github-logo.png";
+String chooseImageServiceAction(String actionServiceChoose) {
+  switch (actionServiceChoose) {
+    case "Github":
+      return "assets/images/github-logo.png";
+    case "Youtube":
+      return "assets/images/Youtube-Symbole.png";
+    case "Facebook":
+      return "assets/images/Facebook-logo.png";
+    default:
+      return "assets/images/nothing.png";
   }
-  if (actionServiceChoose == "Youtube") {
-    res = "assets/images/Youtube-Symbole.jpg";
-  }
-  if (actionServiceChoose == "Facebook") {
-    res = "assets/images/Facebook-logo.jpg";
-  }
-  return (res);
-
 }
 
-String chooseImageServiceReaction(reactionServiceChoose) {
-  String res = "assets/images/nothing.png";
-
-  if (reactionServiceChoose == "Twitter") {
-    res = "assets/images/logo-twitter.png";
+String chooseImageServiceReaction(String reactionServiceChoose) {
+  switch (reactionServiceChoose) {
+    case "Twitter":
+      return "assets/images/logo-twitter.png";
+    case "Discord":
+      return "assets/images/logo-discord.png";
+    case "Reddit":
+      return "assets/images/Reddit-Logo.png";
+    default:
+      return "assets/images/nothing.png";
   }
-  if (reactionServiceChoose == "Discord") {
-    res = "assets/images/discord-logo.png";
-  }
-  if (reactionServiceChoose == "Microsoft Teams") {
-    res = "assets/images/Microsoft-Teams-Symbole.jpg";
-  }
-  return (res);
 }
 
 class ActionReactionCards extends StatelessWidget {
@@ -149,6 +144,7 @@ class CreateactionReactionPage extends StatelessWidget {
   const CreateactionReactionPage({Key? key}) : super(key:key);
   @override
   Widget build(BuildContext context) {
+    var sidebarWidth = 50.0;
     return Container(
       height: 1920,
       width: 1080,
@@ -165,7 +161,11 @@ class CreateactionReactionPage extends StatelessWidget {
                   children: <Widget> [
                     SizedBox(height: 20,),
                     WelcomCards(title: "Your actions/reactions"),
-                    CreateactionReactionCards(),                  ],
+                    Padding(
+                      padding: EdgeInsets.only(left: sidebarWidth),
+                      child: CreateactionReactionCards(),
+                    ),
+                  ],
             ),
           )
         ),

@@ -62,7 +62,6 @@ class ConfirmAreaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container (
           padding: const EdgeInsets.only(),
-          //child: SingleChildScrollView(
           child: ResponsiveRowColumn(
             layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
                 ? ResponsiveRowColumnType.COLUMN
@@ -83,7 +82,6 @@ class ConfirmAreaPage extends StatelessWidget {
               ),
             ],
           ),
-          //),
     );
   }
 }

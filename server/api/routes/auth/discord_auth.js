@@ -2,6 +2,7 @@ const { PrismaClient } = require("@prisma/client");
 const express = require("express");
 const passport = require("passport");
 const router = express.Router();
+const storage = require('node-sessionstorage')
 const prisma = new PrismaClient();
 
 // discord login
@@ -15,15 +16,16 @@ router.post('/Discord', (req, res) => {
     storage.setItem('userId', req.body.userId);
     res.status(201).json({message:'success'});
   } catch (error) {
+    console.log(error);
     res.status(400).json({error: error});
   }
 })
 
 router.get('/Discord/callback', (req, res, next) => {
-  passport.authenticate('discord', { failureRedirect: '/', successRedirect: 'http://localhost:8080/auth/success' }, (err, user, info) => {
+  passport.authenticate('discord', { failureRedirect: 'http://localhost:8080/auth/failure', successRedirect: 'http://localhost:8080/auth/success' }, (err, user, info) => {
     if (err) throw new Error(err);
     return res.status(201).redirect('http://localhost:8080/auth/success');
-  }) (req, res, next);
+  })(req, res, next);
 });
 
 module.exports = router;

@@ -18,15 +18,24 @@ class ProfileCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(0.0),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/parchemin2.png"),
+          fit: BoxFit.fill,
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.fromLTRB(40, 40, 40, 40),
+            padding: const EdgeInsets.fromLTRB(100, 0, 100, 40),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
+                const SizedBox(
+                  height: 40,
+                ),
                 IconButton(
                   icon: icon,
                     onPressed: () {
@@ -34,13 +43,18 @@ class ProfileCards extends StatelessWidget {
                   alignment: Alignment.center,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
+                  padding: const EdgeInsets.only(),
                   child: Text(type, style: headlineSecondaryTextStyle),
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(
+                  height: 20,
+                ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(message, style: headlineSecondaryTextStyle),
+                  child: Text(message, style: lineSecondaryTextStyle),
+                ),
+                const SizedBox(
+                  height: 60,
                 ),
               ],
             ),
@@ -57,7 +71,7 @@ class ProfilePageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   return Container(
-      padding: const EdgeInsets.only(left: 150.0),
+      padding: const EdgeInsets.only(left: 0.0),
       child: SingleChildScrollView(
       child: ResponsiveRowColumn(
         layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
@@ -119,7 +133,7 @@ class ProfilePage extends StatelessWidget {
       width: 1080,
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage("assets/images/font-overlay.png"), 
+            image: AssetImage("assets/images/font.jpg"), 
             fit: BoxFit.cover),
       ),
       child: Scaffold (

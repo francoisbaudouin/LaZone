@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import '../Tools/create_cards.dart';
+import '../Tools/global.dart';
 
 class ChooseActionsGithub extends StatelessWidget {
   const ChooseActionsGithub({super.key});
@@ -25,7 +26,8 @@ class ChooseActionsGithub extends StatelessWidget {
                   imagePath: "assets/images/github-logo.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.black,
-                  choice : "Choose a repository:"
+                  choice : "Choose a repository:",
+                  choiceList: GithubRepositoryList,
                 ),
               ),
               const ResponsiveRowColumnItem(
@@ -46,7 +48,8 @@ class ChooseActionsGithub extends StatelessWidget {
                   imagePath: "assets/images/github-logo.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.black,
-                  choice : "Choose a repository:"
+                  choice : "Choose a repository:",
+                  choiceList: GithubRepositoryList,
                 ),
               ),],
           ),

@@ -57,6 +57,9 @@ router.get('/Reddit/callback', async (req, res) => {
   });
 
   const accessToken = response.data.access_token;
+  if (!accessToken) {
+    res.status(400).redirect('http://localhost:8080/auth/failure')
+  }
   tokenController.postNewToken(accessToken, null, 'Reddit', Number(storage.getItem('userId')));
   res.redirect('http://localhost:8080/auth/success');
 })
