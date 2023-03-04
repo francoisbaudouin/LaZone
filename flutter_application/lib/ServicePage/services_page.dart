@@ -48,6 +48,7 @@ chooseConnectionServices(page, context) async {
     buttonchoosecol.colbuttonChooseDiscord = colorConnected;
     buttoncol.colbuttonConnectionDiscord = const Color.fromARGB(255, 14, 41, 2);
   } else if (page == "Reddit" && buttonChoose.buttonChooseReddit == false) {
+    await connectService('Reddit');
     buttonChoose.buttonChooseReddit = true;
     button.buttonConnectionReddit = "Connected";
     buttoncheck.buttonConnectionReddit = "Choose";
