@@ -188,6 +188,10 @@ AreaConnection(recJson, context) async {
     }),
   );
   if (response.statusCode == 201) {
+    area.actionServiceChoose = "";
+    area.reactionServiceChoose = "";
+    area.action = "";
+    area.reaction = "";
     Navigator.push(
       context,
       MaterialPageRoute(

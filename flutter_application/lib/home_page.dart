@@ -212,10 +212,6 @@ getUsersAreas() async {
           "reactionServiceChoose": reaction['serviceName'],
           "reaction": reaction['name']
         });
-        area.actionServiceChoose = "";
-        area.reactionServiceChoose = "";
-        area.action = "";
-        area.reaction = "";
       }
     }
   } else {
