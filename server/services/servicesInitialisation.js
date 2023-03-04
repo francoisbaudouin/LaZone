@@ -35,7 +35,6 @@ const githubInit = async function (user) {
   for (var repo of repos) {
     result.push({ name: repo.full_name })
   }
-  console.log(result);
 };
 
 const redditInit = async function (user) {
