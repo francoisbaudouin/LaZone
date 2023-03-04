@@ -100,15 +100,9 @@ async function startArea() {
       try {
         const users = await userController.getAllUsersIds();
         if (users.length > 0) {
-          users.forEach(async element => {
-            console.log("UserId: " + element.id);
-            const values = await userController.getUserModel(element.id);
-            values.areas.forEach(async elem => {
-              console.log("UserIdelem: "+ element.id + " area: " + elem.id + " userModelIdelem: " + values.id);
-            })
-            console.log("UserModelId: " + values.id);
-            services.activateAreasFromUser(values);
-          });
+          userController.getUserModel(users).then((usersModels) => {
+            services.activateAreasFromUser(usersModels);
+        })
         }
       } catch (error) {
         console.error(error);

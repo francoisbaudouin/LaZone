@@ -67,42 +67,48 @@ exports.getAllUsersIds = async function () {
     return users;
 }
 
-exports.getUserModel = async function (userId) {
+exports.getUserModel = async function (usersIds) {
     try {
-        const userTokens = await prisma.tokens.findMany({
-            where: {
-                userId: Number(userId)
-            }
-        })
-        var userAreas = await prisma.areas.findMany({
-            where: {
-                userId: Number(userId),
-                enabled: true
-            }
-        })
-        for (i = 0; i < userAreas.length; i++) {
-            var actionService = await prisma.actions.findFirst({
+        var usersModels = [];
+        for (let i = 0; i < usersIds.length; i++) {
+            var userAreas = [];
+            const userTokens = await prisma.tokens.findMany({
                 where: {
-                    id: userAreas[i].actionsId
+                    userId: Number(usersIds[i].id)
                 }
             })
-            var reactionService = await prisma.reactions.findFirst({
+            var userAreas = await prisma.areas.findMany({
                 where: {
-                    id: userAreas[i].reactionsId
+                    userId: Number(usersIds[i].id),
+                    enabled: true
                 }
             })
-            console.log("ici: " + `${userAreas[i]}`);
-            userAreas[i].actionsName = actionService.name;
-            userAreas[i].reactionsName = reactionService.name;
-            userAreas[i].actionsServiceName = actionService.serviceName;
-            userAreas[i].reactionsServiceName = reactionService.serviceName;
+            if (userAreas.length > 0) {
+                for (let y = 0; y < userAreas.length; y++) {
+                    var actionService = await prisma.actions.findFirst({
+                        where: {
+                            id: userAreas[y].actionsId
+                        }
+                    })
+                    var reactionService = await prisma.reactions.findFirst({
+                        where: {
+                            id: userAreas[y].reactionsId
+                        }
+                    })
+                    userAreas[y].actionsName = actionService.name;
+                    userAreas[y].reactionsName = reactionService.name;
+                    userAreas[y].actionsServiceName = actionService.serviceName;
+                    userAreas[y].reactionsServiceName = reactionService.serviceName;
+                }
+                var userModel = {
+                    id: Number(usersIds[i].id),
+                    tokens: userTokens,
+                    areas: userAreas
+                }
+                usersModels.push(userModel);
+            }
         }
-        var userModel = {
-            id: userId,
-            tokens: userTokens,
-            areas: userAreas
-        }
-        return userModel;
+        return usersModels;
     } catch (error) {
         console.error(error);
     }
