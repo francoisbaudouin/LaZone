@@ -45,7 +45,7 @@ class ServiceCards extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(title, style: headlineSecondaryTextStyle),
+                  child: Text(title, style: headlineSecondaryTextStyle, textAlign: TextAlign.center,),
                 ),
                 const SizedBox(
                   height: 10,
@@ -158,14 +158,14 @@ class _CreateCardsOneChoiceState extends State<CreateCardsOneChoice> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(widget.title, style: headlineSecondaryTextStyle),
+                  child: Text(widget.title, style: headlineSecondaryTextStyle, textAlign: TextAlign.center,),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 0),
-                  child: Text(widget.choice, style: lineSecondaryTextStyle),
+                  child: Text(widget.choice, style: lineSecondaryTextStyle, textAlign: TextAlign.center,),
                 ),
                 const SizedBox(
                   height: 20,
@@ -196,7 +196,6 @@ class _CreateCardsOneChoiceState extends State<CreateCardsOneChoice> {
                     else if (widget.choice == "Choose a server:")
                       area.discordserver = selectedValue;
                     else if (widget.choice == "Choose a subreddit:")
-                    print(selectedValue);
                     chooseConnection(widget.title, context);
                   },
                   backgroundColor: widget.colorButton,
@@ -206,7 +205,7 @@ class _CreateCardsOneChoiceState extends State<CreateCardsOneChoice> {
                   heroTag: null,
                 ),
                 const SizedBox(
-                  height: 70,
+                  height: 90,
                 ),
               ],
             ),
@@ -307,12 +306,12 @@ class _CreateCardsTwoChoiceState extends State<CreateCardsTwoChoice> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(widget.title, style: headlineSecondaryTextStyle),
+                  child: Text(widget.title, style: headlineSecondaryTextStyle, textAlign: TextAlign.center,),
                 ),
                 const SizedBox(height: 10,),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(widget.choiceOne, style: lineSecondaryTextStyle),
+                  child: Text(widget.choiceOne, style: lineSecondaryTextStyle, textAlign: TextAlign.center,),
                 ),
                 DropdownButton(
                   value: dropdownValue1,
@@ -333,7 +332,7 @@ class _CreateCardsTwoChoiceState extends State<CreateCardsTwoChoice> {
                 const SizedBox(height: 10,),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(widget.choiceTwo, style: lineSecondaryTextStyle),
+                  child: Text(widget.choiceTwo, style: lineSecondaryTextStyle, textAlign: TextAlign.center,),
                 ),
                  DropdownButton(
                   value: dropdownValue2,
@@ -359,8 +358,6 @@ class _CreateCardsTwoChoiceState extends State<CreateCardsTwoChoice> {
                       area.discordserver = selectedServer;
                     if (widget.choiceTwo == "Choose a channel:")
                       area.discordchannel = selectedValue2;
-                    print(selectedServer);
-                    print(selectedValue2);
                     chooseConnection(widget.title, context);
                   },
                   backgroundColor: widget.colorButton,
@@ -460,14 +457,14 @@ class _CreateCardsTwoChoicewithTextState extends State<CreateCardsTwoChoicewithT
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(widget.title, style: headlineSecondaryTextStyle),
+                  child: Text(widget.title, style: headlineSecondaryTextStyle, textAlign: TextAlign.center,),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 0),
-                  child: Text(widget.choice, style: lineSecondaryTextStyle),
+                  child: Text(widget.choice, style: lineSecondaryTextStyle, textAlign: TextAlign.center,),
                 ),
                 const SizedBox(
                   height: 20,
@@ -493,7 +490,7 @@ class _CreateCardsTwoChoicewithTextState extends State<CreateCardsTwoChoicewithT
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 0),
-                  child: Text(widget.choice2, style: lineSecondaryTextStyle),
+                  child: Text(widget.choice2, style: lineSecondaryTextStyle, textAlign: TextAlign.center,),
                 ),const SizedBox(
                   height: 20,
                 ),
@@ -539,7 +536,7 @@ class _CreateCardsTwoChoicewithTextState extends State<CreateCardsTwoChoicewithT
                   heroTag: null,
                 ),
                 const SizedBox(
-                  height: 80,
+                  height: 100,
                 ),
               ],
             ),

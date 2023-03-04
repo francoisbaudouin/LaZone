@@ -14,11 +14,7 @@ class ForgottenPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextButton(
+    return TextButton(
             onPressed: () {
               Navigator.push(
                 context,
@@ -32,9 +28,6 @@ class ForgottenPassword extends StatelessWidget {
                   fontFamily: "OldLondon",
                   fontSize: 20),
             ),
-          )
-        ],
-      ),
     );
   }
 }
@@ -44,12 +37,7 @@ class CreateAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 0, 30, 0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextButton(
+    return TextButton(
             onPressed: () {
               Navigator.push(
                 context,
@@ -63,9 +51,6 @@ class CreateAccount extends StatelessWidget {
                   fontFamily: "OldLondon",
                   fontSize: 20),
             ),
-          )
-        ],
-      ),
     );
   }
 }
@@ -113,10 +98,7 @@ class ButtonService extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        FloatingActionButton.extended(
+    return FloatingActionButton.extended(
           icon: const Icon(FontAwesomeIcons.microsoft, color: Colors.blue),
           onPressed: () {
             Navigator.push(
@@ -128,8 +110,6 @@ class ButtonService extends StatelessWidget {
           backgroundColor: Colors.transparent,
           label: const Text("Login with Microsoft",
               style: TextStyle(fontFamily: "OldLondon")),
-        ),
-      ],
     );
   }
 }
