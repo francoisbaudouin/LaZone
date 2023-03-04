@@ -138,8 +138,8 @@ getActionId(String action) {
     "Like a post": 4,
     "Create a group of discussion": 5,
     "Like a video": 6,
-    "A video was posted \nby one of my subscriptions": 7,
-    "One of my subscriptions \nhas posted in the community tab": 8,
+    "Creation of a playlist": 7,
+    "Activity": 8,
     "New post in a subreddit": 9
   };
   id.actionId = actionIds[action]!;

@@ -45,7 +45,7 @@ class ServiceCards extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(title, style: headlineSecondaryTextStyle),
+                  child: Text(title, style: headlineSecondaryTextStyle, textAlign: TextAlign.center,),
                 ),
                 const SizedBox(
                   height: 10,

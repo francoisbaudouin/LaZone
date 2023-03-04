@@ -31,7 +31,7 @@ class ChooseActionsYoutube extends StatelessWidget {
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
                 child: ServiceCards(
-                  title: "A video was posted \nby one of my subscriptions",
+                  title: "Creation of a playlist",
                   imagePath: "assets/images/Youtube-Symbole.png",
                   textbutton :  "Choose this action",
                   colorButton :  Color.fromARGB(255, 219, 38, 38),
@@ -41,7 +41,7 @@ class ChooseActionsYoutube extends StatelessWidget {
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
                 child: ServiceCards(
-                  title: "One of my subscriptions \nhas posted in the community tab",
+                  title: "Activity",
                   imagePath: "assets/images/Youtube-Symbole.png",
                   textbutton :  "Choose this action",
                   colorButton :  Color.fromARGB(255, 219, 38, 38),
