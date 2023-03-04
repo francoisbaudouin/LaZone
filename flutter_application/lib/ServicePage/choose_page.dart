@@ -78,7 +78,7 @@ getServiceActionsReactionsParameters(context, serviceName) async {
   } else if (response.statusCode == 202) {
     setServiceReactionsParameters(response.body);
   } else {
-    throw Exception('Failed to retrieve $serviceName actions parameters.');
+    throw Exception('Failed to retrieve $serviceName actions/reactions parameters.');
   }
 }
 
