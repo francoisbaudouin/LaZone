@@ -75,21 +75,14 @@ getServiceActionsReactionsParameters(context, serviceName) async {
   );
 
   print("là: ${response.body}");
-  // if (response.statusCode == 201) {
-  //   setServiceActionsParameters(response.body);
-  // } else if (response.statusCode == 202) {
-  //   setServiceReactionsParameters(response.body);
-  // } else {
-  //   throw Exception('Failed to retrieve $serviceName actions/reactions parameters.');
-  // }
-}
-
-setServiceActionsParameters(parameters) {
-  globalActionParameters = json.decode(parameters);
-}
-
-setServiceReactionsParameters(parameters) {
-  globalReactionParameters = json.decode(parameters);
+  if (response.statusCode == 201) {
+    globalActionsReactionsParameters['$serviceName'] =
+        response.body;
+    print("over there: " + globalActionsReactionsParameters['$serviceName']);
+  } else {
+    throw Exception(
+        'Failed to retrieve $serviceName actions/reactions parameters.');
+  }
 }
 
 void chooseActionService(String page, BuildContext context) async {

@@ -11,8 +11,11 @@ List<Map<String, dynamic>> areas = List<Map<String, dynamic>>.from(
   jsonDecode('''[]'''),
 );
 
-Map<String, dynamic> globalActionParameters = {};
-Map<String, dynamic> globalReactionParameters = {};
+Map<String, dynamic> globalActionsReactionsParameters = {
+  "Github": {},
+  "Reddit": {},
+  "Discord": {}
+};
 
 String GithubRepositoryList = '''
     [
