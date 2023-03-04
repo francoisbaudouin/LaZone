@@ -54,7 +54,7 @@ exports.getUserTokenFromService = async (serviceName, userId) => {
       relatedServiceName: serviceName
     }
   })
-  return (token);
+  return (token.accessTokens);
 };
 
 exports.getUserTokenByServiceName = async (userId, serviceName) => {

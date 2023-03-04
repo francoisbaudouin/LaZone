@@ -16,11 +16,12 @@ import 'dart:convert';
 import '../Tools/setup_page.dart';
 import '../Tools/global.dart';
 
-void chooseReactionService(String page, BuildContext context) {
+void chooseReactionService(String page, BuildContext context) async {
   if ((page == "Twitter" && buttonChoose.buttonChooseTwitter) ||
       (page == "Discord" && buttonChoose.buttonChooseDiscord) ||
       (page == "Reddit" && buttonChoose.buttonChooseReddit) ||
       (page == "Youtube" && buttonChoose.buttonChooseYoutube)) {
+    await getServiceActionsReactionsParameters(context, page);
     area.reactionServiceChoose = page;
     Navigator.push(
       context,
@@ -61,7 +62,7 @@ void chooseReactionService(String page, BuildContext context) {
 }
 
 getServiceActionsReactionsParameters(context, serviceName) async {
-  var url = Uri.parse("http://$serverAddress/");
+  var url = Uri.parse("http://$serverAddress/services/parameters");
   final http.Response response = await http.post(
     url,
     headers: <String, String>{
@@ -73,13 +74,14 @@ getServiceActionsReactionsParameters(context, serviceName) async {
     }),
   );
 
-  if (response.statusCode == 201) {
-    setServiceActionsParameters(response.body);
-  } else if (response.statusCode == 202) {
-    setServiceReactionsParameters(response.body);
-  } else {
-    throw Exception('Failed to retrieve $serviceName actions/reactions parameters.');
-  }
+  print("là: ${response.body}");
+  // if (response.statusCode == 201) {
+  //   setServiceActionsParameters(response.body);
+  // } else if (response.statusCode == 202) {
+  //   setServiceReactionsParameters(response.body);
+  // } else {
+  //   throw Exception('Failed to retrieve $serviceName actions/reactions parameters.');
+  // }
 }
 
 setServiceActionsParameters(parameters) {
@@ -90,11 +92,12 @@ setServiceReactionsParameters(parameters) {
   globalReactionParameters = json.decode(parameters);
 }
 
-void chooseActionService(String page, BuildContext context) {
+void chooseActionService(String page, BuildContext context) async {
   if ((page == "Github" && buttonChoose.buttonChooseGitHub) ||
       (page == "Youtube" && buttonChoose.buttonChooseYoutube) ||
       (page == "Facebook" && buttonChoose.buttonChooseFacebook) ||
       (page == "Reddit" && buttonChoose.buttonChooseReddit)) {
+    await getServiceActionsReactionsParameters(context, page);
     area.actionServiceChoose = page;
     Navigator.push(
       context,
@@ -134,7 +137,6 @@ void chooseActionService(String page, BuildContext context) {
   }
 }
 
-
 setAction(page, context) async {
   if (area.actionServiceChoose != "" && area.action == "") {
     area.action = page;
@@ -143,7 +145,8 @@ setAction(page, context) async {
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
               message: "Choose your reaction service:",
-              services: ReactionServicePage(), sidebarWidth: 0)),
+              services: ReactionServicePage(),
+              sidebarWidth: 0)),
     );
   }
 }
@@ -163,7 +166,10 @@ chooseConnection(page, context) async {
       context,
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
-              message: "", services: ConfirmAreaPage(), sidebarWidth: 0,)),
+                message: "",
+                services: ConfirmAreaPage(),
+                sidebarWidth: 0,
+              )),
     );
   }
 }

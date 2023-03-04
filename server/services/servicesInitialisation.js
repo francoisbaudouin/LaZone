@@ -30,11 +30,12 @@ const githubInit = async function (user) {
   const octokit = new Octokit({ auth: user.token })
   var result = [];
 
-
   var repos = (await octokit.rest.repos.listForAuthenticatedUser()).data;
   for (var repo of repos) {
     result.push({ name: repo.full_name })
   }
+
+  return (result);
 };
 
 const redditInit = async function (user) {
