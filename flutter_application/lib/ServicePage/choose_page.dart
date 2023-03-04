@@ -153,9 +153,7 @@ getActionId(String action) {
     "Activity": 8,
     "New post in a subreddit": 9
   };
-  print(action);
   id.actionId = actionIds["$action"]!;
-  print(id.actionId);
 }
 
 getReactionId(String action, String service) {
