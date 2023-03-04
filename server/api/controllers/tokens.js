@@ -40,3 +40,20 @@ exports.getTokensByServiceName = async (serviceName) => {
   })
   return(serviceTokens);
 };
+
+//tokens function to posts datas
+
+exports.postNewToken = async (accessToken, refreshToken, serviceName, userId) => {
+  try {
+    await prisma.tokens.create({
+      data: {
+        accessTokens: accessToken,
+        refreshTokens: refreshToken ? refreshToken : 'NoRefreshToken',
+        relatedServiceName: serviceName,
+        userId: userId,
+      }
+    })
+  } catch (err) {
+    console.log(err);
+  }
+}

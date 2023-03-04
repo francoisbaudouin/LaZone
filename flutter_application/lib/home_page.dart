@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/Tools/text.dart';
 import 'package:side_navigation/side_navigation.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -8,6 +9,9 @@ import 'profile_page.dart';
 import 'Tools/setup_page.dart';
 import 'ServicePage/services_page.dart';
 import 'Tools/global.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'Tools/color.dart';
 
 const EdgeInsets blockMargin = EdgeInsets.fromLTRB(0, 100, 0, 0);
 
@@ -58,7 +62,7 @@ class _HomeViewState extends State<HomeView> {
       ),
     ),
     SizedBox(
-      child: CreateactionReactionPage(),
+      child: CreateActionReactionPage(),
     ),
     const SizedBox(
       child: ProfilePage(),
@@ -76,125 +80,177 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(
-    toolbarHeight: 40.0,
-    backgroundColor: const Color.fromARGB(255, 18, 21, 41),
-    elevation: 0.0,
-    title: const Center(
-      child: Text(
-        'LaZone',
-        textAlign: TextAlign.center,
-        style: TextStyle(color: Colors.white, fontFamily: "OldLondon"),
+    return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 40.0,
+        backgroundColor: const Color.fromARGB(255, 18, 21, 41),
+        elevation: 0.0,
+        title: const Center(
+          child: Text(
+            'LaZone',
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white, fontFamily: "OldLondon"),
+          ),
+        ),
+        leading: Row(
+          children: [
+            Expanded(
+              child: IconButton(
+                  color: Colors.white,
+                  icon: const Icon(Icons.settings_ethernet),
+                  onPressed: () async {
+                    var url = Uri.parse("http://$serverAddress/about.json");
+                    launchUrl(url);
+                  },
+                  tooltip: "about.json"),
+            ),
+            Expanded(
+              child: IconButton(
+                color: Colors.white,
+                icon: const Icon(Icons.download),
+                onPressed: () async {
+                  var url = Uri.parse("http://localhost:8081/client.apk");
+                  launchUrl(url);
+                },
+                tooltip: "client.apk",
+              ),
+            ),
+          ],
+        ),
+        actions: <Widget>[
+          IconButton(
+            color: Colors.white,
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+              reset();
+              Navigator.pushNamed(context, '/');
+            },
+          ),
+        ],
       ),
-    ),
-    leading: Row(
-      children: [
-        Expanded(
-          child: IconButton(
-            color: Colors.white,
-            icon: const Icon(Icons.settings_ethernet),
-            onPressed: () async {
-              var url = Uri.parse("http://$serverAddress/about.json");
-              launchUrl(url);
-            },
-            tooltip: "about.json"
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: views.elementAt(_selectedIndex),
           ),
-        ),
-        Expanded(
-          child: IconButton(
-            color: Colors.white,
-            icon: const Icon(Icons.download),
-            onPressed: () async {
-              var url = Uri.parse("http://$serverAddress/client.apk");
-              launchUrl(url);
-            },
-            tooltip: "client.apk",
-          ),
-        ),
-      ],
-    ),
-      actions: <Widget>[
-        IconButton(
-          color: Colors.white,
-          icon: const Icon(Icons.logout),
-          onPressed: () {
-            globalFirstname = "";
-            globalLastname = "";
-            globalPseudo = "";
-            globalEmail = "";
-            globalPassword = "";
-            areas.clear();
-            Navigator.pushNamed(context, '/');
-          },
-        ),
-      ],
-    ),
-    body: Stack(
-      children: [
-        Positioned.fill(
-          child: views.elementAt(_selectedIndex),
-        ),
-        Positioned(
-          top: 0,
-          bottom: 0,
-          left: 0,
-          child: SideNavigationBar(
-            theme: SideNavigationBarTheme(
-              backgroundColor: const Color.fromARGB(255, 18, 21, 41),
-              togglerTheme: const SideNavigationBarTogglerTheme(
-                expandIconColor: Colors.white,
-                shrinkIconColor: Colors.white
-              ),
-              itemTheme: SideNavigationBarItemTheme(
-                unselectedItemColor: Colors.white,
-                selectedItemColor: const Color.fromARGB(255, 165, 216, 255),
-                iconSize: 32.5,
-                labelTextStyle: const TextStyle(
-                  fontFamily: "OldLondon",
+          Positioned(
+            top: 0,
+            bottom: 0,
+            left: 0,
+            child: SideNavigationBar(
+              theme: SideNavigationBarTheme(
+                backgroundColor: const Color.fromARGB(255, 18, 21, 41),
+                togglerTheme: const SideNavigationBarTogglerTheme(
+                    expandIconColor: Colors.white,
+                    shrinkIconColor: Colors.white),
+                itemTheme: SideNavigationBarItemTheme(
+                  unselectedItemColor: Colors.white,
+                  selectedItemColor: const Color.fromARGB(255, 165, 216, 255),
+                  iconSize: 32.5,
+                  labelTextStyle: const TextStyle(
+                    fontFamily: "OldLondon",
+                  ),
                 ),
+                dividerTheme: SideNavigationBarDividerTheme.standard(),
               ),
-              dividerTheme: SideNavigationBarDividerTheme.standard(),
+              footer: const SideNavigationBarFooter(
+                label: Text('Reduce',
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        fontFamily: "OldLondon")),
+              ),
+              initiallyExpanded: false,
+              selectedIndex: _selectedIndex,
+              items: const [
+                SideNavigationBarItem(
+                  icon: Icons.home,
+                  label: 'Services',
+                ),
+                SideNavigationBarItem(
+                  icon: Icons.integration_instructions,
+                  label: 'Create Area',
+                ),
+                SideNavigationBarItem(
+                  icon: Icons.account_tree_sharp,
+                  label: 'Actions/Reactions',
+                ),
+                SideNavigationBarItem(
+                  icon: Icons.person,
+                  label: 'Account',
+                ),
+              ],
+              onTap: (index) async {
+                if (index == 2) {
+                  areas.clear();
+                  await getUsersAreas();
+                }
+                setState(() {
+                  _selectedIndex = index;
+                });
+              },
             ),
-            footer: const SideNavigationBarFooter(
-              label: Text('Reduce',
-                style: TextStyle(
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  fontFamily: "OldLondon"
-                )
-              ),
-            ),
-            selectedIndex: _selectedIndex,
-            initiallyExpanded: false,
-            items: const [
-              SideNavigationBarItem(
-                icon: Icons.home,
-                label: 'Services',
-              ),
-              SideNavigationBarItem(
-                icon: Icons.integration_instructions,
-                label: 'Create Area',
-              ),
-              SideNavigationBarItem(
-                icon: Icons.account_tree_sharp,
-                label: 'Actions/Reactions',
-              ),
-              SideNavigationBarItem(
-                icon: Icons.person,
-                label: 'Account',
-              ),
-            ],
-            onTap: (index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
           ),
-        ),
-      ],
-    ),
-  );
+        ],
+      ),
+    );
+  }
 }
+
+reset() {
+  globalFirstname = "";
+  globalLastname = "";
+  globalPseudo = "";
+  globalEmail = "";
+  globalPassword = "";
+  connectedUser = {};
+  button = ButtonConnection();
+  buttonChoose = CheckConnection();
+  buttoncheck = CheckConnectionText();
+  buttoncol = ButtonConnectionColor();
+  buttonchoosecol = ButtonChooseColor();
+  areas.clear();
+  area = Area();
+}
+
+getUsersAreas() async {
+  var url = Uri.parse("http://$serverAddress/areas");
+  http.Response response = await http.get(url, headers: <String, String>{
+    'Content-Type': 'application/json; charset=UTF-8',
+  });
+  Map<String, dynamic> data = json.decode(response.body);
+
+  if (response.statusCode == 201) {
+    for (var i = 0; i < data.length; i += 1) {
+      if (data[i]["userId"] == connectedUser["id"]) {
+        Map<String, dynamic> action =
+            await getActionReactionData(data[i]['actionsId'], 'actions');
+        Map<String, dynamic> reaction =
+            await getActionReactionData(data[i]['reactionsId'], 'reactions');
+        areas.add({
+          "actionServiceChoose": action['serviceName'],
+          "action": action['name'],
+          "reactionServiceChoose": reaction['serviceName'],
+          "reaction": reaction['name']
+        });
+      }
+    }
+  } else {
+    throw Exception('Failed to retrieve all areas.');
+  }
+}
+
+getActionReactionData(id, type) async {
+  var url = Uri.parse("http://$serverAddress/$type/$id");
+  final response = await http.get(url, headers: <String, String>{
+    'Content-Type': 'application/json; charset=UTF-8',
+  });
+  if (response.statusCode == 200) {
+    Map<String, dynamic> returnValue = json.decode(response.body);
+
+    return returnValue;
+  } else {
+    throw Exception('Failed to retrieve action/reaction data.');
+  }
 }
 
 class MyHomePage extends StatefulWidget {

@@ -33,11 +33,12 @@ model Services {
 }
 
 model Tokens {
+  id                  Int       @id @default(autoincrement())
   user                users     @relation(fields: [userId], references: [id])
   userId              Int
   relatedService      Services  @relation(fields: [relatedServiceName], references: [name])
   relatedServiceName  String
-  accessTokens        String    @unique
+  accessTokens        String    @db.Text
   refreshTokens       String
 }
 

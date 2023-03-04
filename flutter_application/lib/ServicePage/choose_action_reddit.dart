@@ -27,7 +27,7 @@ class ChooseActionReddit extends StatelessWidget {
                   textbutton :  "Choose this action",
                   colorButton : Color.fromARGB(255, 214, 86, 11),
                   choice :"Choose a subreddit:",
-                  choiceList: SubRedditList,
+                  choiceList: globalActionsReactionsParameters['Reddit'],
                 ),
               ),
             ],

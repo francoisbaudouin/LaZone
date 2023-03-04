@@ -26,7 +26,7 @@ exports.resGetUserTokenByServiceName = async (req, res) => {
 
 exports.getAllUsers = async () => {
     const users = await prisma.users.findMany();
-    return(users);
+    return (users);
 };
 
 exports.getUserById = async (userId) => {
@@ -35,7 +35,7 @@ exports.getUserById = async (userId) => {
             id: Number(userId)
         }
     })
-    return(user);
+    return (user);
 };
 
 exports.getUserTokens = async (userId) => {
@@ -44,7 +44,7 @@ exports.getUserTokens = async (userId) => {
             userId: Number(userId)
         }
     })
-    return(userTokens);
+    return (userTokens);
 };
 
 exports.getUserTokenFromService = async (serviceName, userId) => {
@@ -64,51 +64,62 @@ exports.getUserTokenByServiceName = async (userId, serviceName) => {
             relatedServiceName: serviceName
         }
     })
-    return(userServiceTokens);
+    return (userServiceTokens);
 };
 
 // other
 exports.getAllUsersIds = async function () {
-  const users = await prisma.users.findMany({
-    select: {
-      id: true
-    }
-  });
-  return users;
+    const users = await prisma.users.findMany({
+        select: {
+            id: true
+        }
+    });
+    return users;
 }
 
-exports.getUserModel = async function (userId) {
-    const userTokens = await prisma.tokens.findMany({
-        where: {
-            userId: Number(userId)
-        }
-    })
-    const userAreas = await prisma.areas.findMany({
-        where: {
-            userId: Number(userId),
-            enabled: true
-        }
-    })
-    for (i = 0; i < userAreas.length; i++) {
-        var actionService = await prisma.actions.findFirst({
-            where: {
-                id: userAreas[i].actionsId
+exports.getUserModel = async function (usersIds) {
+    try {
+        var usersModels = [];
+        for (let i = 0; i < usersIds.length; i++) {
+            var userAreas = [];
+            const userTokens = await prisma.tokens.findMany({
+                where: {
+                    userId: Number(usersIds[i].id)
+                }
+            })
+            var userAreas = await prisma.areas.findMany({
+                where: {
+                    userId: Number(usersIds[i].id),
+                    enabled: true
+                }
+            })
+            if (userAreas.length > 0) {
+                for (let y = 0; y < userAreas.length; y++) {
+                    var actionService = await prisma.actions.findFirst({
+                        where: {
+                            id: userAreas[y].actionsId
+                        }
+                    })
+                    var reactionService = await prisma.reactions.findFirst({
+                        where: {
+                            id: userAreas[y].reactionsId
+                        }
+                    })
+                    userAreas[y].actionsName = actionService.name;
+                    userAreas[y].reactionsName = reactionService.name;
+                    userAreas[y].actionsServiceName = actionService.serviceName;
+                    userAreas[y].reactionsServiceName = reactionService.serviceName;
+                }
+                var userModel = {
+                    id: Number(usersIds[i].id),
+                    tokens: userTokens,
+                    areas: userAreas
+                }
+                usersModels.push(userModel);
             }
-        })
-        var reactionService = await prisma.reactions.findFirst({
-            where: {
-                id: userAreas[i].reactionsId
-            }
-        })
-        userAreas[i].actionsName = actionService.name;
-        userAreas[i].reactionsName = reactionService.name;
-        userAreas[i].actionsServiceName = actionService.serviceName;
-        userAreas[i].reactionsServiceName = reactionService.serviceName;
+        }
+        return usersModels;
+    } catch (error) {
+        console.error(error);
     }
-    const userModel = {
-        id: userId,
-        tokens: userTokens,
-        areas: userAreas
-    }
-    return userModel;
 }

@@ -92,12 +92,14 @@ void chooseActionService(String page, BuildContext context) async {
       (page == "Reddit" && buttonChoose.buttonChooseReddit)) {
     await getServiceActionsReactionsParameters(context, page);
     area.actionServiceChoose = page;
+    // print("here: $page");
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) {
           switch (page) {
             case "Github":
+              // print("github sélectionné");
               return SetPageContentService(
                 message: "Choose your action:",
                 services: ChooseActionsGithub(),
@@ -145,6 +147,7 @@ setAction(page, context) async {
 }
 
 chooseConnection(page, context) async {
+  print("reaction: ${area.actionServiceChoose}, $page");
   if (area.actionServiceChoose == "") {
     chooseActionService(page, context);
   } else if (area.action == "") {
@@ -195,31 +198,28 @@ getReactionId(String action, String service) {
 }
 
 setupSendActionReaction(page, context) {
+  area.actionServiceChoose = area.actionServiceChoose;
+  area.reactionServiceChoose = area.reactionServiceChoose;
+  area.action = area.action;
+  area.reaction = area.reaction;
   getActionId(area.action);
   getReactionId(area.reaction, area.reactionServiceChoose);
+
   var resJson = {
-    "actionParam": "UgoBoulestreau/POC-nodejs",
-    "reactionParam": "1062389081973215262",
+    "actionParam": '',
+    "reactionParam": '',
     "actionId": id.actionId,
     "reactionId": id.reactionId,
     "userId": connectedUser["id"],
     "enabled": true,
   };
-  AreaConnection(resJson, context);
-}
-
-addNewAreatoArealist() {
-  Map<String, dynamic> newArea = {
-    "actionServiceChoose": area.actionServiceChoose,
-    "action": area.action,
-    "reactionServiceChoose": area.reactionServiceChoose,
-    "reaction": area.reaction,
-  };
-  areas.add(newArea);
   area.actionServiceChoose = "";
   area.reactionServiceChoose = "";
   area.action = "";
   area.reaction = "";
+
+  print(resJson);
+  AreaConnection(resJson, context);
 }
 
 AreaConnection(recJson, context) async {
@@ -239,7 +239,10 @@ AreaConnection(recJson, context) async {
     }),
   );
   if (response.statusCode == 201) {
-    addNewAreatoArealist();
+    area.actionServiceChoose = "";
+    area.reactionServiceChoose = "";
+    area.action = "";
+    area.reaction = "";
     Navigator.push(
       context,
       MaterialPageRoute(
