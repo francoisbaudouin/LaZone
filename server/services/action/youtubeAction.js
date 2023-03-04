@@ -1,28 +1,116 @@
-const { Google } = require('googleapis');
+const { google } = require('googleapis');
+const { parseData } = require("../reaction/parser/dataParser.js")
 
-var getChannel = async function (callback, area) {
-  var service = Google.youtube('v3');
+const oauth2Client = new google.auth.OAuth2();
+
+var newPlaylist = async function (callback, area) {
   
-  service.search.list({
-    auth: area.tokens.action,
-    part: 'snippet',
-    forUsername: 'GoogleDevelopers'
-  }, function(err, response) {
-    if (err) {
-      console.log('The API returned an error: ' + err);
-      return;
-    }
-    var channels = response.data.items;
-    if (channels.length == 0) {
-      console.log('No channel found.');
-    } else {
-      console.log('This channel\'s ID is %s. Its title is \'%s\', and ' +
-                  'it has %s views.',
-                  channels[0].id,
-                  channels[0].snippet.title,
-                  channels[0].statistics.viewCount);
-    }
+  //oauth2 for google api (with youtube scope)
+  oauth2Client.setCredentials({
+    access_token: area.tokens.action
   });
+
+  const youtube = google.youtube('v3');
+  var itemTab = [];
+  let response = await new Promise(function(resolve, reject) {
+    youtube.playlists.list({
+      auth: oauth2Client,
+      part: 'snippet',
+      mine: true,
+      maxResults: 50
+    }).then((res) => {
+      res.data.items.map(item => {
+        var publishedAt = item.snippet.publishedAt;
+        publishedAt = publishedAt.slice(0,-1) + ".000Z";
+        if (publishedAt > area.timestamp) {
+          itemTab.push(item.snippet);
+          resolve(itemTab);
+        }
+      })
+    })
+  })
+  if (response.length != 0) {
+    response.forEach(element => {
+      area.timestamp = element.publishedAt.slice(0,-1) + ".000Z";
+    });
+  }
+  console.log("area timestamp AFTER PROMISE= " + area.timestamp);
+  callback(area, parseData(area.actionId, response))
 }
 
-module.exports = { getChannel };
+var newLikedVideo = async function (callback, area) {
+  
+  //oauth2 for google api (with youtube scope)
+  oauth2Client.setCredentials({
+    access_token: area.tokens.action
+  });
+
+  const youtube = google.youtube('v3');
+  var itemTab = [];
+  let response = await new Promise(function(resolve, reject) {
+    youtube.playlistItems.list({
+      auth: oauth2Client,
+      part: 'snippet',
+      playlistId: 'LL',
+      mine: true,
+      maxResults: 50
+    }).then((res) => {
+      res.data.items.map(item => {
+        var publishedAt = item.snippet.publishedAt;
+        publishedAt = publishedAt.slice(0,-1) + ".000Z";
+        if (publishedAt > area.timestamp) {
+          itemTab.push(item.snippet);
+          resolve(itemTab);
+        }
+      })
+    })
+  })
+  if (response.length != 0) {
+    response.forEach(element => {
+      area.timestamp = element.publishedAt.slice(0,-1) + ".000Z";
+    });
+  }
+  console.log("area timestamp AFTER PROMISE= " + area.timestamp);
+  callback(area, parseData(area.actionId, response))
+}
+
+var newActivity = async function (callback, area) {
+  
+  //oauth2 for google api (with youtube scope)
+  oauth2Client.setCredentials({
+    access_token: area.tokens.action
+  });
+
+  const youtube = google.youtube('v3');
+  var itemTab = [];
+  let response = await new Promise(function(resolve, reject) {
+    youtube.activities.list({
+      auth: oauth2Client,
+      part: 'snippet',
+      mine: true,
+      maxResults: 50
+    }).then((res) => {
+      res.data.items.map(item => {
+        var publishedAt = item.snippet.publishedAt;
+        publishedAt = publishedAt.slice(0,-1) + ".000Z";
+        if (publishedAt > area.timestamp) {
+          itemTab.push(item.snippet);
+          resolve(itemTab);
+        }
+      })
+    })
+  })
+  if (response.length != 0) {
+    response.forEach(element => {
+      if (element.publishedAt.includes('+00:00')) {
+        area.timestamp = element.publishedAt.replace('+00:00', '.000Z');
+      } else {
+        area.timestamp = element.publishedAt.slice(0,-1) + ".000Z";
+      }
+    });
+  }
+  callback(area, parseData(area.actionId, response))
+}
+
+
+module.exports = { newPlaylist, newLikedVideo, newActivity };

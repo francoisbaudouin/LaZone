@@ -1,5 +1,5 @@
 const { getFromRepo, getNewRepos } = require("./action/githubAction.js");
-const { getChannel } = require("./action/youtubeAction.js");
+const { newPlaylist, newLikedVideo, newActivity } = require("./action/youtubeAction.js");
 const { sendMessage, createChannel, client } = require("./reaction/discordReaction.js");
 
 const { sendTweet } = require("./reaction/twitterReaction.js")
@@ -10,7 +10,10 @@ const actionMap = new Map([
   [1, getFromRepo],
   [2, getNewRepos],
   [3, getFromRepo],
-  [4, getChannel],
+  [6, newPlaylist],
+  [7, newLikedVideo],
+  [8, newActivity],
+
 ]);
 
 const reactionMap = new Map([
