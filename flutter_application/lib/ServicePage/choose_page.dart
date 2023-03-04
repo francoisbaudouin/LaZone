@@ -23,7 +23,7 @@ chooseReactionService(page, context) async {
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
               message: "Choose your reaction:",
-              services: ChooseReactionsTwitter())),
+              services: ChooseReactionsTwitter(), sidebarWidth: 0,)),
     );
   }
   if (page == "Discord" && buttonChoose.buttonChooseDiscord == true) {
@@ -33,7 +33,7 @@ chooseReactionService(page, context) async {
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
               message: "Choose your reaction:",
-              services: ChooseReactionsDiscord())),
+              services: ChooseReactionsDiscord(), sidebarWidth: 0,)),
     );
   }
   if (page == "Reddit" && buttonChoose.buttonChooseReddit == true) {
@@ -43,7 +43,7 @@ chooseReactionService(page, context) async {
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
               message: "Choose your reaction:",
-              services: ChooseReactionReddit())),
+              services: ChooseReactionReddit(), sidebarWidth: 0,)),
     );
   }
 }
@@ -55,7 +55,7 @@ chooseActionService(page, context) async {
       context,
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
-              message: "Choose your action:", services: ChooseActionsGithub())),
+              message: "Choose your action:", services: ChooseActionsGithub(), sidebarWidth: 0,)),
     );
   } else if (page == "Youtube" && buttonChoose.buttonChooseYoutube == true) {
     area.actionServiceChoose = page;
@@ -63,7 +63,7 @@ chooseActionService(page, context) async {
       context,
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
-              message: "Choose your action:", services: ChooseActionsYoutube())),
+              message: "Choose your action:", services: ChooseActionsYoutube(), sidebarWidth: 0,)),
     );
   } else if (page == "Facebook" && buttonChoose.buttonChooseFacebook == true) {
     area.actionServiceChoose = page;
@@ -72,7 +72,7 @@ chooseActionService(page, context) async {
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
               message: "Choose your action:",
-              services: ChooseActionsFacebook())),
+              services: ChooseActionsFacebook(), sidebarWidth: 0,)),
     );
   } else if (page == "Reddit" && buttonChoose.buttonChooseReddit == true) {
     area.actionServiceChoose = page;
@@ -81,7 +81,7 @@ chooseActionService(page, context) async {
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
               message: "Choose your action:",
-              services: ChooseActionReddit())),
+              services: ChooseActionReddit(), sidebarWidth: 0,)),
     );
   }
 }
@@ -94,7 +94,7 @@ setAction(page, context) async {
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
               message: "Choose your reaction service:",
-              services: ReactionServicePage())),
+              services: ReactionServicePage(), sidebarWidth: 0)),
     );
   }
 }
@@ -166,7 +166,7 @@ chooseConnection(page, context) async {
       context,
       MaterialPageRoute(
           builder: (context) => const SetPageContentService(
-              message: "", services: ConfirmAreaPage())),
+              message: "", services: ConfirmAreaPage(), sidebarWidth: 0,)),
     );
   }
 }

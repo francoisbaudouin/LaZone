@@ -196,7 +196,6 @@ class _CreateCardsOneChoiceState extends State<CreateCardsOneChoice> {
                     else if (widget.choice == "Choose a server:")
                       area.discordserver = selectedValue;
                     else if (widget.choice == "Choose a subreddit:")
-                    print(selectedValue);
                     chooseConnection(widget.title, context);
                   },
                   backgroundColor: widget.colorButton,
@@ -359,8 +358,6 @@ class _CreateCardsTwoChoiceState extends State<CreateCardsTwoChoice> {
                       area.discordserver = selectedServer;
                     if (widget.choiceTwo == "Choose a channel:")
                       area.discordchannel = selectedValue2;
-                    print(selectedServer);
-                    print(selectedValue2);
                     chooseConnection(widget.title, context);
                   },
                   backgroundColor: widget.colorButton,

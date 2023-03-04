@@ -150,21 +150,21 @@ class ReactionServicesCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(0.0),
       child: ResponsiveRowColumn(
         layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
             ? ResponsiveRowColumnType.COLUMN
             : ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.start,
-        rowSpacing: 10,
-        columnSpacing: 10,
+        rowSpacing: 0,
+        columnSpacing: 25,
         children: [
           ResponsiveRowColumnItem(
             rowFlex: 1,
             rowFit: FlexFit.tight,
             child: ServicesCardsInformations(
               title: "Twitter",
-              imagePath: "assets/images/logo-twitter.png",
+              imagePath: "assets/images/twitter-logo.png",
               textbutton: button.buttonConnectionTwitter,
               colorButton: buttoncol.colbuttonConnectionTwitter,
             ),
@@ -174,7 +174,7 @@ class ReactionServicesCards extends StatelessWidget {
             rowFit: FlexFit.tight,
             child: ServicesCardsInformations(
               title: "Discord",
-              imagePath: "assets/images/discord-logo.png",
+              imagePath: "assets/images/logo-discord.png",
               textbutton: button.buttonConnectionDiscord,
               colorButton: buttoncol.colbuttonConnectionDiscord,
             ),
@@ -213,7 +213,7 @@ class ActionsServicesCards extends StatelessWidget {
           children: [
             ResponsiveRowColumnItem(
               rowFlex: 1,
-              rowFit: FlexFit.loose,
+              rowFit: FlexFit.tight,
               child: ServicesCardsInformations(
                 title: "Github",
                 imagePath: "assets/images/github-logo.png",
@@ -258,7 +258,7 @@ class SetPageServices extends StatelessWidget {
   final String message;
   @override
   Widget build(BuildContext context) {
-    var sidebarWidth = 72.0;
+    var sidebarWidth = 60.0;
     return Container(
       height: 1920,
       width: 1080,

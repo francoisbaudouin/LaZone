@@ -10,19 +10,19 @@ class AreaPageServicesCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(0.0),
       child: SingleChildScrollView(
         child: ResponsiveRowColumn(
           layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
               ? ResponsiveRowColumnType.COLUMN
               : ResponsiveRowColumnType.ROW,
           rowCrossAxisAlignment: CrossAxisAlignment.center,
-          rowSpacing: 25,
+          rowSpacing: 0,
           columnSpacing: 25,
           children: [
             ResponsiveRowColumnItem(
               rowFlex: 1,
-              rowFit: FlexFit.loose,
+              rowFit: FlexFit.tight,
               child: ServiceCards(
                 title: "Github",
                 imagePath: "assets/images/github-logo.png",

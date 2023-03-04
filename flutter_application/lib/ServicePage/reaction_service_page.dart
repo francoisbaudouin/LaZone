@@ -23,7 +23,7 @@ class ReactionServicePage extends StatelessWidget {
               rowFit: FlexFit.tight,
               child: ServiceCards(
                 title: "Twitter",
-                imagePath: "assets/images/logo-twitter.png",
+                imagePath: "assets/images/twitter-logo.png",
                 textbutton :  buttoncheck.buttonConnectionTwitter,
                 colorButton : buttonchoosecol.colbuttonChooseTwitter,
               ),
@@ -33,7 +33,7 @@ class ReactionServicePage extends StatelessWidget {
               rowFit: FlexFit.tight,
               child: ServiceCards(
                 title: "Discord",
-                imagePath: "assets/images/discord-logo.png",
+                imagePath: "assets/images/logo-discord.png",
                 textbutton :  buttoncheck.buttonConnectionDiscord,
                 colorButton : buttonchoosecol.colbuttonChooseDiscord,
               ),
