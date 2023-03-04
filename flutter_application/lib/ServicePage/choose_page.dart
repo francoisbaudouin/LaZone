@@ -9,6 +9,7 @@ import 'choose_action_github.dart';
 import 'choose_action_facebook.dart';
 import 'choose_action_reddit.dart';
 import 'choose_reaction_reddit.dart';
+import 'choose_reaction_youtube.dart';
 import 'confirm_area_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -18,7 +19,8 @@ import '../Tools/global.dart';
 void chooseReactionService(String page, BuildContext context) {
   if ((page == "Twitter" && buttonChoose.buttonChooseTwitter) ||
       (page == "Discord" && buttonChoose.buttonChooseDiscord) ||
-      (page == "Reddit" && buttonChoose.buttonChooseReddit)) {
+      (page == "Reddit" && buttonChoose.buttonChooseReddit) ||
+      (page == "Youtube" && buttonChoose.buttonChooseYoutube)) {
     area.reactionServiceChoose = page;
     Navigator.push(
       context,
@@ -41,6 +43,12 @@ void chooseReactionService(String page, BuildContext context) {
               return SetPageContentService(
                 message: "Choose your reaction:",
                 services: ChooseReactionReddit(),
+                sidebarWidth: 0,
+              );
+            case "Youtube":
+              return SetPageContentService(
+                message: "Choose your reaction:",
+                services: ChooseReactionYoutube(),
                 sidebarWidth: 0,
               );
             default:
@@ -152,6 +160,7 @@ getReactionId(String action, String service) {
     "Post a message-Room-Discord": 3,
     "Post a message-Reddit": 4,
     "Tweet": 5,
+    "Suprise": 6,
   };
   id.reactionId = reactionIds["$action-$service"]!;
 }
