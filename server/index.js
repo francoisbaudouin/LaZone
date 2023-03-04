@@ -116,10 +116,9 @@ async function startArea() {
       try {
         const users = await userController.getAllUsersIds();
         if (users.length > 0) {
-          users.forEach(async element => {
-            const values = await userController.getUserModel(element.id);
-            services.activateAreasFromUser(values);
-          });
+          userController.getUserModel(users).then((usersModels) => {
+            services.activateAreasFromUser(usersModels);
+        })
         }
       } catch (error) {
         console.error(error);
