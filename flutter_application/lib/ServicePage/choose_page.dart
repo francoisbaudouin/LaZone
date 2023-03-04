@@ -171,20 +171,6 @@ chooseConnection(page, context) async {
   }
 }
 
-addNewAreatoArealist() {
-  Map<String, dynamic> newArea = {
-      "actionServiceChoose": area.actionServiceChoose,
-      "action": area.action,
-      "reactionServiceChoose": area.reactionServiceChoose,
-      "reaction": area.reaction,
-    };
-    areas.add(newArea);
-    area.actionServiceChoose = "";
-    area.reactionServiceChoose = "";
-    area.action = "";
-    area.reaction = "";
-}
-
 AreaConnection(recJson, context) async {
   var url = Uri.parse("http://$serverAddress/areas/new");
   final http.Response response = await http.post(

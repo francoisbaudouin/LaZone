@@ -201,15 +201,21 @@ getUsersAreas() async {
 
   if (response.statusCode == 201) {
     for (var i = 0; i < data.length; i += 1) {
-      if (data[i]["id"] == connectedUser["id"]) {
-        Map<String, dynamic> action = await getActionReactionData(data[i]['actionsId'], 'actions');
-        Map<String, dynamic> reaction = await getActionReactionData(data[i]['reactionsId'], 'reactions');
+      if (data[i]["userId"] == connectedUser["id"]) {
+        Map<String, dynamic> action =
+            await getActionReactionData(data[i]['actionsId'], 'actions');
+        Map<String, dynamic> reaction =
+            await getActionReactionData(data[i]['reactionsId'], 'reactions');
         areas.add({
           "actionServiceChoose": action['serviceName'],
           "action": action['name'],
           "reactionServiceChoose": reaction['serviceName'],
           "reaction": reaction['name']
         });
+        area.actionServiceChoose = "";
+        area.reactionServiceChoose = "";
+        area.action = "";
+        area.reaction = "";
       }
     }
   } else {
@@ -218,8 +224,7 @@ getUsersAreas() async {
 }
 
 getActionReactionData(id, type) async {
-  var url =
-      Uri.parse("http://$serverAddress/$type/$id");
+  var url = Uri.parse("http://$serverAddress/$type/$id");
   final response = await http.get(url, headers: <String, String>{
     'Content-Type': 'application/json; charset=UTF-8',
   });
