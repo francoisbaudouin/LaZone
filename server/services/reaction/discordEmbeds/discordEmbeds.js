@@ -35,10 +35,80 @@ function githubRepo(repoData) {
   }
 }
 
+function facebookPost(repoData) {
+  try {
+    const embed = new EmbedBuilder().setTitle(`new facebook post`)
+      .setURL(repoData.htmlUrl).setTimestamp()
+      .setDescription(repoData.name)
+      .setFooter({ text: "test" });
+    return (embed);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function redditPost(postData) {
+  try {
+    const embed = new EmbedBuilder().setTitle(`new reddit post ${postData.name}`)
+      .setURL(postData.htmlUrl).setTimestamp()
+      .setDescription(postData.name)
+      .setFooter({ text: "test" });
+    return (embed);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function facebookNewAlbum(repoData) {
+  try {
+    const embed = new EmbedBuilder().setTitle(`new facebook album: ${repoData.name}`)
+    .setURL(repoData.htmlUrl).setTimestamp()
+    .setFooter({ text: "test" });
+    return (embed);
+  } catch (error) {
+    console.error(error);
+  }
+}
+function youtubeNewActivity(repoData) {
+  try {
+    const embed = new EmbedBuilder().setTitle(`Activity detected: ${repoData.name}`)
+      .setFooter({ text: "test" });
+      return (embed);
+  } catch (error) {
+      console.error(error);
+  }
+}
+
+function youtubeNewLikedVideo(repoData) {
+  try {
+    const embed = new EmbedBuilder().setTitle(`you liked a video: ${repoData.name}`)
+    .setURL(repoData.htmlUrl).setTimestamp()
+    .setFooter({ text: "test" });
+    return (embed);
+  } catch (error) {
+    console.error(error);
+  }
+}
+function youtubeNewPlaylist(repoData) {
+  try {
+    const embed = new EmbedBuilder().setTitle(`New playlist on your youtube channel: ${repoData.name}`)
+      .setURL(repoData.htmlUrl).setTimestamp()
+      return (embed);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 const embeds = new Map([
   [1, githubIssues],
   [2, githubPulls],
   [3, githubRepo],
+  [4, facebookPost],
+  [5, facebookNewAlbum],
+  [6, youtubeNewLikedVideo],
+  [7, youtubeNewPlaylist],
+  [8, youtubeNewActivity],
+  [9, redditPost],
 ])
 
 module.exports = { embeds }

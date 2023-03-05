@@ -1,7 +1,12 @@
 const { getFromRepo, getNewRepos } = require("./action/githubAction.js");
-const { sendMessage, createChannel, client } = require("./reaction/discordReaction.js");
+const { getFromSubReddit } = require('./action/redditAction.js')
+const { newPlaylist, newLikedVideo, newActivity } = require("./action/youtubeAction.js");
+const { getNewPosts, getNewAlbum } = require("./action/facebookAction.js");
 
+
+const { sendMessage, createChannel, initDiscord, client } = require("./reaction/discordReaction.js");
 const { sendTweet } = require("./reaction/twitterReaction.js")
+const { postOnSubReddit } = require('./reaction/redditReaction.js')
 
 const { updateAreaTimestamp } = require("../api/controllers/areas.js");
 const { getUserTokenFromService } = require("../api/controllers/users.js");
@@ -12,13 +17,21 @@ const actionMap = new Map([
   [1, getFromRepo],
   [2, getNewRepos],
   [3, getFromRepo],
+  [4, getNewPosts],
+  [5, getNewAlbum],
+  [6, newLikedVideo],
+  [7, newPlaylist],
+  [8, newActivity],
+  [9, getFromSubReddit],
+
 ]);
 
 const reactionMap = new Map([
-  [1, sendTweet],
-  [2, sendMessage],
+  [1, sendMessage],
+  [2, createChannel],
   [3, createChannel],
-  [4, createChannel],
+  [4, postOnSubReddit],
+  [5, sendTweet],
 ]);
 
 async function activateArea(area) {
@@ -73,4 +86,4 @@ async function getServiceData(serviceName, userId) {
   }
 }
 
-module.exports = { activateAreasFromUser, getServiceData, client }
+module.exports = { activateAreasFromUser, getServiceData, initDiscord, client }

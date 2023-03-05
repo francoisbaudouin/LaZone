@@ -22,7 +22,6 @@ void chooseReactionService(String page, BuildContext context) async {
       (page == "Reddit" && buttonChoose.buttonChooseReddit) ||
       (page == "Youtube" && buttonChoose.buttonChooseYoutube)) {
     await getServiceActionsReactionsParameters(context, page);
-    print("channels du server: ${globalActionsReactionsParameters["$page"]}");
     area.reactionServiceChoose = page;
     Navigator.push(
       context,
@@ -65,8 +64,9 @@ void chooseReactionService(String page, BuildContext context) async {
 }
 
 getServiceActionsReactionsParameters(context, serviceName) async {
-  if (serviceName != "Reddit" && serviceName != "Github" && serviceName != "Discord")
-    return;
+  if (serviceName != "Reddit" &&
+      serviceName != "Github" &&
+      serviceName != "Discord") return;
   var url = Uri.parse("http://$serverAddress/services/parameters");
   final http.Response response = await http.post(
     url,
@@ -79,10 +79,8 @@ getServiceActionsReactionsParameters(context, serviceName) async {
     }),
   );
 
-  print("là: ${response.body}, $serviceName");
   if (response.statusCode == 201) {
     globalActionsReactionsParameters['$serviceName'] = response.body;
-    print("over there: " + globalActionsReactionsParameters['$serviceName']);
   } else {
     throw Exception(
         'Failed to retrieve $serviceName actions/reactions parameters.');
@@ -96,14 +94,12 @@ void chooseActionService(String page, BuildContext context) async {
       (page == "Reddit" && buttonChoose.buttonChooseReddit)) {
     await getServiceActionsReactionsParameters(context, page);
     area.actionServiceChoose = page;
-    // print("here: $page");
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) {
           switch (page) {
             case "Github":
-              // print("github sélectionné");
               return SetPageContentService(
                 message: "Choose your action:",
                 services: ChooseActionsGithub(),
@@ -142,7 +138,6 @@ getSubReddit() {
   tmp.forEach((value) {
     subredditNames.add({"name": value});
   });
-  print(subredditNames);
 
   return subredditNames;
 }
@@ -162,7 +157,6 @@ setAction(page, context) async {
 }
 
 chooseConnection(page, context) async {
-  print("reaction: ${area.actionServiceChoose}, $page");
   if (area.actionServiceChoose == "") {
     chooseActionService(page, context);
   } else if (area.action == "") {
@@ -187,7 +181,7 @@ chooseConnection(page, context) async {
 
 getActionId(String action) {
   var actionIds = {
-    "Create a issue": 1,
+    "Create an issue": 1,
     "Create a repository": 2,
     "Create a pull request": 3,
     "Creation of a post": 4,
@@ -197,16 +191,16 @@ getActionId(String action) {
     "Activity": 8,
     "New post in a subreddit": 9
   };
-  id.actionId = actionIds[action]!;
+  id.actionId = actionIds["$action"]!;
 }
 
 getReactionId(String action, String service) {
   var reactionIds = {
     "Post a message-Discord": 1,
-    "Create a category": 2,
+    "Create a category-Discord": 2,
     "Post a message-Room-Discord": 3,
     "Post a message-Reddit": 4,
-    "Tweet": 5,
+    "Tweet-Twitter": 5,
     "Suprise": 6
   };
   id.reactionId = reactionIds["$action-$service"]!;

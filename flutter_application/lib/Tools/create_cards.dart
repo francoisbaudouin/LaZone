@@ -359,18 +359,18 @@ class _CreateCardsTwoChoiceState extends State<CreateCardsTwoChoice> {
                     setState(() {
                       dropdownValue1 = newValue!;
                       selectedServer = newValue;
-                      final tmp = jsonDecode(globalActionsReactionsParameters["Discord"]);
-                      print("ici: $selectedServer");
+                      final tmp = jsonDecode(
+                          globalActionsReactionsParameters["Discord"]);
                       for (var i = 0; i < tmp.length; i++) {
                         var element = tmp[i];
-                        print("elem: $element, ${element["channels"]}");
                         if (element["name"] == selectedServer) {
                           SecondChoiceList = jsonEncode(element["channels"]);
                           break;
                         }
                       }
-                      itemsNames2 = loadListFromJson(SecondChoiceList).map((item) => item.name).toList();
-                      print("sorti: $SecondChoiceList");
+                      itemsNames2 = loadListFromJson(SecondChoiceList)
+                          .map((item) => item.name)
+                          .toList();
                     });
                   },
                 ),
@@ -405,20 +405,17 @@ class _CreateCardsTwoChoiceState extends State<CreateCardsTwoChoice> {
                   onPressed: () {
                     if (widget.choiceOne == "Choose a server:" &&
                         widget.choiceTwo == "Choose a channel:") {
-                          final tmp = jsonDecode(SecondChoiceList);
-                          print("selectedserver: $selectedServer");
-                          String selectedChannelId = "";
+                      final tmp = jsonDecode(SecondChoiceList);
+                      String selectedChannelId = "";
                       for (var i = 0; i < tmp.length; i++) {
                         var element = tmp[i];
-                        print("elem: $element");
                         if (element["name"] == selectedValue2) {
                           selectedChannelId = element["id"];
                           break;
                         }
                       }
-                      print("channelId: $selectedChannelId");
                       area.reactionParam = "$selectedChannelId";
-                    };
+                    }
                     chooseConnection(widget.title, context);
                   },
                   backgroundColor: widget.colorButton,

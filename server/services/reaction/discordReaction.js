@@ -1,4 +1,4 @@
-const { client } = require("./discordClient.js");
+const { initDiscord, client } = require("./discordClient.js");
 const { embeds } = require("./discordEmbeds/discordEmbeds.js")
 
 var sendMessage = function (area, resultData) {
@@ -31,4 +31,4 @@ var createChannel = function (area, resultData) {
   }
 }
 
-module.exports = { sendMessage, createChannel, client }
+module.exports = { sendMessage, createChannel, initDiscord, client }

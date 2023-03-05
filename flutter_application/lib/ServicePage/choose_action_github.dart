@@ -22,7 +22,7 @@ class ChooseActionsGithub extends StatelessWidget {
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
                 child: CreateCardsOneChoice(
-                  title: "Create a issue",
+                  title: "Create an issue",
                   imagePath: "assets/images/github-logo.png",
                   textbutton :  "Choose this action",
                   colorButton : Colors.black,

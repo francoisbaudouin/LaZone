@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 require("dotenv").config();
+const utils = require('./utils.js')
 
 // Initialize a prisma client
 const prisma = new PrismaClient();
@@ -67,14 +68,59 @@ async function basicConfig() {
     }
   })
 
-  //REACTION
-  await prisma.reactions.create({
+  //Facebook
+  await prisma.actions.create({
     data: {
-      name: "TwitterTweet",
-      description: "tweet something",
-      serviceName: "Twitter"
+      name: "new post",
+      description: "facebook post occured",
+      serviceName: "Facebook"
     }
   })
+  await prisma.actions.create({
+    data: {
+      name: "new album",
+      description: "facebook album created",
+      serviceName: "Facebook"
+    }
+  })
+  await prisma.actions.create({
+    data: {
+      id: 9,
+      name: "new post subreddit",
+      description: "new post on subReddit",
+      serviceName: "Reddit"
+    }
+  })
+
+  //youtube
+  await prisma.actions.create({
+    data: {
+      id: 6,
+      name: "new-like",
+      description: "new video in my likes playlist",
+      serviceName: "Google"
+    }
+  })
+  await prisma.actions.create({
+    data: {
+      id: 7,
+      name: "new-playlist",
+      description: "i created a new playlist",
+      serviceName: "Google"
+    }
+  })
+  await prisma.actions.create({
+    data: {
+      id: 8,
+      name: "new-activity",
+      description: "new activity",
+      serviceName: "Google"
+    }
+  })
+
+  //REACTION
+  
+  //discord
   await prisma.reactions.create({
     data: {
       name: "DiscordMessage",
@@ -95,6 +141,22 @@ async function basicConfig() {
       name: "DiscordChannel",
       description: "create a channel",
       serviceName: "Discord"
+    }
+  })
+
+  //Twitter
+  await prisma.reactions.create({
+    data: {
+      name: "RedditPost",
+      description: "post on subReddit",
+      serviceName: "Reddit"
+    }
+  })
+  await prisma.reactions.create({
+    data: {
+      name: "TwitterTweet",
+      description: "tweet something",
+      serviceName: "Twitter"
     }
   })
 }

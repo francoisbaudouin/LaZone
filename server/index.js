@@ -109,10 +109,13 @@ async function startArea() {
   try {
     const configdb = require("./api/utils/basicConfig.js");
     await configdb();
+
     const userController = require('./api/controllers/users');
     const services = require("./services/servicesManager.js");
 
+    services.initDiscord();
     async function serviceInterval() {
+      console.log("LOOP");
       try {
         const users = await userController.getAllUsersIds();
         if (users.length > 0) {
@@ -125,7 +128,7 @@ async function startArea() {
       }
     }
     services.client.on('ready', async client => {
-      await setInterval(serviceInterval, 5000);
+      setInterval(serviceInterval, 5000);
     });
   } catch (error) {
     console.error(error);
