@@ -4,7 +4,7 @@ const { newPlaylist, newLikedVideo, newActivity } = require("./action/youtubeAct
 const { getNewPosts, getNewAlbum } = require("./action/facebookAction.js");
 
 
-const { sendMessage, createChannel, initDiscord, client } = require("./reaction/discordReaction.js");
+const { sendMessage, createChannel, sendPrivateMessage, initDiscord, client } = require("./reaction/discordReaction.js");
 const { sendTweet } = require("./reaction/twitterReaction.js")
 const { postOnSubReddit } = require('./reaction/redditReaction.js')
 
@@ -30,8 +30,9 @@ const reactionMap = new Map([
   [1, sendMessage],
   [2, createChannel],
   [3, createChannel],
-  [4, postOnSubReddit],
-  [5, sendTweet],
+  [4, sendPrivateMessage],
+  [5, postOnSubReddit],
+  [6, sendTweet],
 ]);
 
 async function activateArea(area) {
