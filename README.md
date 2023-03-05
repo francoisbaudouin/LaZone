@@ -57,14 +57,6 @@ _____________________________________
 
 - `get("/:id/user")` -> get the user related to the specified area
 
-##### TOKENS
-
-- `get("/")` -> get all tokens
-
-- `get("/user/:userId")` -> get tokens of specified user
-
-- `get("/service/:serviceName")` -> get tokens of specified serviceName
-
 ##### ACTIONS
 
 - `get("/")` -> get all actions
