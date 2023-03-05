@@ -217,15 +217,15 @@ getUsersAreas() async {
   http.Response response = await http.get(url, headers: <String, String>{
     'Content-Type': 'application/json; charset=UTF-8',
   });
-  Map<String, dynamic> data = json.decode(response.body);
+  List<dynamic> data = json.decode(response.body);
 
   if (response.statusCode == 201) {
-    for (var i = 0; i < data.length; i += 1) {
-      if (data[i]["userId"] == connectedUser["id"]) {
+      for (var item in data) {
+      if (item["userId"] == connectedUser["id"]) {
         Map<String, dynamic> action =
-            await getActionReactionData(data[i]['actionsId'], 'actions');
+            await getActionReactionData(item['actionsId'], 'actions');
         Map<String, dynamic> reaction =
-            await getActionReactionData(data[i]['reactionsId'], 'reactions');
+            await getActionReactionData(item['reactionsId'], 'reactions');
         areas.add({
           "id": data[i]["id"].toString(),
           "actionServiceChoose": action['serviceName'],

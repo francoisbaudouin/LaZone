@@ -283,7 +283,7 @@ class SetPageServices extends StatelessWidget {
                   height: 70,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: sidebarWidth),
+                  padding: EdgeInsets.only(left: sidebarWidth.toDouble()),
                   child: TitleCards(
                     message: message,
                   ),
@@ -292,14 +292,14 @@ class SetPageServices extends StatelessWidget {
                   height: 30,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: sidebarWidth),
+                  padding: EdgeInsets.only(left: sidebarWidth.toDouble()),
                   child: const ActionsServicesCards(),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: sidebarWidth),
+                  padding: EdgeInsets.only(left: sidebarWidth.toDouble()),
                   child: const ReactionServicesCards(),
                 ),
               ],

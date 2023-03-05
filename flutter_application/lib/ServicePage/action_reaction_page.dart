@@ -209,7 +209,7 @@ class CreateActionReactionPage extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(left: sidebarWidth),
+                padding: EdgeInsets.only(left: sidebarWidth.toDouble()),
                 child: CreateActionReactionCards(),
               ),
             ],
