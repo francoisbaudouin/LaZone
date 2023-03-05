@@ -29,8 +29,6 @@ String chooseImageServiceReaction(String reactionServiceChoose) {
       return "assets/images/logo-discord.png";
     case "Reddit":
       return "assets/images/Reddit-Logo.png";
-    case "Youtube":
-      return "assets/images/Youtube-Symbole.png";
     default:
       return "assets/images/nothing.png";
   }
@@ -143,47 +141,100 @@ class _CreateActionReactionCardsState extends State<CreateActionReactionCards> {
       margin: blockMargin,
       child: Column(
         children: [
-          SizedBox(
-            height: 20,
-          ),
-          WelcomCards(title: "Your actions/reactions"),
-          SizedBox(
-            height: 20,
-          ),
-          for (var i = 0; i < areas.length; i += 3)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                for (var j = i; j < i + 3 && j < areas.length; j++)
-                  Container(
-                    padding: const EdgeInsets.all(0.0),
-                    margin: blockMargin,
-                    child: ResponsiveRowColumn(
-                      layout:
-                          ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
+          LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+              if (constraints.maxWidth < 600) {
+                return Column(
+                  children: [
+                    SizedBox(
+                      height: 20,
+                    ),
+                    WelcomCards(title: "Your actions/reactions"),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(15.0),
+                      margin: blockMargin,
+                      child: SingleChildScrollView(
+                        child: ResponsiveRowColumn(
+                          layout: ResponsiveWrapper.of(context)
+                                  .isSmallerThan("DESKTOP")
                               ? ResponsiveRowColumnType.COLUMN
                               : ResponsiveRowColumnType.ROW,
-                      rowCrossAxisAlignment: CrossAxisAlignment.start,
-                      columnCrossAxisAlignment: CrossAxisAlignment.center,
-                      rowSpacing: 0,
-                      columnSpacing: 0,
-                      children: [
-                        ResponsiveRowColumnItem(
-                          rowFlex: 0,
-                          rowFit: FlexFit.loose,
-                          child: ActionReactionCards(
-                            area: areas[j],
-                            onDelete: () {
-                              deleteArea(j, areas[j]['id']);
-                            },
-                          ),
+                          rowCrossAxisAlignment: CrossAxisAlignment.center,
+                          columnCrossAxisAlignment: CrossAxisAlignment.center,
+                          rowSpacing: 25,
+                          columnSpacing: 25,
+                          children: [
+                            for (var i = 0; i < areas.length; i += 1)
+                              ResponsiveRowColumnItem(
+                                rowFlex: 1,
+                                rowFit: FlexFit.loose,
+                                child: ActionReactionCards(
+                                  area: areas[i],
+                                  onDelete: () {
+                                    deleteArea(i, areas[i]['id']);
+                                  },
+                                ),
+                              ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-              ],
-            ),
+                  ],
+                );
+              } else {
+                return Column(
+                  children: [
+                    SizedBox(
+                      height: 20,
+                    ),
+                    WelcomCards(title: "Your actions/reactions"),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    for (var i = 0; i < areas.length; i += 3)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          for (var j = i; j < i + 3 && j < areas.length; j++)
+                            Container(
+                              padding: const EdgeInsets.all(0.0),
+                              margin: blockMargin,
+                              child: ResponsiveRowColumn(
+                                layout: ResponsiveWrapper.of(context)
+                                        .isSmallerThan("DESKTOP")
+                                    ? ResponsiveRowColumnType.COLUMN
+                                    : ResponsiveRowColumnType.ROW,
+                                rowCrossAxisAlignment: CrossAxisAlignment.start,
+                                columnCrossAxisAlignment:
+                                    CrossAxisAlignment.center,
+                                rowSpacing: 0,
+                                columnSpacing: 0,
+                                children: [
+                                  ResponsiveRowColumnItem(
+                                    rowFlex: 0,
+                                    rowFit: FlexFit.loose,
+                                    child: ActionReactionCards(
+                                      area: areas[j],
+                                      onDelete: () {
+                                        deleteArea(j, areas[j]['id']);
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                        ],
+                      ),
+                  ],
+                );
+              }
+              ;
+            },
+          ),
         ],
       ),
     );
