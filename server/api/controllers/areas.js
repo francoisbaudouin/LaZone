@@ -41,6 +41,20 @@ exports.resPostNewArea = async (req, res) => {
   }
 }
 
+exports.resPostDelArea = async (req, res) => {
+  try {
+    await prisma.areas.delete({
+      where : {
+        id: req.body.id
+      }
+    });
+    res.status(201).json({ statusCode: res.statusCode})
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({errorMessage: error, statusCode: res.statusCode})
+  }
+}
+
 //areas function retrieve datas
 exports.getAllAreas = async () => {
   const areas = await prisma.areas.findMany();
@@ -88,3 +102,15 @@ exports.updateAreaTimestamp = async (areaId, timestamp) => {
     }
   });
 };
+
+exports.DelArea = async (areaId) => {
+  try {
+    await prisma.areas.delete({
+      where : {
+        id: areaId
+      }
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
