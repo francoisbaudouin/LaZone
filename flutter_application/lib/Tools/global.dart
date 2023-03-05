@@ -19,14 +19,6 @@ Map<String, dynamic> globalActionsReactionsParameters = {
   "Discord": {}
 };
 
-String GithubRepositoryList = '''
-    [
-      {
-        "name": "Repository A"
-      }
-    ]
-  ''';
-
 String DiscordServerList = '''
     [
       {
@@ -39,14 +31,6 @@ String DiscordChannelList = '''
     [
       {
         "name": "None"
-      }
-    ]
-  ''';
-
-String SubRedditList = '''
-    [
-      {
-        "name": "Subreddit A"
       }
     ]
   ''';
