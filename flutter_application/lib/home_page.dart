@@ -226,6 +226,8 @@ getUsersAreas() async {
             await getActionReactionData(item['actionsId'], 'actions');
         Map<String, dynamic> reaction =
             await getActionReactionData(item['reactionsId'], 'reactions');
+        if (action['serviceName'] == "Google")
+          action['serviceName'] = "Youtube";
         areas.add({
           "actionServiceChoose": action['serviceName'],
           "action": action['name'],

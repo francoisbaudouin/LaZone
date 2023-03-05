@@ -28,8 +28,6 @@ String chooseImageServiceReaction(String reactionServiceChoose) {
       return "assets/images/logo-discord.png";
     case "Reddit":
       return "assets/images/Reddit-Logo.png";
-    case "Youtube":
-      return "assets/images/Youtube-Symbole.png";
     default:
       return "assets/images/nothing.png";
   }
