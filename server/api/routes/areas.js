@@ -16,5 +16,7 @@ router.get("/:id/user", areasController.resGetAreaByIdRelatedUser);
 // post
 router.post("/new", areasController.resPostNewArea);
 
+router.post("/delete", areasController.resPostDelArea);
+
 
 module.exports = router;
