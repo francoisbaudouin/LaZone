@@ -9,22 +9,50 @@
                 " name ": " facebook ",
                 " actions ": [
                     {
-                        " name ": " new_message_in_group ",
-                        " description ": " A new message is posted in the group "
+                        " name ": " create_new_post ",
+                        " description ": " A new post is posted in the facebook feed "
                     },
                     {
-                        " name ": " new_message_inbox ",
-                        " description ": " A new private message is received by the user "
-                    },
-                    {
-                        " name ": " new_like ",
-                        " description ": " The user gains a like from one of their messages "
+                        " name ": " create_new_album ",
+                        " description ": " A new album is created from the user "
                     }
-                ],
+                ]
+            },
+            {
+                " name ": " Github ",
+                " actions ": [
+                    {
+                        " name ": " create_an_issue ",
+                        " description ": " A new issue is opened in the repository "
+                    },
+                    {
+                        " name ": " create_a_repository ",
+                        " description ": " A new repository is created "
+                    },
+                    {
+                        " name ": " create_a_pull_request ",
+                        " description ": " A new pull request is open! "
+                    }
+                ]
+            },
+            {
+                " name ": " Discord ",
                 " reactions ": [
                     {
-                        " name ": " like_message ",
-                        " description ": " The user likes a message "
+                        " name ": " post_a_message ",
+                        " description ": " Poste message in discord "
+                    },
+                    {
+                        " name ": " create_a_category ",
+                        " description ": " creation of new categoerie "
+                    },
+                    {
+                        " name ": " create_a_channel ",
+                        " description ": " creation of new channel "
+                    },
+                    {
+                        " name ": " send_private_message ",
+                        " description ": " creation of new channel "
                     }
                 ]
             }
