@@ -143,7 +143,7 @@ chooseConnection(page, context) async {
 
 getActionId(String action) {
   var actionIds = {
-    "Create a issue": 1,
+    "Create an issue": 1,
     "Create a repository": 2,
     "Create a pull request": 3,
     "Creation of a post": 4,
@@ -153,43 +153,33 @@ getActionId(String action) {
     "Activity": 8,
     "New post in a subreddit": 9
   };
-  id.actionId = actionIds[action]!;
+  id.actionId = actionIds["$action"]!;
 }
 
 getReactionId(String action, String service) {
   var reactionIds = {
     "Post a message-Discord": 1,
-    "Create a category": 2,
+    "Create a category-Discord": 2,
     "Post a message-Room-Discord": 3,
     "Post a message-Reddit": 4,
-    "Tweet": 5,
-    "Suprise": 6,
+    "Tweet-Twitter": 5,
+    "Suprise": 6
   };
   id.reactionId = reactionIds["$action-$service"]!;
 }
 
 setupSendActionReaction(page, context) {
-  area.actionServiceChoose = area.actionServiceChoose;
-  area.reactionServiceChoose = area.reactionServiceChoose;
-  area.action = area.action;
-  area.reaction = area.reaction;
   getActionId(area.action);
   getReactionId(area.reaction, area.reactionServiceChoose);
 
   var resJson = {
-    "actionParam": '',
-    "reactionParam": '',
+    "actionParam": 'UgoBoulestreau/POC-nodejs',
+    "reactionParam": '1081306551148609689',
     "actionId": id.actionId,
     "reactionId": id.reactionId,
     "userId": connectedUser["id"],
     "enabled": true,
   };
-  area.actionServiceChoose = "";
-  area.reactionServiceChoose = "";
-  area.action = "";
-  area.reaction = "";
-
-  print(resJson);
   AreaConnection(resJson, context);
 }
 
@@ -214,6 +204,8 @@ AreaConnection(recJson, context) async {
     area.reactionServiceChoose = "";
     area.action = "";
     area.reaction = "";
+    area.actionParam = "";
+    area.reactionParam = "";
     Navigator.push(
       context,
       MaterialPageRoute(

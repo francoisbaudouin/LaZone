@@ -13,7 +13,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'Tools/color.dart';
 
-const EdgeInsets blockMargin = EdgeInsets.fromLTRB(0, 100, 0, 0);
+const EdgeInsets blockMargin = EdgeInsets.fromLTRB(0, 0, 0, 0);
 
 const List<Condition> blockWidthConstraints = [
   Condition.equals(name: MOBILE, value: BoxConstraints(maxWidth: 600)),

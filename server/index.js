@@ -107,8 +107,8 @@ app.listen(PORT, () => {
 //try connection
 async function startArea() {
   try {
-    // const configdb = require("./api/utils/basicConfig.js");
-    // await configdb();
+    const configdb = require("./api/utils/basicConfig.js");
+    await configdb();
 
     const userController = require('./api/controllers/users');
     const services = require("./services/servicesManager.js");
@@ -117,6 +117,7 @@ async function startArea() {
     async function serviceInterval() {
       console.log("interval");
       try {
+        console.log('TEST');
         const users = await userController.getAllUsersIds();
         if (users.length > 0) {
           userController.getUserModel(users).then((usersModels) => {
@@ -128,7 +129,7 @@ async function startArea() {
       }
     }
     services.client.on('ready', async client => {
-      await setInterval(serviceInterval, 5000);
+      setInterval(serviceInterval, 5000);
     });
   } catch (error) {
     console.error(error);

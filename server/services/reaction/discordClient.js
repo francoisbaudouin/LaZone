@@ -28,4 +28,4 @@ function initDiscord() {
   }
 }
 
-module.exports = {initDiscord,  client, EmbedBuilder };
+module.exports = { initDiscord, client, EmbedBuilder };
