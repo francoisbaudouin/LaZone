@@ -206,9 +206,18 @@ class _CreateCardsOneChoiceState extends State<CreateCardsOneChoice> {
                   onPressed: () {
                     if (widget.choice == "Choose a repository:")
                       area.actionParam = selectedValue;
-                    else if (widget.choice == "Choose a server:")
-                      area.reactionParam = selectedValue;
-                    else if (widget.choice == "Choose a subreddit:" &&
+                    else if (widget.choice == "Choose a server:") {
+                      final tmp = globalActionsReactionsParameters['Discord'];
+                      String selectedServerId = "";
+                      for (var i = 0; i < tmp.length; i++) {
+                        var element = tmp[i];
+                        if (element["name"] == selectedValue) {
+                          selectedServerId = element["id"];
+                          break;
+                        }
+                      }
+                      area.reactionParam = selectedServerId;
+                    } else if (widget.choice == "Choose a subreddit:" &&
                         area.actionServiceChoose == "Reddit")
                       area.actionParam = selectedValue;
                     else if (widget.choice == "Choose a subreddit:" &&
