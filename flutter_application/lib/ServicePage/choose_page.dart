@@ -9,7 +9,6 @@ import 'choose_action_github.dart';
 import 'choose_action_facebook.dart';
 import 'choose_action_reddit.dart';
 import 'choose_reaction_reddit.dart';
-import 'choose_reaction_youtube.dart';
 import 'confirm_area_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -46,12 +45,6 @@ void chooseReactionService(String page, BuildContext context) async {
               return SetPageContentService(
                 message: "Choose your reaction:",
                 services: ChooseReactionReddit(),
-                sidebarWidth: 0,
-              );
-            case "Youtube":
-              return SetPageContentService(
-                message: "Choose your reaction:",
-                services: ChooseReactionYoutube(),
                 sidebarWidth: 0,
               );
             default:
