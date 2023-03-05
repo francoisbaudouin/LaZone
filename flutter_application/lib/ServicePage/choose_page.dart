@@ -174,7 +174,7 @@ setupSendActionReaction(page, context) {
 
   var resJson = {
     "actionParam": 'UgoBoulestreau/POC-nodejs',
-    "reactionParam": '1081306551148609689',
+    "reactionParam": 'testArea2023',
     "actionId": id.actionId,
     "reactionId": id.reactionId,
     "userId": connectedUser["id"],
