@@ -18,6 +18,7 @@ var getNewPosts = async function (callback, area) {
       });
     });
     if (response.data.length != 0) {
+      console.log('new post triggered');
       response.data.forEach(element => {
         area.timestamp = element.created_time.replace("+0000", ".000Z");
       });
@@ -42,6 +43,7 @@ var getNewAlbum = async function (callback, area) {
       });
     });
     if (response.data.length != 0) {
+      console.log('new album triggered');
       response.data.forEach(element => {
         area.timestamp = element.created_time.replace("+0000", ".000Z");
       });

@@ -7,9 +7,7 @@ const prisma = new PrismaClient();
 
 // github login
 
-router.get('/Facebook', passport.authenticate('facebook', {
-  scope: ['email', 'user_location', 'user_likes','user_posts', 'user_photos']
-}));
+router.get('/Facebook', passport.authenticate('facebook'));
 
 router.post('/Facebook', (req, res) => {
   try {
