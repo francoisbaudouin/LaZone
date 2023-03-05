@@ -66,6 +66,7 @@ const dataParsers = new Map([
   [1, parseGitIssues],
   [2, parseGitRepos],
   [3, parseGitPulls],
+  [4, parseSubReddit],
 ])
 
 function parseData(actionId, data) {

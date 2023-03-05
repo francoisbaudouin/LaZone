@@ -66,6 +66,13 @@ async function basicConfig() {
       serviceName: "Github"
     }
   })
+  await prisma.actions.create({
+    data: {
+      name: "post-on-subreddit",
+      description: "new post on subReddit",
+      serviceName: "Reddit"
+    }
+  })
 
   //REACTION
   await prisma.reactions.create({
@@ -95,6 +102,13 @@ async function basicConfig() {
       name: "DiscordChannel",
       description: "create a channel",
       serviceName: "Discord"
+    }
+  })
+  await prisma.reactions.create({
+    data: {
+      name: "RedditPost",
+      description: "post on subReddit",
+      serviceName: "Reddit"
     }
   })
 }

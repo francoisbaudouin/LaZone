@@ -35,10 +35,22 @@ function githubRepo(repoData) {
   }
 }
 
+function redditPost(postData) {
+  try {
+    const embed = new EmbedBuilder().setTitle(`New post on subreddit ${postData.name}`)
+      .setURL(postData.htmlUrl).setTimestamp()
+      .setFooter({ text: "test" });
+    return (embed);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 const embeds = new Map([
   [1, githubIssues],
   [2, githubPulls],
   [3, githubRepo],
+  [4, redditPost]
 ])
 
 module.exports = { embeds }
