@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import '../Tools/create_cards.dart';
@@ -27,7 +28,7 @@ class ChooseActionsGithub extends StatelessWidget {
                   textbutton :  "Choose this action",
                   colorButton : Colors.black,
                   choice : "Choose a repository:",
-                  choiceList: globalActionsReactionsParameters['Github'],
+                  choiceList: jsonEncode(globalActionsReactionsParameters['Github']),
                 ),
               ),
               const ResponsiveRowColumnItem(
@@ -49,7 +50,7 @@ class ChooseActionsGithub extends StatelessWidget {
                   textbutton :  "Choose this action",
                   colorButton : Colors.black,
                   choice : "Choose a repository:",
-                  choiceList: globalActionsReactionsParameters['Github'],
+                  choiceList: jsonEncode(globalActionsReactionsParameters['Github']),
                 ),
               ),],
           ),

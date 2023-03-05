@@ -293,7 +293,7 @@ class _CreateCardsTwoChoiceState extends State<CreateCardsTwoChoice> {
   }
 
   List<ListItem> loadListFromJson(String jsonString) {
-    final choiceList = json.decode(jsonString);
+    final choiceList = jsonDecode(jsonString);
     List<Map<String, dynamic>> items =
         List<Map<String, dynamic>>.from(choiceList);
     return items
@@ -359,8 +359,7 @@ class _CreateCardsTwoChoiceState extends State<CreateCardsTwoChoice> {
                     setState(() {
                       dropdownValue1 = newValue!;
                       selectedServer = newValue;
-                      final tmp = jsonDecode(
-                          globalActionsReactionsParameters["Discord"]);
+                      final tmp = globalActionsReactionsParameters["Discord"];
                       for (var i = 0; i < tmp.length; i++) {
                         var element = tmp[i];
                         if (element["name"] == selectedServer) {
