@@ -8,6 +8,45 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../home_page.dart';
 import '../Tools/global.dart';
+import '../ServicePage/services_page.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../ServicePage/services_page.dart';
+
+var microsoftConnected = false;
+
+connectWithMicrosoft(context) async {
+  String baseUrl = "http://$serverAddress/auth/Microsoft";
+  final uri = Uri.parse(baseUrl);
+  var getUrl = Uri.parse("http://$serverAddress/auth/Microsoft/success");
+
+  print(connectedUser);
+  if (microsoftConnected == true) {
+    Navigator.pushNamed(context, '/home');
+  } else {
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication)
+          .then((value) async {
+        print('test');
+        final http.Response response = await http.get(
+          getUrl,
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+        );
+        if (response.statusCode == 201) {
+          Map<String, dynamic> data = json.decode(response.body);
+          connectedUser = data["data"]["user"];
+          microsoftConnected = true;
+          Navigator.pushNamed(context, '/home');
+        } else {
+          throw Exception('Failed to login.');
+        }
+      });
+    } else {
+      throw 'Could not launch Microsoft auth.';
+    }
+  }
+}
 
 class ForgottenPassword extends StatelessWidget {
   const ForgottenPassword({super.key});
@@ -15,19 +54,19 @@ class ForgottenPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginPage()),
-              );
-            },
-            child: const Text(
-              "Forgotten Password",
-              style: TextStyle(
-                  color: Color.fromARGB(255, 74, 8, 136),
-                  fontFamily: "OldLondon",
-                  fontSize: 20),
-            ),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const LoginPage()),
+        );
+      },
+      child: const Text(
+        "Forgotten Password",
+        style: TextStyle(
+            color: Color.fromARGB(255, 74, 8, 136),
+            fontFamily: "OldLondon",
+            fontSize: 20),
+      ),
     );
   }
 }
@@ -38,19 +77,19 @@ class CreateAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SignUpPage()),
-              );
-            },
-            child: const Text(
-              "Click here to create a new account",
-              style: TextStyle(
-                  color: Color.fromARGB(255, 74, 8, 136),
-                  fontFamily: "OldLondon",
-                  fontSize: 20),
-            ),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const SignUpPage()),
+        );
+      },
+      child: const Text(
+        "Click here to create a new account",
+        style: TextStyle(
+            color: Color.fromARGB(255, 74, 8, 136),
+            fontFamily: "OldLondon",
+            fontSize: 20),
+      ),
     );
   }
 }
@@ -99,17 +138,13 @@ class ButtonService extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton.extended(
-          icon: const Icon(FontAwesomeIcons.microsoft, color: Colors.blue),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const MyHomePage(title: "LaZone")),
-            );
-          },
-          backgroundColor: Colors.transparent,
-          label: const Text("Login with Microsoft",
-              style: TextStyle(fontFamily: "OldLondon")),
+      icon: const Icon(FontAwesomeIcons.microsoft, color: Colors.blue),
+      onPressed: () async {
+        connectWithMicrosoft(context);
+      },
+      backgroundColor: Colors.transparent,
+      label: const Text("Login with Microsoft",
+          style: TextStyle(fontFamily: "OldLondon")),
     );
   }
 }

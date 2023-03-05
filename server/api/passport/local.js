@@ -29,6 +29,7 @@ passport.use('signUp', new Strategy(options, async (req, email, password, cb) =>
           lastname: req.body.lastname,
           firstname: req.body.firstname,
           pseudo: req.body.pseudo,
+          authType: 'Area'
         }
       });
       return cb(null, user);
