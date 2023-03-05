@@ -48,16 +48,6 @@ class ReactionServicePage extends StatelessWidget {
                 colorButton : buttonchoosecol.colbuttonChooseReddit,
               ),
             ),
-            ResponsiveRowColumnItem(
-            rowFlex: 1,
-            rowFit: FlexFit.tight,
-            child: ServiceCards(
-              title: "Youtube",
-              imagePath: "assets/images/Youtube-Symbole.png",
-              textbutton :  buttoncheck.buttonConnectionYoutube,
-              colorButton : buttonchoosecol.colbuttonChooseYoutube,
-              ),
-            ),
             ],
           ),
     );

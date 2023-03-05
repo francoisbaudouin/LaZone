@@ -21,6 +21,16 @@ class ChooseReactionsDiscord extends StatelessWidget {
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.tight,
+                child: ServiceCards(
+                  title: "Send a private message",
+                  imagePath: "assets/images/logo-discord.png",
+                  textbutton :  "Choose this action",
+                  colorButton : Colors.indigoAccent.shade100,
+                ),
+              ),
+              ResponsiveRowColumnItem(
+                rowFlex: 1,
+                rowFit: FlexFit.tight,
                 child: CreateCardsTwoChoice(
                   title: "Post a message",
                   imagePath: "assets/images/logo-discord.png",
