@@ -41,11 +41,11 @@ exports.resPostNewArea = async (req, res) => {
   }
 }
 
-exports.resPostDelArea = async (req, res) => {
+exports.resDelArea = async (req, res) => {
   try {
     await prisma.areas.delete({
       where : {
-        id: req.body.id
+        id: req.params.id
       }
     });
     res.status(201).json({ statusCode: res.statusCode})

@@ -67,7 +67,7 @@ getServiceActionsReactionsParameters(context, serviceName) async {
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
-      'userId': connectedUser["id"],
+      'userId': connectedUser["id"].toString(),
       'service': serviceName
     }),
   );

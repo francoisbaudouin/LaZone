@@ -227,6 +227,7 @@ getUsersAreas() async {
         Map<String, dynamic> reaction =
             await getActionReactionData(data[i]['reactionsId'], 'reactions');
         areas.add({
+          "id": data[i]["id"].toString(),
           "actionServiceChoose": action['serviceName'],
           "action": action['name'],
           "reactionServiceChoose": reaction['serviceName'],
