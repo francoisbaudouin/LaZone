@@ -11,7 +11,7 @@ List<Map<String, dynamic>> areas = List<Map<String, dynamic>>.from(
   jsonDecode('''[]'''),
 );
 
-List<dynamic> subredditNames = [{}];
+List<dynamic> subredditNames = [];
 
 Map<String, dynamic> globalActionsReactionsParameters = {
   "Github": {},

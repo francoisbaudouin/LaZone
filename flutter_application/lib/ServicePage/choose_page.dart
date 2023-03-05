@@ -34,7 +34,7 @@ void chooseReactionService(String page, BuildContext context) async {
                 sidebarWidth: 0,
               );
             case "Discord":
-              DiscordServerList = globalActionsReactionsParameters['$page'];
+              DiscordServerList = jsonEncode(globalActionsReactionsParameters['$page']);
               return SetPageContentService(
                 message: "Choose your reaction:",
                 services: ChooseReactionsDiscord(),
@@ -67,13 +67,13 @@ getServiceActionsReactionsParameters(context, serviceName) async {
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
-      'userId': connectedUser["id"],
+      'userId': connectedUser["id"].toString(),
       'service': serviceName
     }),
   );
 
   if (response.statusCode == 201) {
-    globalActionsReactionsParameters['$serviceName'] = response.body;
+    globalActionsReactionsParameters['$serviceName'] = jsonDecode(response.body);
   } else {
     throw Exception(
         'Failed to retrieve $serviceName actions/reactions parameters.');
@@ -127,7 +127,7 @@ void chooseActionService(String page, BuildContext context) async {
 }
 
 getSubReddit() {
-  var tmp = jsonDecode(globalActionsReactionsParameters['Reddit']);
+  var tmp = globalActionsReactionsParameters['Reddit'];
   tmp.forEach((value) {
     subredditNames.add({"name": value});
   });

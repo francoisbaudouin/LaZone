@@ -38,13 +38,13 @@ class SetPageContent extends StatelessWidget {
                   height: 70,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: sidebarWidth),
+                  padding: EdgeInsets.only(left: sidebarWidth.toDouble()),
                   child: TitleCards(
                     message: message,
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: sidebarWidth),
+                  padding: EdgeInsets.only(left: sidebarWidth.toDouble()),
                   child: services,
                 ),
               ],
@@ -98,7 +98,7 @@ class SetPageContentService extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(left: sidebarWidth),
+                  padding: EdgeInsets.only(left: sidebarWidth.toDouble()),
                   child: TitleCards(
                     message: message,
                   ),
@@ -107,7 +107,7 @@ class SetPageContentService extends StatelessWidget {
                   height: 30,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: sidebarWidth),
+                  padding: EdgeInsets.only(left: sidebarWidth.toDouble()),
                   child: services,
                 ),
               ],
