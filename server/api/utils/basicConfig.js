@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 require("dotenv").config();
+const utils = require('./utils.js')
 
 // Initialize a prisma client
 const prisma = new PrismaClient();
@@ -66,6 +67,8 @@ async function basicConfig() {
       serviceName: "Github"
     }
   })
+
+  //Facebook
   await prisma.actions.create({
     data: {
       name: "new post",
@@ -81,7 +84,35 @@ async function basicConfig() {
     }
   })
 
+  //youtube
+  await prisma.actions.create({
+    data: {
+      id: 6,
+      name: "new-like",
+      description: "new video in my likes playlist",
+      serviceName: "Google"
+    }
+  })
+  await prisma.actions.create({
+    data: {
+      id: 7,
+      name: "new-playlist",
+      description: "i created a new playlist",
+      serviceName: "Google"
+    }
+  })
+  await prisma.actions.create({
+    data: {
+      id: 8,
+      name: "new-activity",
+      description: "new activity",
+      serviceName: "Google"
+    }
+  })
+
   //REACTION
+  
+  //discord
   await prisma.reactions.create({
     data: {
       name: "DiscordMessage",
@@ -104,6 +135,8 @@ async function basicConfig() {
       serviceName: "Discord"
     }
   })
+
+  //Twitter
   await prisma.reactions.create({
     data: {
       id: 5,

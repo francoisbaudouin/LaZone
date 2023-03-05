@@ -82,12 +82,64 @@ function parseFacebookNewAlbum(data) {
 }
 
 
+//Youtube
+function newYoutubeLike(data) {
+  if (data == undefined)
+    throw Error;
+  var result = {
+    type: "new-like",
+    name: data.title,
+    htmlUrl: 'https://www.youtube.com/watch?v=' + data.resourceId.videoId,
+    owner: {
+      name: '',
+      htmlUrl: '',
+      avatarUrl: ''
+    }
+  }
+  return(result);
+}
+
+function newYoutubePlaylist(data) {
+  if (data == undefined)
+    throw Error;
+  var result = {
+    type: "new-playlist",
+    name: data.title,
+    htmlUrl: 'https://www.youtube.com/channel/' + data.channelId,
+    owner: {
+      name: '',
+      htmlUrl: '',
+      avatarUrl: ''
+    }
+  }
+  return (result);
+}
+
+function newYoutubeActivity(data) {
+  if (data == undefined)
+    throw Error;
+  var result = {
+    type: "new-activity",
+    name: data.type,
+    htmlUrl: '',
+    owner: {
+      name: '',
+      htmlUrl: '',
+      avatarUrl: ''
+    }
+  }
+  return (result);
+}
+
 const dataParsers = new Map([
   [1, parseGitIssues],
   [2, parseGitRepos],
   [3, parseGitPulls],
   [4, parseFacebookPost],
   [5, parseFacebookNewAlbum],
+  [6, newYoutubeLike],
+  [7, newYoutubePlaylist],
+  [8, newYoutubeActivity],
 ])
 
 function parseData(actionId, data) {
