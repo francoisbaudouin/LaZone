@@ -15,7 +15,6 @@ var getFromRepo = async function (callback, area) {
       (response) => response.data.map((result) => {
         result.created_at = result.created_at.replace(/.$/, ".000" + result.created_at.slice(-1))
         if (result.created_at > area.timestamp && !result.hasOwnProperty("pull_request")) {
-          console.log(area.timestamp, result.created_at);
           tmpTimestamp = element.created_at;
           return (result);
         }
@@ -25,6 +24,7 @@ var getFromRepo = async function (callback, area) {
 
     area.timestamp = tmpTimestamp;
     if (result.length > 0) {
+      console.log(`new ${type} triggered`);
       callback(area, parseData(area.actionId, result));
     }
   } catch (error) {
@@ -49,6 +49,7 @@ var getNewRepos = async function (callback, area) {
 
     area.timestamp = tmpTimestamp;
     if (result.length > 0) {
+      console.log("new repo triggered");
       callback(area, parseData(area.actionId, result));
     }
   } catch (error) {

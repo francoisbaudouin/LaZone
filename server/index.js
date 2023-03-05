@@ -115,9 +115,8 @@ async function startArea() {
 
     services.initDiscord();
     async function serviceInterval() {
-      console.log("interval");
+      console.log("LOOP");
       try {
-        console.log('TEST');
         const users = await userController.getAllUsersIds();
         if (users.length > 0) {
           userController.getUserModel(users).then((usersModels) => {
