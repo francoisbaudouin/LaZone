@@ -135,6 +135,13 @@ class _CreateActionReactionCardsState extends State<CreateActionReactionCards> {
       margin: blockMargin,
       child: Column(
         children: [
+          SizedBox(
+                height: 20,
+          ),
+          WelcomCards(title: "Your actions/reactions"),
+          SizedBox(
+                height: 20,
+          ),
           for (var i = 0; i < areas.length; i += 3)
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -192,13 +199,6 @@ class CreateActionReactionPage extends StatelessWidget {
             child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              SizedBox(
-                height: 20,
-              ),
-              WelcomCards(title: "Your actions/reactions"),
-              SizedBox(
-                height: 20,
-              ),
               Padding(
                 padding: EdgeInsets.only(left: sidebarWidth),
                 child: CreateActionReactionCards(),
