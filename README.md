@@ -43,8 +43,6 @@ _____________________________________
 
 - `get("/users/:id")` -> get user by id
 
-- `get("/users/:id/tokens")` -> get user by id and retrieve his tokens
-
 - `get("/users/:id/tokens/:serviceName")` -> get user by id and retrieve all his tokens related to the specified service
 
 ##### AREAS
