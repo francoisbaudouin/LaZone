@@ -10,7 +10,7 @@ class LoginCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(100, 0, 100 , 40),
+      padding: const EdgeInsets.fromLTRB(100, 0, 100, 40),
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/images/parchemin.png"),
@@ -212,8 +212,8 @@ class LoginPage extends StatelessWidget {
               ),
             ),
           ),
+        ),
       ),
-    ),
     );
   }
 }

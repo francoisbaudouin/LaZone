@@ -13,15 +13,15 @@ passport.use(new GoogleStrategy({
   callbackURL: "http://localhost:8080/auth/Google/callback"
   },
   async function(accessToken, refreshToken, profile, done) {
-    try {
-      await prisma.tokens.create({
-        data: {
-          accessTokens: accessToken,
-          refreshTokens: refreshToken ? refreshToken : 'NoRefreshToken',
-          relatedServiceName: 'Google',
-          userId: Number(storage.getItem('userId')),
-        }
-      })
+    try {      
+        await prisma.tokens.create({
+          data: {
+            accessTokens: accessToken,
+            refreshTokens: refreshToken ? refreshToken : 'NoRefreshToken',
+            relatedServiceName: 'Google',
+            userId: Number(storage.getItem('userId')),
+          }
+        })
       return done(null, profile);
     } catch (err) {
       return done(null, err);

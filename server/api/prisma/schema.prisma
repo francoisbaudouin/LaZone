@@ -19,6 +19,7 @@ model users {
   firstname  String   @db.VarChar(255)
   pseudo     String   @db.VarChar(255)
   created_at DateTime @default(now()) @db.DateTime(0)
+  authType   String   @db.VarChar(255)
   areas      Areas[]
   tokens     Tokens[]
 }
