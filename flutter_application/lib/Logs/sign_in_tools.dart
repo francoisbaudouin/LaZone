@@ -8,43 +8,32 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../home_page.dart';
 import '../Tools/global.dart';
-import '../ServicePage/services_page.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../ServicePage/services_page.dart';
-
-var microsoftConnected = false;
 
 connectWithMicrosoft(context) async {
   String baseUrl = "http://$serverAddress/auth/Microsoft";
   final uri = Uri.parse(baseUrl);
   var getUrl = Uri.parse("http://$serverAddress/auth/Microsoft/success");
 
-  print(connectedUser);
-  if (microsoftConnected == true) {
-    Navigator.pushNamed(context, '/home');
+  if (await canLaunchUrl(uri)) {
+    await launchUrl(uri, mode: LaunchMode.externalApplication)
+        .then((value) async {
+      final http.Response response = await http.get(
+        getUrl,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      if (response.statusCode == 201) {
+        Map<String, dynamic> data = json.decode(response.body);
+        connectedUser = data["data"]["user"];
+        Navigator.pushNamed(context, '/home');
+      } else {
+        throw Exception('Failed to login.');
+      }
+    });
   } else {
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication)
-          .then((value) async {
-        print('test');
-        final http.Response response = await http.get(
-          getUrl,
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-        );
-        if (response.statusCode == 201) {
-          Map<String, dynamic> data = json.decode(response.body);
-          connectedUser = data["data"]["user"];
-          microsoftConnected = true;
-          Navigator.pushNamed(context, '/home');
-        } else {
-          throw Exception('Failed to login.');
-        }
-      });
-    } else {
-      throw 'Could not launch Microsoft auth.';
-    }
+    throw 'Could not launch Microsoft auth.';
   }
 }
 

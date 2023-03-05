@@ -23,7 +23,6 @@ passport.use(new MicrosoftStrategy({
       }
     })
     if (!user) {
-      console.log('here')
       const newUser = await prisma.users.create({
         data: {
           email: profile._json.mail,

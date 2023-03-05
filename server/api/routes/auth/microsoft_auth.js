@@ -24,7 +24,6 @@ router.get('/Microsoft/success', async (req, res) => {
   try {
     if (storage.getItem('microsoftUserId')) {
       const user = await userController.getUserById(Number(storage.getItem('microsoftUserId')));
-      console.log(user);
       if (user) {
         res.status(201).json({
           status: "success",
