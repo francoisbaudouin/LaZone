@@ -12,11 +12,11 @@ var getFromRepo = async function (callback, area) {
 
     var result = await octokit.paginate(`GET /repos/${area.actionParam}/${type}`, {
     },
-      (response) => response.data.map((result) => {
-        result.created_at = result.created_at.replace(/.$/, ".000" + result.created_at.slice(-1))
-        if (result.created_at > area.timestamp && !result.hasOwnProperty("pull_request")) {
+      (response) => response.data.map((element) => {
+        element.created_at = element.created_at.replace(/.$/, ".000" + element.created_at.slice(-1))
+        if (element.created_at > area.timestamp && !element.hasOwnProperty("pull_request")) {
           tmpTimestamp = element.created_at;
-          return (result);
+          return (element);
         }
       })
     );
