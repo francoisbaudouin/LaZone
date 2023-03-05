@@ -41,33 +41,33 @@ class ChooseReactionsDiscord extends StatelessWidget {
                   SecondChoiceList: DiscordChannelList,
                 ),
               ),
-              ResponsiveRowColumnItem(
-                rowFlex: 1,
-                rowFit: FlexFit.tight,
-                child: CreateCardsOneChoice(
-                  title: "Create a category",
-                  imagePath: "assets/images/logo-discord.png",
-                  textbutton :  "Choose this action",
-                  colorButton : Colors.indigoAccent.shade100,
-                  choice : "Choose a server:",
-                  choiceList: DiscordServerList,
-                ),
+            ResponsiveRowColumnItem(
+              rowFlex: 1,
+              rowFit: FlexFit.tight,
+              child: CreateCardsOneChoice(
+                title: "Create a category",
+                imagePath: "assets/images/logo-discord.png",
+                textbutton: "Choose this action",
+                colorButton: Colors.indigoAccent.shade100,
+                choice: "Choose a server:",
+                choiceList: DiscordServerList,
               ),
-              ResponsiveRowColumnItem(
-                rowFlex: 1,
-                rowFit: FlexFit.tight,
-                child: CreateCardsOneChoice(
-                  title: "Create a room",
-                  imagePath: "assets/images/logo-discord.png",
-                  textbutton :  "Choose this action",
-                  colorButton : Colors.indigoAccent.shade100,
-                  choice: "Choose a server:",
-                  choiceList: DiscordServerList,
-                ),
+            ),
+            ResponsiveRowColumnItem(
+              rowFlex: 1,
+              rowFit: FlexFit.tight,
+              child: CreateCardsOneChoice(
+                title: "Create a channel",
+                imagePath: "assets/images/logo-discord.png",
+                textbutton: "Choose this action",
+                colorButton: Colors.indigoAccent.shade100,
+                choice: "Choose a server:",
+                choiceList: DiscordServerList,
               ),
-            ],
-          ),
-          ),
-      );
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -7,6 +7,7 @@ CREATE TABLE `users` (
     `firstname` VARCHAR(255) NOT NULL,
     `pseudo` VARCHAR(255) NOT NULL,
     `created_at` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `authType` VARCHAR(255) NOT NULL,
 
     UNIQUE INDEX `email`(`email`),
     PRIMARY KEY (`id`)

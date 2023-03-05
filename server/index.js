@@ -11,6 +11,8 @@ const twitterAuthRouter = require('./api/routes/auth/twitter_auth.js');
 const googleAuthRouter = require('./api/routes/auth/google_auth.js');
 const facebookAuthRouter = require('./api/routes/auth/facebook_auth.js');
 const redditAuthRouter = require('./api/routes/auth/reddit_auth.js');
+const microsoftAuthRouter = require('./api/routes/auth/microsoft_auth.js');
+
 
 const areasRouter = require('./api/routes/areas.js');
 const usersRouter = require('./api/routes/users.js');
@@ -53,6 +55,7 @@ require("./api/passport/discord.js");
 require("./api/passport/twitter.js");
 require("./api/passport/google.js");
 require("./api/passport/facebook.js");
+require("./api/passport/microsoft.js");
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -84,6 +87,7 @@ app.use('/auth', twitterAuthRouter);
 app.use('/auth', googleAuthRouter);
 app.use('/auth', facebookAuthRouter);
 app.use('/auth', redditAuthRouter);
+app.use('/auth', microsoftAuthRouter);
 
 //api
 app.use('/areas', areasRouter);
