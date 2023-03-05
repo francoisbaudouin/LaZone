@@ -45,7 +45,11 @@ class ServiceCards extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(title, style: headlineSecondaryTextStyle, textAlign: TextAlign.center,),
+                  child: Text(
+                    title,
+                    style: headlineSecondaryTextStyle,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 const SizedBox(
                   height: 10,
@@ -123,7 +127,8 @@ class _CreateCardsOneChoiceState extends State<CreateCardsOneChoice> {
 
   List<ListItem> loadListFromJson(String jsonString) {
     final choiceList = json.decode(jsonString);
-    List<Map<String, dynamic>> items = List<Map<String, dynamic>>.from(choiceList);
+    List<Map<String, dynamic>> items =
+        List<Map<String, dynamic>>.from(choiceList);
     return items
         .map((item) => ListItem(
               name: item["name"],
@@ -158,14 +163,22 @@ class _CreateCardsOneChoiceState extends State<CreateCardsOneChoice> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(widget.title, style: headlineSecondaryTextStyle, textAlign: TextAlign.center,),
+                  child: Text(
+                    widget.title,
+                    style: headlineSecondaryTextStyle,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 0),
-                  child: Text(widget.choice, style: lineSecondaryTextStyle, textAlign: TextAlign.center,),
+                  child: Text(
+                    widget.choice,
+                    style: lineSecondaryTextStyle,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
@@ -195,9 +208,11 @@ class _CreateCardsOneChoiceState extends State<CreateCardsOneChoice> {
                       area.actionParam = selectedValue;
                     else if (widget.choice == "Choose a server:")
                       area.reactionParam = selectedValue;
-                    else if (widget.choice == "Choose a subreddit:" && area.actionServiceChoose == "Reddit") 
+                    else if (widget.choice == "Choose a subreddit:" &&
+                        area.actionServiceChoose == "Reddit")
                       area.actionParam = selectedValue;
-                    else if (widget.choice == "Choose a subreddit:" && area.reactionServiceChoose == "Reddit") 
+                    else if (widget.choice == "Choose a subreddit:" &&
+                        area.reactionServiceChoose == "Reddit")
                       area.reactionParam = selectedValue;
                     chooseConnection(widget.title, context);
                   },
@@ -247,7 +262,7 @@ class _CreateCardsTwoChoiceState extends State<CreateCardsTwoChoice> {
   late List<String> itemsNames1 = [];
   String selectedServer = '';
   String SecondChoiceList = '';
-  
+
   String dropdownValue2 = '';
   late List<String> itemsNames2 = [];
   String selectedValue2 = '';
@@ -264,8 +279,9 @@ class _CreateCardsTwoChoiceState extends State<CreateCardsTwoChoice> {
       selectedServer = dropdownValue1;
       setState(() {});
     });
-    
-    final jsonString2 = Future.delayed(Duration.zero, () => widget.SecondChoiceList);
+
+    final jsonString2 =
+        Future.delayed(Duration.zero, () => widget.SecondChoiceList);
     jsonString2.then((value) {
       SecondChoiceList = value;
       final items = loadListFromJson(value);
@@ -278,13 +294,15 @@ class _CreateCardsTwoChoiceState extends State<CreateCardsTwoChoice> {
 
   List<ListItem> loadListFromJson(String jsonString) {
     final choiceList = json.decode(jsonString);
-    List<Map<String, dynamic>> items = List<Map<String, dynamic>>.from(choiceList);
+    List<Map<String, dynamic>> items =
+        List<Map<String, dynamic>>.from(choiceList);
     return items
         .map((item) => ListItem(
               name: item["name"],
             ))
         .toList();
   }
+
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(0.0),
@@ -297,7 +315,9 @@ class _CreateCardsTwoChoiceState extends State<CreateCardsTwoChoice> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          const SizedBox(height: 85,),
+          const SizedBox(
+            height: 85,
+          ),
           Container(
             constraints: const BoxConstraints(maxHeight: 300),
             child: Image.asset(widget.imagePath, fit: BoxFit.fill),
@@ -309,12 +329,22 @@ class _CreateCardsTwoChoiceState extends State<CreateCardsTwoChoice> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(widget.title, style: headlineSecondaryTextStyle, textAlign: TextAlign.center,),
+                  child: Text(
+                    widget.title,
+                    style: headlineSecondaryTextStyle,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(widget.choiceOne, style: lineSecondaryTextStyle, textAlign: TextAlign.center,),
+                  child: Text(
+                    widget.choiceOne,
+                    style: lineSecondaryTextStyle,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 DropdownButton(
                   value: dropdownValue1,
@@ -329,15 +359,33 @@ class _CreateCardsTwoChoiceState extends State<CreateCardsTwoChoice> {
                     setState(() {
                       dropdownValue1 = newValue!;
                       selectedServer = newValue;
+                      final tmp = jsonDecode(
+                          globalActionsReactionsParameters["Discord"]);
+                      for (var i = 0; i < tmp.length; i++) {
+                        var element = tmp[i];
+                        if (element["name"] == selectedServer) {
+                          SecondChoiceList = jsonEncode(element["channels"]);
+                          break;
+                        }
+                      }
+                      itemsNames2 = loadListFromJson(SecondChoiceList)
+                          .map((item) => item.name)
+                          .toList();
                     });
                   },
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(widget.choiceTwo, style: lineSecondaryTextStyle, textAlign: TextAlign.center,),
+                  child: Text(
+                    widget.choiceTwo,
+                    style: lineSecondaryTextStyle,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-                 DropdownButton(
+                DropdownButton(
                   value: dropdownValue2,
                   icon: const Icon(Icons.keyboard_arrow_down),
                   items: itemsNames2.map((itemName) {
@@ -355,17 +403,31 @@ class _CreateCardsTwoChoiceState extends State<CreateCardsTwoChoice> {
                 ),
                 FloatingActionButton.extended(
                   onPressed: () {
-                    if (widget.choiceOne == "Choose a server:" && widget.choiceTwo == "Choose a channel:")
-                      area.reactionParam = "${selectedServer}/${selectedValue2}";
+                    if (widget.choiceOne == "Choose a server:" &&
+                        widget.choiceTwo == "Choose a channel:") {
+                      final tmp = jsonDecode(SecondChoiceList);
+                      String selectedChannelId = "";
+                      for (var i = 0; i < tmp.length; i++) {
+                        var element = tmp[i];
+                        if (element["name"] == selectedValue2) {
+                          selectedChannelId = element["id"];
+                          break;
+                        }
+                      }
+                      area.reactionParam = "$selectedChannelId";
+                    }
                     chooseConnection(widget.title, context);
                   },
                   backgroundColor: widget.colorButton,
-                  label: Text(widget.textbutton, style: const TextStyle(fontFamily: "OldLondon")),
+                  label: Text(widget.textbutton,
+                      style: const TextStyle(fontFamily: "OldLondon")),
                   icon: const Icon(Icons.navigate_next),
                   heroTag: null,
                 ),
-                const SizedBox(height: 80,),
-             ],
+                const SizedBox(
+                  height: 80,
+                ),
+              ],
             ),
           ),
         ],
@@ -373,4 +435,3 @@ class _CreateCardsTwoChoiceState extends State<CreateCardsTwoChoice> {
     );
   }
 }
-

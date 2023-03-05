@@ -27,7 +27,7 @@ class ChooseActionsGithub extends StatelessWidget {
                   textbutton :  "Choose this action",
                   colorButton : Colors.black,
                   choice : "Choose a repository:",
-                  choiceList: GithubRepositoryList,
+                  choiceList: globalActionsReactionsParameters['Github'],
                 ),
               ),
               const ResponsiveRowColumnItem(
@@ -49,7 +49,7 @@ class ChooseActionsGithub extends StatelessWidget {
                   textbutton :  "Choose this action",
                   colorButton : Colors.black,
                   choice : "Choose a repository:",
-                  choiceList: GithubRepositoryList,
+                  choiceList: globalActionsReactionsParameters['Github'],
                 ),
               ),],
           ),
