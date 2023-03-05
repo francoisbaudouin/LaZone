@@ -229,6 +229,7 @@ getUsersAreas() async {
         if (action['serviceName'] == "Google")
           action['serviceName'] = "Youtube";
         areas.add({
+          "id": item["id"].toString(),
           "actionServiceChoose": action['serviceName'],
           "action": action['name'],
           "reactionServiceChoose": reaction['serviceName'],

@@ -4,6 +4,7 @@ import '../home_page.dart';
 import '../Tools/text.dart';
 import '../Tools/title_cards.dart';
 import '../Tools/global.dart';
+import 'package:http/http.dart' as http;
 
 String chooseImageServiceAction(String actionServiceChoose) {
   switch (actionServiceChoose) {
@@ -45,9 +46,9 @@ class ActionReactionCards extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(0.0),
       decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/parchemin.png"), 
-            fit: BoxFit.fill),),
+        image: DecorationImage(
+            image: AssetImage("assets/images/parchemin.png"), fit: BoxFit.fill),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
@@ -118,7 +119,14 @@ class CreateActionReactionCards extends StatefulWidget {
 }
 
 class _CreateActionReactionCardsState extends State<CreateActionReactionCards> {
-  void deleteArea(int index) {
+  void deleteArea(int index, String areaId) async {
+    var url = Uri.parse("http://$serverAddress/areas/$areaId");
+    final http.Response response = await http.delete(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
     setState(() {
       areas.removeAt(index);
     });
@@ -166,7 +174,7 @@ class _CreateActionReactionCardsState extends State<CreateActionReactionCards> {
                                 child: ActionReactionCards(
                                   area: areas[i],
                                   onDelete: () {
-                                    deleteArea(i);
+                                    deleteArea(i, areas[i]['id']);
                                   },
                                 ),
                               ),
@@ -179,48 +187,50 @@ class _CreateActionReactionCardsState extends State<CreateActionReactionCards> {
               } else {
                 return Column(
                   children: [
-                SizedBox(
-                  height: 20,
-                ),
-                WelcomCards(title: "Your actions/reactions"),
-                SizedBox(
-                  height: 20,
-                ),
-                for (var i = 0; i < areas.length; i += 3)
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      for (var j = i; j < i + 3 && j < areas.length; j++)
-                        Container(
-                          padding: const EdgeInsets.all(0.0),
-                          margin: blockMargin,
-                          child: ResponsiveRowColumn(
-                            layout: ResponsiveWrapper.of(context)
-                                    .isSmallerThan("DESKTOP")
-                                ? ResponsiveRowColumnType.COLUMN
-                                : ResponsiveRowColumnType.ROW,
-                            rowCrossAxisAlignment: CrossAxisAlignment.start,
-                            columnCrossAxisAlignment: CrossAxisAlignment.center,
-                            rowSpacing: 0,
-                            columnSpacing: 0,
-                            children: [
-                              ResponsiveRowColumnItem(
-                                rowFlex: 0,
-                                rowFit: FlexFit.loose,
-                                child: ActionReactionCards(
-                                  area: areas[j],
-                                  onDelete: () {
-                                    deleteArea(j);
-                                  },
-                                ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    WelcomCards(title: "Your actions/reactions"),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    for (var i = 0; i < areas.length; i += 3)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          for (var j = i; j < i + 3 && j < areas.length; j++)
+                            Container(
+                              padding: const EdgeInsets.all(0.0),
+                              margin: blockMargin,
+                              child: ResponsiveRowColumn(
+                                layout: ResponsiveWrapper.of(context)
+                                        .isSmallerThan("DESKTOP")
+                                    ? ResponsiveRowColumnType.COLUMN
+                                    : ResponsiveRowColumnType.ROW,
+                                rowCrossAxisAlignment: CrossAxisAlignment.start,
+                                columnCrossAxisAlignment:
+                                    CrossAxisAlignment.center,
+                                rowSpacing: 0,
+                                columnSpacing: 0,
+                                children: [
+                                  ResponsiveRowColumnItem(
+                                    rowFlex: 0,
+                                    rowFit: FlexFit.loose,
+                                    child: ActionReactionCards(
+                                      area: areas[j],
+                                      onDelete: () {
+                                        deleteArea(j, areas[j]['id']);
+                                      },
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        ),
-                    ],
-                  ),
-                  ],);
+                            ),
+                        ],
+                      ),
+                  ],
+                );
               }
               ;
             },

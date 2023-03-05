@@ -34,7 +34,8 @@ void chooseReactionService(String page, BuildContext context) async {
                 sidebarWidth: 0,
               );
             case "Discord":
-              DiscordServerList = jsonEncode(globalActionsReactionsParameters['$page']);
+              DiscordServerList =
+                  jsonEncode(globalActionsReactionsParameters['$page']);
               return SetPageContentService(
                 message: "Choose your reaction:",
                 services: ChooseReactionsDiscord(),
@@ -73,7 +74,8 @@ getServiceActionsReactionsParameters(context, serviceName) async {
   );
 
   if (response.statusCode == 201) {
-    globalActionsReactionsParameters['$serviceName'] = jsonDecode(response.body);
+    globalActionsReactionsParameters['$serviceName'] =
+        jsonDecode(response.body);
   } else {
     throw Exception(
         'Failed to retrieve $serviceName actions/reactions parameters.');
@@ -128,6 +130,7 @@ void chooseActionService(String page, BuildContext context) async {
 
 getSubReddit() {
   var tmp = globalActionsReactionsParameters['Reddit'];
+  subredditNames = [];
   tmp.forEach((value) {
     subredditNames.add({"name": value});
   });
@@ -191,7 +194,7 @@ getReactionId(String action, String service) {
   var reactionIds = {
     "Post a message-Discord": 1,
     "Create a category-Discord": 2,
-    "Post a message-Room-Discord": 3,
+    "Create a channel-Discord": 3,
     "Send a private message-Discord": 4,
     "Post a message-Reddit": 5,
     "Tweet-Twitter": 6
