@@ -11,7 +11,7 @@ Have more information: https://alluring-bayberry-f8d.notion.site/LaZone-dff70575
 
 ## PROJECT INITIALISATION
 
-At the root of your repository, you need to create "db_password.txt" and "db_root_password.txt" that contains your password(Don't share it):
+At the root of your repository, you need to create "db_password.txt" and "db_root_password.txt" that contain your password(Don't share it):
 
 db_password.txt:
 ```txt
