@@ -34,12 +34,14 @@ class SetPageContent extends StatelessWidget {
               children: <Widget>[
                 const SizedBox(height: 20),
                 WelcomCards(title: title),
-                const SizedBox(height: 70,),
+                const SizedBox(
+                  height: 70,
+                ),
                 Padding(
                   padding: EdgeInsets.only(left: sidebarWidth),
                   child: TitleCards(
-                      message: message,
-                    ),
+                    message: message,
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: sidebarWidth),
@@ -54,12 +56,13 @@ class SetPageContent extends StatelessWidget {
   }
 }
 
-
 class SetPageContentService extends StatelessWidget {
-  const SetPageContentService({Key? key,
-                      required this.message,
-                      required this.services,
-                      required this.sidebarWidth}) : super(key:key);
+  const SetPageContentService(
+      {Key? key,
+      required this.message,
+      required this.services,
+      required this.sidebarWidth})
+      : super(key: key);
   final String message;
   final services;
   final sidebarWidth;
@@ -70,40 +73,44 @@ class SetPageContentService extends StatelessWidget {
       width: 1080,
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage("assets/images/font.jpg"), 
-            fit: BoxFit.cover),
+            image: AssetImage("assets/images/font.jpg"), fit: BoxFit.cover),
       ),
-      child: Scaffold (
+      child: Scaffold(
         appBar: AppBar(
-        toolbarHeight: 80.0,
-        backgroundColor: const Color.fromARGB(255, 18, 21, 41),
-        elevation: 0.0,
-        title: const Center(child: Text('Choose Action', textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: "OldLondon"))),
-        leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () {
-              checkAreaValues(message);
-              Navigator.pop(context);
-            }
-        ),
+          toolbarHeight: 80.0,
+          backgroundColor: const Color.fromARGB(255, 18, 21, 41),
+          elevation: 0.0,
+          title: const Center(
+              child: Text('Choose Action',
+                  textAlign: TextAlign.center,
+                  style:
+                      TextStyle(color: Colors.white, fontFamily: "OldLondon"))),
+          leading: IconButton(
+              icon: const Icon(Icons.arrow_back, color: Colors.white),
+              onPressed: () {
+                checkAreaValues(message);
+                Navigator.pop(context);
+              }),
         ),
         backgroundColor: Colors.transparent,
         body: SizedBox(
           child: SingleChildScrollView(
             child: Column(
-                  children: <Widget> [
-                      Padding(
-                        padding: EdgeInsets.only(left: sidebarWidth),
-                        child: TitleCards(
-                            message: message,
-                          ),
-                      ),
-                      const SizedBox(height: 30,),
-                      Padding(
-                        padding: EdgeInsets.only(left: sidebarWidth),
-                        child: services,
-                      ),
-                  ],
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(left: sidebarWidth),
+                  child: TitleCards(
+                    message: message,
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: sidebarWidth),
+                  child: services,
+                ),
+              ],
             ),
           ),
         ),
@@ -116,16 +123,13 @@ checkAreaValues(message) {
   if (message == "Choose your action:") {
     area.actionServiceChoose = "";
     area.action = "";
-  }
-  else if (message == "Choose your reaction service:") {
+  } else if (message == "Choose your reaction service:") {
     area.reactionServiceChoose = "";
     area.action = "";
-  }
-  else if (message == "Choose your reaction:") {
+  } else if (message == "Choose your reaction:") {
     area.reactionServiceChoose = "";
     area.reaction = "";
-  }
-  else if (message == "") {
+  } else if (message == "") {
     area.reaction = "";
   }
 }

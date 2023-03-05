@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_application/Tools/global.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -27,7 +28,7 @@ class ChooseReactionReddit extends StatelessWidget {
                   textbutton :  "Choose this action",
                   colorButton : Color.fromARGB(255, 214, 86, 11),
                   choice :"Choose a subreddit:",
-                  choiceList: SubRedditList,
+                  choiceList: jsonEncode(subredditNames),
                 ),
               ),
             ],
