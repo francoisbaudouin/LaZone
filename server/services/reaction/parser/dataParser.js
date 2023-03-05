@@ -87,7 +87,7 @@ function newYoutubeLike(data) {
   if (data == undefined)
     throw Error;
   var result = {
-    type: "new-like",
+    type: "youtube like",
     name: data.title,
     htmlUrl: 'https://www.youtube.com/watch?v=' + data.resourceId.videoId,
     owner: {
@@ -103,7 +103,7 @@ function newYoutubePlaylist(data) {
   if (data == undefined)
     throw Error;
   var result = {
-    type: "new-playlist",
+    type: "youtube playlist",
     name: data.title,
     htmlUrl: 'https://www.youtube.com/channel/' + data.channelId,
     owner: {
@@ -119,7 +119,7 @@ function newYoutubeActivity(data) {
   if (data == undefined)
     throw Error;
   var result = {
-    type: "new-activity",
+    type: "youtube activity",
     name: data.type,
     htmlUrl: '',
     owner: {
