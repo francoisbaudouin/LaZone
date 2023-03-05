@@ -201,8 +201,7 @@ getReactionId(String action, String service) {
     "Post a message-Room-Discord": 3,
     "Send a private message-Discord": 4,
     "Post a message-Reddit": 5,
-    "Tweet-Twitter": 6,
-    "Suprise": 7
+    "Tweet-Twitter": 6
   };
   id.reactionId = reactionIds["$action-$service"]!;
 }
