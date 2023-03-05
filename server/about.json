@@ -61,7 +61,7 @@
                 " actions ": [
                     {
                         " name ": " like_a_video ",
-                        " description ": " the user like video "
+                        " description ": " the user like a video "
                     },
                     {
                         " name ": " creation_of_a_playlist ",
@@ -77,7 +77,7 @@
                 " name ": " reddit ",
                 " actions ": [
                     {
-                        " name ": " wew_post_in_a_subreddit ",
+                        " name ": " new_post_in_a_subreddit ",
                         " description ": " the user post a new post "
                     }
                 ],
