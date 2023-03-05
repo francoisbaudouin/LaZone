@@ -55,6 +55,38 @@
                         " description ": " creation of new channel "
                     }
                 ]
+            },
+            {
+                " name ": " Youtube ",
+                " actions ": [
+                    {
+                        " name ": " like_a_video ",
+                        " description ": " the user like video "
+                    },
+                    {
+                        " name ": " creation_of_a_playlist ",
+                        " description ": " the user create a playlist "
+                    },
+                    {
+                        " name ": " activity ",
+                        " description ": " on user acitivy detected "
+                    }
+                ]
+            },
+            {
+                " name ": " reddit ",
+                " actions ": [
+                    {
+                        " name ": " wew_post_in_a_subreddit ",
+                        " description ": " the user post a new post "
+                    }
+                ],
+                " reactions ": [
+                    {
+                        " name ": " post_a_message ",
+                        " description ": " post a new message "
+                    }
+                ]
             }
         ]
     }
