@@ -139,6 +139,30 @@ async function startArea() {
   }
 };
 
+app.get('/test', async function (res, res) {
+  await prisma.users.create({
+    data: {
+      authType: 'Area',
+      email: 'test@test.com',
+      firstname: 'test',
+      lastname: 'test',
+      password: 'pass',
+      pseudo: 'test',
+    }
+  })
+  await prisma.areas.create({
+    data: {
+      userId: 1,
+      enabled: true,
+      actionsParams: '',
+      reactionsParams: '',
+      actionsId: 1,
+      reactionsId: 1,
+    }
+  })
+  res.json('ok');
+})
+
 const connectionInterval = setInterval(async () => {
   try {
     await prisma.$connect();

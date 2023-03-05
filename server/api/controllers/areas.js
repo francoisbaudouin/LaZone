@@ -45,7 +45,7 @@ exports.resDelArea = async (req, res) => {
   try {
     await prisma.areas.delete({
       where : {
-        id: req.params.id
+        id: Number(req.params.id)
       }
     });
     res.status(201).json({ statusCode: res.statusCode})

@@ -220,14 +220,14 @@ getUsersAreas() async {
   List<dynamic> data = json.decode(response.body);
 
   if (response.statusCode == 201) {
-      for (var item in data) {
+    for (var item in data) {
       if (item["userId"] == connectedUser["id"]) {
         Map<String, dynamic> action =
             await getActionReactionData(item['actionsId'], 'actions');
         Map<String, dynamic> reaction =
             await getActionReactionData(item['reactionsId'], 'reactions');
         areas.add({
-          "id": data[i]["id"].toString(),
+          "id": item["id"].toString(),
           "actionServiceChoose": action['serviceName'],
           "action": action['name'],
           "reactionServiceChoose": reaction['serviceName'],
