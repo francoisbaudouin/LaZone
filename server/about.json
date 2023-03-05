@@ -87,6 +87,15 @@
                         " description ": " post a new message "
                     }
                 ]
+            },
+            {
+                " name ": " tweeter ",
+                " reactions ": [
+                    {
+                        " name ": " tweet ",
+                        " description ": " post a new tweet "
+                    }
+                ]
             }
         ]
     }
