@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application/Tools/global.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import '../Tools/create_cards.dart';
+import 'dart:convert';
 
 class ChooseActionReddit extends StatelessWidget {
   const ChooseActionReddit({super.key});
@@ -27,7 +28,7 @@ class ChooseActionReddit extends StatelessWidget {
                   textbutton :  "Choose this action",
                   colorButton : Color.fromARGB(255, 214, 86, 11),
                   choice :"Choose a subreddit:",
-                  choiceList: globalActionsReactionsParameters['Reddit'],
+                  choiceList: jsonEncode(subredditNames),
                 ),
               ),
             ],

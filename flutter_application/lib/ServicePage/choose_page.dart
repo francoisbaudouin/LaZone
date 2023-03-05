@@ -22,6 +22,7 @@ void chooseReactionService(String page, BuildContext context) async {
       (page == "Reddit" && buttonChoose.buttonChooseReddit) ||
       (page == "Youtube" && buttonChoose.buttonChooseYoutube)) {
     await getServiceActionsReactionsParameters(context, page);
+    print("channels du server: ${globalActionsReactionsParameters["$page"]}");
     area.reactionServiceChoose = page;
     Navigator.push(
       context,
@@ -35,12 +36,14 @@ void chooseReactionService(String page, BuildContext context) async {
                 sidebarWidth: 0,
               );
             case "Discord":
+              DiscordServerList = globalActionsReactionsParameters['$page'];
               return SetPageContentService(
                 message: "Choose your reaction:",
                 services: ChooseReactionsDiscord(),
                 sidebarWidth: 0,
               );
             case "Reddit":
+              getSubReddit();
               return SetPageContentService(
                 message: "Choose your reaction:",
                 services: ChooseReactionReddit(),
@@ -62,6 +65,8 @@ void chooseReactionService(String page, BuildContext context) async {
 }
 
 getServiceActionsReactionsParameters(context, serviceName) async {
+  if (serviceName != "Reddit" && serviceName != "Github" && serviceName != "Discord")
+    return;
   var url = Uri.parse("http://$serverAddress/services/parameters");
   final http.Response response = await http.post(
     url,
@@ -74,10 +79,9 @@ getServiceActionsReactionsParameters(context, serviceName) async {
     }),
   );
 
-  print("là: ${response.body}");
+  print("là: ${response.body}, $serviceName");
   if (response.statusCode == 201) {
-    globalActionsReactionsParameters['$serviceName'] =
-        response.body;
+    globalActionsReactionsParameters['$serviceName'] = response.body;
     print("over there: " + globalActionsReactionsParameters['$serviceName']);
   } else {
     throw Exception(
@@ -118,6 +122,7 @@ void chooseActionService(String page, BuildContext context) async {
                 sidebarWidth: 0,
               );
             case "Reddit":
+              getSubReddit();
               return SetPageContentService(
                 message: "Choose your action:",
                 services: ChooseActionReddit(),
@@ -130,6 +135,16 @@ void chooseActionService(String page, BuildContext context) async {
       ),
     );
   }
+}
+
+getSubReddit() {
+  var tmp = jsonDecode(globalActionsReactionsParameters['Reddit']);
+  tmp.forEach((value) {
+    subredditNames.add({"name": value});
+  });
+  print(subredditNames);
+
+  return subredditNames;
 }
 
 setAction(page, context) async {

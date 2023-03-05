@@ -14,7 +14,7 @@ const CLIENT_ID = process.env.REDDIT_CLIENT_ID;
 const CLIENT_SECRET =  process.env.REDDIT_CLIENT_SECRET;
 const REDIRECT_URI = 'http://localhost:8080/auth/Reddit/callback';
 const STATE = 'random_string';
-const authorizationUrl = `https://www.reddit.com/api/v1/authorize?client_id=${CLIENT_ID}&response_type=code&state=${STATE}&redirect_uri=${REDIRECT_URI}&duration=temporary&scope=read`;
+const authorizationUrl = `https://www.reddit.com/api/v1/authorize?client_id=${CLIENT_ID}&response_type=code&state=${STATE}&redirect_uri=${REDIRECT_URI}&duration=temporary&scope=read,mysubreddits`;
 
 router.get('/Reddit', (req, res) => {
   res.redirect(authorizationUrl);

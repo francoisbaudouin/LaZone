@@ -1,9 +1,11 @@
 const { Octokit } = require('octokit');
-const snoowrap = require('snoowrap')
+const snoowrap = require('snoowrap');
+const DiscordOauth2 = require("discord-oauth2");
+const oauth = new DiscordOauth2();
 
 var discordInit = async function (client, user) {
   var result = [];
-  const userId = (await client.users.fetch(null, false, { token: user.token })).id;
+  const userId = (await oauth.getUser(user.token)).id;
   for (var guild of client.guilds.cache) {
     if ((await guild[1].members.fetch()).has(userId)) {
       var server = {
@@ -15,8 +17,8 @@ var discordInit = async function (client, user) {
         if (channel[1].type != 0)
           continue;
         var data = {
-          id: channel.id,
-          name: channel.name
+          id: channel[0],
+          name: channel[1].name
         };
         server.channels.push(data);
       }
