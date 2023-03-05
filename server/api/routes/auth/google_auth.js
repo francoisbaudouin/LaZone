@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 // github login
 
-router.get('/Google', passport.authenticate('google', {scope: ['profile']}));
+router.get('/Google', passport.authenticate('google', {scope: ['profile', 'https://www.googleapis.com/auth/youtube.readonly']}));
 
 router.post('/Google', (req, res) => {
   try {

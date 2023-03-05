@@ -1,5 +1,6 @@
 const { getFromRepo, getNewRepos } = require("./action/githubAction.js");
 const { getFromSubReddit } = require('./action/redditAction.js')
+const { newPlaylist, newLikedVideo, newActivity } = require("./action/youtubeAction.js");
 const { getNewPosts, getNewAlbum } = require("./action/facebookAction.js");
 
 
@@ -18,7 +19,11 @@ const actionMap = new Map([
   [3, getFromRepo],
   [4, getNewPosts],
   [5, getNewAlbum],
+  [6, newLikedVideo],
+  [7, newPlaylist],
+  [8, newActivity],
   [9, getFromSubReddit],
+
 ]);
 
 const reactionMap = new Map([
