@@ -24,7 +24,7 @@ class ChooseActionsFacebook extends StatelessWidget {
                 rowFlex: 1,
                 rowFit: FlexFit.loose,
                 child: ServiceCards(
-                  title: "Like a post",
+                  title: "Creation of a post",
                   imagePath: "assets/images/Facebook-logo.png",
                   textbutton :  "Choose this action",
                   colorButton : Color.fromARGB(255, 53, 119, 206),
@@ -34,7 +34,7 @@ class ChooseActionsFacebook extends StatelessWidget {
                 rowFlex: 1,
                 rowFit: FlexFit.loose,
                 child: ServiceCards(
-                  title: "Create a group of discussion",
+                  title: "Create of an album",
                   imagePath: "assets/images/Facebook-logo.png",
                   textbutton :  "Choose this action",
                   colorButton : Color.fromARGB(255, 53, 119, 206),

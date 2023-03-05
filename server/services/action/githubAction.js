@@ -16,16 +16,12 @@ var getFromRepo = async function (callback, area) {
         result.created_at = result.created_at.replace(/.$/, ".000" + result.created_at.slice(-1))
         if (result.created_at > area.timestamp && !result.hasOwnProperty("pull_request")) {
           console.log(area.timestamp, result.created_at);
+          tmpTimestamp = element.created_at;
           return (result);
         }
       })
     );
-
     result = result.filter(function (element) { return element !== undefined; });
-    result.forEach(element => {
-      if (element.created_at > tmpTimestamp)
-        tmpTimestamp = element.created_at;
-    });
 
     area.timestamp = tmpTimestamp;
     if (result.length > 0) {

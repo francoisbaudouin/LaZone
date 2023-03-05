@@ -67,19 +67,37 @@ async function basicConfig() {
       serviceName: "Github"
     }
   })
+
+  //Facebook
+  await prisma.actions.create({
+    data: {
+      name: "new post",
+      description: "facebook post occured",
+      serviceName: "Facebook"
+    }
+  })
+  await prisma.actions.create({
+    data: {
+      name: "new album",
+      description: "facebook album created",
+      serviceName: "Facebook"
+    }
+  })
+
+  //youtube
   await prisma.actions.create({
     data: {
       id: 6,
-      name: "new-playlist",
-      description: "i created a new playlist",
+      name: "new-like",
+      description: "new video in my likes playlist",
       serviceName: "Google"
     }
   })
   await prisma.actions.create({
     data: {
       id: 7,
-      name: "new-like",
-      description: "new video in my likes playlist",
+      name: "new-playlist",
+      description: "i created a new playlist",
       serviceName: "Google"
     }
   })
@@ -93,19 +111,14 @@ async function basicConfig() {
   })
 
   //REACTION
-  await prisma.reactions.create({
-    data: {
-      name: "TwitterTweet",
-      description: "tweet something",
-      serviceName: "Twitter"
-    }
-  })
+  
+  //discord
   await prisma.reactions.create({
     data: {
       name: "DiscordMessage",
       description: "discord message reaction",
       serviceName: "Discord"
-
+      
     }
   })
   await prisma.reactions.create({
@@ -122,6 +135,18 @@ async function basicConfig() {
       serviceName: "Discord"
     }
   })
+
+  //Twitter
+  await prisma.reactions.create({
+    data: {
+      id: 5,
+      name: "TwitterTweet",
+      description: "tweet something",
+      serviceName: "Twitter"
+    }
+  })
 }
+
+
 
 module.exports = basicConfig;

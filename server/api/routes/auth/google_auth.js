@@ -20,7 +20,7 @@ router.post('/Google', (req, res) => {
 });
 
 router.get('/Google/callback', (req, res, next) => {
-  passport.authenticate('google', { failureRedirect: '/', successRedirect: 'http://localhost:8080/auth/success' }, (err, user, info) => {
+  passport.authenticate('google', { failureRedirect: 'http://localhost:8080/auth/failure', successRedirect: 'http://localhost:8080/auth/success' }, (err, user, info) => {
     if (err) throw new Error(err);
     if (!user) { return res.json({message: "Error, cannot retrieve google User."}) };
     return res.redirect('http://localhost:8080/auth/success');

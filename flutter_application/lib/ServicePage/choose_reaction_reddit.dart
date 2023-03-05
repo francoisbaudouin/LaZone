@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/Tools/global.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import '../home_page.dart';
 import '../Tools/create_cards.dart';
 
-class ChooseReactionsTwitter extends StatelessWidget {
-  const ChooseReactionsTwitter({super.key});
+class ChooseReactionReddit extends StatelessWidget {
+  const ChooseReactionReddit({super.key});
   @override
   Widget build(BuildContext context) {
     return Container (
-          padding: const EdgeInsets.all(5.0),
+          padding: const EdgeInsets.all(15.0),
           child: SingleChildScrollView(
-          child :Container(
-          margin: blockMargin,
           child: ResponsiveRowColumn(
             layout: ResponsiveWrapper.of(context).isSmallerThan("DESKTOP")
                 ? ResponsiveRowColumnType.COLUMN
@@ -19,19 +17,20 @@ class ChooseReactionsTwitter extends StatelessWidget {
             rowCrossAxisAlignment: CrossAxisAlignment.start,
             rowSpacing: 10,
             columnSpacing: 10,
-            children: const [
+            children: [
               ResponsiveRowColumnItem(
                 rowFlex: 1,
                 rowFit: FlexFit.loose,
-                child: ServiceCards(
-                  title: "Tweet",
-                  imagePath: "assets/images/twitter-logo.png",
+                child: CreateCardsOneChoice(
+                  title: "Post a message",
+                  imagePath: "assets/images/Reddit-Logo.png",
                   textbutton :  "Choose this action",
-                  colorButton : Colors.lightBlue,
+                  colorButton : Color.fromARGB(255, 214, 86, 11),
+                  choice :"Choose a subreddit:",
+                  choiceList: SubRedditList,
                 ),
               ),
             ],
-          ),
           ),
           ),
     );

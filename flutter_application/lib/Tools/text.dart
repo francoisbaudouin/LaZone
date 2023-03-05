@@ -9,14 +9,14 @@ class ButtonConnection {
   String buttonConnectionFacebook;
   String buttonConnectionDiscord;
   String buttonConnectionTwitter;
-  String buttonConnectionTeams;
+  String buttonConnectionReddit;
   ButtonConnection(
       {this.buttonConnectionGitHub = "Disconected",
       this.buttonConnectionYoutube = "Disconected",
       this.buttonConnectionFacebook = "Disconected",
       this.buttonConnectionDiscord = "Disconected",
       this.buttonConnectionTwitter = "Disconected",
-      this.buttonConnectionTeams = "Disconected"});
+      this.buttonConnectionReddit = "Disconected"});
 }
 
 ButtonConnection button = ButtonConnection();
@@ -27,14 +27,14 @@ class CheckConnectionText {
   String buttonConnectionFacebook;
   String buttonConnectionDiscord;
   String buttonConnectionTwitter;
-  String buttonConnectionTeams;
+  String buttonConnectionReddit;
   CheckConnectionText(
       {this.buttonConnectionGitHub = "Disconected",
       this.buttonConnectionYoutube = "Disconected",
       this.buttonConnectionFacebook = "Disconected",
       this.buttonConnectionDiscord = "Disconected",
       this.buttonConnectionTwitter = "Disconected",
-      this.buttonConnectionTeams = "Disconected"});
+      this.buttonConnectionReddit = "Disconected"});
 }
 
 CheckConnectionText buttoncheck = CheckConnectionText();
@@ -45,46 +45,17 @@ class CheckConnection {
   bool buttonChooseFacebook;
   bool buttonChooseDiscord;
   bool buttonChooseTwitter;
-  bool buttonChooseTeams;
+  bool buttonChooseReddit;
   CheckConnection(
       {this.buttonChooseGitHub = false,
       this.buttonChooseYoutube = false,
       this.buttonChooseFacebook = false,
       this.buttonChooseDiscord = false,
       this.buttonChooseTwitter = false,
-      this.buttonChooseTeams = false});
+      this.buttonChooseReddit = false});
 }
 
 CheckConnection buttonChoose = CheckConnection();
-
-class ActionsReactionsID {
-  int actionId;
-  int reactionId;
-  ActionsReactionsID({this.actionId = 0, this.reactionId = 0});
-}
-
-ActionsReactionsID id = ActionsReactionsID();
-
-const String fontFamilies = "Google Sans";
-
-class Area {
-  String actionServiceChoose;
-  String reactionServiceChoose;
-  String action;
-  String reaction;
-  String actionParam;
-  String reactionParam;
-
-  Area(
-      {this.actionServiceChoose = "",
-      this.reactionServiceChoose = "",
-      this.action = "",
-      this.reaction = "",
-      this.actionParam = "",
-      this.reactionParam = ""});
-}
-
-Area area = Area();
 
 const TextStyle headlineTextStyle = TextStyle(
     fontSize: 44, color: textPrimary, height: 1.2, fontFamily: "OldLondon");

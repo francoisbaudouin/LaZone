@@ -1,3 +1,5 @@
+
+//Github
 function parseGitIssues(data) {
   if (data == undefined)
     throw Error;
@@ -46,6 +48,57 @@ function parseGitRepos(data) {
   return (result);
 }
 
+//Facebook
+function parseFacebookPost(data) {
+  if (data == undefined)
+    throw Error;
+  var result = {
+    type: "new post",
+    name: data.message,
+    htmlUrl: data.permalink_url,
+    owner: {
+      name: data.from.name,
+      htmlUrl: "",
+      avatarUrl: "",
+    }
+  }
+  return (result);
+}
+
+function parseFacebookNewAlbum(data) {
+  if (data == undefined)
+    throw Error;
+  var result = {
+    type: "new album",
+    name: data.name,
+    htmlUrl: data.link,
+    owner: {
+      name: data.from.name,
+      htmlUrl: "",
+      avatarUrl: "",
+    }
+  }
+  return (result);
+}
+
+
+//Youtube
+function newYoutubeLike(data) {
+  if (data == undefined)
+    throw Error;
+  var result = {
+    type: "new-like",
+    name: data.title,
+    htmlUrl: 'https://www.youtube.com/watch?v=' + data.resourceId.videoId,
+    owner: {
+      name: '',
+      htmlUrl: '',
+      avatarUrl: ''
+    }
+  }
+  return(result);
+}
+
 function newYoutubePlaylist(data) {
   if (data == undefined)
     throw Error;
@@ -62,23 +115,7 @@ function newYoutubePlaylist(data) {
   return (result);
 }
 
-function newYoutubeLike(data) {
-  if (data == undefined)
-    throw Error;
-  var result = {
-    type: "new-like",
-    name: data.title,
-    htmlUrl: 'https://www.youtube.com/watch?v=' + data.resourceId.videoId,
-    owner: {
-      name: '',
-      htmlUrl: '',
-      avatarUrl: ''
-    }
-  }
-  return (result);
-}
-
-function newActivity(data) {
+function newYoutubeActivity(data) {
   if (data == undefined)
     throw Error;
   var result = {
@@ -98,9 +135,11 @@ const dataParsers = new Map([
   [1, parseGitIssues],
   [2, parseGitRepos],
   [3, parseGitPulls],
-  [6, newYoutubePlaylist],
-  [7, newYoutubeLike],
-  [8, newActivity],
+  [4, parseFacebookPost],
+  [5, parseFacebookNewAlbum],
+  [6, newYoutubeLike],
+  [7, newYoutubePlaylist],
+  [8, newYoutubeActivity],
 ])
 
 function parseData(actionId, data) {

@@ -34,7 +34,6 @@ var newPlaylist = async function (callback, area) {
       area.timestamp = element.publishedAt.slice(0,-1) + ".000Z";
     });
   }
-  console.log("area timestamp AFTER PROMISE= " + area.timestamp);
   callback(area, parseData(area.actionId, response))
 }
 
@@ -70,7 +69,6 @@ var newLikedVideo = async function (callback, area) {
       area.timestamp = element.publishedAt.slice(0,-1) + ".000Z";
     });
   }
-  console.log("area timestamp AFTER PROMISE= " + area.timestamp);
   callback(area, parseData(area.actionId, response))
 }
 

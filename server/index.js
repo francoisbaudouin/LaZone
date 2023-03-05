@@ -107,19 +107,23 @@ app.listen(PORT, () => {
 //try connection
 async function startArea() {
   try {
+    const discordClient = require("./services/reaction/discordClient.js");
     const configdb = require("./api/utils/basicConfig.js");
-    await configdb();
     const userController = require('./api/controllers/users');
     const services = require("./services/servicesManager.js");
 
+    await configdb();
+    discordClient.initDiscord();
+
+    
     async function serviceInterval() {
       try {
+        console.log('TEST');
         const users = await userController.getAllUsersIds();
         if (users.length > 0) {
-          users.forEach(async element => {
-            const values = await userController.getUserModel(element.id);
-            services.activateAreasFromUser(values);
-          });
+          userController.getUserModel(users).then((usersModels) => {
+            services.activateAreasFromUser(usersModels);
+        })
         }
       } catch (error) {
         console.error(error);

@@ -23,7 +23,7 @@ class ReactionServicePage extends StatelessWidget {
               rowFit: FlexFit.tight,
               child: ServiceCards(
                 title: "Twitter",
-                imagePath: "assets/images/logo-twitter.png",
+                imagePath: "assets/images/twitter-logo.png",
                 textbutton :  buttoncheck.buttonConnectionTwitter,
                 colorButton : buttonchoosecol.colbuttonChooseTwitter,
               ),
@@ -33,7 +33,7 @@ class ReactionServicePage extends StatelessWidget {
               rowFit: FlexFit.tight,
               child: ServiceCards(
                 title: "Discord",
-                imagePath: "assets/images/discord-logo.png",
+                imagePath: "assets/images/logo-discord.png",
                 textbutton :  buttoncheck.buttonConnectionDiscord,
                 colorButton : buttonchoosecol.colbuttonChooseDiscord,
               ),
@@ -42,10 +42,20 @@ class ReactionServicePage extends StatelessWidget {
               rowFlex: 1,
               rowFit: FlexFit.tight,
               child: ServiceCards(
-                title: "Microsoft Teams",
-                imagePath: "assets/images/Microsoft-Teams-Symbole.png",
-                textbutton :  buttoncheck.buttonConnectionTeams,
-                colorButton : buttonchoosecol.colbuttonChooseTeams,
+                title: "Reddit",
+                imagePath: "assets/images/Reddit-Logo.png",
+                textbutton :  buttoncheck.buttonConnectionReddit,
+                colorButton : buttonchoosecol.colbuttonChooseReddit,
+              ),
+            ),
+            ResponsiveRowColumnItem(
+            rowFlex: 1,
+            rowFit: FlexFit.tight,
+            child: ServiceCards(
+              title: "Youtube",
+              imagePath: "assets/images/Youtube-Symbole.png",
+              textbutton :  buttoncheck.buttonConnectionYoutube,
+              colorButton : buttonchoosecol.colbuttonChooseYoutube,
               ),
             ),
             ],
