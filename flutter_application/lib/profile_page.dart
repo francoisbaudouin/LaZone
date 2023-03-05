@@ -128,6 +128,7 @@ class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key:key);
   @override
   Widget build(BuildContext context) {
+    var sidebarWidth = 60.0;
     return Container(
       height: 1920,
       width: 1080,
@@ -141,11 +142,17 @@ class ProfilePage extends StatelessWidget {
         body: SizedBox(
           child: SingleChildScrollView(
             child: Column(
-                  children: const <Widget> [
+                  children: <Widget> [
                     SizedBox(height: 20,),
                     WelcomCards(title: "Your profile"),
                     SizedBox(height: 60,),
-                    ProfilePageContent(),                  ],
+                    Padding(
+                    padding: EdgeInsets.only(left: sidebarWidth),
+                    child:
+                      ProfilePageContent(),                  
+                    ),
+                  ]
+                ,
             ),
           )
         ),
