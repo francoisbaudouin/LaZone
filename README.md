@@ -2,7 +2,7 @@
 
 ## _Epitech Tek3 Project_
 
-The project _Area_, it based on IFTTT service.
+The project _Area_, is based on IFTTT service.
 
 A web and mobile service, which can create action and reaction from different services
 
@@ -10,7 +10,7 @@ Have more information: <https://alluring-bayberry-f8d.notion.site/LaZone-dff7057
 
 ## PROJECT INITIALISATION
 
-At the root of your repository, you need to create "db_password.txt" and "db_root_password.txt" that contains your password(Don't share it):
+At the root of your repository, you need to create "db_password.txt" and "db_root_password.txt" that contain your password(Don't share it):
 
 db_password.txt:
 
