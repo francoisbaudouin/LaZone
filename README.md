@@ -49,6 +49,8 @@ _____________________________________
 
 - `get("/:id")` -> get area by id
 
+- `delete(':/id')` -> delete area by id
+
 - `get("/enabled")` -> get all enabled areas
 
 - `get("/:id/user")` -> get the user related to the specified area
