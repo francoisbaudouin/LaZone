@@ -160,7 +160,7 @@ getReactionId(String action, String service) {
   var reactionIds = {
     "Post a message-Discord": 1,
     "Create a category-Discord": 2,
-    "Post a message-Room-Discord": 3,
+    "Create a channel-Discord": 3,
     "Post a message-Reddit": 4,
     "Tweet-Twitter": 5,
     "Suprise": 6
