@@ -16,11 +16,12 @@ import 'dart:convert';
 import '../Tools/setup_page.dart';
 import '../Tools/global.dart';
 
-void chooseReactionService(String page, BuildContext context) {
+void chooseReactionService(String page, BuildContext context) async {
   if ((page == "Twitter" && buttonChoose.buttonChooseTwitter) ||
       (page == "Discord" && buttonChoose.buttonChooseDiscord) ||
       (page == "Reddit" && buttonChoose.buttonChooseReddit) ||
       (page == "Youtube" && buttonChoose.buttonChooseYoutube)) {
+    await getServiceActionsReactionsParameters(context, page);
     area.reactionServiceChoose = page;
     Navigator.push(
       context,
@@ -34,12 +35,14 @@ void chooseReactionService(String page, BuildContext context) {
                 sidebarWidth: 0,
               );
             case "Discord":
+              DiscordServerList = globalActionsReactionsParameters['$page'];
               return SetPageContentService(
                 message: "Choose your reaction:",
                 services: ChooseReactionsDiscord(),
                 sidebarWidth: 0,
               );
             case "Reddit":
+              getSubReddit();
               return SetPageContentService(
                 message: "Choose your reaction:",
                 services: ChooseReactionReddit(),
@@ -60,11 +63,36 @@ void chooseReactionService(String page, BuildContext context) {
   }
 }
 
-void chooseActionService(String page, BuildContext context) {
+getServiceActionsReactionsParameters(context, serviceName) async {
+  if (serviceName != "Reddit" &&
+      serviceName != "Github" &&
+      serviceName != "Discord") return;
+  var url = Uri.parse("http://$serverAddress/services/parameters");
+  final http.Response response = await http.post(
+    url,
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'userId': connectedUser["id"],
+      'service': serviceName
+    }),
+  );
+
+  if (response.statusCode == 201) {
+    globalActionsReactionsParameters['$serviceName'] = response.body;
+  } else {
+    throw Exception(
+        'Failed to retrieve $serviceName actions/reactions parameters.');
+  }
+}
+
+void chooseActionService(String page, BuildContext context) async {
   if ((page == "Github" && buttonChoose.buttonChooseGitHub) ||
       (page == "Youtube" && buttonChoose.buttonChooseYoutube) ||
       (page == "Facebook" && buttonChoose.buttonChooseFacebook) ||
       (page == "Reddit" && buttonChoose.buttonChooseReddit)) {
+    await getServiceActionsReactionsParameters(context, page);
     area.actionServiceChoose = page;
     Navigator.push(
       context,
@@ -90,6 +118,7 @@ void chooseActionService(String page, BuildContext context) {
                 sidebarWidth: 0,
               );
             case "Reddit":
+              getSubReddit();
               return SetPageContentService(
                 message: "Choose your action:",
                 services: ChooseActionReddit(),
@@ -102,6 +131,15 @@ void chooseActionService(String page, BuildContext context) {
       ),
     );
   }
+}
+
+getSubReddit() {
+  var tmp = jsonDecode(globalActionsReactionsParameters['Reddit']);
+  tmp.forEach((value) {
+    subredditNames.add({"name": value});
+  });
+
+  return subredditNames;
 }
 
 setAction(page, context) async {
@@ -173,8 +211,8 @@ setupSendActionReaction(page, context) {
   getReactionId(area.reaction, area.reactionServiceChoose);
 
   var resJson = {
-    "actionParam": 'UgoBoulestreau/POC-nodejs',
-    "reactionParam": 'testArea2023',
+    "actionParam": area.actionParam,
+    "reactionParam": area.reactionParam,
     "actionId": id.actionId,
     "reactionId": id.reactionId,
     "userId": connectedUser["id"],

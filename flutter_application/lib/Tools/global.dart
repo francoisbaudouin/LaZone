@@ -11,13 +11,13 @@ List<Map<String, dynamic>> areas = List<Map<String, dynamic>>.from(
   jsonDecode('''[]'''),
 );
 
-String GithubRepositoryList = '''
-    [
-      {
-        "name": "Repository A"
-      }
-    ]
-  ''';
+List<dynamic> subredditNames = [{}];
+
+Map<String, dynamic> globalActionsReactionsParameters = {
+  "Github": {},
+  "Reddit": {},
+  "Discord": {}
+};
 
 String DiscordServerList = '''
     [
@@ -26,18 +26,11 @@ String DiscordServerList = '''
       }
     ]
   ''';
+
 String DiscordChannelList = '''
     [
       {
-        "name": "Channel A"
-      }
-    ]
-  ''';
-
-String SubRedditList = '''
-    [
-      {
-        "name": "Subreddit A"
+        "name": "None"
       }
     ]
   ''';
@@ -47,10 +40,10 @@ class ActionsReactionsID {
   int reactionId;
   ActionsReactionsID({this.actionId = 0, this.reactionId = 0});
 }
+
 ActionsReactionsID id = ActionsReactionsID();
 
-
-const String fontFamilies= "Google Sans";
+const String fontFamilies = "Google Sans";
 
 class Area {
   String actionServiceChoose;
@@ -59,10 +52,13 @@ class Area {
   String reaction;
   String actionParam;
   String reactionParam;
-  Area({this.actionServiceChoose = "", 
-      this.reactionServiceChoose = "", 
-      this.action = "", this.reaction = "", 
+  Area(
+      {this.actionServiceChoose = "",
+      this.reactionServiceChoose = "",
+      this.action = "",
+      this.reaction = "",
       this.actionParam = "",
       this.reactionParam = ""});
 }
+
 Area area = Area();

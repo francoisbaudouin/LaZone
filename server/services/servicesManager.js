@@ -71,15 +71,16 @@ async function activateAreasFromUser(users) {
 
 async function getServiceData(serviceName, userId) {
   try {
+    userId = Number(userId);
     var userData = {
       id: userId,
-      token: getUserTokenFromService(serviceName, userId)
+      token: await getUserTokenFromService(serviceName, userId)
     };
 
     if (serviceName == "Discord") {
-      return (serviceInit[serviceName](client, userData))
+      return (await serviceInit.get(serviceName)(client, userData))
     } else
-      return (serviceInit[serviceName](userData));
+      return (await serviceInit.get(serviceName)(userData));
   } catch (error) {
     console.error(error);
   }

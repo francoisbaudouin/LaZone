@@ -9,7 +9,7 @@ exports.resGetAllServices = async (req, res) => {
 };
 
 exports.resPostServiceParameters = async (req, res) => {
-  const parameters = await getServiceData(req.service, req.userId);
+  const parameters = await getServiceData(req.body['service'], req.body['userId']);
   res.status(201).json(parameters);
 }
 
