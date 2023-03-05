@@ -91,8 +91,6 @@ _____________________________________
 
 - `get("/:name/reactions")` -> get all reactions of specified service
 
-- `get("/:name/tokens")` -> get all tokens related to the specified service
-
 - `get("/parameters")` -> get parameters of action/reaction linked to a service
 
 Overall, the API provides a comprehensive set of endpoints to retrieve information about the various entities in the AREA project.
