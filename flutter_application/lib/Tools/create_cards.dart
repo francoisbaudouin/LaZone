@@ -404,9 +404,21 @@ class _CreateCardsTwoChoiceState extends State<CreateCardsTwoChoice> {
                 FloatingActionButton.extended(
                   onPressed: () {
                     if (widget.choiceOne == "Choose a server:" &&
-                        widget.choiceTwo == "Choose a channel:")
-                      area.reactionParam =
-                          "${selectedServer}/${selectedValue2}";
+                        widget.choiceTwo == "Choose a channel:") {
+                          final tmp = jsonDecode(SecondChoiceList);
+                          print("selectedserver: $selectedServer");
+                          String selectedChannelId = "";
+                      for (var i = 0; i < tmp.length; i++) {
+                        var element = tmp[i];
+                        print("elem: $element");
+                        if (element["name"] == selectedValue2) {
+                          selectedChannelId = element["id"];
+                          break;
+                        }
+                      }
+                      print("channelId: $selectedChannelId");
+                      area.reactionParam = "$selectedChannelId";
+                    };
                     chooseConnection(widget.title, context);
                   },
                   backgroundColor: widget.colorButton,
