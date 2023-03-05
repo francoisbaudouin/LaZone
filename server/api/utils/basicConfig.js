@@ -83,6 +83,14 @@ async function basicConfig() {
       serviceName: "Facebook"
     }
   })
+  await prisma.actions.create({
+    data: {
+      id: 9,
+      name: "new post subreddit",
+      description: "new post on subReddit",
+      serviceName: "Reddit"
+    }
+  })
 
   //youtube
   await prisma.actions.create({
@@ -118,7 +126,7 @@ async function basicConfig() {
       name: "DiscordMessage",
       description: "discord message reaction",
       serviceName: "Discord"
-      
+
     }
   })
   await prisma.reactions.create({
@@ -139,7 +147,13 @@ async function basicConfig() {
   //Twitter
   await prisma.reactions.create({
     data: {
-      id: 5,
+      name: "RedditPost",
+      description: "post on subReddit",
+      serviceName: "Reddit"
+    }
+  })
+  await prisma.reactions.create({
+    data: {
       name: "TwitterTweet",
       description: "tweet something",
       serviceName: "Twitter"

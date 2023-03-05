@@ -47,6 +47,18 @@ function facebookPost(repoData) {
   }
 }
 
+function redditPost(postData) {
+  try {
+    const embed = new EmbedBuilder().setTitle(`new reddit post ${postData.name}`)
+      .setURL(postData.htmlUrl).setTimestamp()
+      .setDescription(postData.name)
+      .setFooter({ text: "test" });
+    return (embed);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 function facebookNewAlbum(repoData) {
   try {
     const embed = new EmbedBuilder().setTitle(`new facebook album: ${repoData.name}`)
@@ -95,7 +107,8 @@ const embeds = new Map([
   [5, facebookNewAlbum],
   [6, youtubeNewLikedVideo],
   [7, youtubeNewPlaylist],
-  [8, youtubeNewActivity]
+  [8, youtubeNewActivity],
+  [9, redditPost],
 ])
 
 module.exports = { embeds }
