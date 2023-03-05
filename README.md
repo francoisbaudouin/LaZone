@@ -2,24 +2,22 @@
 
 ## _Epitech Tek3 Project_
 
-The project _Area_, is based on IFTTT service.
+The project _Area_, it based on IFTTT service. 
 
 A web and mobile service, which can create action and reaction from different services
 
-Have more information: <https://alluring-bayberry-f8d.notion.site/LaZone-dff705753e1045cca387ecfd20736632>
+Have more information: https://alluring-bayberry-f8d.notion.site/LaZone-dff705753e1045cca387ecfd20736632
+
 
 ## PROJECT INITIALISATION
 
-At the root of your repository, you need to create "db_password.txt" and "db_root_password.txt" that contain your password(Don't share it):
+At the root of your repository, you need to create "db_password.txt" and "db_root_password.txt" that contains your password(Don't share it):
 
 db_password.txt:
-
 ```txt
 PUT YOUR PASSWORD HERE
 ```
-
 db_root_password.txt
-
 ```txt
 PUT YOUR PASSWORD HERE
 ```
@@ -102,5 +100,7 @@ _____________________________________
 - `get("/:name/reactions")` -> get all reactions of specified service
 
 - `get("/:name/tokens")` -> get all tokens related to the specified service
+
+- `get("/parameters")` -> get parameters of action/reaction linked to a service
 
 Overall, the API provides a comprehensive set of endpoints to retrieve information about the various entities in the AREA project.
