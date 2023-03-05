@@ -1,82 +1,92 @@
 # AREA aka LaZone
-## _Epitech Tek3 Project_
-The project "Area", allow you to have an environement automatic and linked.
-Some services will be linked between each other.
 
-To have more information: https://alluring-bayberry-f8d.notion.site/LaZone-dff705753e1045cca387ecfd20736632
+## _Epitech Tek3 Project_
+
+The project _Area_, it based on IFTTT service. 
+
+A web and mobile service, which can create action and reaction from different services
+
+Have more information: https://alluring-bayberry-f8d.notion.site/LaZone-dff705753e1045cca387ecfd20736632
+
+
 ## PROJECT INITIALISATION
-At the root of the repository, you need to create "db_password.txt" and "db_root_password" that contains this paramater:
+
+At the root of your repository, you need to create "db_password.txt" and "db_root_password.txt" that contain your password(Don't share it):
+
+db_password.txt:
+```txt
+PUT YOUR PASSWORD HERE
+```
+db_root_password.txt
 ```txt
 PUT YOUR PASSWORD HERE
 ```
 
 ## PREREQUISITE
- - [DOCKER](https://docs.docker.com/engine/install/ubuntu/)
- - [FLUTTER](https://docs.flutter.dev/get-started/install/linux)
+
+- [DOCKER](https://docs.docker.com/engine/install/ubuntu/)
+- [FLUTTER](https://docs.flutter.dev/get-started/install/linux)
 
 ## BUILD PROJECT
+
 ```sh
 docker-compose up --build
 ```
 
 _____________________________________
+
 # API
 
+##### USER
 
-##### USER:
-- get("/users/"); -> get all users
+- `get("/users/")` -> get all users
 
-- get("/users/:id") -> get user by id
+- `get("/users/:id")` -> get user by id
 
-- get("/users/:id/tokens") -> get user by id and retrieve his tokens
+##### AREAS
 
-- get("/users/:id/tokens/:serviceName") -> get user by id and retrieve all his tokens related to the specified service
+- `get("/")` -> get all areas
 
-##### AREAS:
-- et("/") -> get all areas
+- `get("/:id")` -> get area by id
 
-- get("/:id") -> get area by id
+- `get("/enabled")` -> get all enabled areas
 
-- get("/enabled") -> get all enabled areas 
+- `get("/:id/user")` -> get the user related to the specified area
 
-- get("/:id/user") -> get the user related to the specified area
+##### ACTIONS
 
-##### TOKENS:
-- get("/") -> get all tokens
+- `get("/")` -> get all actions
 
-- get("/user/:userId") -> get tokens of specified user
+- `get("/:id")` -> get action by id
 
-- get("/service/:serviceName") -> get tokens of specified serviceName
+- `get("/areas")` -> get all areas that have actions
 
-##### ACTIONS:
-- get("/") -> get all actions
+- `get(":id/areas")` -> get all areas that have specified action
 
-- get("/:id") -> get action by id
+- `get(":id/relatedService")` -> get the related service of the specified action
 
-- get("/areas") -> get all areas that have actions
+##### REACTIONS
 
-- get(":id/areas") -> get all areas that have specified action
+- `get("/")` -> get all reaction
 
-- get(":id/relatedService") -> get the related service of the specified action
+- `get("/:id")` -> get reaction by id
 
-##### REACTIONS:
-- get("/") -> get all reaction
+- `get("/areas")` -> get all areas that have reaction
 
-- get("/:id") -> get reaction by id
+- `get(":id/areas")` -> get all areas that have specified reaction
 
-- get("/areas") -> get all areas that have reaction
+- `get(":id/relatedService")` -> get the related service of the specified reaction
 
-- get(":id/areas") -> get all areas that have specified reaction
+##### SERVICES
 
-- get(":id/relatedService") -> get the related service of the specified reaction
+- `get("/")` -> get all services
 
-##### SERVICES:
-- get("/") -> get all services
+- `get("/:name")` -> get service by name
 
-- get("/:name") -> get service by name
+- `get("/:name/actions")` -> get all actions of specified service
 
-- get("/:name/actions") -> get all actions of specified service
+- `get("/:name/reactions")` -> get all reactions of specified service
 
-- get("/:name/reactions") -> get all reactions of specified service
+- `get("/parameters")` -> get parameters of action/reaction linked to a service
 
-- get("/:name/tokens") -> get all tokens related to the specified service
+Overall, the API provides a comprehensive set of endpoints to retrieve information about the various entities in the AREA project.

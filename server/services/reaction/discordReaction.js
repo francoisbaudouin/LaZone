@@ -1,5 +1,8 @@
 const { initDiscord, client } = require("./discordClient.js");
-const { embeds } = require("./discordEmbeds/discordEmbeds.js")
+const { embeds } = require("./discordEmbeds/discordEmbeds.js");
+const DiscordOauth2 = require("discord-oauth2");
+
+const oauth = new DiscordOauth2();
 
 var sendMessage = function (area, resultData) {
   try {
@@ -31,4 +34,18 @@ var createChannel = function (area, resultData) {
   }
 }
 
-module.exports = { sendMessage, createChannel, initDiscord, client }
+var sendPrivateMessage = async function (area, resultData) {
+  try {
+    const user = await client.users.fetch(
+      (await oauth.getUser(area.tokens.reaction)).id
+    );
+    resultData.forEach(element => {
+      const embedMessage = embeds.get(area.actionId)(element);
+      user.send({embeds: [embedMessage]});
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+module.exports = { sendMessage, createChannel, sendPrivateMessage, initDiscord, client }
