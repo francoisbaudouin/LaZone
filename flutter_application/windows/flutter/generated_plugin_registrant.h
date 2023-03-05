@@ -4,14 +4,12 @@
 
 // clang-format off
 
-#include "generated_plugin_registrant.h"
+#ifndef GENERATED_PLUGIN_REGISTRANT_
+#define GENERATED_PLUGIN_REGISTRANT_
 
-#include <flutter_secure_storage_windows/flutter_secure_storage_windows_plugin.h>
-#include <url_launcher_windows/url_launcher_windows.h>
+#include <flutter/plugin_registry.h>
 
-void RegisterPlugins(flutter::PluginRegistry* registry) {
-  FlutterSecureStorageWindowsPluginRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("FlutterSecureStorageWindowsPlugin"));
-  UrlLauncherWindowsRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("UrlLauncherWindows"));
-}
+// Registers Flutter plugins.
+void RegisterPlugins(flutter::PluginRegistry* registry);
+
+#endif  // GENERATED_PLUGIN_REGISTRANT_
