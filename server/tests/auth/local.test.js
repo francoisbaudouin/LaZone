@@ -1,6 +1,6 @@
 const request = require('supertest');
 
-const app = require('../../index'); // Your Express app
+const app = require('../../index');
 const { PrismaClient } = require('@prisma/client');
 const { hash } = require('../../api/config/utils');
 const passport = require('passport');
