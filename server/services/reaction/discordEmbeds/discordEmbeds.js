@@ -35,10 +35,35 @@ function githubRepo(repoData) {
   }
 }
 
+function facebookPost(repoData) {
+  try {
+    const embed = new EmbedBuilder().setTitle(`new facebook post`)
+      .setURL(repoData.htmlUrl).setTimestamp()
+      .setDescription(repoData.name)
+      .setFooter({ text: "test" });
+    return (embed);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function facebookNewAlbum(repoData) {
+  try {
+    const embed = new EmbedBuilder().setTitle(`new facebook album: ${repoData.name}`)
+    .setURL(repoData.htmlUrl).setTimestamp()
+    .setFooter({ text: "test" });
+    return (embed);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 const embeds = new Map([
   [1, githubIssues],
   [2, githubPulls],
   [3, githubRepo],
+  [4, facebookPost],
+  [5, facebookNewAlbum],
 ])
 
 module.exports = { embeds }

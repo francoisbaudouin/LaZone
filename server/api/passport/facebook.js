@@ -10,7 +10,8 @@ const prisma = new PrismaClient();
 passport.use(new FacebookStrategy({
   clientID: process.env.FACEBOOK_CLIENT_ID,
   clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-  callbackURL: "http://localhost:8080/auth/Facebook/callback"
+  callbackURL: "http://localhost:8080/auth/Facebook/callback",
+  scope: ['email', 'user_location', 'user_likes','user_posts', 'user_photos']
   },
   async function(accessToken, refreshToken, profile, done) {
     try {

@@ -1,4 +1,6 @@
 const { getFromRepo, getNewRepos } = require("./action/githubAction.js");
+const { getNewPosts, getNewAlbum } = require("./action/facebookAction.js");
+
 const { sendMessage, createChannel, client } = require("./reaction/discordReaction.js");
 
 const { sendTweet } = require("./reaction/twitterReaction.js")
@@ -12,13 +14,15 @@ const actionMap = new Map([
   [1, getFromRepo],
   [2, getNewRepos],
   [3, getFromRepo],
+  [4, getNewPosts],
+  [5, getNewAlbum],
 ]);
 
 const reactionMap = new Map([
-  [1, sendTweet],
-  [2, sendMessage],
+  [1, sendMessage],
+  [2, createChannel],
   [3, createChannel],
-  [4, createChannel],
+  [5, sendTweet],
 ]);
 
 async function activateArea(area) {

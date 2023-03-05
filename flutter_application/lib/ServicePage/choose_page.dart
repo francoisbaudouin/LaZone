@@ -173,8 +173,8 @@ setupSendActionReaction(page, context) {
   getReactionId(area.reaction, area.reactionServiceChoose);
 
   var resJson = {
-    "actionParam": area.actionParam,
-    "reactionParam": area.reactionParam,
+    "actionParam": 'UgoBoulestreau/POC-nodejs',
+    "reactionParam": '1081306551148609689',
     "actionId": id.actionId,
     "reactionId": id.reactionId,
     "userId": connectedUser["id"],
